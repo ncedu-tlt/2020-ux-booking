@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Data } from '@booking/models/data.model';
 
 @Component({
   selector: 'booking-root',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'frontend';
+  data: Data = {
+    message: 'test'
+  }
 }
