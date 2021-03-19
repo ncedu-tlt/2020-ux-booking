@@ -1,5 +1,5 @@
 {
-    "name": "booking",
+    "name": "nc-booking",
     "description": "Booking",
     "addons": ["heroku-postgresql:hobby-dev"]
 }
