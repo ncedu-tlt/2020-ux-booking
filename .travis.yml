@@ -1,10 +1,11 @@
 language: node_js
 node_js:
-  - lts/*
+- lts/*
 script: npm run lint && npm run build
-#notifications:
-#  slack:
-#    secure:
-#    on_success: change
-#    on_failure: always
-#    on_pull_requests: true
+notifications:
+  slack:
+    rooms:
+      secure: 0hJRwVc+ziM+yo33D2FJfUD0UBhbcn5sD2sNBP7n1CDlIGbRg02n2F8zdGbwpRD78yNe+13I96NuofAmqxe0qCQeIQHbMnWXXzHfalpH59wHoNNDNAmJvq2EXz26gH9GSLFnngXFfzYJNP427i1GQfB2NcD5VqBaMEhqCbbqT5aoFdW61pkYAsi68ZK3P54cfsQA3/9pdmoz4EQXcPmFJUAg2O0PStmMuQdYVw7MAMvvXdjxbTB4u+r8xIuTupIogK8yCEn7XtDCWCnc9q90jfNYRDd2eH7dYhRvnfXvrYuiEMTJ8HtgzbOO5BID3M4L1R+WJtoc1N0yrxOSjya3GGdEIqApXmLqdp5OoSITGQnZdyIjnMEuPd4jtCXpjoav6MRdxAshWPK52YpfPuRwQuKPl8FyxMcbSGS7YgMY/2Pd/vfZnRIBRoeOeB65xBGdQ+LPOYObEg3JhgVUGnYkK+rFDwk/SXlyJ1HOcjqb5J/isC/hcbM3Qlc8DywCqqLDGhx3QSeDXu/FwZs3ygTJ45NUdijULMuEE7zNCW0Qy58ZhGAUJReQQnq0sgeICsbT0myYr2Fl59PXN5lqLzRbWtQceepcr0zpu3FRWNXVfwzDH1lkpyQCeocrhMTZ8VuwMjQn2kBjQMPf3R2gujp7vZR9nsnJdm/c7w/l3X+C65Y=
+      on_success: change
+      on_failure: always
+      on_pull_requests: true
