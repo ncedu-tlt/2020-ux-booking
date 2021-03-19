@@ -8,11 +8,12 @@ import { Data } from '@booking/models/data.model';
 })
 export class AppComponent {
   title = 'frontend';
+
   data: Data = {
     message: 'test'
-  }
+  };
 
   handleClick() {
-    alert('test')
+    alert('test');
   }
 }

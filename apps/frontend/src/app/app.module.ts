@@ -8,6 +8,6 @@ import { CommonModule } from './common/common.module';
   declarations: [AppComponent],
   imports: [BrowserModule, CommonModule],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}
