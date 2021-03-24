@@ -27,7 +27,10 @@ import { MessagesModule } from '../messages/messages.module';
         url: configService.get<string>('db.url'),
         synchronize: true,
         autoLoadEntities: true,
-        logging: false
+        logging: false,
+        ssl: {
+          rejectUnauthorized: false
+        }
       })
     }),
     MessagesModule
