@@ -28,7 +28,7 @@ import { MessagesModule } from '../messages/messages.module';
         synchronize: true,
         autoLoadEntities: true,
         logging: false,
-        ssl: {
+        ssl: configService.get<boolean>('production') && {
           rejectUnauthorized: false
         }
       })
