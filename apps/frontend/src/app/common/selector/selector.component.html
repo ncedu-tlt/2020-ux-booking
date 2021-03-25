@@ -1,0 +1,14 @@
+<div class='selector'>
+  <h5 class='selector-title'>{{titleSelector}}</h5>
+  <div (click)='showPopup()' class='selector__button'>
+      <h4 class='selector__button-item'>{{selectedItems.length == 0 ? hint : selectedItems[0]}}</h4>
+    <svg-icon  [ngClass]="[popupItems !== true ? 'selector__button-arrow': 'selector__button-arrow-rotate']" src='assets/icons/arrow.svg'></svg-icon>
+  </div>
+  <div *ngIf='popupItems' class='selector__list'>
+    <div (click)='showTitle(item)' class='selector__list-item' *ngFor='let item of data'>
+<!--      <div  class='rectangle'>-->
+<!--      </div>-->
+      <h4 class='selector__list-text'>{{item}}</h4>
+    </div>
+  </div>
+</div>
