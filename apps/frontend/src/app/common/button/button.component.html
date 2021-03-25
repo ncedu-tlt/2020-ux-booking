@@ -1,4 +1,4 @@
 <button [type]="buttonType" [ngClass]="['button', type]">
-  <svg-icon src="assets/icons/cart.svg"></svg-icon>
+  <svg-icon class="icon" [class._white]="type === 'primary'" src="assets/icons/plus.svg"></svg-icon>
   <ng-content></ng-content>
 </button>
