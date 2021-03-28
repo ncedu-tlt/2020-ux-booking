@@ -1,4 +1,11 @@
-import { Component, EventEmitter, HostBinding, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  HostBinding,
+  Input,
+  OnInit,
+  Output
+} from '@angular/core';
 import { NotificationTypesEnum } from '../../enums/notification-types.enum';
 
 @Component({
