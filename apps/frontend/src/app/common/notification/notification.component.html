@@ -1,0 +1,14 @@
+<div class="notification__container" [ngClass]="'_' + _type">
+  <div class="notification__content">
+    <div class="notification__icon" [ngClass]="'_' + _type">
+      <svg-icon class="icon _fill-none _stroke-white" [src]="iconPath"></svg-icon>
+    </div>
+    <div class="notification__text">
+      {{ message }}
+    </div>
+    <button class="notification__control" (click)="closeNotification()">
+      <svg-icon class="icon _stroke-grey _fill-none" src="assets/icons/cross.svg"></svg-icon>
+    </button>
+  </div>
+</div>
+

@@ -2,14 +2,30 @@
   width: 24px;
   height: 24px;
 
-  & svg {
-    fill: @color-blue-dark;
-    stroke: @color-blue-dark;
-  }
-
   &._white {
     & svg {
       fill: @color-white;
+      stroke: @color-white;
+    }
+  }
+
+  &._fill {
+    &-none {
+      fill: none;
+    }
+  }
+
+  &._stroke {
+    &-green svg {
+      stroke: @color-green-success;
+    }
+    &-grey svg {
+      stroke: @color-grey-middle;
+    }
+    &-red svg {
+      stroke: @color-red;
+    }
+    &-white svg {
       stroke: @color-white;
     }
   }
