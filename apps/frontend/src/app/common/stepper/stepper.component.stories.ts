@@ -14,7 +14,7 @@ export default {
       imports: [AngularSvgIconModule.forRoot(), HttpClientModule]
     })
   ],
-  title: 'TaskList',
+  title: 'stepper',
   argTypes: {
     steps: {
       control: {
@@ -35,15 +35,12 @@ const Template: Story<StepperComponent> = args => ({
   component: StepperComponent,
   props: {
     ...args,
-    onStepChange: action('onStepChange')
+    stepChange: action('stepChange')
   }
 });
 
 export const Default = Template.bind({});
 Default.args = {
   steps: ['Контактная информация', 'Выбор даты', 'Способ оплаты'],
-  activeStep: 1,
-  onStep() {
-    console.log('тест');
-  }
+  activeStep: 1
 };
