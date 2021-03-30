@@ -1,4 +1,4 @@
-import { ButtonComponent } from './button.component';
+import { IconComponent } from './icon.component';
 import { Meta, Story } from '@storybook/angular/types-6-0';
 import { StoryFnAngularReturnType } from '@storybook/angular/dist/client/preview/types';
 import { AngularSvgIconModule } from 'angular-svg-icon';
@@ -10,19 +10,7 @@ const meta: Meta = {
     type: {
       control: {
         type: 'select',
-        options: ['flat', 'primary', 'secondary', 'action']
-      }
-    },
-    hasIcon: {
-      control: {
-        type: 'select',
-        options: [true, false]
-      }
-    },
-    size: {
-      control: {
-        type: 'select',
-        options: ['default', 'small']
+        options: ['primary', 'flat']
       }
     },
     isDisabled: {
@@ -36,14 +24,14 @@ const meta: Meta = {
 export default meta;
 
 const common: StoryFnAngularReturnType = {
-  component: ButtonComponent,
+  component: IconComponent,
   moduleMetadata: {
-    declarations: [ButtonComponent],
+    declarations: [IconComponent],
     imports: [AngularSvgIconModule.forRoot(), HttpClientModule]
   }
 };
 
-const template: Story<ButtonComponent> = (args: ButtonComponent) => ({
+const template: Story<IconComponent> = (args: IconComponent) => ({
   ...common,
   props: {
     ...args
@@ -53,8 +41,6 @@ const template: Story<ButtonComponent> = (args: ButtonComponent) => ({
 export const regular = template.bind({});
 regular.args = {
   type: 'primary',
-  text: 'Save',
   hasIcon: false,
-  size: 'small',
   isDisabled: false
 };

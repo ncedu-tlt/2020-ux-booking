@@ -3,14 +3,97 @@
 .button {
     display: flex;
     align-items: center;
-    padding: 8px 16px;
+    padding: 0 16px;
+    height: 56px;
     background-color: @color-white;
-    border: 2px solid @color-blue;
-    border-radius: 8px;
+    border-radius: 24px;
     cursor: pointer;
+    text-transform: uppercase;
+  border: none;
+  &.small {
+    height: 48px;
+  }
 
     &.primary {
         background-color: @color-blue;
         color: white;
+
+      &:hover {
+        background-color: @color-blue-light;
+        color: @color-blue;
+      }
+      &[disabled] {
+        .bg-color-light-grey;
+        color: @color-grey-middle;
+        border: none;
+      }
     }
+  &.secondary {
+    background-color: @color-white;
+    color: @color-blue-dark;
+    border: 2px solid @color-blue;
+  }
+  &.flat {
+    background-color: transparent;
+    color: @color-blue;
+  }
+  &.action {
+    background-color: @color-green;
+    color: @color-white;
+  }
+}
+.save {
+  display: flex;
+  align-items: center;
+  weight: 50px;
+  padding: 8px 30px;
+  background-color: @color-blue-dark;
+  color: @color-white;
+  border: 2px solid @color-white;
+  border-radius: 7px;
+  cursor: pointer;
+
+  &.hover {
+    background-color: @color-blue-light;
+    color: @color-blue-dark;
+  }
+
+  &.disabled {
+    background-color: @color-grey-light;
+    color: @color-grey-middle;
+  }
+
+  &.add {
+    background-color: @color-white;
+    color: @color-blue;
+    border: 2px solid @color-blue;
+    Width: 263px;
+    Height: 56px;
+  }
+
+  &.add_hover {
+    background-color: @color-blue-light;
+    color: @color-blue-dark;
+  }
+
+  &.add_disabled {
+    background-color: @color-grey-light;
+    color: @color-grey-middle;
+  }
+
+  &.add_small {
+    background-color: @color-white;
+    color: @color-blue;
+    border: 2px solid @color-blue;
+    Width: 175px;
+    Height: 48px;
+  }
+
+  &.create {
+    background-color: @color-white;
+    color: @color-blue;
+    border: 2px solid @color-blue;
+    Width: 200px;
+    Height: 56px;
+  }
 }
