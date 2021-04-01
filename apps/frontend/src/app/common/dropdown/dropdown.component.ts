@@ -7,31 +7,26 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class DropdownComponent {
   @Input()
-  sortList: string[] = [];
+  items: string[] = [];
 
   @Input()
-  defaultState = '';
+  activeItem = '';
+
+  @Input()
+  isLeftAligned = false;
 
   @Output()
   stateChange: EventEmitter<string> = new EventEmitter<string>();
 
-  stateViewList = true;
-
-  addClass(state?: string): string {
-    if (this.defaultState === state) {
-      return '_active';
-    } else if (this.stateViewList === true) {
-      return '_opened';
-    }
-  }
+  isOpened = false;
 
   changeStateViewList(): void {
-    this.stateViewList = !this.stateViewList;
+    this.isOpened = !this.isOpened;
   }
 
   changeState(state: string): void {
     this.stateChange.emit(state);
-    this.stateViewList = !this.stateViewList;
-    this.defaultState = state;
+    this.isOpened = !this.isOpened;
+    this.activeItem = state;
   }
 }

@@ -15,15 +15,20 @@ export default {
   ],
   title: 'dropdown',
   argTypes: {
-    defaultState: {
+    activeItem: {
       control: {
-        type: 'string',
+        type: 'text',
         options: ''
       },
-      sortList: {
+      items: {
         control: {
           type: 'array',
           options: []
+        },
+        isLeftAligned: {
+          control: {
+            type: 'boolean'
+          }
         }
       }
     }
@@ -35,13 +40,21 @@ const Template: Story<DropdownComponent> = args => ({
   props: {
     ...args,
     stateChange: action('stateChange')
-  }
+  },
+  template:
+    '<div style="display: flex; justify-content: center">' +
+    '<b-dropdown (stateChange)="stateChange($event)" ' +
+    '[items]="items" ' +
+    '[activeItem]="activeItem" ' +
+    '[isLeftAligned]="isLeftAligned"></b-dropdown>' +
+    '</div>'
 });
 
 export const Default = Template.bind({});
 Default.args = {
-  defaultState: 'Сначала дешевые',
-  sortList: [
+  isLeftAligned: false,
+  activeItem: 'Сначала дешевые',
+  items: [
     'Сначала дешевые',
     'Сначала дорогие',
     'По рейтингу пользователей',
