@@ -1,0 +1,63 @@
+@import "../../../assets/styles/common/shared";
+
+.dropdown {
+
+  &__svg {
+    transform: rotate(90deg);
+    margin-left: 4px;
+    margin-top: 2px;
+    stroke: @color-blue-dark;
+
+    &._opened {
+      transform: rotate(270deg);
+    }
+  }
+
+  &__state {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+  }
+
+  &__link {
+    color: @color-blue-dark;
+  }
+
+  &__items {
+    margin-top: 11px;
+    background-color: @color-white;
+    border-radius: 24px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    height: 209px;
+    width: 355px;
+    .shadow-dark()
+  }
+
+  &__list {
+    padding-top: 11px;
+    padding-bottom: 11px;
+    color: @color-blue-dark;
+    width: 100%;
+    cursor: pointer;
+    text-align: center;
+
+    &:hover {
+      background-color: @color-blue-light;
+    }
+
+    &._active {
+      background-color: @color-blue-dark;
+      color: @color-white;
+    }
+  }
+}
+
+@media @mobile {
+  .dropdown {
+    &__items {
+      width: 315px;
+    }
+  }
+}

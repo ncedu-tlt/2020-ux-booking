@@ -1,0 +1,22 @@
+<div class='dropdown'>
+  <div class='dropdown__wrapper'>
+        <div class='dropdown__state'>
+            <div class='dropdown__link'
+                 (click)='changeStateViewList()'>
+              {{defaultState}}
+            </div>
+            <svg class='dropdown__svg' [ngClass]='addClass()' width="15" height="15  " viewBox="0 0 24 24" fill="none" stroke="black" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 5L16 12L9 19" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+        <div *ngIf='stateViewList' class='dropdown__items'>
+          <div
+            *ngFor='let state of sortList'
+            class='dropdown__list'
+            (click)='changeState(state)'
+            [ngClass]='addClass(state)'>
+            {{state}}
+          </div>
+        </div>
+  </div>
+</div>
