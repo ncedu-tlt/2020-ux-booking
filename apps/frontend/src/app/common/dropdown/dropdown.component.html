@@ -1,0 +1,25 @@
+<div class='dropdown'>
+  <div class='dropdown__wrapper'>
+        <div class='dropdown__control'
+             [class._opened]="isOpened">
+            <div class='dropdown__link'
+                 (click)='changeStateViewList()'>
+              {{activeItem}}
+            </div>
+          <svg-icon class='icon _size-m'
+                    [class._stroke-deep-dark]="isOpened"
+                    [ngClass]='isOpened ? "_rotate-u" : "_rotate-d"'
+                    src="assets/icons/arrow.svg">
+          </svg-icon>
+        </div>
+        <div *ngIf='isOpened' class='dropdown__items' [class._right]="!isLeftAligned">
+          <div
+            *ngFor='let state of items'
+            class='dropdown__list'
+            [class._active]="activeItem === state"
+            (click)='changeState(state)'>
+            {{state}}
+          </div>
+        </div>
+  </div>
+</div>

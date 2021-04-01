@@ -2,10 +2,30 @@
   width: 24px;
   height: 24px;
 
+  & svg {
+    stroke: @color-blue-dark;
+  }
+
   &._white {
     & svg {
-      fill: @color-white;
+      fill: none;
       stroke: @color-white;
+    }
+  }
+
+  &._size {
+    &-m {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  &._rotate {
+    &-d svg {
+      transform: rotate(90deg);
+    }
+    &-u svg {
+      transform: rotate(270deg);
     }
   }
 
@@ -27,6 +47,9 @@
     }
     &-white svg {
       stroke: @color-white;
+    }
+    &-deep-dark svg {
+      stroke: @color-blue-deep-dark;
     }
   }
 }
