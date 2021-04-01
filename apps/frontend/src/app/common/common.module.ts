@@ -4,10 +4,21 @@ import { ButtonComponent } from './button/button.component';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { StepperComponent } from './stepper/stepper.component';
 import { NotificationComponent } from './notification/notification.component';
+import { DropdownComponent } from './dropdown/dropdown.component';
 
 @NgModule({
   imports: [NgCommonModule, AngularSvgIconModule],
-  declarations: [ButtonComponent, StepperComponent, NotificationComponent],
-  exports: [ButtonComponent, StepperComponent, NotificationComponent]
+  declarations: [
+    ButtonComponent,
+    StepperComponent,
+    NotificationComponent,
+    DropdownComponent
+  ],
+  exports: [
+    ButtonComponent,
+    StepperComponent,
+    NotificationComponent,
+    DropdownComponent
+  ]
 })
 export class CommonModule {}
