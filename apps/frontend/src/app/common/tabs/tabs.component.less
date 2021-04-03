@@ -1,0 +1,47 @@
+@import './../../../assets/styles/common/shared';
+
+.tabs {
+  margin: 0;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    width: 280px;
+    border-bottom: 1px solid @color-blue-dark;
+    padding-bottom: 8px;
+    padding-top: 13px; 
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  li:hover:not(&__selected) {
+    background: @color-blue-light;
+    cursor: pointer;
+  }
+
+  a {
+    color:  @color-blue-dark;
+    display: inline-block;
+    .font-regular();
+    font-size: 20px;
+    line-height: 32px;
+    letter-spacing: 0.5px;
+  }
+
+  &__selected {
+    background: @color-blue-dark;
+  }
+
+  &__selected a{
+    color:  @color-background;
+  }
+
+  &__horizontal li {
+    display: inline;
+  }
+
+}
