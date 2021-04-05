@@ -17,7 +17,7 @@ const meta: Meta = {
       control: {
         type: 'array',
         options: []
-      },
+      }
     },
     selectedItem: {
       control: {
@@ -36,12 +36,12 @@ const common: StoryFnAngularReturnType = {
   }
 };
 
-const template: Story<TabsComponent> = (args) => ({
+const template: Story<TabsComponent> = args => ({
   ...common,
   props: {
     ...args,
-    selectedEvent: (event) => {
-      console.info('handle selected event: ' + event)
+    selectedEvent: event => {
+      console.error('handle selected event: ' + event);
     }
   },
   template: `
@@ -53,11 +53,7 @@ const template: Story<TabsComponent> = (args) => ({
 export const horizontal = template.bind({});
 horizontal.args = {
   type: 'horizontal',
-  items: [
-    'Опубликованные',
-    'Неопубликованные',
-    'Дополнительно',
-  ],
+  items: ['Опубликованные', 'Неопубликованные', 'Дополнительно'],
   selectedItem: 'Опубликованные'
 };
 
