@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'b-tabs',
@@ -10,17 +10,18 @@ export class TabsComponent {
   @Input()
   type: 'horizontal' | 'vertical' = 'vertical';
 
-  items: string[] = [
-    'Основная информация',
-    'Оплата и сервис',
-    'Дополнительно',
-    'Комментарии'
-  ];
+  @Input()
+  items: string[] = [];
 
+  @Input()
   selectedItem: string;
+
+  @Output()
+  selectedEvent: EventEmitter<string> = new EventEmitter<string>();
 
   setItem(item: string): void {
     this.selectedItem = item;
     console.log(this.selectedItem);
+    this.selectedEvent.emit(item);
   }
 }

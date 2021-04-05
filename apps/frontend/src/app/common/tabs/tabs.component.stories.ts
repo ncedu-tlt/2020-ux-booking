@@ -5,7 +5,27 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
 import { HttpClientModule } from '@angular/common/http';
 
 const meta: Meta = {
-  title: 'Tabs'
+  title: 'Tabs',
+  argTypes: {
+    type: {
+      control: {
+        type: 'text',
+        options: ''
+      }
+    },
+    items: {
+      control: {
+        type: 'array',
+        options: []
+      },
+    },
+    selectedItem: {
+      control: {
+        type: 'text',
+        options: ''
+      }
+    }
+  }
 };
 export default meta;
 
@@ -16,12 +36,40 @@ const common: StoryFnAngularReturnType = {
   }
 };
 
-export const vertical: Story<TabsComponent> = () => ({
+const template: Story<TabsComponent> = (args) => ({
   ...common,
-  template: '<b-tabs></b-tabs>'
+  props: {
+    ...args,
+    selectedEvent: (event) => {
+      console.info('handle selected event: ' + event)
+    }
+  },
+  template: `
+    <b-tabs [type]="type" [items]="items" [selectedItem]="selectedItem" (selectedEvent)="selectedEvent($event)" >
+    </b-tabs>
+  `
 });
 
-export const horizontal: Story<TabsComponent> = () => ({
-  ...common,
-  template: '<b-tabs type="horizontal"></b-tabs>'
-});
+export const horizontal = template.bind({});
+horizontal.args = {
+  type: 'horizontal',
+  items: [
+    'Опубликованные',
+    'Неопубликованные',
+    'Дополнительно',
+  ],
+  selectedItem: 'Опубликованные'
+};
+
+export const vertical = template.bind({});
+vertical.args = {
+  type: 'vertical',
+  items: [
+    'Основная информация',
+    'Оплата и сервис',
+    'Размещение и питание',
+    'Дополнительно',
+    'Комментарии'
+  ],
+  selectedItem: 'Основная информация'
+};
