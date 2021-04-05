@@ -3,45 +3,32 @@
 .tabs {
   margin: 0;
 
-  ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  li {
-    width: 280px;
+  &__item {
     border-bottom: 1px solid @color-blue-dark;
-    padding-bottom: 8px;
-    padding-top: 13px; 
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
-  li:hover:not(&__selected) {
-    background: @color-blue-light;
-    cursor: pointer;
-  }
-
-  a {
+    padding: 10px 24px;
     color:  @color-blue-dark;
-    display: inline-block;
+    display: flex;
     .font-regular();
     font-size: 20px;
     line-height: 32px;
     letter-spacing: 0.5px;
   }
 
+  &__item:hover:not(&__selected) {
+    background: @color-blue-light;
+    cursor: pointer;
+  }
+
   &__selected {
     background: @color-blue-dark;
   }
 
-  &__selected a{
+  &__selected {
     color:  @color-background;
   }
 
-  &__horizontal li {
-    display: inline;
+  &__horizontal div {
+    display: inline-flex;
   }
 
 }

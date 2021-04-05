@@ -1,9 +1,7 @@
 <div class='tabs' [ngClass]="[type == 'vertical' ? 'tabs__vertical': 'tabs__horizontal']" >
-  <ul>
-    <li
-      *ngFor='let item of items' [ngClass]="[item == selectedItem ? 'tabs__selected' : 'tabs__default']" 
-      (click)='setItem(item)'>
-      <a>{{item}}</a>
-    </li>
-  </ul>
+  <div class="tabs__item"
+    *ngFor='let item of items' [ngClass]="[item == selectedItem ? 'tabs__selected' : 'tabs__default']" 
+    (click)='setItem(item)'>
+    {{item}}
+  </div>
 </div>
