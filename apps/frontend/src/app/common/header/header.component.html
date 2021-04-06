@@ -1,0 +1,222 @@
+<header class='header'>
+  <div class='header__logo' [class._hidden]="isHiddenLogo">
+    <div class='header__wrapper-icon'>
+      <svg-icon class='icon _white _size-l'
+                src="assets/icons/palm.svg">
+      </svg-icon>
+    </div>
+    <div>Hotel Booking Service</div>
+  </div>
+
+  <div class='header__admin-panel' *ngIf='isAdmin'>
+    <a class='header__admin-panel-item'>ОТЕЛИ</a>
+    <a class='header__admin-panel-item'>ПОЛЬЗОВАТЕЛИ</a>
+  </div>
+
+  <div class='header__items'>
+
+    <ng-container *ngIf='isNightTheme; else nightFalse'>
+      <div class='header__night-theme' (click)='changeNight()'>
+        <div>
+          <svg-icon class='icon _size-m _blue-dark-white'
+                    src="assets/icons/sun.svg">
+          </svg-icon>
+        </div>
+        <div>
+          <svg-icon class='icon _size-m _white'
+                    src="assets/icons/moon.svg">
+          </svg-icon>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #nightFalse>
+      <div class='header__night-theme-change' (click)='changeNight()'>
+        <div>
+          <svg-icon class='icon _size-m _white'
+                    src="assets/icons/sun.svg">
+          </svg-icon>
+        </div>
+        <div>
+          <svg-icon class='icon _size-m _blue-dark-white'
+                    src="assets/icons/moon.svg">
+          </svg-icon>
+        </div>
+      </div>
+    </ng-template>
+    <ng-container *ngIf='isLanguageRu; else languageFalse'>
+      <div class='header__language' (click)='changeLanguage()'>
+          <div class='header__ru'>ru</div>
+          <div class='header__en'>en</div>
+      </div>
+    </ng-container>
+    <ng-template #languageFalse>
+      <div class='header__language-change' (click)='changeLanguage()'>
+        <div class='header__ru-change'>ru</div>
+        <div class='header__en-change'>en</div>
+      </div>
+    </ng-template>
+
+    <ng-container *ngIf='isEnterTrue; else enterFalse'>
+      <div class='header__user-wrapper' (click)='visibleMenu()' (mouseleave)='visibleMenu()'>
+        <div class='header__user'>
+          <div class='header__wrapper-user-icon'>
+            <svg-icon class='icon _size-xl _blue-dark'
+                      src="assets/icons/user_icon.svg">
+            </svg-icon>
+          </div>
+          <div class='header__name'>
+            {{userName}}
+          </div>
+          <svg-icon class='icon _size-m _rotate-d _white' [class._rotate-u]="isShowMenu"
+                    src="assets/icons/arrow.svg">
+          </svg-icon>
+        </div>
+        <div class='header__user-menu' *ngIf='isShowMenu'>
+          <a class='header__user-menu-item' href='#'>Забронированные отели</a>
+          <a class='header__user-menu-item' href='#'>История Бронирования</a>
+          <a class='header__user-menu-item' href='#'>Закладки</a>
+          <a class='header__user-menu-item' href='#'>Настройки</a>
+          <a class='header__user-menu-item' href='#'>Выход</a>
+        </div>
+      </div>
+    </ng-container>
+
+
+    <ng-template #enterFalse>
+      <div class='header__enter-icon'>
+      <svg-icon class='icon _size-l _white'
+                src="assets/icons/enter.svg">
+      </svg-icon>
+      <div class='header__enter'>
+        Войти
+      </div>
+      </div>
+    </ng-template>
+  </div>
+  <div class='header__burger' (click)='showModal()' *ngIf='isShowBurgerIcon; else cross'>
+    <svg-icon class='icon _size-m _white header__burger-icon'
+              src="assets/icons/burger.svg">
+    </svg-icon>
+  </div>
+
+  <ng-template  #cross>
+    <div class='header__burger' (click)='showModal()'>
+      <svg-icon class='icon _size-m _white header__burger-icon'
+                src="assets/icons/x.svg">
+      </svg-icon>
+    </div>
+  </ng-template>
+</header>
+
+<div class='header__modal' *ngIf='isHiddenLogo'>
+  <div class='header__modal-items'>
+    <ng-container *ngIf='isEnterTrue; else enterFalse'>
+      <ng-container *ngIf='isAdmin; else noAdmin '>
+        <a class='header__modal-items-block'>ОТЕЛИ</a>
+        <a class='header__modal-items-block'>ПОЛЬЗОВАТЕЛИ</a>
+      </ng-container>
+      <ng-template #noAdmin>
+        <a class='header__modal-items-block'>Забронированые отели</a>
+        <a class='header__modal-items-block'>История бронирования</a>
+        <a class='header__modal-items-block'>Закладки</a>
+      </ng-template>
+      <a class='header__modal-items-block'>Настройки</a>
+      <div class='header__modal-items-block'>
+        <ng-container *ngIf='isNightTheme else nightFalse'>
+          <div class='header__night-theme' (click)='changeNight()'>
+            <div>
+              <svg-icon class='icon _size-m _blue-dark-white'
+                        src="assets/icons/sun.svg">
+              </svg-icon>
+            </div>
+            <div>
+              <svg-icon class='icon _size-m _white'
+                        src="assets/icons/moon.svg">
+              </svg-icon>
+            </div>
+          </div>
+        </ng-container>
+        <ng-template #nightFalse>
+          <div class='header__night-theme-change' (click)='changeNight()'>
+            <div>
+              <svg-icon class='icon _size-m _white'
+                        src="assets/icons/sun.svg">
+              </svg-icon>
+            </div>
+            <div>
+              <svg-icon class='icon _size-m _blue-dark-white'
+                        src="assets/icons/moon.svg">
+              </svg-icon>
+            </div>
+          </div>
+        </ng-template>
+      </div>
+      <div class='header__modal-items-block'>
+        <ng-container *ngIf='isLanguageRu; else languageFalse'>
+          <div class='header__language' (click)='changeLanguage()'>
+            <div class='header__ru'>ru</div>
+            <div class='header__en'>en</div>
+          </div>
+        </ng-container>
+        <ng-template #languageFalse>
+          <div class='header__language-change' (click)='changeLanguage()'>
+            <div class='header__ru-change'>ru</div>
+            <div class='header__en-change'>en</div>
+          </div>
+        </ng-template>
+      </div>
+
+      <div>Выход</div>
+    </ng-container>
+    <ng-template #enterFalse>
+        <div class='header__modal-items-false'>
+          Вход
+        </div>
+      <div class='header__modal-items-false'>
+          <ng-container *ngIf='isNightTheme; else nightFalse'>
+            <div class='header__night-theme' (click)='changeNight()'>
+              <div>
+                <svg-icon class='icon _size-m _blue-dark-white'
+                          src="assets/icons/sun.svg">
+                </svg-icon>
+              </div>
+              <div>
+                <svg-icon class='icon _size-m _white'
+                          src="assets/icons/moon.svg">
+                </svg-icon>
+              </div>
+            </div>
+          </ng-container>
+          <ng-template #nightFalse>
+            <div class='header__night-theme-change' (click)='changeNight()'>
+              <div>
+                <svg-icon class='icon _size-m _white'
+                          src="assets/icons/sun.svg">
+                </svg-icon>
+              </div>
+              <div>
+                <svg-icon class='icon _size-m _blue-dark-white'
+                          src="assets/icons/moon.svg">
+                </svg-icon>
+              </div>
+            </div>
+          </ng-template>
+      </div>
+      <div class='header__modal-items-false'>
+          <ng-container *ngIf='isLanguageRu; else languageFalse'>
+            <div class='header__language' (click)='changeLanguage()'>
+              <div class='header__ru'>ru</div>
+              <div class='header__en'>en</div>
+            </div>
+          </ng-container>
+          <ng-template #languageFalse>
+            <div class='header__language-change' (click)='changeLanguage()'>
+              <div class='header__ru-change'>ru</div>
+              <div class='header__en-change'>en</div>
+            </div>
+          </ng-template>
+      </div>
+    </ng-template>
+  </div>
+</div>
+
