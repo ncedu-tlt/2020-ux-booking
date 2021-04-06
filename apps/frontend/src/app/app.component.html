@@ -5,7 +5,8 @@
     src="https://nx.dev/assets/images/nx-logo-white.svg"
   />
   <h1>Welcome to {{ title }}!</h1>
-  <b-button (click)="handleClick()">Тест</b-button>
+  <b-lang-selector></b-lang-selector>
+  <b-button (click)="handleClick()">{{ 'test' | i18next }}</b-button>
 </header>
 <main>
   <h2>Resources &amp; Tools</h2>
