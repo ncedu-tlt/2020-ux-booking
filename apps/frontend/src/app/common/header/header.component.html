@@ -11,53 +11,14 @@
   <div class='header__admin-panel' *ngIf='isAdmin'>
     <a class='header__admin-panel-item'>ОТЕЛИ</a>
     <a class='header__admin-panel-item'>ПОЛЬЗОВАТЕЛИ</a>
-  </div>
+  </div> <!--в темплате-->
 
   <div class='header__items'>
 
-    <ng-container *ngIf='isNightTheme; else nightFalse'>
-      <div class='header__night-theme' (click)='changeNight()'>
-        <div>
-          <svg-icon class='icon _size-m _blue-dark-white'
-                    src="assets/icons/sun.svg">
-          </svg-icon>
-        </div>
-        <div>
-          <svg-icon class='icon _size-m _white'
-                    src="assets/icons/moon.svg">
-          </svg-icon>
-        </div>
-      </div>
-    </ng-container>
-    <ng-template #nightFalse>
-      <div class='header__night-theme-change' (click)='changeNight()'>
-        <div>
-          <svg-icon class='icon _size-m _white'
-                    src="assets/icons/sun.svg">
-          </svg-icon>
-        </div>
-        <div>
-          <svg-icon class='icon _size-m _blue-dark-white'
-                    src="assets/icons/moon.svg">
-          </svg-icon>
-        </div>
-      </div>
-    </ng-template>
-    <ng-container *ngIf='isLanguageRu; else languageFalse'>
-      <div class='header__language' (click)='changeLanguage()'>
-          <div class='header__ru'>ru</div>
-          <div class='header__en'>en</div>
-      </div>
-    </ng-container>
-    <ng-template #languageFalse>
-      <div class='header__language-change' (click)='changeLanguage()'>
-        <div class='header__ru-change'>ru</div>
-        <div class='header__en-change'>en</div>
-      </div>
-    </ng-template>
+    <ng-container *ngTemplateOutlet='switchersTemplate'></ng-container>
 
-    <ng-container *ngIf='isEnterTrue; else enterFalse'>
-      <div class='header__user-wrapper' (click)='visibleMenu()' (mouseleave)='visibleMenu()'>
+    <ng-container *ngIf='userName.length > 0; else enterFalse'>
+      <div class='header__user-wrapper' (click)='toggleMenu()' (mouseleave)='toggleMenu()'>
         <div class='header__user'>
           <div class='header__wrapper-user-icon'>
             <svg-icon class='icon _size-xl _blue-dark'
@@ -93,24 +54,23 @@
       </div>
     </ng-template>
   </div>
-  <div class='header__burger' (click)='showModal()' *ngIf='isShowBurgerIcon; else cross'>
+  <div class='header__burger' (click)='showModal()'>
     <svg-icon class='icon _size-m _white header__burger-icon'
               src="assets/icons/burger.svg">
     </svg-icon>
   </div>
 
-  <ng-template  #cross>
-    <div class='header__burger' (click)='showModal()'>
-      <svg-icon class='icon _size-m _white header__burger-icon'
-                src="assets/icons/x.svg">
-      </svg-icon>
-    </div>
-  </ng-template>
+
 </header>
 
 <div class='header__modal' *ngIf='isHiddenLogo'>
+  <div class='header__modal-header'>
+    <svg-icon (click)='showModal()' class='icon _size-m _white header__cross '
+              src="assets/icons/cross.svg">
+    </svg-icon>
+  </div>
   <div class='header__modal-items'>
-    <ng-container *ngIf='isEnterTrue; else enterFalse'>
+    <ng-container *ngIf='userName.length > 0; else enterFalse'>
       <ng-container *ngIf='isAdmin; else noAdmin '>
         <a class='header__modal-items-block'>ОТЕЛИ</a>
         <a class='header__modal-items-block'>ПОЛЬЗОВАТЕЛИ</a>
@@ -153,15 +113,15 @@
       </div>
       <div class='header__modal-items-block'>
         <ng-container *ngIf='isLanguageRu; else languageFalse'>
-          <div class='header__language' (click)='changeLanguage()'>
-            <div class='header__ru'>ru</div>
-            <div class='header__en'>en</div>
+          <div class='header__language'>
+            <div class='header__ru' (click)='changeLanguage("ru")'>ru</div>
+            <div class='header__en' (click)='changeLanguage("en")'>en</div>
           </div>
         </ng-container>
         <ng-template #languageFalse>
-          <div class='header__language-change' (click)='changeLanguage()'>
-            <div class='header__ru-change'>ru</div>
-            <div class='header__en-change'>en</div>
+          <div class='header__language-change'>
+            <div class='header__ru-change' (click)='changeLanguage("ru")'>ru</div>
+            <div class='header__en-change' (click)='changeLanguage("en")'>en</div>
           </div>
         </ng-template>
       </div>
@@ -173,50 +133,56 @@
           Вход
         </div>
       <div class='header__modal-items-false'>
-          <ng-container *ngIf='isNightTheme; else nightFalse'>
-            <div class='header__night-theme' (click)='changeNight()'>
-              <div>
-                <svg-icon class='icon _size-m _blue-dark-white'
-                          src="assets/icons/sun.svg">
-                </svg-icon>
-              </div>
-              <div>
-                <svg-icon class='icon _size-m _white'
-                          src="assets/icons/moon.svg">
-                </svg-icon>
-              </div>
-            </div>
-          </ng-container>
-          <ng-template #nightFalse>
-            <div class='header__night-theme-change' (click)='changeNight()'>
-              <div>
-                <svg-icon class='icon _size-m _white'
-                          src="assets/icons/sun.svg">
-                </svg-icon>
-              </div>
-              <div>
-                <svg-icon class='icon _size-m _blue-dark-white'
-                          src="assets/icons/moon.svg">
-                </svg-icon>
-              </div>
-            </div>
-          </ng-template>
-      </div>
-      <div class='header__modal-items-false'>
-          <ng-container *ngIf='isLanguageRu; else languageFalse'>
-            <div class='header__language' (click)='changeLanguage()'>
-              <div class='header__ru'>ru</div>
-              <div class='header__en'>en</div>
-            </div>
-          </ng-container>
-          <ng-template #languageFalse>
-            <div class='header__language-change' (click)='changeLanguage()'>
-              <div class='header__ru-change'>ru</div>
-              <div class='header__en-change'>en</div>
-            </div>
-          </ng-template>
+
+        <ng-container *ngTemplateOutlet='switchersTemplate'>
+
+        </ng-container>
+
       </div>
     </ng-template>
   </div>
 </div>
 
+
+<ng-template #switchersTemplate>
+<ng-container *ngIf='isNightTheme; else nightFalse'>
+  <div class='header__night-theme' (click)='changeNight()'>
+    <div>
+      <svg-icon class='icon _size-m _blue-dark-white'
+                src="assets/icons/sun.svg">
+      </svg-icon>
+    </div>
+    <div>
+      <svg-icon class='icon _size-m _white'
+                src="assets/icons/moon.svg">
+      </svg-icon>
+    </div>
+  </div>
+</ng-container>
+<ng-template #nightFalse>
+  <div class='header__night-theme-change' (click)='changeNight()'>
+    <div>
+      <svg-icon class='icon _size-m _white'
+                src="assets/icons/sun.svg">
+      </svg-icon>
+    </div>
+    <div>
+      <svg-icon class='icon _size-m _blue-dark-white'
+                src="assets/icons/moon.svg">
+      </svg-icon>
+    </div>
+  </div>
+</ng-template>
+<ng-container *ngIf='isLanguageRu; else languageFalse'>
+  <div class='header__language'>
+    <div class='header__ru' (click)='changeLanguage("ru")'>ru</div>
+    <div class='header__en' (click)='changeLanguage("en")'>en</div>
+  </div>
+</ng-container>
+<ng-template #languageFalse>
+  <div class='header__language-change'>
+    <div class='header__ru-change' (click)='changeLanguage("ru")'>ru</div>
+    <div class='header__en-change' (click)='changeLanguage("en")'>en</div>
+  </div>
+</ng-template>
+</ng-template>

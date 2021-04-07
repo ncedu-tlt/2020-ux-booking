@@ -10,28 +10,42 @@ export class HeaderComponent {
   isEnterTrue = true;
 
   @Input()
-  isLanguageRu = true;
-
-  @Input()
-  isNightTheme = true;
-
-  @Input()
-  isShowBurgerIcon = true;
-
-  @Input()
-  isHiddenLogo = false;
-
-  @Input()
-  isShowHeader = false;
-
-  @Input()
   isAdmin = true;
 
   @Input()
+  userName = '11';
+
+  isLanguageRu = true;
+
+  isNightTheme = true;
+
+  isShowBurgerIcon = true;
+
+  isHiddenLogo = false;
+
+  isShowHeader = false;
+
   isShowMenu = false;
 
-  @Input()
-  userName = 'Иван И.';
+  private _language: string;
+
+  /*constructor(
+    @Inject(I18NEXT_SERVICE) private i18NextService: ITranslationService,
+    private cookieService: CookieService
+  ) {
+    this.language = i18NextService.language;
+  }*/
+
+  get language(): string {
+    return this._language;
+  }
+
+  set language(value: string) {
+    if (this._language) {
+      /*this.changeLang(value);*/
+    }
+    this._language = value;
+  }
 
   showModal(): void {
     this.isShowBurgerIcon = !this.isShowBurgerIcon;
@@ -39,7 +53,8 @@ export class HeaderComponent {
     this.isHiddenLogo = !this.isHiddenLogo;
   }
 
-  changeLanguage(): void {
+  changeLanguage(lang: string): void {
+    this.language = lang;
     this.isLanguageRu = !this.isLanguageRu;
   }
 
@@ -47,7 +62,7 @@ export class HeaderComponent {
     this.isNightTheme = !this.isNightTheme;
   }
 
-  visibleMenu(): void {
+  toggleMenu(): void {
     this.isShowMenu = !this.isShowMenu;
   }
 }
