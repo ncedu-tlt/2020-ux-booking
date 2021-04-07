@@ -1,0 +1,10 @@
+<div class='star-selector' (mouseout)='returnDefaultState()'>
+  <div>
+    {{subName}}
+  </div>
+  <div>
+    <svg-icon *ngFor='let i of arrState' class='icon _size-l star-selector__item' [ngClass]='getItemClass(i)' (click)='selectItemsChange(i)' (mouseover)='hoverItemsChange(i)'
+              src="assets/icons/star.svg">
+    </svg-icon>
+  </div>
+</div>
