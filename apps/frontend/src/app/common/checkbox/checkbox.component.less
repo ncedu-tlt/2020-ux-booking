@@ -1,0 +1,57 @@
+@import './../../../assets/styles/common/shared';
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__rectangle {
+    display: flex;
+    border: 2px solid @color-grey-light;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9px;
+    margin-right: 16px;
+    background-color: @color-white;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+      border: 2px solid @color-blue-dark;
+    }
+
+    &.not-edit {
+      background-color: @color-grey-light;
+      cursor: default;
+
+      &:focus {
+        border: 2px solid @color-grey-light;
+      }
+    }
+
+    &-checkmark {
+      opacity: 0;
+      &.not-edit{
+        opacity: 0 // вот он просто берет и не хочет делать его  opacity: 0
+      }
+      &.checked {
+        opacity: 100%;
+      }
+
+      &:hover {
+        opacity: 35%;
+      }
+    }
+  }
+
+
+  &__text {
+    color: @color-blue-deep-dark;
+    margin: 0;
+    &.not-edit {
+      color: @color-grey-middle
+    }
+  }
+}
