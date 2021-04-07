@@ -1,4 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
+import { I18NEXT_SERVICE, ITranslationService } from 'angular-i18next';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'b-header',
@@ -7,13 +9,10 @@ import { Component, Input } from '@angular/core';
 })
 export class HeaderComponent {
   @Input()
-  isEnterTrue = true;
-
-  @Input()
   isAdmin = true;
 
   @Input()
-  userName = '11';
+  userName = 'Иван И.';
 
   isLanguageRu = true;
 
@@ -21,20 +20,21 @@ export class HeaderComponent {
 
   isShowBurgerIcon = true;
 
-  isHiddenLogo = false;
-
-  isShowHeader = false;
+  isHiddenModal = false;
 
   isShowMenu = false;
 
   private _language: string;
 
-  /*constructor(
+  constructor(
     @Inject(I18NEXT_SERVICE) private i18NextService: ITranslationService,
     private cookieService: CookieService
   ) {
     this.language = i18NextService.language;
-  }*/
+    if (this.language == 'en') {
+      this.isLanguageRu = false;
+    }
+  }
 
   get language(): string {
     return this._language;
@@ -42,20 +42,24 @@ export class HeaderComponent {
 
   set language(value: string) {
     if (this._language) {
-      /*this.changeLang(value);*/
+      this.setLanguage(value);
     }
     this._language = value;
   }
 
+  private async setLanguage(lang: string): Promise<void> {
+    await this.i18NextService.changeLanguage(lang);
+    this.cookieService.set('lang', lang);
+    window.location.reload();
+  }
+
   showModal(): void {
     this.isShowBurgerIcon = !this.isShowBurgerIcon;
-    this.isShowHeader = !this.isShowHeader;
-    this.isHiddenLogo = !this.isHiddenLogo;
+    this.isHiddenModal = !this.isHiddenModal;
   }
 
   changeLanguage(lang: string): void {
     this.language = lang;
-    this.isLanguageRu = !this.isLanguageRu;
   }
 
   changeNight(): void {
