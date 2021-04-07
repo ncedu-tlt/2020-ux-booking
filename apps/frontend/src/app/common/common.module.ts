@@ -10,6 +10,7 @@ import { I18NextModule } from 'angular-i18next';
 import { StarSelectorComponent } from './star-selector/star-selector.component';
 import { ButtonIconComponent } from './icon/button-icon.component';
 import { SelectorComponent } from './selector/selector.component';
+import { CheckboxComponent } from './checkbox/checkbox.component';
 
 @NgModule({
   imports: [NgCommonModule, AngularSvgIconModule, I18NextModule],
@@ -21,7 +22,8 @@ import { SelectorComponent } from './selector/selector.component';
     HeaderComponent,
     StarSelectorComponent,
     ButtonIconComponent,
-    SelectorComponent
+    SelectorComponent,
+    CheckboxComponent
   ],
   exports: [
     ButtonComponent,
@@ -31,7 +33,8 @@ import { SelectorComponent } from './selector/selector.component';
     HeaderComponent,
     StarSelectorComponent,
     ButtonIconComponent,
-    SelectorComponent
+    SelectorComponent,
+    CheckboxComponent
   ]
 })
 export class CommonModule {}
