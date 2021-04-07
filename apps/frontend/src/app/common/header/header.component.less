@@ -103,16 +103,13 @@
     color: @color-blue;
     cursor: pointer;
     border: solid 1px @color-white;
+    background: linear-gradient(to right, @color-white 50%, @color-blue-dark 50%);
 
     @media @mobile {
       border: solid 1px @color-blue-dark;
     }
 
-    &._default {
-      background: linear-gradient(to right, @color-white 50%, @color-blue-dark 50%);
-    }
-
-    &._change {
+    &._dark {
       background: linear-gradient(to right, @color-blue-dark 50%, @color-white 50%);
     }
   }
@@ -132,16 +129,13 @@
     margin-right: 40px;
     cursor: pointer;
     border: solid 1px @color-white;
+    background: linear-gradient(to right, @color-white 50%, @color-blue-dark 50%);
 
     @media @mobile {
       border: solid 1px @color-blue-dark;
     }
 
-    &._default {
-      background: linear-gradient(to right, @color-white 50%, @color-blue-dark 50%);
-    }
-
-    &._change {
+    &._dark {
       background: linear-gradient(to right, @color-blue-dark 50%, @color-white 50%);
     }
 
@@ -149,36 +143,23 @@
 
 
   &__ru {
-    &._default {
       color: @color-blue-dark;
-    }
-
-    &._change {
+    &._white {
       color: @color-white;
     }
   }
 
   &__en {
-
-    &._default {
       color: @color-white;
-    }
-
-    &._change {
+    &._dark {
       color: @color-blue-dark;
     }
   }
-
-
 
   &__user {
     display: flex;
     align-items: center;
     cursor: pointer;
-
-    &:hover {
-
-    }
   }
 
   &__user-wrapper {

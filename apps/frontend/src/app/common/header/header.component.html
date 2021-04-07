@@ -13,7 +13,7 @@
   </div>
   <div class='header__items'>
     <ng-container *ngTemplateOutlet='switchersTemplate'></ng-container>
-    <ng-container *ngIf='userName.length > 0; else enterFalse'>
+    <ng-container *ngIf='userName.length > 0; else loginTemplate'>
       <div class='header__user-wrapper' (click)='toggleMenu()' (mouseleave)='toggleMenu()'>
         <div class='header__user'>
           <div class='header__wrapper-user-icon'>
@@ -37,7 +37,7 @@
         </div>
       </div>
     </ng-container>
-    <ng-template #enterFalse>
+    <ng-template #loginTemplate>
       <div class='header__enter-icon'>
         <svg-icon class='icon _size-l _white'
                   src="assets/icons/enter.svg">
@@ -61,7 +61,7 @@
     </svg-icon>
   </div>
   <div class='header__modal-items'>
-    <ng-container *ngIf='userName.length > 0; else enterFalse'>
+    <ng-container *ngIf='userName.length > 0; else loginTemplateMobile'>
       <ng-container *ngIf='isAdmin; else noAdmin '>
         <a class='header__modal-items-block'>{{"header.menu.hotels" | i18next}}</a>
         <a class='header__modal-items-block'>{{"header.menu.users" | i18next}}</a>
@@ -79,7 +79,7 @@
       </div>
       <div>{{"header.menu.exit" | i18next}}</div>
     </ng-container>
-    <ng-template #enterFalse>
+    <ng-template #loginTemplateMobile>
       <div class='header__modal-items-false'>
         Вход
       </div>
@@ -92,7 +92,7 @@
 
 <ng-template #switchersTemplate>
   <ng-container>
-    <div [ngClass]='isNightTheme ? "_default" : "_change"' class='header__night-theme _rotate' (click)='changeNight()'>
+    <div [class._dark]="isNightTheme==false" class='header__night-theme _rotate' (click)='changeNight()'>
       <div>
         <svg-icon [ngClass]='isNightTheme ? "_blue-dark-white" : "_white"' class='icon _size-m'
                   src="assets/icons/sun.svg">
@@ -107,9 +107,9 @@
   </ng-container>
 
   <ng-container>
-    <div [ngClass]='isLanguageRu ? "_default" : "_change"' class='header__language _rotate'>
-      <div class='header__ru' [ngClass]='isLanguageRu ? "_default" : "_change"' (click)='changeLanguage("en")'>EN</div>
-      <div class='header__en' [ngClass]='isLanguageRu ? "_default" : "_change"' (click)='changeLanguage("ru")'>RU</div>
+    <div [class._dark]="isLanguageRu==false" class='header__language _rotate'>
+      <div class='header__ru' [class._white]="isLanguageRu==false" (click)='changeLanguage("en")'>EN</div>
+      <div class='header__en' [class._dark]="isLanguageRu==false" (click)='changeLanguage("ru")'>RU</div>
     </div>
   </ng-container>
 </ng-template>

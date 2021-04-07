@@ -19,11 +19,6 @@ export default {
         type: 'boolean'
       }
     },
-    isEnterTrue: {
-      control: {
-        type: 'boolean'
-      }
-    },
     isLanguageRu: {
       control: {
         type: 'boolean'
@@ -72,7 +67,6 @@ const Template: Story<HeaderComponent> = args => ({
 
 export const Default = Template.bind({});
 Default.args = {
-  isEnterTrue: true,
   isLanguageRu: true,
   isNightTheme: true,
   isShowBurgerIcon: true,
