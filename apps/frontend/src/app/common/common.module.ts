@@ -6,6 +6,7 @@ import { StepperComponent } from './stepper/stepper.component';
 import { NotificationComponent } from './notification/notification.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
 import { SelectorComponent } from './selector/selector.component';
+import { CheckboxComponent } from './checkbox/checkbox.component';
 
 @NgModule({
   imports: [NgCommonModule, AngularSvgIconModule],
@@ -14,14 +15,16 @@ import { SelectorComponent } from './selector/selector.component';
     StepperComponent,
     NotificationComponent,
     DropdownComponent,
-    SelectorComponent
+    SelectorComponent,
+    CheckboxComponent
   ],
   exports: [
     ButtonComponent,
     StepperComponent,
     NotificationComponent,
     DropdownComponent,
-    SelectorComponent
+    SelectorComponent,
+    CheckboxComponent
   ]
 })
 export class CommonModule {}
