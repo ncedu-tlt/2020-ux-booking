@@ -12,7 +12,7 @@ export class HeaderComponent {
   isAdmin = true;
 
   @Input()
-  userName = 'Иван И.';
+  userName = '';
 
   isLanguageRu = true;
 

@@ -7,6 +7,7 @@ import { NotificationComponent } from './notification/notification.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
 import { HeaderComponent } from './header/header.component';
 import { I18NextModule } from 'angular-i18next';
+import { StarSelectorComponent } from './star-selector/star-selector.component';
 
 @NgModule({
   imports: [NgCommonModule, AngularSvgIconModule, I18NextModule],
@@ -15,14 +16,16 @@ import { I18NextModule } from 'angular-i18next';
     StepperComponent,
     NotificationComponent,
     DropdownComponent,
-    HeaderComponent
+    HeaderComponent,
+    StarSelectorComponent
   ],
   exports: [
     ButtonComponent,
     StepperComponent,
     NotificationComponent,
     DropdownComponent,
-    HeaderComponent
+    HeaderComponent,
+    StarSelectorComponent
   ]
 })
 export class CommonModule {}
