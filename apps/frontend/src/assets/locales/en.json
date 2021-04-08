@@ -3,5 +3,17 @@
   "languages": {
     "en": "English",
     "ru": "Russian"
+  },
+  "header": {
+    "menu": {
+      "hotels": "Hotels",
+      "users": "Users",
+      "booking": "Booking hotels",
+      "history": "Booking history",
+      "bookmarks": "Bookmarks",
+      "settings": "Setting",
+      "exit": "Logout",
+      "enter": "Login"
+    }
   }
 }

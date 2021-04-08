@@ -13,10 +13,48 @@
     }
   }
 
+  &._white-full {
+    & svg {
+      fill: @color-white;
+      stroke: @color-white;
+    }
+  }
+
+  &._blue-dark {
+    & svg {
+      fill: @color-blue-deep-dark;
+      stroke: @color-blue-deep-dark;
+    }
+  }
+
+  &._blue-dark-white {
+    & svg {
+      fill: @color-white;
+      stroke: @color-blue-deep-dark;
+    }
+  }
+
   &._size {
-    &-m {
+    &-m,
+    &-m svg {
       width: 16px;
       height: 16px;
+    }
+  }
+
+  &._size {
+    &-l,
+    &-l svg {
+      width: 33px;
+      height: 36px;
+    }
+  }
+
+  &._size {
+    &-xl,
+    &-xl svg {
+      width: 32px;
+      height: 32px;
     }
   }
 
