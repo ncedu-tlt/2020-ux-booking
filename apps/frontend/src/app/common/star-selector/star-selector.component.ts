@@ -10,19 +10,19 @@ export class StarSelectorComponent {
   stateItems = true;
 
   @Input()
-  subName = 'название';
+  subName = '';
 
   selectedItems = 0;
 
   hoveredItems = 0;
 
-  over = 0;
+  savedStateSelectedItems = 0;
 
   arrState: number[] = [1, 2, 3, 4, 5, 6];
 
   getItemClass(index: number): string {
     if (this.selectedItems >= index) {
-      this.over = this.selectedItems;
+      this.savedStateSelectedItems = this.selectedItems;
       return '_blue-dark';
     } else if (this.hoveredItems >= index) {
       return '_blue';
@@ -45,7 +45,7 @@ export class StarSelectorComponent {
   }
 
   resetState(): void {
-    this.selectedItems = this.over;
+    this.selectedItems = this.savedStateSelectedItems;
     this.hoveredItems = 0;
   }
 }
