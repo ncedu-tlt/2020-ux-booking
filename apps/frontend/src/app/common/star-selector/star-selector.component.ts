@@ -10,37 +10,42 @@ export class StarSelectorComponent {
   stateItems = true;
 
   @Input()
-  subName = '';
+  subName = 'название';
 
-  selectItems = 0;
+  selectedItems = 0;
 
-  hoverItems = 0;
+  hoveredItems = 0;
+
+  over = 0;
 
   arrState: number[] = [1, 2, 3, 4, 5, 6];
 
   getItemClass(index: number): string {
-    if (this.selectItems >= index) {
+    if (this.selectedItems >= index) {
+      this.over = this.selectedItems;
       return '_blue-dark';
-    } else if (this.hoverItems >= index) {
+    } else if (this.hoveredItems >= index) {
       return '_blue';
     } else {
       return '_grey-light';
     }
   }
 
-  selectItemsChange(i: number): void {
+  changeSelectedItems(i: number): void {
     if (this.stateItems == true) {
-      this.selectItems = i;
+      this.selectedItems = i;
     }
   }
 
-  hoverItemsChange(i: number): void {
+  changeHoveredItems(i: number): void {
     if (this.stateItems == true) {
-      this.hoverItems = i;
+      this.selectedItems = 0;
+      this.hoveredItems = i;
     }
   }
 
-  returnDefaultState(): void {
-    this.hoverItems = 0;
+  resetState(): void {
+    this.selectedItems = this.over;
+    this.hoveredItems = 0;
   }
 }
