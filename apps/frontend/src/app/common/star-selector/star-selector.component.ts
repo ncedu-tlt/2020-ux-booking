@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'b-star-selector',
@@ -7,12 +7,16 @@ import { Component, Input } from '@angular/core';
 })
 export class StarSelectorComponent {
   @Input()
-  stateItems = true;
+  isEditable = true;
 
   @Input()
   subName = '';
 
-  selectedItems = 0;
+  @Input()
+  selectedItem: number;
+
+  @Output()
+  selectedItemEvent: EventEmitter<number> = new EventEmitter<number>();
 
   hoveredItems = 0;
 
@@ -21,8 +25,8 @@ export class StarSelectorComponent {
   arrState: number[] = [1, 2, 3, 4, 5, 6];
 
   getItemClass(index: number): string {
-    if (this.selectedItems >= index) {
-      this.savedStateSelectedItems = this.selectedItems;
+    if (this.selectedItem >= index) {
+      this.savedStateSelectedItems = this.selectedItem;
       return '_blue-dark';
     } else if (this.hoveredItems >= index) {
       return '_blue';
@@ -31,21 +35,22 @@ export class StarSelectorComponent {
     }
   }
 
-  changeSelectedItems(i: number): void {
-    if (this.stateItems == true) {
-      this.selectedItems = i;
+  changeSelectedItems(index: number): void {
+    if (this.isEditable == true) {
+      this.selectedItem = index;
+      this.selectedItemEvent.emit(index);
     }
   }
 
-  changeHoveredItems(i: number): void {
-    if (this.stateItems == true) {
-      this.selectedItems = 0;
-      this.hoveredItems = i;
+  changeHoveredItems(index: number): void {
+    if (this.isEditable == true) {
+      this.selectedItem = 0;
+      this.hoveredItems = index;
     }
   }
 
   resetState(): void {
-    this.selectedItems = this.savedStateSelectedItems;
+    this.selectedItem = this.savedStateSelectedItems;
     this.hoveredItems = 0;
   }
 }

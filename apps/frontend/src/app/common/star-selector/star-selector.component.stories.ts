@@ -3,6 +3,7 @@ import { StarSelectorComponent } from './star-selector.component';
 import { moduleMetadata } from '@storybook/angular';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { HttpClientModule } from '@angular/common/http';
+import { action } from '@storybook/addon-actions';
 
 export default {
   component: StarSelectorComponent,
@@ -14,7 +15,7 @@ export default {
   ],
   title: 'star-selector',
   argTypes: {
-    stateItems: {
+    isEditable: {
       control: {
         type: 'boolean'
       }
@@ -24,12 +25,7 @@ export default {
         type: 'text'
       }
     },
-    selectItems: {
-      control: {
-        type: 'number'
-      }
-    },
-    hoverItems: {
+    selectedItem: {
       control: {
         type: 'number'
       }
@@ -40,14 +36,14 @@ export default {
 const Template: Story<StarSelectorComponent> = args => ({
   component: StarSelectorComponent,
   props: {
-    ...args
+    ...args,
+    selectedItemEvent: action('selectedItemEvent')
   }
 });
 
 export const Default = Template.bind({});
 Default.args = {
-  stateItems: true,
+  isEditable: true,
   subName: 'Hotel name',
-  selectItems: 0,
-  hoverItems: 0
+  selectedItem: 0
 };
