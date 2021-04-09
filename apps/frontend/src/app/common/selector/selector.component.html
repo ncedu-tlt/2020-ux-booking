@@ -1,9 +1,8 @@
 <div class='selector'>
-  <h5 class='selector-title'>{{titleSelector}}</h5>
+  <span class='selector-title'>{{titleSelector}}</span>
   <label (click)='showPopup()' class='selector__input-container'>
     <input (change)='handleChange($event)' class='selector__input'
            placeholder='{{selectedItems.length == 0 ? hint : selectedHint}}' />
-    <!--    fix стили для свг иконки-->
     <svg-icon
       (click)='showPopup()'
       [ngClass]="['selector__input-arrow',arrow]"
@@ -12,20 +11,21 @@
 
   <div *ngIf='popupItems' class='selector__list'>
     <div (click)='showTitle(item)'
-         [ngClass]="['selector__list-item',hisChecked(item)]"
+         class='selector__list-item'
          *ngFor='let item of filteredData()'>
 
       <h4 *ngIf='outputMode()' class='selector__list-text'>{{item}}</h4>
 
 
       <b-checkbox *ngIf='!outputMode()'
-                  type='{{hisChecked(item)}}'
-                  label='{{item}}'></b-checkbox>
+                  [checked]= getStatus(item)
+                  label='{{item}}'
+      ></b-checkbox>
     </div>
-    <h4 [ngClass]="[flag ?
+    <h4 [ngClass]="[alertFlag ?
       'selector__list-alert':
       'selector__list-alert-invisible']">
       Значение не найдено</h4>
-    <button (click)='addItem()' *ngIf='typeUser === "admin" && flag'>add</button>
+    <button  (click)='addItem()' *ngIf='typeUser === "admin" && alertFlag'>add: {{value}}</button>
   </div>
 </div>
