@@ -3,14 +3,53 @@
   height: 24px;
 
   & svg {
-    fill: @color-blue-dark;
     stroke: @color-blue-dark;
   }
 
   &._white {
     & svg {
-      fill: @color-white;
+      fill: none;
       stroke: @color-white;
+    }
+  }
+
+  &._size {
+    &-m {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  &._rotate {
+    &-d svg {
+      transform: rotate(90deg);
+    }
+    &-u svg {
+      transform: rotate(270deg);
+    }
+  }
+
+  &._fill {
+    &-none {
+      fill: none;
+    }
+  }
+
+  &._stroke {
+    &-green svg {
+      stroke: @color-green-success;
+    }
+    &-grey svg {
+      stroke: @color-grey-middle;
+    }
+    &-red svg {
+      stroke: @color-red;
+    }
+    &-white svg {
+      stroke: @color-white;
+    }
+    &-deep-dark svg {
+      stroke: @color-blue-deep-dark;
     }
   }
 }

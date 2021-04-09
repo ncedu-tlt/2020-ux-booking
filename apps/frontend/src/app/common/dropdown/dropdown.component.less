@@ -1,0 +1,63 @@
+@import "../../../assets/styles/common/shared";
+
+.dropdown {
+
+  &__wrapper {
+    position: relative;
+    display: inline-block;
+  }
+
+  &__control {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    color: @color-blue-dark;
+
+    &:hover,
+    &._opened {
+      color: @color-blue-deep-dark;
+    }
+  }
+
+  &__items {
+    position: absolute;
+    margin-top: 11px;
+    background-color: @color-white;
+    border-radius: 24px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    width: 355px;
+    .shadow-dark();
+
+    &._right {
+      right: 0;
+    }
+  }
+
+  &__list {
+    padding-top: 11px;
+    padding-bottom: 11px;
+    color: @color-blue-dark;
+    width: 100%;
+    cursor: pointer;
+    text-align: center;
+
+    &:hover {
+      background-color: @color-blue-light;
+    }
+
+    &._active {
+      background-color: @color-blue-dark;
+      color: @color-white;
+    }
+  }
+}
+
+@media @mobile {
+  .dropdown {
+    &__items {
+      width: 310px;
+    }
+  }
+}

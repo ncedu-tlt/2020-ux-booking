@@ -1,0 +1,17 @@
+<div class="stepper">
+  <div class="stepper__items">
+    <ng-container *ngFor='let step of steps; index as i;'>
+      <div class='stepper__item-wrapper'>
+        <div [ngClass]='getStepClass(i+1)' class="stepper__item" (click)='changeStep(i+1)'>
+          <ng-container *ngIf='passed; else passedFalse'>
+            <svg-icon class="icon _white _size stepper__icon"  src="assets/icons/checkmark.svg"></svg-icon>
+          </ng-container>
+        </div>
+        <ng-template #passedFalse>
+          {{i + 1}}
+        </ng-template>
+      <div>{{step}}</div>
+      </div>
+    </ng-container>
+  </div>
+</div>
