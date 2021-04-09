@@ -5,6 +5,7 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
 import { StepperComponent } from './stepper/stepper.component';
 import { NotificationComponent } from './notification/notification.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
+import { TabsComponent } from './tabs/tabs.component';
 
 @NgModule({
   imports: [NgCommonModule, AngularSvgIconModule],
@@ -12,12 +13,14 @@ import { DropdownComponent } from './dropdown/dropdown.component';
     ButtonComponent,
     StepperComponent,
     NotificationComponent,
+    TabsComponent,
     DropdownComponent
   ],
   exports: [
     ButtonComponent,
     StepperComponent,
     NotificationComponent,
+    TabsComponent,
     DropdownComponent
   ]
 })
