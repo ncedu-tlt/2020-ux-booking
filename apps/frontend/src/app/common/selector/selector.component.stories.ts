@@ -6,7 +6,21 @@ import { HttpClientModule } from '@angular/common/http';
 import { CheckboxComponent } from '../checkbox/checkbox.component';
 
 const meta: Meta = {
-  title: 'Selector'
+  title: 'Selector',
+  argTypes: {
+    mode: {
+      control: {
+        type: 'select',
+        options: ['default', 'multi']
+      }
+    },
+    typeUser: {
+      control: {
+        type: 'select',
+        options: ['default', 'admin']
+      }
+    }
+  }
 };
 export default meta;
 
@@ -17,16 +31,18 @@ const common: StoryFnAngularReturnType = {
   }
 };
 
-export const regular: Story<SelectorComponent> = () => ({
+const template: Story<CheckboxComponent> = (args: CheckboxComponent) => ({
   ...common,
-  template: '<b-selector>data</b-selector>'
+  props: {
+    ...args
+  },
+  template:
+    '<b-selector [mode]="mode" [typeUser]="typeUser" [titleSelector] ="titleSelector"></b-selector>'
 });
 
-export const multi: Story<SelectorComponent> = () => ({
-  ...common,
-  template: '<b-selector mode="multi">data</b-selector>'
-});
-export const admin: Story<SelectorComponent> = () => ({
-  ...common,
-  template: '<b-selector typeUser="admin" >data</b-selector>'
-});
+export const regular = template.bind({});
+regular.args = {
+  mode: 'default',
+  typeUser: 'default',
+  titleSelector: 'Питание'
+};

@@ -5,7 +5,19 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
 import { HttpClientModule } from '@angular/common/http';
 
 const meta: Meta = {
-  title: 'Checkbox'
+  title: 'Checkbox',
+  argTypes: {
+    checked: {
+      control: {
+        options: [true, false]
+      }
+    },
+    disabled: {
+      control: {
+        options: [true, false]
+      }
+    }
+  }
 };
 export default meta;
 
@@ -16,16 +28,18 @@ const common: StoryFnAngularReturnType = {
   }
 };
 
-export const regular: Story<CheckboxComponent> = () => ({
+const template: Story<CheckboxComponent> = (args: CheckboxComponent) => ({
   ...common,
-  template: '<b-checkbox  label="string"></b-checkbox>'
+  props: {
+    ...args
+  },
+  template:
+    '<b-checkbox  [label]="label" [checked]="checked" [disabled]="disabled"></b-checkbox>'
 });
 
-export const checked: Story<CheckboxComponent> = () => ({
-  ...common,
-  template: '<b-checkbox type="checked" label="string"></b-checkbox>'
-});
-export const notEdit: Story<CheckboxComponent> = () => ({
-  ...common,
-  template: '<b-checkbox typeEdit="not-edit"  label="string"></b-checkbox>'
-});
+export const regular = template.bind({});
+regular.args = {
+  checked: false,
+  disabled: false,
+  label: 'string'
+};

@@ -8,9 +8,16 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 })
 export class CheckboxComponent {
   @Input()
-  type: 'checked' | 'default' = 'default';
+  checked = false;
   @Input()
-  typeEdit: 'not-edit' | 'default' = 'default';
+  disabled = false;
   @Input()
   label: string;
+
+  getDisabledStatus(): string {
+    return this.disabled ? 'disabled' : 'default';
+  }
+  getCheckedStatus(): string {
+    return this.checked ? 'checked' : 'default';
+  }
 }

@@ -8,7 +8,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 })
 export class SelectorComponent {
   value = '';
-  flag = false;
+  alertFlag = false;
   data;
   arrow: 'default' | 'rotate' = 'default';
   popupItems = false;
@@ -19,13 +19,15 @@ export class SelectorComponent {
     'Без питания'
   ];
   selectedItems: string[] = [];
-  titleSelector = 'Питание';
   hint = 'Введите или выберите из списка';
   selectedHint = '';
+  @Input()
+  titleSelector;
   @Input()
   mode: 'multi' | 'default' = 'default';
   @Input()
   typeUser: 'admin' | 'default' = 'default';
+
   showPopup(): void {
     this.popupItems = !this.popupItems;
     this.arrow == 'rotate' ? (this.arrow = 'default') : (this.arrow = 'rotate');
@@ -39,7 +41,7 @@ export class SelectorComponent {
       const newData = this.data.filter(data =>
         data.toLowerCase().includes(this.value.toLowerCase())
       );
-      newData.length === 0 ? (this.flag = true) : (this.flag = false);
+      newData.length === 0 ? (this.alertFlag = true) : (this.alertFlag = false);
       return newData;
     }
   }
@@ -65,14 +67,7 @@ export class SelectorComponent {
   }
 
   reducingString(array: string[]): string {
-    const size = 30;
-    let abridgedHint: string;
-    if (array.toString().length < size) {
-      abridgedHint = array.toString();
-    } else {
-      abridgedHint = array.toString().slice(0, size) + '...';
-    }
-    return abridgedHint;
+    return array.toString();
   }
 
   outputMode(): boolean {
@@ -82,9 +77,8 @@ export class SelectorComponent {
   addItem(): void {
     this.data.push(this.value);
   }
-  hisChecked(item: string): string {
-    if (this.selectedItems.indexOf(item) != -1) {
-      return 'checked';
-    } else return 'default';
+
+  getStatus(item: string): boolean {
+    return this.selectedItems.indexOf(item) != -1;
   }
 }

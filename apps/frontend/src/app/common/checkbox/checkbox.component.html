@@ -1,6 +1,6 @@
-<div class='container'>
-  <button [ngClass]="['container__rectangle',typeEdit]">
-    <svg-icon [ngClass]="['container__rectangle-checkmark',type,typeEdit]" src='assets/icons/checkmark.svg'></svg-icon>
+<div class='checkbox'>
+  <button [ngClass]="['checkbox__rectangle',getDisabledStatus()]">
+    <svg-icon [ngClass]="['checkbox__rectangle-checkmark', getCheckedStatus(),getDisabledStatus()]" src='assets/icons/checkmark.svg'></svg-icon>
   </button>
-  <h4 [ngClass]="['container__text',typeEdit]">{{label}}</h4>
+  <span [ngClass]="['checkbox__text',getDisabledStatus()]">{{label}}</span>
 </div>
