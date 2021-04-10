@@ -33,6 +33,18 @@ export class SelectorComponent {
     this.arrow == 'rotate' ? (this.arrow = 'default') : (this.arrow = 'rotate');
   }
 
+  closePopup($event): void {
+    const isSelector = $event.target.classList.contains('selector');
+    if (isSelector) {
+      this.popupItems = false;
+      this.arrow = 'default';
+    }
+  }
+
+  getHintColor(): string {
+    return this.selectedHint.length === 0 ? 'default' : 'black';
+  }
+
   filteredData(): string[] {
     this.data = this.dataStorage;
     if (this.value.length < 3) {
@@ -76,6 +88,10 @@ export class SelectorComponent {
 
   addItem(): void {
     this.data.push(this.value);
+  }
+
+  getStyleMode(item: string): string {
+    return this.getStatus(item) ? 'checked' : 'default';
   }
 
   getStatus(item: string): boolean {

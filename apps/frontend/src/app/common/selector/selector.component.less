@@ -7,6 +7,9 @@ svg path {
 .selector {
   &-title {
     margin: 0 0 4px 16px;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    font-weight: bold;
     color: @color-blue-dark;
   }
 
@@ -16,13 +19,17 @@ svg path {
     min-width: @mobile-min-width;
     align-items: center;
     justify-content: space-between;
-    padding: 16px 0 16px 24px;
+    padding: 16px 40px 16px 24px;
     background-color: @color-white;
     border: 2px solid @color-grey-light;
     border-radius: 24px;
     cursor: pointer;
     outline: none;
-
+    &.black{
+      &::-webkit-input-placeholder {color: black}
+      &::-moz-placeholder {color: black}
+      &:-ms-input-placeholder{color: black}
+    }
     &-container {
       max-width: @mobile-min-width;
       display: flex;
@@ -39,9 +46,11 @@ svg path {
       height: 38px;
       cursor: pointer;
       transform: rotate(90deg);
-        &.rotate{
-          transform: rotate(-90deg);
-        }
+
+      &.rotate {
+        transform: rotate(-90deg);
+      }
+
       &:hover {
         border-radius: 50%;
         background: @color-blue-light;
@@ -61,29 +70,30 @@ svg path {
     margin-top: 4px;
     border: 2px solid @color-blue-dark;
     border-radius: 24px;
-    padding-top: 21px;
-    padding-bottom: 19px;
-
+    padding-top: 24px;
+    padding-bottom: 24px;
     &-item {
       display: flex;
       align-items: center;
-      padding: 10px 0 10px 24px;
-      border-bottom: 1px solid @color-blue;
+      padding: 15px 0 15px 24px;
+      border-top: 1px solid @color-blue;
       cursor: pointer;
-      &.checked{
+
+      &.checked {
         border-radius: 4px;
-        border-bottom-color: @color-blue-dark;
+        border-top-color: @color-blue-dark;
         background: @color-blue-dark;
       }
+
+      &:hover {
+        background-color: @color-blue-light;
+      }
+      &:first-child{
+        border: none;
+      }
+
     }
 
-    &-item:hover {
-      background-color: @color-blue-light;
-    }
-
-    &-item:last-child {
-      border-bottom: none;
-    }
 
     &-text {
       color: @color-blue-deep-dark;
@@ -92,12 +102,16 @@ svg path {
 
     &-alert {
       color: @color-blue-deep-dark;
-      margin: 0;
+      margin: 72px;
       text-align: center;
 
       &-invisible {
         display: none;
+        text-align: center;
       }
+    }
+    &-button{
+     margin-left: 111px;
     }
   }
 
