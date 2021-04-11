@@ -4,8 +4,10 @@
   margin: 0;
 
   &__item {
-    border-bottom: 1px solid @color-blue-dark;
-    padding: 10px 24px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 13px;
+    padding-bottom: 9px;
     color:  @color-blue-dark;
     display: flex;
     .font-regular();
@@ -14,21 +16,26 @@
     letter-spacing: 0.5px;
   }
 
-  &__item:hover:not(&__selected) {
+  &._vertical &__item{
+    border-bottom: 1px solid @color-blue-dark;
+  }
+
+  &._horizontal {
+    display: flex;
+    border-bottom: 1px solid @color-blue-dark;
+  }
+
+  &._horizontal &__item{
+    padding: 10px 24px;
+  }
+
+  &__item:hover:not(&__item._selected) {
     background: @color-blue-light;
     cursor: pointer;
   }
 
-  &__selected {
+  &__item._selected {
     background: @color-blue-dark;
-  }
-
-  &__selected {
     color:  @color-background;
   }
-
-  &__horizontal div {
-    display: inline-flex;
-  }
-
 }

@@ -27,7 +27,6 @@ export class TabsComponent {
 
   setItem(item: string): void {
     this.selectedItem = item;
-    console.log(this.selectedItem);
     this.selectedEvent.emit(item);
   }
 }
