@@ -19,9 +19,13 @@ export class Review {
   @Column()
   rating: number;
 
-  @ManyToOne(type => User, user => user.reviews)
+  @ManyToOne(type => User, user => user.reviews, {
+    onDelete: 'CASCADE'
+  })
   user: User;
 
-  @ManyToOne(type => Hotel, hotel => hotel.reviews)
+  @ManyToOne(type => Hotel, hotel => hotel.reviews, {
+    onDelete: 'CASCADE'
+  })
   hotel: Hotel;
 }

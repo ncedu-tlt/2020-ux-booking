@@ -9,6 +9,6 @@ export class Bed {
   @Column()
   name: string;
 
-  @ManyToMany(type => Room, rooms => rooms.beds)
+  @ManyToMany(type => Room, rooms => rooms.beds, { onDelete: 'CASCADE' })
   rooms: Room[];
 }

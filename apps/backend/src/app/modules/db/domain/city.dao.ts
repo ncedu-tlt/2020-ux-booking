@@ -16,9 +16,13 @@ export class City {
   @Column()
   name: string;
 
-  @ManyToOne(type => Country, country => country.cities)
+  @ManyToOne(type => Country, country => country.cities, {
+    onDelete: 'CASCADE'
+  })
   country: Country;
 
-  @OneToMany(type => Address, addresses => addresses.city)
+  @OneToMany(type => Address, addresses => addresses.city, {
+    nullable: false
+  })
   addresses: Address[];
 }

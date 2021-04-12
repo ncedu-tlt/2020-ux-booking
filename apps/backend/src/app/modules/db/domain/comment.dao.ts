@@ -10,9 +10,13 @@ export class Comment {
   @Column()
   text: string;
 
-  @ManyToOne(type => User, user => user.comments)
+  @ManyToOne(type => User, user => user.comments, {
+    onDelete: 'CASCADE'
+  })
   user: User;
 
-  @ManyToOne(type => Hotel, hotel => hotel.comments)
+  @ManyToOne(type => Hotel, hotel => hotel.comments, {
+    onDelete: 'CASCADE'
+  })
   hotel: Hotel;
 }

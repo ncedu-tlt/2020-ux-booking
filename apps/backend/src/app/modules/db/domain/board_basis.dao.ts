@@ -18,7 +18,11 @@ export class BoardBasis {
 
   @OneToMany(
     type => BookingDetail,
-    bookingDetails => bookingDetails.boardBasis
+    bookingDetails => bookingDetails.boardBasis,
+    {
+      nullable: false,
+      onDelete: 'SET NULL'
+    }
   )
   bookingDetails: BookingDetail;
 }

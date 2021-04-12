@@ -1,4 +1,10 @@
-import { Column, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToMany,
+  ManyToOne,
+  PrimaryGeneratedColumn
+} from 'typeorm';
 import { Photo } from './photo.dao';
 import { Hotel } from './hotel.dao';
 
@@ -16,9 +22,13 @@ export class Service {
   // @ManyToOne(type => Categories, category => category.services)
   // category: Categories;
 
-  @ManyToOne(type => Photo, icon => icon.services)
+  @ManyToOne(type => Photo, icon => icon.services, {
+    nullable: false
+  })
   icon: Photo;
 
-  @ManyToMany(type => Hotel, hotels => hotels.services)
+  @ManyToMany(type => Hotel, hotels => hotels.services, {
+    nullable: false
+  })
   hotels: Hotel[];
 }

@@ -20,15 +20,21 @@ export class Address {
   @Column()
   number: number;
 
-  @Column()
+  @Column({ nullable: false })
   part: string;
 
   @ManyToOne(type => City, city => city.addresses)
   city: City;
 
-  @OneToMany(type => User, user => user.address)
+  @OneToMany(type => User, user => user.address, {
+    nullable: false,
+    onDelete: 'CASCADE'
+  })
   users: User[];
 
-  @OneToMany(type => Hotel, hotels => hotels.address)
+  @OneToMany(type => Hotel, hotels => hotels.address, {
+    nullable: false,
+    onDelete: 'CASCADE'
+  })
   hotels: Hotel[];
 }

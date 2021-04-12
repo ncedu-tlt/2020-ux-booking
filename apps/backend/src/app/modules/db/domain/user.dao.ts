@@ -1,4 +1,11 @@
-import { Column, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToMany,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn
+} from 'typeorm';
 import { Address } from './addresses.dao';
 import { Role } from './role.dao';
 import { Review } from './review.dao';
@@ -32,16 +39,28 @@ export class User {
   @ManyToOne(type => Address, address => address.users)
   address: Address;
 
-  @OneToMany(type => Review, reviews => reviews.user)
+  @OneToMany(type => Review, reviews => reviews.user, {
+    nullable: false,
+    onDelete: 'SET NULL'
+  })
   reviews: Review[];
 
-  @OneToMany(type => Comment, comments => comments.user)
+  @OneToMany(type => Comment, comments => comments.user, {
+    nullable: false,
+    onDelete: 'SET NULL'
+  })
   comments: Comment[];
 
-  @OneToMany(type => Booking, booking => booking.user)
+  @OneToMany(type => Booking, booking => booking.user, {
+    nullable: false,
+    onDelete: 'SET NULL'
+  })
   bookings: Booking[];
 
-  @ManyToMany(type => Hotel, hotel => hotel.users)
+  @ManyToMany(type => Hotel, hotel => hotel.users, {
+    nullable: false,
+    onDelete: 'SET NULL'
+  })
   bookmarks: Hotel[];
 
   @Column()

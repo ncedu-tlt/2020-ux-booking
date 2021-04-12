@@ -9,6 +9,9 @@ export class Role {
   @Column()
   name: string;
 
-  @OneToMany(type => User, users => users.role)
+  @OneToMany(type => User, users => users.role, {
+    nullable: false,
+    onDelete: 'SET NULL'
+  })
   users: User[];
 }

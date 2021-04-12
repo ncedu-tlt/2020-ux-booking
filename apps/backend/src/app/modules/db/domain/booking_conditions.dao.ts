@@ -12,6 +12,8 @@ export class BookingCondition {
   @Column()
   descriptions: string;
 
-  @ManyToMany(type => Booking, booking => booking.bookingConditions)
+  @ManyToMany(type => Booking, booking => booking.bookingConditions, {
+    nullable: false
+  })
   bookings: Booking[];
 }

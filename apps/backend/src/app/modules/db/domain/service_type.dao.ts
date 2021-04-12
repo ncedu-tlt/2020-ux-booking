@@ -9,6 +9,8 @@ export class ServiceType {
   @Column()
   name: string;
 
-  @OneToMany(type => Hotel, hotels => hotels.serviceType)
+  @OneToMany(type => Hotel, hotels => hotels.serviceType, {
+    nullable: false
+  })
   hotels: Hotel[];
 }

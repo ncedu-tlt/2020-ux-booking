@@ -1,4 +1,12 @@
-import { Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn
+} from 'typeorm';
 import { Address } from './addresses.dao';
 import { User } from './user.dao';
 import { Currency } from './currency.dao';
@@ -34,16 +42,27 @@ export class Hotel {
   @Column()
   freeCancellation: boolean;
 
-  @ManyToMany(type => User, user => user.bookmarks)
+  @ManyToMany(type => User, user => user.bookmarks, {
+    nullable: false
+  })
   users: User[];
 
-  @OneToMany(type => Review, reviews => reviews.hotel)
+  @OneToMany(type => Review, reviews => reviews.hotel, {
+    nullable: false,
+    onDelete: 'SET NULL'
+  })
   reviews: Review[];
 
-  @OneToMany(type => Comment, comments => comments.hotel)
+  @OneToMany(type => Comment, comments => comments.hotel, {
+    nullable: false,
+    onDelete: 'SET NULL'
+  })
   comments: Comment[];
 
-  @ManyToMany(type => Service, services => services.hotels)
+  @ManyToMany(type => Service, services => services.hotels, {
+    nullable: false,
+    onDelete: 'RESTRICT'
+  })
   @JoinTable()
   services: Service[];
 
@@ -56,15 +75,25 @@ export class Hotel {
   @ManyToOne(type => Currency, currencies => currencies.hotels)
   currencies: Currency;
 
-  @OneToMany(type => Photo, photos => photos.hotel)
+  @OneToMany(type => Photo, photos => photos.hotel, {
+    nullable: false
+  })
   photos: Photo[];
 
   @ManyToMany(type => PaymentMethod, paymentMethod => paymentMethod.hotels)
   paymentMethods: PaymentMethod[];
 
-  @OneToMany(type => HotelBoardBasis, hotelBoardBasis => hotelBoardBasis.hotel)
+  @OneToMany(
+    type => HotelBoardBasis,
+    hotelBoardBasis => hotelBoardBasis.hotel,
+    {
+      nullable: false
+    }
+  )
   hotelBoardBasis: HotelBoardBasis[];
 
-  @OneToMany(type => Room, rooms => rooms.hotel)
+  @OneToMany(type => Room, rooms => rooms.hotel, {
+    onDelete: 'RESTRICT'
+  })
   rooms: Room[];
 }

@@ -9,6 +9,8 @@ export class PaymentMethod {
   @Column()
   name: string;
 
-  @ManyToMany(type => Hotel, hotels => hotels.paymentMethods)
+  @ManyToMany(type => Hotel, hotels => hotels.paymentMethods, {
+    nullable: false
+  })
   hotels: Hotel[];
 }

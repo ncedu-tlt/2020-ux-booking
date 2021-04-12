@@ -9,6 +9,8 @@ export class Country {
   @Column()
   name: string;
 
-  @OneToMany(type => City, cities => cities.country)
+  @OneToMany(type => City, cities => cities.country, {
+    nullable: false
+  })
   cities: City[];
 }

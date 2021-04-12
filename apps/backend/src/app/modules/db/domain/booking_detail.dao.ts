@@ -1,4 +1,10 @@
-import { Column, Entity, ManyToOne, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToOne,
+  PrimaryGeneratedColumn
+} from 'typeorm';
 import { BoardBasis } from './board_basis.dao';
 import { Room } from './room.dao';
 import { Booking } from './booking.dao';
@@ -17,6 +23,8 @@ export class BookingDetail {
   @ManyToOne(type => BoardBasis, boardBasis => boardBasis.bookingDetails)
   boardBasis: BoardBasis;
 
-  @OneToOne(type => Booking, booking => booking.bookingDetail)
-  booking: BookingDetail;
+  @OneToOne(type => Booking, booking => booking.bookingDetail, {
+    onDelete: 'CASCADE'
+  })
+  booking: Booking;
 }

@@ -1,4 +1,11 @@
-import { Column, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToMany,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn
+} from 'typeorm';
 import { Photo } from './photo.dao';
 import { BookingDetail } from './booking_detail.dao';
 import { Hotel } from './hotel.dao';
@@ -25,18 +32,30 @@ export class Room {
   @Column()
   capacity: number;
 
-  @ManyToMany(type => Bed, beds => beds.rooms)
+  @ManyToMany(type => Bed, beds => beds.rooms, {
+    nullable: false,
+    onDelete: 'RESTRICT'
+  })
   beds: Bed[];
 
-  @ManyToOne(type => Hotel, hotel => hotel.rooms)
+  @ManyToOne(type => Hotel, hotel => hotel.rooms, {
+    onDelete: 'CASCADE'
+  })
   hotel: Hotel;
 
-  @OneToMany(type => Photo, photos => photos.room)
+  @OneToMany(type => Photo, photos => photos.room, {
+    nullable: false
+  })
   photos: Photo[];
 
-  @OneToMany(type => AmenitiesRoom, amenitiesRoom => amenitiesRoom.room)
+  @OneToMany(type => AmenitiesRoom, amenitiesRoom => amenitiesRoom.room, {
+    nullable: false,
+    onDelete: 'RESTRICT'
+  })
   amenitiesRoom: AmenitiesRoom[];
 
-  @OneToMany(type => BookingDetail, bookingDetail => bookingDetail.room)
+  @OneToMany(type => BookingDetail, bookingDetail => bookingDetail.room, {
+    nullable: false
+  })
   bookingDetails: BookingDetail[];
 }
