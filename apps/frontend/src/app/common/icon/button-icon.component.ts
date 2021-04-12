@@ -20,11 +20,11 @@ export class ButtonIconComponent implements OnInit {
     this._type = value;
     this.setButtonIcon();
   }
-  @Input()
-  Disabled = false;
+
   ngOnInit() {
     this.setButtonIcon();
   }
+
   private setButtonIcon(): void {
     switch (this._type) {
       case 'edit':
@@ -64,6 +64,7 @@ export class ButtonIconComponent implements OnInit {
         this.iconPath = 'assets/icons/star.svg';
         break;
       default:
+        this.iconPath = 'assets/icons/cross.svg';
         break;
     }
   }

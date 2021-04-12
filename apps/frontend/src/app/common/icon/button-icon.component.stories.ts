@@ -7,27 +7,23 @@ import { HttpClientModule } from '@angular/common/http';
 const meta: Meta = {
   title: 'Icon',
   argTypes: {
-    control: {
-      type: 'select',
-      options: [
-        'edit',
-        'delete',
-        'blockUser',
-        'admin',
-        'add',
-        'checkMark',
-        'like',
-        'Share',
-        'RIGHT',
-        'LEFT',
-        'cross',
-        'star'
-      ]
-    },
-    Disabled: {
+    type: {
       control: {
-        type: 'boolean',
-        options: [true, false]
+        type: 'select',
+        options: [
+          'edit',
+          'delete',
+          'blockUser',
+          'admin',
+          'add',
+          'checkMark',
+          'like',
+          'Share',
+          'RIGHT',
+          'LEFT',
+          'cross',
+          'star'
+        ]
       }
     }
   }
@@ -52,6 +48,5 @@ const template: Story<ButtonIconComponent> = (args: ButtonIconComponent) => ({
 
 export const regular = template.bind({});
 regular.args = {
-  type: 'cross',
-  Disabled: false
+  type: 'cross'
 };
