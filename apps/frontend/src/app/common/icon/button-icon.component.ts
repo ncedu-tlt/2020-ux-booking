@@ -27,40 +27,40 @@ export class ButtonIconComponent implements OnInit {
 
   private setButtonIcon(): void {
     switch (this._type) {
-      case 'edit':
+      case ButtonIconTypesEnum.edit:
         this.iconPath = 'assets/icons/edit.svg';
         break;
-      case 'delete':
+      case ButtonIconTypesEnum.delete:
         this.iconPath = 'assets/icons/trash.svg';
         break;
-      case 'blockUser':
+      case ButtonIconTypesEnum.blockUser:
         this.iconPath = 'assets/icons/blockuser.svg';
         break;
-      case 'admin':
+      case ButtonIconTypesEnum.admin:
         this.iconPath = 'assets/icons/admin.svg';
         break;
-      case 'add':
+      case ButtonIconTypesEnum.add:
         this.iconPath = 'assets/icons/plus.svg';
         break;
-      case 'checkMark':
+      case ButtonIconTypesEnum.checkMark:
         this.iconPath = 'assets/icons/checkmark.svg';
         break;
-      case 'like':
+      case ButtonIconTypesEnum.like:
         this.iconPath = 'assets/icons/like.svg';
         break;
-      case 'share':
+      case ButtonIconTypesEnum.share:
         this.iconPath = 'assets/icons/share.svg';
         break;
-      case 'right':
+      case ButtonIconTypesEnum.right:
         this.iconPath = 'assets/icons/arrow.svg';
         break;
-      case 'left':
+      case ButtonIconTypesEnum.left:
         this.iconPath = 'assets/icons/left.svg';
         break;
-      case 'cross':
+      case ButtonIconTypesEnum.cross:
         this.iconPath = 'assets/icons/cross.svg';
         break;
-      case 'star':
+      case ButtonIconTypesEnum.star:
         this.iconPath = 'assets/icons/star.svg';
         break;
       default:
