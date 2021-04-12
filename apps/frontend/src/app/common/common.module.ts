@@ -5,15 +5,20 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
 import { StepperComponent } from './stepper/stepper.component';
 import { NotificationComponent } from './notification/notification.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
+import { HeaderComponent } from './header/header.component';
+import { I18NextModule } from 'angular-i18next';
+import { StarSelectorComponent } from './star-selector/star-selector.component';
 import { ButtonIconComponent } from './icon/button-icon.component';
 
 @NgModule({
-  imports: [NgCommonModule, AngularSvgIconModule],
+  imports: [NgCommonModule, AngularSvgIconModule, I18NextModule],
   declarations: [
     ButtonComponent,
     StepperComponent,
     NotificationComponent,
     DropdownComponent,
+    HeaderComponent,
+    StarSelectorComponent,
     ButtonIconComponent
   ],
   exports: [
@@ -21,6 +26,8 @@ import { ButtonIconComponent } from './icon/button-icon.component';
     StepperComponent,
     NotificationComponent,
     DropdownComponent,
+    HeaderComponent,
+    StarSelectorComponent,
     ButtonIconComponent
   ]
 })

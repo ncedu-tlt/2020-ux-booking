@@ -1,0 +1,115 @@
+<header class='header'>
+  <div class='header__logo'>
+    <div class='header__wrapper-icon'>
+      <svg-icon class='icon _white-full _size-l'
+                src="assets/icons/palm.svg">
+      </svg-icon>
+    </div>
+    <div>Hotel Booking Service</div>
+  </div>
+  <div class='header__admin-panel' *ngIf='isAdmin'>
+    <a class='header__admin-panel-item'>{{"header.menu.hotels" | i18next | uppercase}}</a>
+    <a class='header__admin-panel-item'>{{"header.menu.users" | i18next | uppercase}}</a>
+  </div>
+  <div class='header__items'>
+    <ng-container *ngTemplateOutlet='switchersTemplate'></ng-container>
+    <ng-container *ngIf='userName.length > 0; else loginTemplate'>
+      <div class='header__user-wrapper' (click)='toggleMenu()' (mouseleave)='toggleMenu()'>
+        <div class='header__user'>
+          <div class='header__wrapper-user-icon'>
+            <svg-icon class='icon _size-l _blue-dark'
+                      src="assets/icons/user_icon.svg">
+            </svg-icon>
+          </div>
+          <div class='header__name'>
+            {{userName}}
+          </div>
+          <svg-icon class='icon _size-m _rotate-d _white' [class._rotate-u]="isShowMenu"
+                    src="assets/icons/arrow.svg">
+          </svg-icon>
+        </div>
+        <div class='header__user-menu' *ngIf='isShowMenu'>
+          <a class='header__user-menu-item' href='#'>{{"header.menu.booking" | i18next}}</a>
+          <a class='header__user-menu-item' href='#'>{{"header.menu.history" | i18next}}</a>
+          <a class='header__user-menu-item' href='#'>{{"header.menu.bookmarks" | i18next}}</a>
+          <a class='header__user-menu-item' href='#'>{{"header.menu.settings" | i18next}}</a>
+          <a class='header__user-menu-item' href='#'>{{"header.menu.exit" | i18next}}</a>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #loginTemplate>
+      <div class='header__enter-icon'>
+        <svg-icon class='icon _size-l _white'
+                  src="assets/icons/enter.svg">
+        </svg-icon>
+        <div class='header__enter'>
+          {{"header.menu.enter" | i18next}}
+        </div>
+      </div>
+    </ng-template>
+  </div>
+  <div class='header__burger' (click)='showModal()'>
+    <svg-icon class='icon _size-m _white header__burger-icon'
+              src="assets/icons/burger.svg">
+    </svg-icon>
+  </div>
+</header>
+<div class='header__modal' *ngIf='isHiddenModal'>
+  <div class='header__modal-header'>
+    <svg-icon (click)='showModal()' class='icon _size-m _white header__cross '
+              src="assets/icons/cross.svg">
+    </svg-icon>
+  </div>
+  <div class='header__modal-items'>
+    <ng-container *ngIf='userName.length > 0; else loginTemplateMobile'>
+      <ng-container *ngIf='isAdmin; else noAdmin '>
+        <a class='header__modal-items-block'>{{"header.menu.hotels" | i18next}}</a>
+        <a class='header__modal-items-block'>{{"header.menu.users" | i18next}}</a>
+      </ng-container>
+      <ng-template #noAdmin>
+        <a class='header__modal-items-block'>{{"header.menu.booking" | i18next}}</a>
+        <a class='header__modal-items-block'>{{"header.menu.history" | i18next}}</a>
+        <a class='header__modal-items-block'>{{"header.menu.bookmarks" | i18next}}</a>
+      </ng-template>
+      <a class='header__modal-items-block'>{{"header.menu.settings" | i18next}}</a>
+      <div class='header__modal-items-block'>
+        <div class='header__modal-switchers'>
+          <ng-container *ngTemplateOutlet='switchersTemplate'></ng-container>
+        </div>
+      </div>
+      <div>{{"header.menu.exit" | i18next}}</div>
+    </ng-container>
+    <ng-template #loginTemplateMobile>
+      <div class='header__modal-items-false'>
+        Вход
+      </div>
+      <div class='header__modal-items-false'>
+        <ng-container *ngTemplateOutlet='switchersTemplate'></ng-container>
+      </div>
+    </ng-template>
+  </div>
+</div>
+
+<ng-template #switchersTemplate>
+  <ng-container>
+    <div [class._dark]="!isNightTheme" class='header__night-theme _rotate' (click)='changeNight()'>
+      <div>
+        <svg-icon [ngClass]='isNightTheme ? "_blue-dark-white" : "_white"' class='icon _size-m'
+                  src="assets/icons/sun.svg">
+        </svg-icon>
+      </div>
+      <div>
+        <svg-icon [ngClass]='isNightTheme ? "_white" : "_blue-dark-white"' class='icon _size-m'
+                  src="assets/icons/moon.svg">
+        </svg-icon>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container>
+    <div [class._dark]="!isLanguageRu" class='header__language _rotate'>
+      <div class='header__ru' [class._white]="!isLanguageRu" (click)='changeLanguage("en")'>EN</div>
+      <div class='header__en' [class._dark]="!isLanguageRu" (click)='changeLanguage("ru")'>RU</div>
+    </div>
+  </ng-container>
+</ng-template>
