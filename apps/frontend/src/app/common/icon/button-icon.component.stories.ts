@@ -3,6 +3,7 @@ import { Meta, Story } from '@storybook/angular/types-6-0';
 import { StoryFnAngularReturnType } from '@storybook/angular/dist/client/preview/types';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { HttpClientModule } from '@angular/common/http';
+import { ButtonIconTypesEnum } from '../../enums/button-icon-types.enum';
 
 const meta: Meta = {
   title: 'Icon',
@@ -10,20 +11,7 @@ const meta: Meta = {
     type: {
       control: {
         type: 'select',
-        options: [
-          'edit',
-          'delete',
-          'blockUser',
-          'admin',
-          'add',
-          'checkMark',
-          'like',
-          'Share',
-          'RIGHT',
-          'LEFT',
-          'cross',
-          'star'
-        ]
+        options: ButtonIconTypesEnum
       }
     }
   }

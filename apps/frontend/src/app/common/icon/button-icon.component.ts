@@ -14,7 +14,7 @@ import { ButtonIconTypesEnum } from '../../enums/button-icon-types.enum';
 })
 export class ButtonIconComponent implements OnInit {
   iconPath: string;
-  _type: string;
+  _type: ButtonIconTypesEnum;
   @Input()
   set type(value: ButtonIconTypesEnum) {
     this._type = value;
@@ -48,13 +48,13 @@ export class ButtonIconComponent implements OnInit {
       case 'like':
         this.iconPath = 'assets/icons/like.svg';
         break;
-      case 'Share':
+      case 'share':
         this.iconPath = 'assets/icons/share.svg';
         break;
-      case 'RIGHT':
+      case 'right':
         this.iconPath = 'assets/icons/arrow.svg';
         break;
-      case 'LEFT':
+      case 'left':
         this.iconPath = 'assets/icons/left.svg';
         break;
       case 'cross':

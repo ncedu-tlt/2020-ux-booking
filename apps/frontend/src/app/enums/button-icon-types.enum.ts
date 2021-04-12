@@ -1,14 +1,14 @@
 export enum ButtonIconTypesEnum {
   edit = 'edit',
   delete = 'delete',
-  blockUser = 'block user',
+  blockUser = 'blockUser',
   admin = 'admin',
   add = 'add',
-  checkMark = 'check mark',
-  like = 'Like',
-  Share = 'Share',
-  RIGHT = 'RIGHT',
-  LEFT = 'LEFT',
+  checkMark = 'checkMark',
+  like = 'like',
+  share = 'share',
+  right = 'right',
+  left = 'left',
   cross = 'cross',
   star = 'star'
 }
