@@ -1,37 +1,49 @@
-import { IconComponent } from './icon.component';
+import { ButtonIconComponent } from './button-icon.component';
 import { Meta, Story } from '@storybook/angular/types-6-0';
 import { StoryFnAngularReturnType } from '@storybook/angular/dist/client/preview/types';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { HttpClientModule } from '@angular/common/http';
 
 const meta: Meta = {
-  title: 'Button',
+  title: 'Icon',
   argTypes: {
-    type: {
-      control: {
-        type: 'select',
-        options: ['primary', 'flat']
-      }
+    control: {
+      type: 'select',
+      options: [
+        'edit',
+        'delete',
+        'blockUser',
+        'admin',
+        'add',
+        'checkMark',
+        'like',
+        'Share',
+        'RIGHT',
+        'LEFT',
+        'cross',
+        'star'
+      ]
     },
-    isDisabled: {
+    Disabled: {
       control: {
-        type: 'select',
+        type: 'boolean',
         options: [true, false]
       }
     }
   }
 };
+
 export default meta;
 
 const common: StoryFnAngularReturnType = {
-  component: IconComponent,
+  component: ButtonIconComponent,
   moduleMetadata: {
-    declarations: [IconComponent],
+    declarations: [ButtonIconComponent],
     imports: [AngularSvgIconModule.forRoot(), HttpClientModule]
   }
 };
 
-const template: Story<IconComponent> = (args: IconComponent) => ({
+const template: Story<ButtonIconComponent> = (args: ButtonIconComponent) => ({
   ...common,
   props: {
     ...args
@@ -40,7 +52,6 @@ const template: Story<IconComponent> = (args: IconComponent) => ({
 
 export const regular = template.bind({});
 regular.args = {
-  type: 'primary',
-  hasIcon: false,
-  isDisabled: false
+  type: 'cross',
+  Disabled: false
 };

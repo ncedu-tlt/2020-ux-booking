@@ -42,14 +42,12 @@ const common: StoryFnAngularReturnType = {
     imports: [AngularSvgIconModule.forRoot(), HttpClientModule]
   }
 };
-
 const template: Story<ButtonComponent> = (args: ButtonComponent) => ({
   ...common,
   props: {
     ...args
   }
 });
-
 export const regular = template.bind({});
 regular.args = {
   type: 'primary',
