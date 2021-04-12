@@ -8,6 +8,7 @@ import { DropdownComponent } from './dropdown/dropdown.component';
 import { HeaderComponent } from './header/header.component';
 import { I18NextModule } from 'angular-i18next';
 import { StarSelectorComponent } from './star-selector/star-selector.component';
+import { ButtonIconComponent } from './icon/button-icon.component';
 
 @NgModule({
   imports: [NgCommonModule, AngularSvgIconModule, I18NextModule],
@@ -17,7 +18,8 @@ import { StarSelectorComponent } from './star-selector/star-selector.component';
     NotificationComponent,
     DropdownComponent,
     HeaderComponent,
-    StarSelectorComponent
+    StarSelectorComponent,
+    ButtonIconComponent
   ],
   exports: [
     ButtonComponent,
@@ -25,7 +27,8 @@ import { StarSelectorComponent } from './star-selector/star-selector.component';
     NotificationComponent,
     DropdownComponent,
     HeaderComponent,
-    StarSelectorComponent
+    StarSelectorComponent,
+    ButtonIconComponent
   ]
 })
 export class CommonModule {}
