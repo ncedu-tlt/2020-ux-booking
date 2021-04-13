@@ -40,10 +40,11 @@
     <div class='hotel-card__wrapper'>
       <div class='hotel-card__items'>
         <div class='hotel-card__photo'>
-          <img src='{{hotelInfo.hotelImgUrl}}' alt=''>
+          <img *ngIf='hotelInfo.hotelImgUrl.length > 0; else imgTemplate' src='{{hotelInfo.hotelImgUrl}}' alt='photo hotel'>
+            <ng-template #imgTemplate>
+              <img src='/assets/icons/placeholder.png' alt=''>
+            </ng-template>
         </div>
-
-
 
         <div class='hotel-card__text-items-mobile'>
           <ng-container *ngTemplateOutlet='descriptionTemplate'></ng-container>
@@ -99,15 +100,16 @@
   </div>
 </div>
 
-
 <ng-template #priceTemplate>
   <div class='hotel-card__price-item'>{{"hotelCard.price" | i18next}}</div>
   <div  class='hotel-card__total-price'>{{hotelInfo.minPrice}} {{hotelInfo.currency}}/{{"hotelCard.day" | i18next}}</div>
 </ng-template>
 
 <ng-template #buttonTemplate>
-  <div class='hotel-card__btn'></div>
-  <div class='hotel-card__btn'></div>
+
+  <b-button-icon [type] = buttonIconTypesEnum.share></b-button-icon>
+  <b-button-icon [type] = buttonIconTypesEnum.add></b-button-icon>
+
 </ng-template>
 
 <ng-template #descriptionTemplate>

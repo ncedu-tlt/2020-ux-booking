@@ -18,8 +18,8 @@
   },
   "hotelCard": {
     "reviews": "reviews",
-    "cancel": "free cancellation",
-    "price": "min price",
+    "cancel": "Free cancellation",
+    "price": "Min price",
     "day": "day"
   }
 }
