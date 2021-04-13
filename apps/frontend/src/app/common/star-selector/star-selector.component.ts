@@ -15,6 +15,9 @@ export class StarSelectorComponent {
   @Input()
   selectedItem: number;
 
+  @Input()
+  isSizeMobile = true;
+
   @Output()
   selectedItemEvent: EventEmitter<number> = new EventEmitter<number>();
 
@@ -25,13 +28,20 @@ export class StarSelectorComponent {
   arrState: number[] = [1, 2, 3, 4, 5, 6];
 
   getItemClass(index: number): string {
-    if (this.selectedItem >= index) {
+    if (this.selectedItem >= index && this.isSizeMobile) {
       this.savedStateSelectedItems = this.selectedItem;
-      return '_blue-dark';
-    } else if (this.hoveredItems >= index) {
-      return '_blue';
-    } else {
-      return '_grey-light';
+      return '_blue-dark _size-l';
+    } else if (this.hoveredItems >= index && this.isSizeMobile) {
+      return '_blue _size-l';
+    } else if (this.isSizeMobile) {
+      return '_grey-light _size-l';
+    } else if (this.selectedItem >= index && !this.isSizeMobile) {
+      this.savedStateSelectedItems = this.selectedItem;
+      return '_blue-dark _size-m';
+    } else if (this.hoveredItems >= index && !this.isSizeMobile) {
+      return '_blue _size-m';
+    } else if (!this.isSizeMobile) {
+      return '_grey-light _size-m';
     }
   }
 

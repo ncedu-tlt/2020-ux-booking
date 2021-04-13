@@ -1,0 +1,386 @@
+@import "../../../assets/styles/common/shared";
+
+.hotel-card {
+  width: 1014px;
+  height: 351px;
+  border-radius: 24px;
+  .shadow-dark();
+
+  @media @mobile {
+    width: 304px;
+    height: 690px;
+  }
+
+  &__container {
+    margin: 24px;
+
+    @media @mobile {
+      margin-top: 24px;
+      margin-bottom: 24px;
+      margin-left: 5px;
+      margin-right: 0;
+    }
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    &-hotel {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      align-content: center;
+    }
+  }
+
+  &__hotel-name {
+    font-size: 36px;
+
+    @media @mobile {
+      font-size: 24px;
+      margin-top: 24px;
+    }
+  }
+
+  &__rating-mobile {
+    display: none;
+    flex-direction: row;
+    align-content: center; /*ыыыыыыыыыыыыыыыыыыыыыыыыыыы*/
+    align-items: center;
+    justify-content: space-between;
+    width: 322px;
+    height: 48px;
+    margin-top: 24px;
+
+    @media @mobile {
+      display: flex;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: row;
+
+    @media @mobile {
+      display: none;
+    }
+  }
+
+  &__btn {
+    width: 48px;
+    height: 48px;
+    background-color: @color-blue-dark;
+    margin-top: 5px;
+    border-radius: 8px;
+
+    @media @mobile {
+      margin-right: 30px;
+    }
+
+    &:first-child {
+      margin-right: 38px;
+    }
+  }
+
+  &__buttons-mobile {
+    display: none;
+
+    @media @mobile {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+
+  &__star-selector {
+    margin-left: 24px;
+    padding-bottom: 5px;
+
+    @media @mobile {
+      display: none;
+    }
+  }
+
+  &__star-selector-mobile {
+    padding-bottom: 10px;
+    display: none;
+
+    @media @mobile {
+      margin-right: 35px;
+      display: block;
+    }
+  }
+
+  &__links {
+    display: flex;
+    align-items: center;
+    align-content: center;
+
+    @media @mobile {
+      align-items: center;
+      align-content: center;
+    }
+  }
+
+  &__line {
+    border: 0.01em solid @color-blue-light;
+    margin-top: 10px;
+    width: 100%;
+
+    @media @mobile {
+      display: none;
+    }
+  }
+
+  &__wrapper {
+    height: 250px;
+    margin-top: 24px;
+    display: flex;
+    flex-direction: row;
+
+    @media @mobile {
+      flex-direction: column;
+    }
+  }
+
+  &__items {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    @media @mobile {
+      height: auto;
+      align-items: center;
+    }
+  }
+
+  &__photo {
+    border-radius: 24px;
+    width: 300px;
+    height: 164px;
+    background-color: @color-blue-light;
+
+    & img {
+      border-radius: 24px;
+      width: 300px;
+      height: 164px;
+    }
+
+    @media @mobile {
+      border-radius: 16px;
+      width: 288px;
+      height: 164px;
+
+      & img {
+        border-radius: 24px;
+        width: 288px;
+        height: 164px;
+      }
+    }
+  }
+
+  &__item {
+    display: flex;
+
+    @media @mobile {
+      display: none;
+    }
+  }
+
+  &__item-svg {
+    height: 32px;
+    width: 32px;
+    border-radius: 8px;
+    border:  1px solid @color-blue;
+    margin-right: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  &__item-mobile {
+    display: none;
+
+    @media @mobile {
+      margin-top: 24px;
+      display: flex;
+    }
+  }
+
+  &__text-items {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 411px;
+    height: 100%;
+    margin-left: 24px;
+
+    @media @mobile {
+      display: none;
+    }
+  }
+
+  &__text-items-mobile {
+    display: none;
+
+    @media @mobile {
+      display: block;
+    }
+  }
+
+  &__description {
+    height: 72px;
+    width: 395px;
+
+    @media @mobile {
+      margin-top: 32px;
+      height: auto;
+      width: 300px;
+    }
+  }
+
+  &__country {
+    margin-top: 50px;
+
+    @media @mobile {
+      margin-top: 15px;
+    }
+  }
+
+  &__option {
+    height: 18px;
+    margin-top: 41px;
+    color: @color-grey-dark;
+    .font-light();
+
+    @media @mobile {
+      display: none;
+    }
+  }
+
+  &__option-mobile {
+    height: 18px;
+    display: none;
+    margin-top: 21px;
+    color: @color-grey-dark;
+    .font-light();
+
+    @media @mobile {
+      display: block;
+    }
+  }
+
+  &__right-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    right: 0;
+    width: 230px;
+    height: 100%;
+  }
+
+  &__rating {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 56px;
+    height: 40px;
+    border-radius: 8px;
+    background-color: @color-blue-dark;
+    color: @color-white;
+    font-size: 30px;
+
+    @media @mobile {
+      margin-left: 24px;
+      margin-right: 8px;
+    }
+  }
+
+  &__icon-chat {
+    margin-right: 12px;
+  }
+
+  &__count-reviews {
+    text-decoration: underline;
+    color: @color-blue;
+    .font-light();
+  }
+
+  &__reviews {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+
+    @media @mobile {
+      display: none;
+    }
+
+  }
+
+  &__reviews-item {
+    display: flex;
+    flex-direction: row;
+
+    @media @mobile {
+      display: none;
+    }
+  }
+
+  &__reviews-item-mobile {
+    display: none;   /*ыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыы*/
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 24px;
+
+    @media @mobile {
+      height: 40px;
+      display: flex;
+    }
+  }
+
+  &__price {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    align-content: flex-end;
+
+    @media @mobile {
+      display: none;
+    }
+  }
+
+  &__total-price {
+    .font-bold();
+    font-size: 24px;
+
+    @media @mobile {
+      font-size: 16px;
+      }
+  }
+
+  &__price-item {
+    .font-light();
+    color: @color-blue;
+  }
+
+  &__price-mobile {
+    display: none;
+
+    @media @mobile {
+      display: flex;
+      flex-direction: row;
+      margin-top: 24px;
+
+      & div:first-child {
+        margin-right: 20px;
+      }
+    }
+  }
+
+}

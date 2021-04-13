@@ -15,5 +15,11 @@
       "exit": "Logout",
       "enter": "Login"
     }
+  },
+  "hotelCard": {
+    "reviews": "reviews",
+    "cancel": "free cancellation",
+    "price": "min price",
+    "day": "day"
   }
 }

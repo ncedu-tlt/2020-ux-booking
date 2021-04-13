@@ -29,15 +29,22 @@
 
   &._blue-dark {
     & svg {
-      fill: @color-blue-deep-dark;
-      stroke: @color-blue-deep-dark;
+      fill: @color-blue-dark;
+      stroke: @color-blue-dark;
     }
   }
 
   &._blue-dark-white {
     & svg {
       fill: @color-white;
-      stroke: @color-blue-deep-dark;
+      stroke: @color-blue-dark;
+    }
+  }
+
+  &._blue-stroke {
+    & svg {
+      fill: none;
+      stroke: @color-blue;
     }
   }
 
@@ -53,6 +60,14 @@
     &-m svg {
       width: 16px;
       height: 16px;
+    }
+  }
+
+  &._size {
+    &-ml,
+    &-ml svg {
+      width: 20px;
+      height: 20px;
     }
   }
 
