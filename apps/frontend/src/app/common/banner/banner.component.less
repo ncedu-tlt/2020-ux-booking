@@ -1,0 +1,187 @@
+@import "../../../assets/styles/common/shared";
+
+.banner {
+  display: flex;
+  flex-direction: column;
+  height: 695px;
+  width: 100%;
+
+
+  &__header {
+    display: flex;
+    background-color:  @color-blue-deep-dark;
+    height: 360px;
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+
+
+  }
+
+  &__header-inner {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    @media @mobile {
+      flex-direction: column;
+
+    }
+  }
+
+  &__items {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 40px;
+    overflow: hidden;
+    overflow-x: scroll;
+    white-space:nowrap;
+    background-color: #001724;
+
+    @media @mobile {
+      margin-top: 16px;
+    }
+  }
+
+  &__img-container {
+    width: 128px;
+    height: 86px;
+    border-radius: 4px;
+    margin-right: 8px;
+
+    @media @mobile {
+      width: 72px;
+      height: 48px;
+    }
+
+
+    &:hover {
+      transform: scale(1.2, 1.2);
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    & img {
+      width: 128px;
+      height: 86px;
+      border-radius: 4px;
+
+      @media @mobile {
+        width: 72px;
+        height: 48px;
+      }
+
+    }
+  }
+
+  &__header-hotel {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-end;
+
+    width: 100%;
+
+  }
+
+  &__header-hotel-name {
+    .font-light();
+    width: 350px;
+    color: @color-white;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 48px;
+    margin-right: 170px;
+
+    @media @mobile {
+      width: 100%;
+      font-size: 24px;
+      margin-right: 0;
+      margin-left: 5px;
+    }
+  }
+
+
+
+  &__hotel-img {
+    border-radius: 16px;
+
+    @media @mobile {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+
+  & img {
+    position: absolute;
+    width: 900px;
+    height: 447px;
+    border-radius: 16px;
+    top: 0;
+    margin-top: 280px;
+    margin-left: 20px;
+
+    @media @mobile {
+      position: inherit;
+      width: 304px;
+      height: 180px;
+      margin-left: 0;
+      margin-top: -300px;
+    }
+  }
+  }
+
+
+
+  &__hotel-location {
+    margin-top: 25px;
+    color: @color-grey-dark;
+    font-size: 24px;
+  }
+
+  &__hotel-description {
+    font-size: 16px;
+    color: @color-blue-dark;
+    margin-top: 26px;
+  }
+
+  &__hotel-more {
+    color: @color-blue;
+    font-size: 16px;
+    text-transform: uppercase;
+    border-bottom: 1px solid @color-blue;
+    width: 110px;
+    cursor: pointer;
+    margin-top: 50px;
+  }
+
+  &__content {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
+
+  &__hotel-info {
+    display: flex;
+    flex-direction: column;
+    width: 480px;
+    height: 263px;
+    margin-right: 42px;
+
+    @media @mobile {
+      margin-left: 5px;
+    }
+  }
+
+  &__hotel-more {
+    display: flex;
+    align-items: center;
+  }
+}

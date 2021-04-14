@@ -1,0 +1,48 @@
+<div class='banner'>
+  <div class='banner__header'>
+    <div class='banner__items'>
+
+      <div class='banner__img-container' *ngFor='let i of imagesHotels'>
+        <img *ngIf='imageHotel.length > 0; else placeholder' src='{{imageHotel}}' alt=''>
+        <ng-template #placeholder>
+          <img src='assets/icons/placeholder.png' alt=''>
+        </ng-template>
+      </div>
+    </div>
+
+    <div class='banner__header-inner'>
+      <div class='banner__hotel-img'>
+        <img *ngIf='imageHotel.length > 0; else placeholderTemplate' src='{{imageHotel}}' alt=''>
+        <ng-template #placeholderTemplate>
+          <img src='assets/icons/placeholder.png' alt=''>
+        </ng-template>
+      </div>
+
+      <div class='banner__header-hotel'>
+        <div class='banner__header-hotel-name'>
+          Gold Star Super Hotel
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class='banner__content'>
+
+    <div class='banner__hotel-info'>
+      <b-star-selector [isEditable]='false' [selectedItem]='4'></b-star-selector>
+      <div class='banner__hotel-location'>
+        Nольятти, Pосия
+      </div>
+      <div class='banner__hotel-description'>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, autem ducimus eaque ex inventore natus obcaecati odit perferendis placeat repellendus sunt suscipit vero voluptate! Accusantium aspernatur cum fuga suscipit vitae?
+      </div>
+      <div class='banner__hotel-more'>
+        подробнее
+        <svg-icon class='icon _size-m _blue-main'
+                  src="assets/icons/arrow.svg">
+        </svg-icon>
+      </div>
+    </div>
+  </div>
+</div>
