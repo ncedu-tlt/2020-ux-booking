@@ -6,7 +6,7 @@
           {{hotelInfo.name}}
         </div>
         <div class='hotel-card__star-selector'>
-          <b-star-selector [isEditable]='false' [selectedItem]="5" [isSizeMobile]='false'></b-star-selector>
+          <b-star-selector [selectedItem]='2' [isSizeSmall]='"_size-m"' [isEditable]='false'></b-star-selector> <!--dfsfsdfsdfsdfsdf-->
         </div>
       </div>
       <div class='hotel-card__links'>
@@ -17,11 +17,9 @@
       </div>
     </div>
 
-    <div class='hotel-card__line'></div>
-
     <div class='hotel-card__rating-mobile'>
       <div class='hotel-card__star-selector-mobile'>
-        <b-star-selector [isEditable]='false' [selectedItem]="5" [isSizeMobile]='false'></b-star-selector>
+        <b-star-selector [selectedItem]='2' [isSizeSmall]='"_size-m"' [isEditable]='false'></b-star-selector> <!--dfsfsdfsdfsdfsdf-->
       </div>
 
       <div class='hotel-card__buttons-mobile'>
@@ -40,7 +38,9 @@
     <div class='hotel-card__wrapper'>
       <div class='hotel-card__items'>
         <div class='hotel-card__photo'>
-          <img *ngIf='hotelInfo.hotelImgUrl.length > 0; else imgTemplate' src='{{hotelInfo.hotelImgUrl}}' alt='photo hotel'>
+          <img *ngIf='hotelInfo.hotelImgUrl.length > 0; else imgTemplate'
+               src='{{hotelInfo.hotelImgUrl}}'
+               alt='photo hotel'>
             <ng-template #imgTemplate>
               <img src='/assets/icons/placeholder.png' alt=''>
             </ng-template>
@@ -54,7 +54,7 @@
           </div>
           <div class='hotel-card__option-mobile'>
             <ng-container *ngIf='hotelInfo.freeCancellation'>
-              {{"hotelCard.cancel" | i18next}}
+              {{"hotelCard.free cancellation" | i18next}}
             </ng-container>
           </div>
         </div>
@@ -67,7 +67,7 @@
         <ng-container *ngTemplateOutlet='descriptionTemplate'></ng-container>
         <div class='hotel-card__option'>
           <ng-container *ngIf='hotelInfo.freeCancellation'>
-            {{"hotelCard.cancel" | i18next}}
+            {{"hotelCard.free cancellation" | i18next}}
           </ng-container>
         </div>
       </div>
@@ -118,7 +118,8 @@
 </ng-template>
 
 <ng-template #itemTemplate>
-  <div *ngFor='let i of hotelInfo.services' class='hotel-card__item-svg'>
+  <div *ngFor='let i of hotelInfo.services'
+       class='hotel-card__item-svg'>
     <svg-icon class='icon _blue-stroke _size-ml'
               src='{{i.iconUrl}}'>
     </svg-icon>

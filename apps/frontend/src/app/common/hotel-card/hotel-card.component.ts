@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ButtonIconTypesEnum } from '../../enums/button-icon-types.enum';
+import { HotelInfoModel } from '../../models/hotelInfo.model';
 
 @Component({
   selector: 'b-hotel-card',
@@ -8,7 +9,9 @@ import { ButtonIconTypesEnum } from '../../enums/button-icon-types.enum';
 })
 export class HotelCardComponent {
   @Input()
-  hotelInfo: any;
+  hotelInfo: HotelInfoModel;
+
+  isSizeMobile = false;
 
   buttonIconTypesEnum: typeof ButtonIconTypesEnum = ButtonIconTypesEnum;
 }
