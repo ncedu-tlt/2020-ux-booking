@@ -8,8 +8,16 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 })
 export class ButtonComponent {
   @Input()
-  type: 'primary' | 'default' = 'default';
+  type: 'primary' | 'secondary' | 'flat' | 'action' = 'primary';
 
   @Input()
   buttonType: 'button' | 'reset' | 'submit' = 'button';
+  @Input()
+  hasIcon = false;
+  @Input()
+  size: 'default' | 'small' = 'default';
+  @Input()
+  text: string;
+  @Input()
+  isDisabled = false;
 }

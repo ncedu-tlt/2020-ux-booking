@@ -5,6 +5,9 @@ import { AppComponent } from './app.component';
 import { CommonModule } from './common/common.module';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { HttpClientModule } from '@angular/common/http';
+import { I18NextModule } from 'angular-i18next';
+import { I18N_PROVIDERS } from './i18n/i18next';
+import { LangModule } from './lang/lang.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -12,9 +15,11 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     CommonModule,
     HttpClientModule,
-    AngularSvgIconModule.forRoot()
+    AngularSvgIconModule.forRoot(),
+    I18NextModule.forRoot(),
+    LangModule
   ],
-  providers: [],
+  providers: [I18N_PROVIDERS],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -1,7 +1,8 @@
 {
   "version": 1,
   "cli": {
-    "defaultCollection": "@nrwl/angular"
+    "defaultCollection": "@nrwl/angular",
+    "analytics": false
   },
   "defaultProject": "frontend",
   "schematics": {
@@ -51,7 +52,9 @@
               "apps/frontend/src/favicon.ico",
               "apps/frontend/src/assets"
             ],
-            "styles": ["apps/frontend/src/styles.less"],
+            "styles": [
+              "apps/frontend/src/styles.less"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -127,7 +130,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/frontend"],
+          "outputs": [
+            "coverage/apps/frontend"
+          ],
           "options": {
             "jestConfig": "apps/frontend/jest.config.js",
             "passWithNoTests": true
@@ -150,7 +155,9 @@
         },
         "build-storybook": {
           "builder": "@nrwl/storybook:build",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "uiFramework": "@storybook/angular",
             "outputPath": "dist/storybook/frontend",
@@ -187,7 +194,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/frontend-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/frontend-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
@@ -200,12 +209,16 @@
       "architect": {
         "build": {
           "builder": "@nrwl/node:build",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/backend",
             "main": "apps/backend/src/main.ts",
             "tsConfig": "apps/backend/tsconfig.app.json",
-            "assets": ["apps/backend/src/assets"]
+            "assets": [
+              "apps/backend/src/assets"
+            ]
           },
           "configurations": {
             "production": {
@@ -230,12 +243,16 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/backend/**/*.ts"]
+            "lintFilePatterns": [
+              "apps/backend/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/backend"],
+          "outputs": [
+            "coverage/apps/backend"
+          ],
           "options": {
             "jestConfig": "apps/backend/jest.config.js",
             "passWithNoTests": true
@@ -251,12 +268,16 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/models/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/models/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/models"],
+          "outputs": [
+            "coverage/libs/models"
+          ],
           "options": {
             "jestConfig": "libs/models/jest.config.js",
             "passWithNoTests": true

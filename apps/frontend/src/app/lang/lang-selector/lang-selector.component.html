@@ -1,0 +1,8 @@
+<select [(ngModel)]="current">
+  <option
+    *ngFor="let lang of languages"
+    [value]="lang"
+  >
+    {{ 'languages.' + lang | i18next }}
+  </option>
+</select>

@@ -1,4 +1,4 @@
-<button [type]="buttonType" [ngClass]="['button', type]">
-  <svg-icon class="icon" [class._white]="type === 'primary'" src="assets/icons/plus.svg"></svg-icon>
-  <ng-content></ng-content>
+<button [type]="buttonType" [ngClass]="['button', '_' + type, '_' + size]" [disabled]="isDisabled">
+  <svg-icon *ngIf="hasIcon" class="icon" [class._white]="type !== 'flat' && type !== 'secondary'" src="assets/icons/plus.svg"></svg-icon>
+ {{text}}
 </button>

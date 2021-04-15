@@ -1,0 +1,29 @@
+@import './../../../assets/styles/common/shared';
+
+.button-icon {
+  display: flex;
+  align-items: center;
+  background-color: @color-white;
+  border-radius: 18px;
+  border: 2px solid @color-blue;
+  cursor: pointer;
+  height: 48px;
+  width: 48px;
+  justify-content: center;
+
+  &:hover {
+    background-color: @color-blue-light;
+    color: @color-blue-dark;
+  }
+
+  .icon {
+    height: 32px;
+    display: flex;
+    align-items: center;
+
+    & svg {
+      stroke: @color-blue-dark;
+    }
+  }
+}
+

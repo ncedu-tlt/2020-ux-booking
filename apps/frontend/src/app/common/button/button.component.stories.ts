@@ -10,7 +10,25 @@ const meta: Meta = {
     type: {
       control: {
         type: 'select',
-        options: ['default', 'primary']
+        options: ['flat', 'primary', 'secondary', 'action']
+      }
+    },
+    hasIcon: {
+      control: {
+        type: 'select',
+        options: [true, false]
+      }
+    },
+    size: {
+      control: {
+        type: 'select',
+        options: ['default', 'small']
+      }
+    },
+    isDisabled: {
+      control: {
+        type: 'select',
+        options: [true, false]
       }
     }
   }
@@ -18,21 +36,23 @@ const meta: Meta = {
 export default meta;
 
 const common: StoryFnAngularReturnType = {
+  component: ButtonComponent,
   moduleMetadata: {
     declarations: [ButtonComponent],
     imports: [AngularSvgIconModule.forRoot(), HttpClientModule]
   }
 };
-
 const template: Story<ButtonComponent> = (args: ButtonComponent) => ({
   ...common,
   props: {
     ...args
-  },
-  template: '<b-button [type]="type">Test</b-button>'
+  }
 });
-
 export const regular = template.bind({});
 regular.args = {
-  type: 'primary'
+  type: 'primary',
+  text: 'Save',
+  hasIcon: false,
+  size: 'small',
+  isDisabled: false
 };
