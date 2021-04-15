@@ -1,6 +1,6 @@
-<div class='tabs' [ngClass]="[type == 'vertical' ? '_vertical': '_horizontal']" >
+<div class='tabs' [ngClass]="[type === 'vertical' ? '_vertical': '_horizontal']" >
   <div class="tabs__item"
-    *ngFor='let item of items' [ngClass]="[item == selectedItem ? '_selected' : '_default']" 
+    *ngFor='let item of items' [ngClass]="[item === selectedItem ? '_selected' : '_default']" 
     (click)='setItem(item)'>
     {{item}}
   </div>
