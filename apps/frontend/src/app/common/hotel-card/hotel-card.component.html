@@ -6,7 +6,9 @@
           {{hotelInfo.name}}
         </div>
         <div class='hotel-card__star-selector'>
-          <b-star-selector [selectedItem]='2' [isSizeSmall]='"_size-l"' [isEditable]='false'></b-star-selector> <!--dfsfsdfsdfsdfsdf-->
+          <b-star-selector [selectedItem]='hotelInfo.starsCount'
+                           [isSizeSmall]='"_size-l"'
+                           [isEditable]='false'></b-star-selector>
         </div>
       </div>
       <div class='hotel-card__links'>
@@ -19,7 +21,9 @@
 
     <div class='hotel-card__rating-mobile'>
       <div class='hotel-card__star-selector-mobile'>
-        <b-star-selector [selectedItem]='2' [isSizeSmall]='"_size-m"' [isEditable]='false'></b-star-selector> <!--dfsfsdfsdfsdfsdf-->
+        <b-star-selector [selectedItem]='hotelInfo.starsCount'
+                         [isSizeSmall]='"_size-m"'
+                         [isEditable]='false'></b-star-selector>
       </div>
 
       <div class='hotel-card__buttons-mobile'>
@@ -31,8 +35,12 @@
       <svg-icon class='icon _blue-stroke hotel-card__icon-chat'
                 src="assets/icons/chat.svg">
       </svg-icon>
-      <div  class='hotel-card__count-reviews'>{{hotelInfo.countReviews}} {{"hotelCard.reviews" | i18next}}</div>
-      <div class='hotel-card__rating'>{{hotelInfo.hotelRating}}</div>
+      <div  class='hotel-card__count-reviews'>
+        {{hotelInfo.countReviews}} {{"hotelCard.reviews" | i18next}}
+      </div>
+      <div class='hotel-card__rating'>
+        {{hotelInfo.hotelRating}}
+      </div>
     </div>
 
     <div class='hotel-card__wrapper'>
@@ -103,8 +111,13 @@
 </div>
 
 <ng-template #priceTemplate>
-  <div class='hotel-card__price-item'>{{"hotelCard.price" | i18next}}</div>
-  <div  class='hotel-card__total-price'>{{hotelInfo.minPrice}} {{hotelInfo.currency}}/{{"hotelCard.day" | i18next}}</div>
+  <div class='hotel-card__price-item'>
+    {{"hotelCard.price" | i18next}}
+  </div>
+  <div
+    class='hotel-card__total-price'>
+    {{hotelInfo.minPrice}} {{hotelInfo.currency}}/{{"hotelCard.day" | i18next}}
+  </div>
 </ng-template>
 
 <ng-template #buttonTemplate>
@@ -115,8 +128,12 @@
 </ng-template>
 
 <ng-template #descriptionTemplate>
-  <div class='hotel-card__description'>{{hotelInfo.description}}</div>
-  <div class='hotel-card__country'>{{hotelInfo.address.country}}, {{hotelInfo.address.city}}</div>
+  <div class='hotel-card__description'>
+    {{hotelInfo.description}}
+  </div>
+  <div class='hotel-card__country'>
+    {{hotelInfo.address.country}}, {{hotelInfo.address.city}}
+  </div>
 </ng-template>
 
 <ng-template #itemTemplate>
