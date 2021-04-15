@@ -34,4 +34,4 @@ import { ButtonIconComponent } from './icon/button-icon.component';
     ButtonIconComponent
   ]
 })
-export class CommonModule { }
+export class CommonModule {}
