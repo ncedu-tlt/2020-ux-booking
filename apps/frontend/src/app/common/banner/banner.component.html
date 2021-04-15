@@ -5,7 +5,11 @@
       <div class='banner__img-container' *ngFor='let i of imagesHotels'>
         <img *ngIf='imageHotel.length > 0; else placeholder' src='{{imageHotel}}' alt=''>
         <ng-template #placeholder>
-          <img src='assets/icons/placeholder.png' alt=''>
+          <div>
+            <svg-icon  class='icon _size-m _stroke-grey'
+                       src="assets/icons/placeholder.svg">
+            </svg-icon>
+          </div>
         </ng-template>
       </div>
     </div>
@@ -14,7 +18,11 @@
       <div class='banner__hotel-img'>
         <img *ngIf='imageHotel.length > 0; else placeholderTemplate' src='{{imageHotel}}' alt=''>
         <ng-template #placeholderTemplate>
-          <img src='assets/icons/placeholder.png' alt=''>
+          <div class='banner__container-img-svg'>
+            <svg-icon  class='icon _size-l _stroke-grey'
+                       src="assets/icons/placeholder.svg">
+            </svg-icon>
+          </div>
         </ng-template>
       </div>
 

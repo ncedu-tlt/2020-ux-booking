@@ -17,10 +17,11 @@
 
     @media @mobile {
       align-items: center;
-
     }
 
+    @media @tablet {
 
+    }
   }
 
   &__header-inner {
@@ -30,6 +31,10 @@
     justify-content: space-between;
 
     @media @mobile {
+      flex-direction: column;
+    }
+
+    @media @tablet {
       flex-direction: column;
     }
   }
@@ -49,6 +54,41 @@
     @media @mobile {
       margin-top: 16px;
     }
+
+    @media @tablet {
+      margin-top: 16px;
+    }
+  }
+
+  &__container-img-svg {
+    display: flex;
+    justify-content: center;/*sdasdasdasdasdasdasdasdasd*/
+    align-items: center;
+    background-color: @color-grey-light;
+    position: absolute;
+    width: 900px;
+    height: 447px;
+    border-radius: 16px;
+    top: 0;
+    margin-top: 280px;
+    margin-left: 70px;
+
+    @media @mobile {
+      position: inherit;
+      width: 304px;
+      height: 180px;
+      margin-left: 0;
+      margin-top: -300px;
+    }
+
+    @media @tablet {
+      position: inherit;
+      width: 460px;
+      height: 220px;
+      margin-left: 0;
+      margin-top: -250px;
+    }
+
   }
 
   &__img-container {
@@ -62,6 +102,11 @@
       height: 48px;
     }
 
+    @media @tablet {
+      width: 72px;
+      height: 48px;
+    }
+
 
     &:hover {
       transform: scale(1.2, 1.2);
@@ -71,12 +116,22 @@
       margin-right: 0;
     }
 
-    & img {
+    & div {
+      background-color: @color-grey-light;
+      border: solid 1px @color-grey-dark;
       width: 128px;
       height: 86px;
       border-radius: 4px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
       @media @mobile {
+        width: 72px;
+        height: 48px;
+      }
+
+      @media @tablet {
         width: 72px;
         height: 48px;
       }
@@ -108,7 +163,13 @@
       font-size: 24px;
       margin-right: 0;
       margin-left: 5px;
+    }
 
+    @media @tablet {
+      width: 100%;
+      font-size: 24px;
+      margin-right: 0;
+      margin-left: 5px;
     }
   }
 
@@ -118,6 +179,12 @@
     border-radius: 16px;
 
     @media @mobile {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    @media @tablet {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -134,6 +201,14 @@
     margin-left: 70px;
 
     @media @mobile {
+      position: inherit;
+      width: 304px;
+      height: 180px;
+      margin-left: 0;
+      margin-top: -300px;
+    }
+
+    @media @tablet {
       position: inherit;
       width: 304px;
       height: 180px;
@@ -171,6 +246,10 @@
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
+
+    @media @tablet {
+      justify-content: flex-start;
+    }
   }
 
   &__hotel-info {
@@ -181,6 +260,10 @@
     margin-right: 70px;
 
     @media @mobile {
+      margin-left: 5px;
+    }
+
+    @media @tablet {
       margin-left: 5px;
     }
   }
