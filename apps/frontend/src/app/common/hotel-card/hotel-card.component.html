@@ -6,7 +6,7 @@
           {{hotelInfo.name}}
         </div>
         <div class='hotel-card__star-selector'>
-          <b-star-selector [selectedItem]='2' [isSizeSmall]='"_size-m"' [isEditable]='false'></b-star-selector> <!--dfsfsdfsdfsdfsdf-->
+          <b-star-selector [selectedItem]='2' [isSizeSmall]='"_size-l"' [isEditable]='false'></b-star-selector> <!--dfsfsdfsdfsdfsdf-->
         </div>
       </div>
       <div class='hotel-card__links'>
@@ -42,7 +42,9 @@
                src='{{hotelInfo.hotelImgUrl}}'
                alt='photo hotel'>
             <ng-template #imgTemplate>
-              <img src='/assets/icons/placeholder.png' alt=''>
+              <svg-icon class='icon _size-ml _stroke-grey'
+                        src="/assets/icons/placeholder.svg">
+              </svg-icon>
             </ng-template>
         </div>
 
