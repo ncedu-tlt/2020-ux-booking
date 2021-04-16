@@ -15,5 +15,8 @@
       "exit": "Logout",
       "enter": "Login"
     }
+  },
+  "banner": {
+    "moreDetails": "More details"
   }
 }

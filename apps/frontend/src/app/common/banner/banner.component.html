@@ -3,7 +3,7 @@
     <div class='banner__items'>
 
       <div class='banner__img-container' *ngFor='let i of imagesHotels'>
-        <img *ngIf='imageHotel.length > 0; else placeholder' src='{{imageHotel}}' alt=''>
+        <img *ngIf='imageHotel.length > 0; else placeholder' src='{{imagesHotels}}' alt=''>
         <ng-template #placeholder>
           <div>
             <svg-icon  class='icon _size-m _stroke-grey'
@@ -14,9 +14,23 @@
       </div>
     </div>
 
-    <div class='banner__header-inner'>
+
+    <div class='banner__container-photo'>
+      <div class='banner__main-photo'>
+        <img *ngIf='imageHotel.length > 0; else placeholderTemplateMobile' src='{{hotelInfo.hotelImgUrl}}' alt=''>
+        <ng-template #placeholderTemplateMobile>
+          <div class='banner__container-img-svg'>
+            <svg-icon  class='icon _size-l _stroke-grey'
+                       src="assets/icons/placeholder.svg">
+            </svg-icon>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+
+    <!--<div class='banner__header-inner'>
       <div class='banner__hotel-img'>
-        <img *ngIf='imageHotel.length > 0; else placeholderTemplate' src='{{imageHotel}}' alt=''>
+        <img class='banner__img-mobile' *ngIf='imageHotel.length > 0; else placeholderTemplate' src='{{hotelInfo.hotelImgUrl}}' alt=''>
         <ng-template #placeholderTemplate>
           <div class='banner__container-img-svg'>
             <svg-icon  class='icon _size-l _stroke-grey'
@@ -25,11 +39,11 @@
           </div>
         </ng-template>
       </div>
+    </div>-->
 
-      <div class='banner__header-hotel'>
-        <div class='banner__header-hotel-name'>
-          Gold Star Super Hotel
-        </div>
+    <div class='banner__header-hotel-mobile'>
+      <div class='banner__header-hotel-name-mobile'> <!--12312312312312312312-->
+        {{hotelInfo.name}}
       </div>
     </div>
 
@@ -37,16 +51,45 @@
 
   <div class='banner__content'>
 
+
+    <div class='banner__hotel-img-desktop'>
+      <img class='banner__imgg' *ngIf='imageHotel.length > 0; else placeholderTemplate' src='{{hotelInfo.hotelImgUrl}}' alt=''>
+      <ng-template #placeholderTemplate>
+        <div class='banner__container-img-svg-desktop'>
+          <svg-icon  class='icon _size-l _stroke-grey'
+                     src="assets/icons/placeholder.svg">
+          </svg-icon>
+        </div>
+      </ng-template>
+    </div>
+
+
+
     <div class='banner__hotel-info'>
-      <b-star-selector [isEditable]='false' [selectedItem]='4'></b-star-selector>
+
+
+
+
+
+
+
+
+      <div class='banner__header-hotel'>
+        <div class='banner__header-hotel-name'>
+          {{hotelInfo.name}}
+        </div>
+      </div>
+
+
+      <b-star-selector [isEditable]='false' [selectedItem]='hotelInfo.starsCount'></b-star-selector>
       <div class='banner__hotel-location'>
-        Nольятти, Pосия
+        {{hotelInfo.address.city}}, {{hotelInfo.address.country}}
       </div>
       <div class='banner__hotel-description'>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, autem ducimus eaque ex inventore natus obcaecati odit perferendis placeat repellendus sunt suscipit vero voluptate! Accusantium aspernatur cum fuga suscipit vitae?
+        {{hotelInfo.description}}
       </div>
       <div class='banner__hotel-more'>
-        подробнее
+        {{"banner.moreDetails" | i18next}}
         <svg-icon class='icon _size-m _blue-main'
                   src="assets/icons/arrow.svg">
         </svg-icon>
