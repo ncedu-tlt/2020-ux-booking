@@ -30,11 +30,11 @@ export class Address {
     nullable: false,
     onDelete: 'CASCADE'
   })
-  users: User[];
+  users: Promise<User[]>;
 
   @OneToMany(type => Hotel, hotels => hotels.address, {
     nullable: false,
     onDelete: 'CASCADE'
   })
-  hotels: Hotel[];
+  hotels: Promise<Hotel[]>;
 }

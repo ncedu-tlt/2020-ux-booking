@@ -1,5 +1,5 @@
 import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { Booking } from './booking.dao';
+import { Hotel } from './hotel.dao';
 
 @Entity('booking_conditions')
 export class BookingCondition {
@@ -12,8 +12,8 @@ export class BookingCondition {
   @Column()
   descriptions: string;
 
-  @ManyToMany(type => Booking, booking => booking.bookingConditions, {
+  @ManyToMany(type => Hotel, hotel => hotel.bookingConditions, {
     nullable: false
   })
-  bookings: Booking[];
+  hotels: Promise<Hotel[]>;
 }

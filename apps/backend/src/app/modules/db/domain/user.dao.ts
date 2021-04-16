@@ -43,25 +43,25 @@ export class User {
     nullable: false,
     onDelete: 'SET NULL'
   })
-  reviews: Review[];
+  reviews: Promise<Review[]>;
 
   @OneToMany(type => Comment, comments => comments.user, {
     nullable: false,
     onDelete: 'SET NULL'
   })
-  comments: Comment[];
+  comments: Promise<Comment[]>;
 
   @OneToMany(type => Booking, booking => booking.user, {
     nullable: false,
     onDelete: 'SET NULL'
   })
-  bookings: Booking[];
+  bookings: Promise<Booking[]>;
 
   @ManyToMany(type => Hotel, hotel => hotel.users, {
     nullable: false,
     onDelete: 'SET NULL'
   })
-  bookmarks: Hotel[];
+  bookmarks: Promise<Hotel[]>;
 
   @Column()
   password: string;

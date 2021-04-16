@@ -1,5 +1,6 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Hotel } from './hotel.dao';
+import { User } from './user.dao';
 
 @Entity('service_type')
 export class ServiceType {
@@ -12,5 +13,5 @@ export class ServiceType {
   @OneToMany(type => Hotel, hotels => hotels.serviceType, {
     nullable: false
   })
-  hotels: Hotel[];
+  hotels: Promise<Hotel[]>;
 }

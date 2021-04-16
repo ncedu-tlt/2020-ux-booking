@@ -7,6 +7,7 @@ import {
 } from 'typeorm';
 import { Country } from './countries.dao';
 import { Address } from './addresses.dao';
+import { User } from './user.dao';
 
 @Entity('cities')
 export class City {
@@ -24,5 +25,5 @@ export class City {
   @OneToMany(type => Address, addresses => addresses.city, {
     nullable: false
   })
-  addresses: Address[];
+  addresses: Promise<Address[]>;
 }

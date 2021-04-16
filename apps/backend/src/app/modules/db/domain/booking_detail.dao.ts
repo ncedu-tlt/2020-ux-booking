@@ -23,7 +23,7 @@ export class BookingDetail {
   @ManyToOne(type => BoardBasis, boardBasis => boardBasis.bookingDetails)
   boardBasis: BoardBasis;
 
-  @OneToOne(type => Booking, booking => booking.bookingDetail, {
+  @ManyToOne(type => Booking, booking => booking.bookingDetails, {
     onDelete: 'CASCADE'
   })
   booking: Booking;

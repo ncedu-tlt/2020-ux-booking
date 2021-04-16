@@ -11,6 +11,7 @@ import { BookingDetail } from './booking_detail.dao';
 import { Hotel } from './hotel.dao';
 import { Bed } from './bed.dao';
 import { AmenitiesRoom } from './amenities_room.dao';
+import { User } from './user.dao';
 
 @Entity('rooms')
 export class Room {
@@ -41,12 +42,12 @@ export class Room {
   @ManyToOne(type => Hotel, hotel => hotel.rooms, {
     onDelete: 'CASCADE'
   })
-  hotel: Hotel;
+  hotel: Promise<Hotel>;
 
   @OneToMany(type => Photo, photos => photos.room, {
     nullable: false
   })
-  photos: Photo[];
+  photos: Promise<Photo[]>;
 
   @OneToMany(type => AmenitiesRoom, amenitiesRoom => amenitiesRoom.room, {
     nullable: false,
@@ -57,5 +58,5 @@ export class Room {
   @OneToMany(type => BookingDetail, bookingDetail => bookingDetail.room, {
     nullable: false
   })
-  bookingDetails: BookingDetail[];
+  bookingDetails: Promise<BookingDetail[]>;
 }

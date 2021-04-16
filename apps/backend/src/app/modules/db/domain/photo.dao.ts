@@ -1,6 +1,6 @@
 import {
-  Entity,
   Column,
+  Entity,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn
@@ -9,6 +9,7 @@ import { Hotel } from './hotel.dao';
 import { Service } from './service.dao';
 import { Room } from './room.dao';
 import { Amenities } from './ameniries.dao';
+import { User } from './user.dao';
 
 @Entity('photos')
 export class Photo {
@@ -25,23 +26,23 @@ export class Photo {
     nullable: false,
     onDelete: 'SET NULL'
   })
-  services: Service[];
+  services: Promise<Service[]>;
 
   @ManyToOne(type => Hotel, hotels => hotels.photos, {
     nullable: false,
     onDelete: 'SET NULL'
   })
-  hotel: Hotel;
+  hotel: Promise<Hotel>;
 
   @ManyToOne(type => Room, rooms => rooms.photos, {
     nullable: false,
     onDelete: 'SET NULL'
   })
-  room: Room;
+  room: Promise<Room>;
 
   @OneToMany(type => Amenities, amenities => amenities.icon, {
     nullable: false,
     onDelete: 'SET NULL'
   })
-  amenities: Amenities;
+  amenities: Promise<Amenities>;
 }

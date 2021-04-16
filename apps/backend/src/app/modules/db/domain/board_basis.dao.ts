@@ -1,6 +1,7 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { HotelBoardBasis } from './hotel_board_basis.dao';
 import { BookingDetail } from './booking_detail.dao';
+import { User } from './user.dao';
 
 @Entity('board_basis')
 export class BoardBasis {
@@ -14,7 +15,7 @@ export class BoardBasis {
     type => HotelBoardBasis,
     hotelBoardBasis => hotelBoardBasis.boardBasis
   )
-  hotelBoardBasis: HotelBoardBasis[];
+  hotelBoardBasis: Promise<HotelBoardBasis[]>;
 
   @OneToMany(
     type => BookingDetail,
@@ -24,5 +25,5 @@ export class BoardBasis {
       onDelete: 'SET NULL'
     }
   )
-  bookingDetails: BookingDetail;
+  bookingDetails: Promise<BookingDetail>;
 }

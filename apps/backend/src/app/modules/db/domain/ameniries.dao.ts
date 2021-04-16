@@ -8,6 +8,7 @@ import {
 
 import { Photo } from './photo.dao';
 import { AmenitiesRoom } from './amenities_room.dao';
+import { User } from './user.dao';
 
 @Entity('amenities')
 export class Amenities {
@@ -28,5 +29,5 @@ export class Amenities {
     amenitiesRooms => amenitiesRooms.amenities,
     { nullable: false }
   )
-  amenitiesRooms: AmenitiesRoom[];
+  amenitiesRooms: Promise<AmenitiesRoom[]>;
 }

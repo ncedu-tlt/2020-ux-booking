@@ -18,6 +18,7 @@ import { Service } from './service.dao';
 import { PaymentMethod } from './payment_method.dao';
 import { HotelBoardBasis } from './hotel_board_basis.dao';
 import { Room } from './room.dao';
+import { BookingCondition } from './booking_conditions.dao';
 
 @Entity('hotels')
 export class Hotel {
@@ -45,19 +46,19 @@ export class Hotel {
   @ManyToMany(type => User, user => user.bookmarks, {
     nullable: false
   })
-  users: User[];
+  users: Promise<User[]>;
 
   @OneToMany(type => Review, reviews => reviews.hotel, {
     nullable: false,
     onDelete: 'SET NULL'
   })
-  reviews: Review[];
+  reviews: Promise<Review[]>;
 
   @OneToMany(type => Comment, comments => comments.hotel, {
     nullable: false,
     onDelete: 'SET NULL'
   })
-  comments: Comment[];
+  comments: Promise<Comment[]>;
 
   @ManyToMany(type => Service, services => services.hotels, {
     nullable: false,
@@ -78,7 +79,7 @@ export class Hotel {
   @OneToMany(type => Photo, photos => photos.hotel, {
     nullable: false
   })
-  photos: Photo[];
+  photos: Promise<Photo[]>;
 
   @ManyToMany(type => PaymentMethod, paymentMethod => paymentMethod.hotels)
   paymentMethods: PaymentMethod[];
@@ -95,5 +96,15 @@ export class Hotel {
   @OneToMany(type => Room, rooms => rooms.hotel, {
     onDelete: 'RESTRICT'
   })
-  rooms: Room[];
+  rooms: Promise<Room[]>;
+
+  @ManyToMany(
+    type => BookingCondition,
+    bookingConditions => bookingConditions.hotels,
+    {
+      onDelete: 'SET NULL',
+      nullable: false
+    }
+  )
+  bookingConditions: BookingCondition[];
 }

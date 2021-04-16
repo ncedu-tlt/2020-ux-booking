@@ -13,5 +13,5 @@ export class Role {
     nullable: false,
     onDelete: 'SET NULL'
   })
-  users: User[];
+  users: Promise<User[]>;
 }

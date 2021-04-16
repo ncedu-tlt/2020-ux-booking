@@ -7,6 +7,7 @@ import {
 } from 'typeorm';
 import { Photo } from './photo.dao';
 import { Hotel } from './hotel.dao';
+import { User } from './user.dao';
 
 @Entity('services')
 export class Service {
@@ -30,5 +31,5 @@ export class Service {
   @ManyToMany(type => Hotel, hotels => hotels.services, {
     nullable: false
   })
-  hotels: Hotel[];
+  hotels: Promise<Hotel[]>;
 }

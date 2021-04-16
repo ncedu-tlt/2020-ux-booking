@@ -27,5 +27,5 @@ export class Review {
   @ManyToOne(type => Hotel, hotel => hotel.reviews, {
     onDelete: 'CASCADE'
   })
-  hotel: Hotel;
+  hotel: Promise<Hotel>;
 }

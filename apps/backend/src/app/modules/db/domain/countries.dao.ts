@@ -1,5 +1,6 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { City } from './city.dao';
+import { User } from './user.dao';
 
 @Entity('countries')
 export class Country {
@@ -12,5 +13,5 @@ export class Country {
   @OneToMany(type => City, cities => cities.country, {
     nullable: false
   })
-  cities: City[];
+  cities: Promise<City[]>;
 }
