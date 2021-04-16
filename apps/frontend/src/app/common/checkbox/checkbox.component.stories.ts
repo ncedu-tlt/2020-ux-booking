@@ -1,8 +1,9 @@
 import { CheckboxComponent } from './checkbox.component';
 import { Meta, Story } from '@storybook/angular/types-6-0';
-import { StoryFnAngularReturnType } from '@storybook/angular/dist/client/preview/types';
+// import { StoryFnAngularReturnType } from '@storybook/angular/dist/client/preview/types';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { HttpClientModule } from '@angular/common/http';
+import { StoryFnAngularReturnType } from '@storybook/angular/dist/ts3.9/client/preview/types';
 
 const meta: Meta = {
   title: 'Checkbox',

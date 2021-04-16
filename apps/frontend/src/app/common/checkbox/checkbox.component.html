@@ -1,6 +1,10 @@
 <div class='checkbox'>
   <button [ngClass]="['checkbox__rectangle',getDisabledStatus()]">
-    <svg-icon [ngClass]="['checkbox__rectangle-checkmark', getCheckedStatus(),getDisabledStatus()]" src='assets/icons/checkmark.svg'></svg-icon>
+    <svg-icon [ngClass]="['checkbox__rectangle-checkmark',
+               getCheckedStatus(),
+               getDisabledStatus()]"
+              src='assets/icons/checkmark.svg'>
+    </svg-icon>
   </button>
   <span [ngClass]="['checkbox__text',getDisabledStatus()]">{{label}}</span>
 </div>

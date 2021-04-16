@@ -8,19 +8,15 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 })
 export class SelectorComponent {
   value = '';
-  alertFlag = false;
-  data;
+  isNotFound = false;
+  filteredSuggestions;
   arrow: 'default' | 'rotate' = 'default';
   popupItems = false;
-  dataStorage: string[] = [
-    'Только завтрак',
-    'Всё включено',
-    'Завтрак и ужин',
-    'Без питания'
-  ];
   selectedItems: string[] = [];
   hint = 'Введите или выберите из списка';
   selectedHint = '';
+  @Input()
+  itemList: string[];
   @Input()
   titleSelector;
   @Input()
@@ -41,19 +37,17 @@ export class SelectorComponent {
     }
   }
 
-  getHintColor(): string {
-    return this.selectedHint.length === 0 ? 'default' : 'black';
-  }
-
   filteredData(): string[] {
-    this.data = this.dataStorage;
+    this.filteredSuggestions = this.itemList;
     if (this.value.length < 3) {
-      return this.data;
+      return this.filteredSuggestions;
     } else {
-      const newData = this.data.filter(data =>
+      const newData = this.filteredSuggestions.filter(data =>
         data.toLowerCase().includes(this.value.toLowerCase())
       );
-      newData.length === 0 ? (this.alertFlag = true) : (this.alertFlag = false);
+      newData.length === 0
+        ? (this.isNotFound = true)
+        : (this.isNotFound = false);
       return newData;
     }
   }
@@ -66,9 +60,9 @@ export class SelectorComponent {
     if (this.mode === 'multi') {
       if (this.selectedItems.indexOf(item) != -1) {
         this.selectedItems.splice(this.selectedItems.indexOf(item), 1);
-        this.selectedHint = this.reducingString(this.selectedItems);
+        this.selectedHint = this.getString(this.selectedItems);
       } else this.selectedItems.push(item);
-      this.selectedHint = this.reducingString(this.selectedItems);
+      this.selectedHint = this.getString(this.selectedItems);
     } else if (this.mode === 'default' && +this.selectedItems.length < 2) {
       +this.selectedItems.length === 0
         ? this.selectedItems.push(item)
@@ -78,7 +72,7 @@ export class SelectorComponent {
     }
   }
 
-  reducingString(array: string[]): string {
+  getString(array: string[]): string {
     return array.toString();
   }
 
@@ -87,7 +81,7 @@ export class SelectorComponent {
   }
 
   addItem(): void {
-    this.data.push(this.value);
+    this.filteredSuggestions.push(this.value);
   }
 
   getStyleMode(item: string): string {
@@ -95,6 +89,6 @@ export class SelectorComponent {
   }
 
   getStatus(item: string): boolean {
-    return this.selectedItems.indexOf(item) != -1;
+    return this.selectedItems.includes(item);
   }
 }

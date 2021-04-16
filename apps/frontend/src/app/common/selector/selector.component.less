@@ -25,11 +25,7 @@ svg path {
     border-radius: 24px;
     cursor: pointer;
     outline: none;
-    &.black{
-      &::-webkit-input-placeholder {color: black}
-      &::-moz-placeholder {color: black}
-      &:-ms-input-placeholder{color: black}
-    }
+
     &-container {
       max-width: @mobile-min-width;
       display: flex;
@@ -72,6 +68,7 @@ svg path {
     border-radius: 24px;
     padding-top: 24px;
     padding-bottom: 24px;
+
     &-item {
       display: flex;
       align-items: center;
@@ -88,12 +85,11 @@ svg path {
       &:hover {
         background-color: @color-blue-light;
       }
-      &:first-child{
+
+      &:first-child {
         border: none;
       }
-
     }
-
 
     &-text {
       color: @color-blue-deep-dark;
@@ -110,9 +106,13 @@ svg path {
         text-align: center;
       }
     }
-    &-button{
-     margin-left: 111px;
+
+    &-button {
     }
+  }
+
+  &__notification {
+    margin-left: 70px;
   }
 
 }

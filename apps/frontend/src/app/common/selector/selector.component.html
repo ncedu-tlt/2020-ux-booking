@@ -2,8 +2,9 @@
   <span class='selector-title'>{{titleSelector}}</span>
   <label (click)='showPopup()' class='selector__input-container'>
     <input (change)='handleChange($event)'
-           [ngClass]="['selector__input',getHintColor()]"
-           placeholder='{{selectedItems.length == 0 ? hint : selectedHint}}' />
+           class='selector__input'
+           [value]='selectedHint'
+           placeholder='{{"selector.input-hint" | i18next}}'/>
     <svg-icon
       (click)='showPopup()'
       [ngClass]="['selector__input-arrow',arrow]"
@@ -23,10 +24,20 @@
                   label='{{item}}'
       ></b-checkbox>
     </div>
-    <span [ngClass]="[alertFlag ?
+    <div class='selector__notification'>
+    <span [ngClass]="[isNotFound ?
       'selector__list-alert':
       'selector__list-alert-invisible']">
-      Значение не найдено</span>
-    <button class='selector__list-button'  (click)='addItem()' *ngIf='typeUser === "admin" && alertFlag'>add value</button>
+      {{"selector.not-found" | i18next}}
+    </span>
+      <b-button
+        (click)='addItem()'
+        *ngIf='typeUser === "admin" && isNotFound'
+        type='secondary'
+        hasIcon='true'
+        size='small'
+        text='{{"selector.button" | i18next}}'></b-button>
+    </div>
+
   </div>
 </div>
