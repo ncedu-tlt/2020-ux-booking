@@ -1,0 +1,38 @@
+@import './../../../assets/styles/common/shared';
+
+.tabs {
+  margin: 0;
+
+  &__item {
+    padding: 13px 16px 9px 16px;
+    color:  @color-blue-dark;
+    display: flex;
+    .font-regular();
+    font-size: 20px;
+    line-height: 32px;
+    letter-spacing: 0.5px;
+  }
+
+  &._vertical &__item{
+    border-bottom: 1px solid @color-blue-dark;
+  }
+
+  &._horizontal {
+    display: flex;
+    border-bottom: 1px solid @color-blue-dark;
+  }
+
+  &._horizontal &__item{
+    padding: 10px 24px;
+  }
+
+  &__item:hover:not(&__item._selected) {
+    background: @color-blue-light;
+    cursor: pointer;
+  }
+
+  &__item._selected {
+    background: @color-blue-dark;
+    color:  @color-background;
+  }
+}
