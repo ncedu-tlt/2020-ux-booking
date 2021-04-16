@@ -1,36 +1,18 @@
 <div class='hotel-card'>
   <div class='hotel-card__container'>
     <div class='hotel-card__header'>
-      <div class='hotel-card__header-hotel'>
         <div class='hotel-card__hotel-name'>
           {{hotelInfo.name}}
         </div>
         <div class='hotel-card__star-selector'>
           <b-star-selector [selectedItem]='hotelInfo.starsCount'
-                           [isSizeSmall]='"_size-l"'
+                           [isSizeSmall]='"_size-ls"'
                            [isEditable]='false'></b-star-selector>
         </div>
-      </div>
-      <div class='hotel-card__links'>
-
         <div class='hotel-card__buttons'>
           <ng-container *ngTemplateOutlet='buttonTemplate'></ng-container>
         </div>
-      </div>
     </div>
-
-    <div class='hotel-card__rating-mobile'>
-      <div class='hotel-card__star-selector-mobile'>
-        <b-star-selector [selectedItem]='hotelInfo.starsCount'
-                         [isSizeSmall]='"_size-m"'
-                         [isEditable]='false'></b-star-selector>
-      </div>
-
-      <div class='hotel-card__buttons-mobile'>
-        <ng-container *ngTemplateOutlet='buttonTemplate'></ng-container>
-      </div>
-    </div>
-
     <div class='hotel-card__reviews-item-mobile'>
       <svg-icon class='icon _color-none hotel-card__icon-chat'
                 src="assets/icons/chat.svg">
@@ -42,52 +24,24 @@
         {{hotelInfo.hotelRating}}
       </div>
     </div>
-
     <div class='hotel-card__wrapper'>
-      <div class='hotel-card__items'>
+      <div class='hotel-card__hotel-info'>
+
         <div class='hotel-card__photo'>
           <img *ngIf='hotelInfo.hotelImgUrl.length > 0; else imgTemplate'
                src='{{hotelInfo.hotelImgUrl}}'
                alt='photo hotel'>
-            <ng-template #imgTemplate>
-              <svg-icon class='icon _size-ml _stroke-grey'
-                        src="/assets/icons/placeholder.svg">
-              </svg-icon>
-            </ng-template>
+          <ng-template #imgTemplate>
+            <svg-icon class='icon _size-ml _stroke-grey'
+                      src="/assets/icons/placeholder.svg">
+            </svg-icon>
+          </ng-template>
         </div>
 
-        <div class='hotel-card__text-items-mobile'>
+        <div class='hotel-card__text-info'>
           <ng-container *ngTemplateOutlet='descriptionTemplate'></ng-container>
-
-          <div class='hotel-card__item-mobile'>
-            <ng-container *ngTemplateOutlet='itemTemplate'></ng-container>
-          </div>
-          <div class='hotel-card__option-mobile'>
-            <ng-container *ngIf='hotelInfo.freeCancellation'>
-              {{"hotelCard.free cancellation" | i18next}}
-            </ng-container>
-          </div>
         </div>
-
-        <div class='hotel-card__item'>
-          <ng-container *ngTemplateOutlet='itemTemplate'></ng-container>
-        </div>
-      </div>
-      <div class='hotel-card__text-items'>
-        <ng-container *ngTemplateOutlet='descriptionTemplate'></ng-container>
-        <div class='hotel-card__option'>
-          <ng-container *ngIf='hotelInfo.freeCancellation'>
-            {{"hotelCard.free cancellation" | i18next}}
-          </ng-container>
-        </div>
-      </div>
-
-      <div class='hotel-card__price-mobile'>
-        <ng-container *ngTemplateOutlet='priceTemplate'></ng-container>
-      </div>
-
-      <div class='hotel-card__right-menu'>
-        <div class='hotel-card__reviews'>
+        <div class='hotel-card__hotel-rating'>
           <div class='hotel-card__reviews-item'>
             <svg-icon class='icon _color-none hotel-card__icon-chat'
                       src="assets/icons/chat.svg">
@@ -96,19 +50,28 @@
               {{hotelInfo.countReviews}} {{"hotelCard.reviews" | i18next}}
             </div>
           </div>
-          <div class='hotel-card__rating'>
+          <div class='hotel-card__rating-desktop'>
             {{hotelInfo.hotelRating}}
           </div>
+        </div>
+      </div>
+
+      <div class='hotel-card__footer'>
+        <div class='hotel-card__item'>
+          <ng-container *ngTemplateOutlet='itemTemplate'></ng-container>
+        </div>
+        <div class='hotel-card__option'>
+          <ng-container *ngIf='hotelInfo.freeCancellation'>
+            {{"hotelCard.free cancellation" | i18next}}
+          </ng-container>
         </div>
         <div class='hotel-card__price'>
           <ng-container *ngTemplateOutlet='priceTemplate'></ng-container>
         </div>
       </div>
-
-    </div>
-
   </div>
-</div>
+    </div>
+     </div>
 
 <ng-template #priceTemplate>
   <div class='hotel-card__price-item'>
@@ -123,7 +86,6 @@
 <ng-template #buttonTemplate>
   <b-button-icon [type] = buttonIconTypesEnum.like></b-button-icon>
   <b-button-icon [type] = buttonIconTypesEnum.share></b-button-icon>
-
 
 </ng-template>
 

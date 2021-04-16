@@ -2,7 +2,7 @@
   <div class='star-selector__sub-name'>
     {{subName}}
   </div>
-  <div>
+  <div class='star-selector__stars'>
     <svg-icon *ngFor='let i of arrState' class='icon star-selector__item' [ngClass]='[sizeClassName, getItemClass(i)]' (click)='changeSelectedItems(i)' (mouseover)='changeHoveredItems(i)'
               src="assets/icons/star.svg">
     </svg-icon>
