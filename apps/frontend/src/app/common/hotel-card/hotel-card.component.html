@@ -32,7 +32,7 @@
     </div>
 
     <div class='hotel-card__reviews-item-mobile'>
-      <svg-icon class='icon _blue-stroke hotel-card__icon-chat'
+      <svg-icon class='icon _color-none hotel-card__icon-chat'
                 src="assets/icons/chat.svg">
       </svg-icon>
       <div  class='hotel-card__count-reviews'>
@@ -89,7 +89,7 @@
       <div class='hotel-card__right-menu'>
         <div class='hotel-card__reviews'>
           <div class='hotel-card__reviews-item'>
-            <svg-icon class='icon _blue-stroke hotel-card__icon-chat'
+            <svg-icon class='icon _color-none hotel-card__icon-chat'
                       src="assets/icons/chat.svg">
             </svg-icon>
             <div class='hotel-card__count-reviews'>
@@ -121,9 +121,9 @@
 </ng-template>
 
 <ng-template #buttonTemplate>
-
+  <b-button-icon [type] = buttonIconTypesEnum.like></b-button-icon>
   <b-button-icon [type] = buttonIconTypesEnum.share></b-button-icon>
-  <b-button-icon [type] = buttonIconTypesEnum.add></b-button-icon>
+
 
 </ng-template>
 
