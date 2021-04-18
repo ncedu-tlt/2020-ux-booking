@@ -15,9 +15,6 @@ export class StarSelectorComponent {
   @Input()
   selectedItem: number;
 
-  /*@Input()
-  isSizeSmall = true;*/
-
   @Output()
   selectedItemEvent: EventEmitter<number> = new EventEmitter<number>();
 
@@ -37,11 +34,11 @@ export class StarSelectorComponent {
   getItemClass(index: number): string {
     if (this.selectedItem >= index) {
       this.savedStateSelectedItems = this.selectedItem;
-      return '_blue-dark';
+      return '_blue-dark-fill';
     } else if (this.hoveredItems >= index) {
-      return '_blue';
+      return '_blue-fill';
     } else {
-      return '_grey-light';
+      return '_grey-fill';
     }
   }
 

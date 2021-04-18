@@ -6,31 +6,17 @@
     stroke: @color-blue-dark;
   }
 
-  &._white {
+  &._white-stroke {
     & svg {
       fill: none;
       stroke: @color-white;
     }
   }
 
-  &._white-full {
+  &._white-fill {
     & svg {
       fill: @color-white;
-      stroke: @color-white;
-    }
-  }
-
-  &._blue {
-    & svg {
-      fill: @color-blue-light;
-      stroke: @color-blue-light;
-    }
-  }
-
-  &._blue-dark {
-    & svg {
-      fill: @color-blue-dark;
-      stroke: @color-blue-dark;
+      stroke: none;
     }
   }
 
@@ -41,6 +27,44 @@
     }
   }
 
+  &._blue-fill {
+    & svg {
+      fill: @color-blue;
+      stroke: none;
+    }
+  }
+
+  &._blue-dark-fill {
+    & svg {
+      fill: @color-blue-dark;
+      stroke: none;
+    }
+  }
+
+  &._blue-dark-stroke {
+    & svg {
+      fill: none;
+      stroke: @color-blue-dark;
+    }
+  }
+
+  &._grey-fill {
+    & svg {
+      fill: @color-grey-light;
+      stroke: none;
+    }
+  }
+
+  &._grey-stroke {
+    & svg {
+      fill: none;
+      stroke: @color-blue-light;
+    }
+  }
+
+
+
+
   &._color-none {
     & svg {
       fill: none;
@@ -48,12 +72,6 @@
     }
   }
 
-  &._grey-light {
-    & svg {
-      fill: @color-grey-light;
-      stroke: @color-grey-light;
-    }
-  }
 
   &._size {
     &-m,
@@ -61,39 +79,20 @@
       width: 16px;
       height: 16px;
     }
-  }
 
-  &._size {
-    &-ml,
-    &-ml svg {
-      width: 20px;
-      height: 20px;
-    }
-  }
-
-  &._size {
-    &-ls,
-    &-ls svg {
-      width: 24px;
-      height: 24px;
-    }
-  }
-
-  &._size {
     &-l,
     &-l svg {
       width: 32px;
       height: 32px;
     }
-  }
 
-  &._size {
     &-xl,
     &-xl svg {
       width: 48px;
       height: 48px;
     }
   }
+
 
   &._rotate {
     &-d svg {

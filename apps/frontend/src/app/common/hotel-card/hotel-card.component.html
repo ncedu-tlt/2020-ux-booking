@@ -6,40 +6,35 @@
         </div>
         <div class='hotel-card__star-selector'>
           <b-star-selector [selectedItem]='hotelInfo.starsCount'
-                           [isSizeSmall]='"_size-ls"'
+                           [isSizeSmall]='""'
                            [isEditable]='false'></b-star-selector>
         </div>
         <div class='hotel-card__buttons'>
-          <ng-container *ngTemplateOutlet='buttonTemplate'></ng-container>
+          <b-button-icon class='hotel-card__buttons-item' [type] = buttonIconTypesEnum.like></b-button-icon>
+          <b-button-icon class='hotel-card__buttons-item' [type] = buttonIconTypesEnum.share></b-button-icon>
         </div>
-    </div>
-    <div class='hotel-card__reviews-item-mobile'>
-      <svg-icon class='icon _color-none hotel-card__icon-chat'
-                src="assets/icons/chat.svg">
-      </svg-icon>
-      <div  class='hotel-card__count-reviews'>
-        {{hotelInfo.countReviews}} {{"hotelCard.reviews" | i18next}}
-      </div>
-      <div class='hotel-card__rating'>
-        {{hotelInfo.hotelRating}}
-      </div>
     </div>
     <div class='hotel-card__wrapper'>
       <div class='hotel-card__hotel-info'>
-
+        <div class='hotel-card__main-info'>
         <div class='hotel-card__photo'>
           <img *ngIf='hotelInfo.hotelImgUrl.length > 0; else imgTemplate'
                src='{{hotelInfo.hotelImgUrl}}'
                alt='photo hotel'>
           <ng-template #imgTemplate>
-            <svg-icon class='icon _size-ml _stroke-grey'
+            <svg-icon class='icon _grey-fill'
                       src="/assets/icons/placeholder.svg">
             </svg-icon>
           </ng-template>
         </div>
-
         <div class='hotel-card__text-info'>
-          <ng-container *ngTemplateOutlet='descriptionTemplate'></ng-container>
+          <div class='hotel-card__description'>
+            {{hotelInfo.description}}
+          </div>
+          <div class='hotel-card__country'>
+            {{hotelInfo.address.country}}, {{hotelInfo.address.city}}
+          </div>
+        </div>
         </div>
         <div class='hotel-card__hotel-rating'>
           <div class='hotel-card__reviews-item'>
@@ -55,10 +50,14 @@
           </div>
         </div>
       </div>
-
       <div class='hotel-card__footer'>
         <div class='hotel-card__item'>
-          <ng-container *ngTemplateOutlet='itemTemplate'></ng-container>
+          <div *ngFor='let i of hotelInfo.services'
+               class='hotel-card__item-svg'>
+            <svg-icon class='icon _blue-stroke'
+                      src='{{i.iconUrl}}'>
+            </svg-icon>
+          </div>
         </div>
         <div class='hotel-card__option'>
           <ng-container *ngIf='hotelInfo.freeCancellation'>
@@ -66,43 +65,17 @@
           </ng-container>
         </div>
         <div class='hotel-card__price'>
-          <ng-container *ngTemplateOutlet='priceTemplate'></ng-container>
+          <div class='hotel-card__price-item'>
+            {{"hotelCard.price" | i18next}}
+          </div>
+          <div
+            class='hotel-card__total-price'>
+            {{hotelInfo.minPrice}} {{hotelInfo.currency}}/{{"hotelCard.day" | i18next}}
+          </div>
         </div>
       </div>
   </div>
     </div>
      </div>
 
-<ng-template #priceTemplate>
-  <div class='hotel-card__price-item'>
-    {{"hotelCard.price" | i18next}}
-  </div>
-  <div
-    class='hotel-card__total-price'>
-    {{hotelInfo.minPrice}} {{hotelInfo.currency}}/{{"hotelCard.day" | i18next}}
-  </div>
-</ng-template>
 
-<ng-template #buttonTemplate>
-  <b-button-icon [type] = buttonIconTypesEnum.like></b-button-icon>
-  <b-button-icon [type] = buttonIconTypesEnum.share></b-button-icon>
-
-</ng-template>
-
-<ng-template #descriptionTemplate>
-  <div class='hotel-card__description'>
-    {{hotelInfo.description}}
-  </div>
-  <div class='hotel-card__country'>
-    {{hotelInfo.address.country}}, {{hotelInfo.address.city}}
-  </div>
-</ng-template>
-
-<ng-template #itemTemplate>
-  <div *ngFor='let i of hotelInfo.services'
-       class='hotel-card__item-svg'>
-    <svg-icon class='icon _blue-stroke _size-ml'
-              src='{{i.iconUrl}}'>
-    </svg-icon>
-  </div>
-</ng-template>

@@ -11,7 +11,5 @@ export class HotelCardComponent {
   @Input()
   hotelInfo: HotelInfoModel;
 
-  isSizeMobile = false;
-
   buttonIconTypesEnum: typeof ButtonIconTypesEnum = ButtonIconTypesEnum;
 }
