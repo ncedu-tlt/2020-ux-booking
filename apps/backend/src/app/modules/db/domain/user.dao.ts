@@ -21,54 +21,56 @@ export class User {
   @Column()
   firstName: string;
 
-  @Column()
+  @Column({ nullable: true })
   lastName: string;
 
-  @Column()
+  @Column({ nullable: true })
   patronymic: number;
 
-  @Column()
+  @Column({ nullable: true })
   phone: string;
 
-  @Column({ type: 'date' })
+  @Column({ type: 'date', nullable: true })
   dateOfBirth: string;
+
+  @Column()
+  password: string;
+
+  @Column({ unique: true })
+  email: string;
+
+  @Column({ nullable: true })
+  emailNotification: boolean;
 
   @ManyToOne(type => Role, role => role.users)
   role: Role;
 
-  @ManyToOne(type => Address, address => address.users)
+  @ManyToOne(type => Address, address => address.users, {
+    nullable: true
+  })
   address: Address;
 
   @OneToMany(type => Review, reviews => reviews.user, {
-    nullable: false,
+    nullable: true,
     onDelete: 'SET NULL'
   })
   reviews: Promise<Review[]>;
 
   @OneToMany(type => Comment, comments => comments.user, {
-    nullable: false,
+    nullable: true,
     onDelete: 'SET NULL'
   })
   comments: Promise<Comment[]>;
 
   @OneToMany(type => Booking, booking => booking.user, {
-    nullable: false,
+    nullable: true,
     onDelete: 'SET NULL'
   })
   bookings: Promise<Booking[]>;
 
   @ManyToMany(type => Hotel, hotel => hotel.users, {
-    nullable: false,
+    nullable: true,
     onDelete: 'SET NULL'
   })
   bookmarks: Promise<Hotel[]>;
-
-  @Column()
-  password: string;
-
-  @Column()
-  email: string;
-
-  @Column()
-  emailNotification: boolean;
 }
