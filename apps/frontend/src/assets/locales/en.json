@@ -15,5 +15,10 @@
       "exit": "Logout",
       "enter": "Login"
     }
+  },
+  "input": {
+    "errorMessage": {
+      "fieldIsEmpty": "The field is incomplete"
+    }
   }
 }

@@ -10,9 +10,16 @@ import { HeaderComponent } from './header/header.component';
 import { I18NextModule } from 'angular-i18next';
 import { StarSelectorComponent } from './star-selector/star-selector.component';
 import { ButtonIconComponent } from './icon/button-icon.component';
+import { InputFieldComponent } from './input-field/input-field.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  imports: [NgCommonModule, AngularSvgIconModule, I18NextModule],
+  imports: [
+    NgCommonModule,
+    AngularSvgIconModule,
+    I18NextModule,
+    ReactiveFormsModule
+  ],
   declarations: [
     ButtonComponent,
     StepperComponent,
@@ -21,7 +28,8 @@ import { ButtonIconComponent } from './icon/button-icon.component';
     DropdownComponent,
     HeaderComponent,
     StarSelectorComponent,
-    ButtonIconComponent
+    ButtonIconComponent,
+    InputFieldComponent
   ],
   exports: [
     ButtonComponent,
@@ -31,7 +39,8 @@ import { ButtonIconComponent } from './icon/button-icon.component';
     DropdownComponent,
     HeaderComponent,
     StarSelectorComponent,
-    ButtonIconComponent
+    ButtonIconComponent,
+    InputFieldComponent
   ]
 })
 export class CommonModule {}

@@ -15,5 +15,10 @@
       "exit": "Выход",
       "enter": "Вход"
     }
+  },
+  "input": {
+    "errorMessage": {
+      "fieldIsEmpty": "Поле не заполнено"
+    }
   }
 }
