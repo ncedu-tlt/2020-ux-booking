@@ -8,7 +8,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 })
 export class LinkComponent {
   @Input()
-  href: string;
+  url: string;
   @Input()
   text: string;
 }

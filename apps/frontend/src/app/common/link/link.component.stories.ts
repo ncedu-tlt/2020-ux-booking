@@ -6,14 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 const meta: Meta = {
   title: 'link',
-  argTypes: {
-    type: {
-      control: {
-        type: 'string',
-        options: ['href']
-      }
-    }
-  }
+  argTypes: {}
 };
 export default meta;
 
@@ -31,6 +24,4 @@ const template: Story<LinkComponent> = (args: LinkComponent) => ({
   }
 });
 export const regular = template.bind({});
-regular.args = {
-  type: 'href'
-};
+regular.args = {};
