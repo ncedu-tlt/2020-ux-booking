@@ -1,0 +1,43 @@
+<div (click)='closePopup($event)' class='selector'>
+  <span class='selector-title'>{{titleSelector}}</span>
+  <label (click)='showPopup()' class='selector__input-container'>
+    <input (change)='handleChange($event)'
+           class='selector__input'
+           [value]='selectedHint'
+           placeholder='{{"selector.input-hint" | i18next}}'/>
+    <svg-icon
+      (click)='showPopup()'
+      [ngClass]="['selector__input-arrow',arrow]"
+      src='assets/icons/arrow.svg'></svg-icon>
+  </label>
+
+  <div *ngIf='popupItems' class='selector__list'>
+    <div (click)='showTitle(item)'
+         [ngClass]="['selector__list-item',getStyleMode(item)]"
+         *ngFor='let item of filteredData()'>
+
+      <span *ngIf='outputMode()' class='selector__list-text'>{{item}}</span>
+
+
+      <b-checkbox *ngIf='!outputMode()'
+                  [checked]= getStatus(item)
+                  label='{{item}}'
+      ></b-checkbox>
+    </div>
+    <div class='selector__notification'>
+    <span [ngClass]="[isNotFound ?
+      'selector__list-alert':
+      'selector__list-alert-invisible']">
+      {{"selector.not-found" | i18next}}
+    </span>
+      <b-button
+        (click)='addItem()'
+        *ngIf='typeUser === "admin" && isNotFound'
+        type='secondary'
+        hasIcon='true'
+        size='small'
+        text='{{"selector.button" | i18next}}'></b-button>
+    </div>
+
+  </div>
+</div>
