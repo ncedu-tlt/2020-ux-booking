@@ -34,11 +34,11 @@ export class StarSelectorComponent {
   getItemClass(index: number): string {
     if (this.selectedItem >= index) {
       this.savedStateSelectedItems = this.selectedItem;
-      return '_blue-dark-fill';
+      return '_fill-blue-dark _stroke-blue-dark';
     } else if (this.hoveredItems >= index) {
-      return '_blue-fill';
+      return '_fill-blue _stroke-blue';
     } else {
-      return '_grey-fill';
+      return '_fill-grey _stroke-grey';
     }
   }
 

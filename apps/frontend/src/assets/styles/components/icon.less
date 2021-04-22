@@ -9,45 +9,53 @@
   }
 
   &._fill {
-    &-none {
+    &-none svg {
       fill: none;
     }
 
-    &-white {
+    &-white svg {
       fill: @color-white;
     }
 
-    &-grey {
+    &-grey svg {
       fill: @color-grey-light;
     }
 
-    &-blue {
+    &-blue-light svg {
+      fill: @color-blue-light;
+    }
+
+    &-blue svg {
       fill: @color-blue;
     }
 
-    &-blue-dark {
+    &-blue-dark svg {
       fill: @color-blue-dark;
     }
   }
 
   &._stroke {
-    &-none {
+    &-none svg {
       stroke: none;
     }
 
-    &-white {
+    &-white svg {
       stroke: @color-white;
     }
 
-    &-grey {
+    &-grey svg {
       stroke: @color-grey-light;
     }
 
-    &-blue {
+    &-blue-light svg {
+      stroke: @color-blue-light;
+    }
+
+    &-blue svg {
       stroke: @color-blue;
     }
 
-    &-blue-dark {
+    &-blue-dark svg {
       stroke: @color-blue-dark;
     }
   }
@@ -58,7 +66,6 @@
       stroke: none;
     }
   }
-
 
   &._size {
     &-m,
@@ -96,21 +103,4 @@
     }
   }
 
-  &._stroke {
-    &-green svg {
-      stroke: @color-green-success;
-    }
-    &-grey svg {
-      stroke: @color-grey-middle;
-    }
-    &-red svg {
-      stroke: @color-red;
-    }
-    &-white svg {
-      stroke: @color-white;
-    }
-    &-deep-dark svg {
-      stroke: @color-blue-deep-dark;
-    }
-  }
 }
