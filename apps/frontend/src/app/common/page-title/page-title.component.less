@@ -1,0 +1,42 @@
+@import "../../../assets/styles/common/shared";
+@tree-svg: "../../../assets/icons/tree.svg";
+
+.page-title{
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    bottom: 0%;
+    height: 112px;
+    background: @color-blue;
+
+    &__headline{
+        position: absolute;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        text-align: center;
+        padding: 0px;
+        margin-top: 24px;
+        margin-bottom: 32px;
+        .font-light();
+        font-size: 48px;
+        line-height: 56px;
+        letter-spacing: 0.5px;
+        color: @color-white;
+        left: 50%;
+        right: 50%;
+    }
+
+    &__palm-icon{
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        width: 330px;
+        height: 112px;
+        background: @color-blue-dark;
+        -webkit-mask-image: url(@tree-svg);
+        mask-image: url(@tree-svg);
+        mask-position: -9.17% -133px;
+    }
+}
