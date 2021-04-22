@@ -22,7 +22,7 @@
                src='{{hotelInfo.hotelImgUrl}}'
                alt='photo hotel'>
           <ng-template #imgTemplate>
-            <svg-icon class='icon _grey-fill'
+            <svg-icon class='icon _fill-grey'
                       src="/assets/icons/placeholder.svg">
             </svg-icon>
           </ng-template>
@@ -54,7 +54,7 @@
         <div class='hotel-card__item'>
           <div *ngFor='let i of hotelInfo.services'
                class='hotel-card__item-svg'>
-            <svg-icon class='icon _blue-stroke'
+            <svg-icon class='icon _stroke-blue'
                       src='{{i.iconUrl}}'>
             </svg-icon>
           </div>
