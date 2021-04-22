@@ -1,9 +1,8 @@
 import { ButtonIconComponent } from './button-icon.component';
 import { Meta, Story } from '@storybook/angular/types-6-0';
 import { StoryFnAngularReturnType } from '@storybook/angular/dist/client/preview/types';
-import { AngularSvgIconModule } from 'angular-svg-icon';
-import { HttpClientModule } from '@angular/common/http';
 import { ButtonIconTypesEnum } from '../../enums/button-icon-types.enum';
+import { bookingModule } from '../../stories.helpers';
 
 const meta: Meta = {
   title: 'Icon',
@@ -21,10 +20,9 @@ export default meta;
 
 const common: StoryFnAngularReturnType = {
   component: ButtonIconComponent,
-  moduleMetadata: {
-    declarations: [ButtonIconComponent],
-    imports: [AngularSvgIconModule.forRoot(), HttpClientModule]
-  }
+  moduleMetadata: bookingModule({
+    declarations: [ButtonIconComponent]
+  })
 };
 
 const template: Story<ButtonIconComponent> = (args: ButtonIconComponent) => ({
