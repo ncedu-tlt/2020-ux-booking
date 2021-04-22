@@ -1,7 +1,7 @@
 import { Body, Controller, HttpStatus, Post, Res } from '@nestjs/common';
 import { RegisterUserDto } from './register.user.dto';
 import { Response } from 'express';
-import { getManager } from 'typeorm';
+import { getRepository } from 'typeorm';
 import { User } from '../../db/domain/user.dao';
 
 @Controller('users')
@@ -11,48 +11,30 @@ export class UserController {
     @Res() res: Response,
     @Body() registerUserDto: RegisterUserDto
   ) {
-    const entityManager = getManager();
-    const user = new User();
-
-    if (!registerUserDto.name) {
+    const userRepository = getRepository(User);
+    if (!(await this.isValidEmail(registerUserDto.email, userRepository))) {
       res.status(HttpStatus.UNPROCESSABLE_ENTITY);
-      res.send('Name required');
-    } else if (!registerUserDto.email) {
-      res.status(HttpStatus.UNPROCESSABLE_ENTITY);
-      res.send('Email required');
-    } else if (!registerUserDto.password) {
-      res.status(HttpStatus.UNPROCESSABLE_ENTITY);
-      res.send('Password required');
-    } else if (await this.selectEmail(registerUserDto, entityManager)) {
-      res.status(HttpStatus.UNPROCESSABLE_ENTITY);
-      res.send('Such user is already registered');
-    } else {
-      user.firstName = registerUserDto.name;
-      user.email = registerUserDto.email;
-      user.password = registerUserDto.password;
-
-      const answer = await entityManager
-        .save(user)
-        .then(() => {
-          res.status(HttpStatus.CREATED);
-          return 'created';
-        })
-        .catch(error => {
-          console.log('error');
-          res.status(HttpStatus.UNPROCESSABLE_ENTITY);
-          return error;
-        });
-      res.send(answer);
+      return res.send('Such user is already registered');
     }
+
+    const answer = await userRepository
+      .insert({
+        firstName: registerUserDto.name,
+        password: registerUserDto.password,
+        email: registerUserDto.email
+      })
+      .then(() => {
+        res.status(HttpStatus.CREATED);
+        return;
+      })
+      .catch(error => {
+        res.status(HttpStatus.UNPROCESSABLE_ENTITY);
+        return error;
+      });
+    res.send(answer);
   }
 
-  async selectEmail(registerUserDto, entityManager): Promise<boolean> {
-    const res = await entityManager
-      .createQueryBuilder()
-      .select()
-      .from(User, 'user')
-      .where('user.email = :email', { email: registerUserDto.email })
-      .getCount();
-    return res != 0;
+  async isValidEmail(email, userRepository): Promise<boolean> {
+    return (await userRepository.count({ email: email })) == 0;
   }
 }
