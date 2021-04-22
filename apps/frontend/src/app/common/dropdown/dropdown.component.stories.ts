@@ -1,16 +1,13 @@
 import { Meta, Story } from '@storybook/angular/types-6-0';
 import { DropdownComponent } from './dropdown.component';
-import { moduleMetadata } from '@storybook/angular';
 import { action } from '@storybook/addon-actions';
-import { AngularSvgIconModule } from 'angular-svg-icon';
-import { HttpClientModule } from '@angular/common/http';
+import { bookingModuleDecorator } from '../../stories.helpers';
 
 export default {
   component: DropdownComponent,
   decorators: [
-    moduleMetadata({
-      declarations: [DropdownComponent],
-      imports: [AngularSvgIconModule.forRoot(), HttpClientModule]
+    bookingModuleDecorator({
+      declarations: [DropdownComponent]
     })
   ],
   title: 'dropdown',

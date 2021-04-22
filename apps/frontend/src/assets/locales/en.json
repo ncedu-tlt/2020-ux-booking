@@ -18,5 +18,11 @@
   },
   "banner": {
     "moreDetails": "More details"
+  },
+  "hotelCard": {
+    "reviews": "reviews",
+    "free cancellation": "Free cancellation",
+    "price": "MinPrice",
+    "day": "day"
   }
 }

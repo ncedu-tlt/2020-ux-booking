@@ -16,6 +16,12 @@
       "enter": "Вход"
     }
   },
+  "hotelCard": {
+    "reviews": "отзыв(-а, -ов)",
+    "free cancellation": "Бесплатная отмена бронирования",
+    "price": "Мин. цена от",
+    "day": "сутки"
+  },
   "banner": {
     "moreDetails": "Подробнее"
   }

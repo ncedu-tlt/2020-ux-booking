@@ -6,52 +6,62 @@
     stroke: @color-blue-dark;
   }
 
-  &._white {
-    & svg {
+  &._fill {
+    &-none svg {
       fill: none;
-      stroke: @color-white;
     }
-  }
 
-  &._white-full {
-    & svg {
+    &-white svg {
       fill: @color-white;
-      stroke: @color-white;
+    }
+
+    &-grey svg {
+      fill: @color-grey-light;
+    }
+
+    &-blue-light svg {
+      fill: @color-blue-light;
+    }
+
+    &-blue svg {
+      fill: @color-blue;
+    }
+
+    &-blue-dark svg {
+      fill: @color-blue-dark;
     }
   }
 
-  &._blue {
-    & svg {
-      fill: @color-blue-light;
+  &._stroke {
+    &-none svg {
+      stroke: none;
+    }
+
+    &-white svg {
+      stroke: @color-white;
+    }
+
+    &-grey svg {
+      stroke: @color-grey-light;
+    }
+
+    &-blue-light svg {
       stroke: @color-blue-light;
     }
-  }
 
-  &._blue-main {
-    & svg {
-      fill: none;
+    &-blue svg {
       stroke: @color-blue;
     }
-  }
 
-  &._blue-dark {
-    & svg {
-      fill: @color-blue-deep-dark;
-      stroke: @color-blue-deep-dark;
+    &-blue-dark svg {
+      stroke: @color-blue-dark;
     }
   }
 
-  &._blue-dark-white {
+  &._color-none {
     & svg {
-      fill: @color-white;
-      stroke: @color-blue-deep-dark;
-    }
-  }
-
-  &._grey-light {
-    & svg {
-      fill: @color-grey-light;
-      stroke: @color-grey-light;
+      fill: none;
+      stroke: none;
     }
   }
 
@@ -61,17 +71,13 @@
       width: 16px;
       height: 16px;
     }
-  }
 
-  &._size {
     &-l,
     &-l svg {
       width: 32px;
       height: 32px;
     }
-  }
 
-  &._size {
     &-xl,
     &-xl svg {
       width: 48px;
@@ -86,6 +92,7 @@
       height: 96px;
     }
   }
+
 
   &._rotate {
     &-d svg {
@@ -105,21 +112,4 @@
     }
   }
 
-  &._stroke {
-    &-green svg {
-      stroke: @color-green-success;
-    }
-    &-grey svg {
-      stroke: @color-grey-middle;
-    }
-    &-red svg {
-      stroke: @color-red;
-    }
-    &-white svg {
-      stroke: @color-white;
-    }
-    &-deep-dark svg {
-      stroke: @color-blue-deep-dark;
-    }
-  }
 }

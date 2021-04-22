@@ -1,10 +1,9 @@
 import { Meta, Story } from '@storybook/angular/types-6-0';
 import { StoryFnAngularReturnType } from '@storybook/angular/dist/client/preview/types';
-import { AngularSvgIconModule } from 'angular-svg-icon';
-import { HttpClientModule } from '@angular/common/http';
 import { NotificationComponent } from './notification.component';
 import { NotificationTypesEnum } from '../../enums/notification-types.enum';
 import { action } from '@storybook/addon-actions';
+import { bookingModule } from '../../stories.helpers';
 
 const meta: Meta = {
   title: 'Notification',
@@ -21,10 +20,9 @@ export default meta;
 
 const common: StoryFnAngularReturnType = {
   component: NotificationComponent,
-  moduleMetadata: {
-    declarations: [NotificationComponent],
-    imports: [AngularSvgIconModule.forRoot(), HttpClientModule]
-  }
+  moduleMetadata: bookingModule({
+    declarations: [NotificationComponent]
+  })
 };
 
 const template: Story<NotificationComponent> = (

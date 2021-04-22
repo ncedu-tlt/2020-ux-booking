@@ -1,16 +1,13 @@
 import { Meta, Story } from '@storybook/angular/types-6-0';
 import { StarSelectorComponent } from './star-selector.component';
-import { moduleMetadata } from '@storybook/angular';
-import { AngularSvgIconModule } from 'angular-svg-icon';
-import { HttpClientModule } from '@angular/common/http';
 import { action } from '@storybook/addon-actions';
+import { bookingModuleDecorator } from '../../stories.helpers';
 
 export default {
   component: StarSelectorComponent,
   decorators: [
-    moduleMetadata({
-      declarations: [StarSelectorComponent],
-      imports: [AngularSvgIconModule.forRoot(), HttpClientModule]
+    bookingModuleDecorator({
+      declarations: [StarSelectorComponent]
     })
   ],
   title: 'star-selector',
