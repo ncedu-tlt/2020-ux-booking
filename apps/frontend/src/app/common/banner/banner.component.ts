@@ -2,7 +2,9 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  HostListener,
   Input,
+  OnInit,
   ViewChild
 } from '@angular/core';
 
@@ -11,10 +13,10 @@ import {
   templateUrl: './banner.component.html',
   styleUrls: ['./banner.component.less']
 })
-export class BannerComponent implements AfterViewInit {
-  @ViewChild('description') el: ElementRef;
+export class BannerComponent implements AfterViewInit, OnInit {
+  @ViewChild('description') elementDescription: ElementRef;
 
-  @ViewChild('scroll') ele: ElementRef;
+  @ViewChild('scroll') elementScroll: ElementRef;
 
   @Input()
   hotelInfo;
@@ -51,25 +53,37 @@ export class BannerComponent implements AfterViewInit {
     27
   ];
 
+  descriptionText = '';
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.elementDescription.nativeElement.innerText = this.hotelInfo.description;
+    this.blockReSizing();
+  }
+
+  ngOnInit() {
+    this.descriptionText = this.hotelInfo.description;
+  }
+
   ngAfterViewInit() {
     this.blockReSizing();
   }
 
   public blockReSizing(): void {
-    while (this.el.nativeElement.offsetHeight > 60) {
-      this.el.nativeElement.innerText = this.el.nativeElement.innerText.slice(
+    while (this.elementDescription.nativeElement.offsetHeight > 74) {
+      this.elementDescription.nativeElement.innerText = this.elementDescription.nativeElement.innerText.slice(
         0,
         -1
       );
-      this.hotelInfo.description = this.el.nativeElement.textContent;
     }
+    this.descriptionText = this.hotelInfo.description;
   }
 
   scrollLeft() {
-    this.ele.nativeElement.scrollLeft += 200;
+    this.elementScroll.nativeElement.scrollLeft += 200;
   }
 
   scrollRight() {
-    this.ele.nativeElement.scrollLeft -= 200;
+    this.elementScroll.nativeElement.scrollLeft -= 200;
   }
 }
