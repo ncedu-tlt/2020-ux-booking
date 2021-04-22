@@ -1,8 +1,18 @@
 <div class='banner'>
   <div class='banner__background'>
 
-    <div class='banner__more-hotel'>
+    <div #scroll class='banner__more-hotel'>
+      <div (click)='scrollLeft()' class='banner__scroll-left'>
+        <svg-icon  class='icon _rotate-l _size-xxl _stroke-grey'
+                   src="assets/icons/arrow.svg">
+        </svg-icon>
+      </div>
 
+      <div (click)='scrollRight()' class='banner__scroll-right'>
+        <svg-icon  class='icon _size-xxl _stroke-grey'
+                   src="assets/icons/arrow.svg">
+        </svg-icon>
+      </div>
       <div class='banner__more-hotel-img' *ngFor='let i of imagesHotels'>
         <img *ngIf='imageHotel.length > 0; else placeholder' src='{{imagesHotels}}' alt=''>
         <ng-template #placeholder>
@@ -13,6 +23,7 @@
           </div>
         </ng-template>
       </div>
+
     </div>
 
     <div class='banner__hotel-info'>
@@ -63,6 +74,5 @@
   </div>
 
 </div>
-
 
 

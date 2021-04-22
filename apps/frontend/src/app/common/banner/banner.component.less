@@ -1,9 +1,6 @@
 @import "../../../assets/styles/common/shared";
 
 .banner {
-  /*::-webkit-scrollbar{width:2px;height:2px;}
-  ::-webkit-scrollbar-button{width:2px;height:2px;}*/
-
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -23,6 +20,26 @@
     }
   }
 
+  &__scroll-left,
+  &__scroll-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    width: 150px;
+    height: 90px;
+    cursor: pointer;
+
+    @media @not-desktop {
+      display: none;
+    }
+
+  }
+
+  &__scroll-right {
+    right: 0;
+  }
+
   &__more-hotel {
     display: flex;
     margin-top: 40px;
@@ -35,12 +52,12 @@
       width: 0;
     }
 
-
     @media @not-desktop {
       margin-top: 8px;
     }
 
     &-img {
+      cursor: pointer;
       background-color: @color-grey-light;
       min-width: 120px;
       height: 88px;
