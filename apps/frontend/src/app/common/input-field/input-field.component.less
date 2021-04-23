@@ -3,7 +3,6 @@
 .input-field {
   display: flex;
   flex-direction: column;
-  color: @color-grey-middle;
 
   &__sub-title {
     margin-left: 16px;
@@ -19,7 +18,18 @@
     border: 2px solid @color-grey-light;
     box-sizing: border-box;
     border-radius: 24px;
+    color: @color-blue-deep-dark;
+    &::-webkit-input-placeholder {
+      color: @color-grey-middle;
+    }
 
+    &:-ms-input-placeholder {
+      color: @color-grey-middle;
+    }
+
+    &::placeholder {
+      color: @color-grey-middle;
+    }
     &._error {
       border-color: @color-red;
     }
@@ -27,12 +37,14 @@
     &[disabled] {
       .bg-color-light-grey;
 
-      &:active, &:focus {
+      &:active,
+      &:focus {
         border-color: @color-grey-light;
       }
     }
 
-    &:active, &:focus {
+    &:active,
+    &:focus {
       outline: none;
       border: 2px solid @color-blue-dark;
     }
