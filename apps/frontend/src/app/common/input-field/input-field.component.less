@@ -1,11 +1,15 @@
 @import './../../../assets/styles/common/shared';
+
 .input-field {
   display: flex;
   flex-direction: column;
+  color: @color-grey-middle;
+  .font-bold;
 
   &__sub-title {
     margin-left: 16px;
     margin-bottom: 4px;
+    color: @color-blue-dark;
   }
 
   &__input {
@@ -15,13 +19,17 @@
     border: 2px solid @color-grey-light;
     box-sizing: border-box;
     border-radius: 24px;
-    &_error{
+
+    &._error {
       border-color: @color-red;
     }
 
-
     &[disabled] {
-      .bg-color-light-grey
+      .bg-color-light-grey;
+
+      &:active, &:focus {
+        border-color: @color-grey-light;
+      }
     }
 
     &:active, &:focus {

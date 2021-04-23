@@ -16,13 +16,13 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class InputFieldComponent implements OnInit {
   @Input()
-  title;
+  title: string;
   @Input()
-  placeholder;
+  placeholder: string;
   @Input()
-  isMandatory;
+  isMandatory: boolean;
   @Input()
-  isDisabled;
+  isDisabled: boolean;
 
   @Output() handleChange: EventEmitter<string> = new EventEmitter();
 
