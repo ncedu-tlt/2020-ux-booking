@@ -12,9 +12,16 @@ import { StarSelectorComponent } from './star-selector/star-selector.component';
 import { ButtonIconComponent } from './icon/button-icon.component';
 import { LinkComponent } from './link/link.component';
 import { HotelCardComponent } from './hotel-card/hotel-card.component';
+import { InputFieldComponent } from './input-field/input-field.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  imports: [NgCommonModule, AngularSvgIconModule, I18NextModule],
+  imports: [
+    NgCommonModule,
+    AngularSvgIconModule,
+    I18NextModule,
+    ReactiveFormsModule
+  ],
   declarations: [
     ButtonComponent,
     StepperComponent,
@@ -25,7 +32,8 @@ import { HotelCardComponent } from './hotel-card/hotel-card.component';
     StarSelectorComponent,
     HotelCardComponent,
     ButtonIconComponent,
-    LinkComponent
+    LinkComponent,
+    InputFieldComponent
   ],
   exports: [
     ButtonComponent,
@@ -37,7 +45,8 @@ import { HotelCardComponent } from './hotel-card/hotel-card.component';
     StarSelectorComponent,
     ButtonIconComponent,
     LinkComponent,
-    HotelCardComponent
+    HotelCardComponent,
+    InputFieldComponent
   ]
 })
 export class CommonModule {}

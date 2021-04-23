@@ -21,5 +21,10 @@
     "free cancellation": "Бесплатная отмена бронирования",
     "price": "Мин. цена от",
     "day": "сутки"
+  },
+  "input": {
+    "errorMessage": {
+      "fieldIsEmpty": "Поле не заполнено"
+    }
   }
 }

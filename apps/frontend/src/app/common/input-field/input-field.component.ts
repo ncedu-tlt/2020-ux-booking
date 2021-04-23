@@ -1,30 +1,37 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output
+} from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'b-button',
+  selector: 'b-input-field',
   templateUrl: './input-field.component.html',
   styleUrls: ['./input-field.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class InputFieldComponent {
-  value = '';
-  isField = true;
-  counterChange = 0;
+export class InputFieldComponent implements OnInit {
+  _value = '';
+  input: FormControl;
   @Input()
   title;
+  @Input()
   placeholder;
+  @Input()
   isMandatory;
+  @Input()
   isDisabled;
 
-  handleChange(event) {
-    this.value = event.target.value;
-    this.value.length === 0 ? (this.isField = false) : (this.isField = true);
-    this.counterChange++;
-  }
+  @Output() handleChange: EventEmitter<string> = new EventEmitter();
 
-  getExtraClass(): string {
-    if ((this.isField && this.isMandatory) || this.counterChange === 0)
-      return 'default';
-    else return 'red';
+  ngOnInit(): void {
+    this.input = new FormControl(this._value, Validators.required);
+    this.input.valueChanges.subscribe((value: string) => {
+      this.handleChange.emit(value);
+    });
   }
 }
