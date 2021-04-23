@@ -15,8 +15,6 @@ import { FormControl, Validators } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class InputFieldComponent implements OnInit {
-  _value = '';
-  input: FormControl;
   @Input()
   title;
   @Input()
@@ -28,8 +26,14 @@ export class InputFieldComponent implements OnInit {
 
   @Output() handleChange: EventEmitter<string> = new EventEmitter();
 
+  _value = '';
+  input: FormControl;
+
   ngOnInit(): void {
     this.input = new FormControl(this._value, Validators.required);
+    if (this.isDisabled) {
+      this.input.disable();
+    }
     this.input.valueChanges.subscribe((value: string) => {
       this.handleChange.emit(value);
     });
