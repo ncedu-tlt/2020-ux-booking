@@ -5,7 +5,7 @@ svg path {
 }
 
 .selector {
-  &-title {
+  &__title {
     margin: 0 0 4px 16px;
     font-size: 11px;
     letter-spacing: 0.5px;
@@ -43,7 +43,7 @@ svg path {
       cursor: pointer;
       transform: rotate(90deg);
 
-      &.rotate {
+      &._rotate {
         transform: rotate(-90deg);
       }
 
@@ -76,7 +76,7 @@ svg path {
       border-top: 1px solid @color-blue;
       cursor: pointer;
 
-      &.checked {
+      &._checked {
         border-radius: 4px;
         border-top-color: @color-blue-dark;
         background: @color-blue-dark;
@@ -98,21 +98,16 @@ svg path {
 
     &-alert {
       color: @color-blue-deep-dark;
-      margin: 72px;
+      margin-right: 72px;
       text-align: center;
 
-      &-invisible {
-        display: none;
-        text-align: center;
+      &._invisible {
+        font-size: 0;
       }
-    }
-
-    &-button {
     }
   }
 
   &__notification {
     margin-left: 70px;
   }
-
 }
