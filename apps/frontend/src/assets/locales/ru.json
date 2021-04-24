@@ -24,5 +24,10 @@
   },
   "banner": {
     "moreDetails": "Подробнее"
+  },
+  "input": {
+    "errorMessage": {
+      "fieldIsEmpty": "Поле не заполнено"
+    }
   }
 }

@@ -24,5 +24,10 @@
     "free cancellation": "Free cancellation",
     "price": "MinPrice",
     "day": "day"
+  },
+  "input": {
+    "errorMessage": {
+      "fieldIsEmpty": "The field is incomplete"
+    }
   }
 }
