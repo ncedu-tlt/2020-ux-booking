@@ -1,35 +1,23 @@
 import { Meta, Story } from '@storybook/angular/types-6-0';
-import { BannerComponent } from './banner.component';
 import { moduleMetadata } from '@storybook/angular';
-import { action } from '@storybook/addon-actions';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { HttpClientModule } from '@angular/common/http';
+import { StarSelectorComponent } from '../star-selector/star-selector.component';
+import { BannerComponent } from './banner.component';
 
 export default {
   component: BannerComponent,
   decorators: [
     moduleMetadata({
-      declarations: [BannerComponent],
+      declarations: [BannerComponent, StarSelectorComponent],
       imports: [AngularSvgIconModule.forRoot(), HttpClientModule]
     })
   ],
-  title: 'dropdown',
+  title: 'banner',
   argTypes: {
-    activeItem: {
+    hotelInfo: {
       control: {
-        type: 'text',
-        options: ''
-      },
-      items: {
-        control: {
-          type: 'array',
-          options: []
-        },
-        isLeftAligned: {
-          control: {
-            type: 'boolean'
-          }
-        }
+        type: 'object'
       }
     }
   }
@@ -38,26 +26,34 @@ export default {
 const Template: Story<BannerComponent> = args => ({
   component: BannerComponent,
   props: {
-    ...args,
-    stateChange: action('stateChange')
-  },
-  template:
-    '<div style="display: flex; justify-content: center">' +
-    '<b-dropdown (stateChange)="stateChange($event)" ' +
-    '[items]="items" ' +
-    '[activeItem]="activeItem" ' +
-    '[isLeftAligned]="isLeftAligned"></b-dropdown>' +
-    '</div>'
+    ...args
+  }
 });
 
 export const Default = Template.bind({});
 Default.args = {
-  isLeftAligned: false,
-  activeItem: 'Сначала дешевые',
-  items: [
-    'Сначала дешевые',
-    'Сначала дорогие',
-    'По рейтингу пользователей',
-    'По количеству звёзд'
-  ]
+  hotelInfo: {
+    name: 'Hotel super puper price',
+    hotelImgUrl: 'assets/icons/hotel.jpg',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci animi commodi cum debitis delectus dolore doloremque, eos e',
+    address: {
+      country: 'russia',
+      city: 'moscow'
+    },
+    starsCount: 1,
+    countReviews: 10,
+    hotelRating: 9.6,
+    minPrice: 2300,
+    currency: '$',
+    freeCancellation: true,
+    services: [
+      {
+        iconUrl: 'assets/icons/car.svg'
+      },
+      {
+        iconUrl: 'assets/icons/dryer.svg'
+      }
+    ]
+  }
 };

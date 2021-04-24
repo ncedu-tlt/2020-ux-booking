@@ -1,20 +1,18 @@
 <div class='banner'>
   <div class='banner__background'>
-
     <div #scroll class='banner__more-hotel'>
       <div (click)='scrollLeft()' class='banner__scroll-left'>
-        <svg-icon  class='icon _rotate-l _size-xxl _stroke-grey'
+        <svg-icon  class='icon _rotate-l _size-xxl _stroke-blue-dark'
                    src="assets/icons/arrow.svg">
         </svg-icon>
       </div>
-
       <div (click)='scrollRight()' class='banner__scroll-right'>
-        <svg-icon  class='icon _size-xxl _stroke-grey'
+        <svg-icon  class='icon _size-xxl _stroke-blue-dark'
                    src="assets/icons/arrow.svg">
         </svg-icon>
       </div>
-      <div class='banner__more-hotel-img' *ngFor='let i of imagesHotels'>
-        <img *ngIf='imageHotel.length > 0; else placeholder' src='{{imagesHotels}}' alt=''>
+      <div class='banner__more-hotel-img' *ngFor='let hotel of hotelsInfo; index as i;' (click)='selectHotel(i)'>
+        <img *ngIf='selectedHotel.hotelImgUrl.length > 0; else placeholder' src='{{hotelsInfo[i].hotelImgUrl}}' alt=''>
         <ng-template #placeholder>
           <div>
             <svg-icon  class='icon _size-m _stroke-grey'
@@ -23,15 +21,11 @@
           </div>
         </ng-template>
       </div>
-
     </div>
-
     <div class='banner__hotel-info'>
-
       <div class='banner__hotel-info-photo-wrapper'>
-
       <div class='banner__hotel-info-photo'>
-          <img *ngIf='imageHotel.length > 0; else placeholderTemplateMobile' src='{{hotelInfo.hotelImgUrl}}' alt=''>
+          <img *ngIf='selectedHotel.hotelImgUrl.length > 0; else placeholderTemplateMobile' src='{{selectedHotel.hotelImgUrl}}' alt=''>
           <ng-template #placeholderTemplateMobile>
             <div class='banner__container-img-svg'>
               <svg-icon  class='icon _size-l _stroke-grey'
@@ -41,21 +35,19 @@
           </ng-template>
         </div>
       </div>
-
       <div class='banner__hotel-info-text'>
 
         <div class='banner__hotel-info-text-name'>
-          {{hotelInfo.name}}
+          {{selectedHotel.name}}
         </div>
-
         <div class='banner__hotel-info-text-wrapper'>
           <b-star-selector [isEditable]='false'
-                           [selectedItem]='hotelInfo.starsCount'
+                           [selectedItem]='selectedHotel.starsCount'
+                           [isSizeSmall]='""'
                            class='banner__hotel-info-text-stars'>
           </b-star-selector>
-
           <div class='banner__hotel-info-text-country'>
-            {{hotelInfo.address.city}}, {{hotelInfo.address.country}}
+            {{selectedHotel.address.city}}, {{selectedHotel.address.country}}
           </div>
 
           <div #description class='banner__hotel-info-text-description'>
@@ -66,13 +58,8 @@
             {{"banner.moreDetails" | i18next}}
           </div>
         </div>
-
       </div>
-
     </div>
-
   </div>
-
 </div>
-
 

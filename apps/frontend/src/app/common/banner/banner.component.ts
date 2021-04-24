@@ -3,10 +3,12 @@ import {
   Component,
   ElementRef,
   HostListener,
-  Input,
   OnInit,
   ViewChild
 } from '@angular/core';
+import { HotelInfoModel } from '../../models/hotel-Info.model';
+import { HotelDataService } from '../../services/hotel-data.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'b-banner',
@@ -14,76 +16,168 @@ import {
   styleUrls: ['./banner.component.less']
 })
 export class BannerComponent implements AfterViewInit, OnInit {
+  hotelsInfo: HotelInfoModel[] = [
+    {
+      name: 'Hotel super puper ',
+      hotelImgUrl: 'assets/icons/hotel.jpg',
+      description:
+        'первый, eos elmet, consectetur adipisicing eos elmet, consectetur adipisicing elit. ' +
+        'Adipisci animi commodi cum debitis delectuseos elmet, consectetur adipisicing elit. ' +
+        'Adipisci animi commodi cum debitis delectuseos elmet, consectetur adipisicing elit. ' +
+        'Adipisci animi commodi cum debitis delectuseos elmet, consectetur adipisicing elit. ' +
+        'Adipisci animi commodi cum debitis delectuseos elmet, consectetur adipisicing elit. ' +
+        'Adipisci animi commodi cum debitis delectuseos elmet, consectetur adipisicing elit. ' +
+        'Adipisci animi commodi cum debitis delectuseos elmet, consectetur adipisicing elit. ' +
+        'Adipisci animi commodi cum debitis delectuseos elmet, consectetur adipisicing elit. ' +
+        'Adipisci animi commodi cum debitis delectuselit. Adipisci animi commodi cum debitis ' +
+        'delectus dolore doloremque, eos e',
+      address: {
+        country: 'russia',
+        city: 'moscow'
+      },
+      starsCount: 1,
+      countReviews: 10,
+      hotelRating: 9.6,
+      minPrice: 2300,
+      currency: '$',
+      freeCancellation: true,
+      services: [
+        {
+          name: 'car',
+          iconUrl: 'assets/icons/car.svg'
+        },
+        {
+          name: 'dryer',
+          iconUrl: 'assets/icons/dryer.svg'
+        }
+      ]
+    },
+    {
+      name: 'Hotel super puper ',
+      hotelImgUrl: 'assets/icons/hotel1.jpg',
+      description:
+        'второй, eos elmet, consectetur adipisicing eos elmet, consectetur adipisicing elit. ' +
+        'Adipisci animi commodi cum debitis delectuseos elmet, consectetur adipisicing elit. ' +
+        'Adipisci animi commodi cum debitis delectuseos elmet, consectetur adipisicing elit. ' +
+        'Adipisci animi commodi cum debitis delectuseos elmet, consectetur adipisicing elit. ' +
+        'Adipisci animi commodi cum debitis delectuseos elmet, consectetur adipisicing elit. ' +
+        'Adipisci animi commodi cum debitis delectuseos elmet, consectetur adipisicing elit. ' +
+        'Adipisci animi commodi cum debitis delectuseos elmet, consectetur adipisicing elit. ' +
+        'Adipisci animi commodi cum debitis delectuseos elmet, consectetur adipisicing elit. ' +
+        'Adipisci animi commodi cum debitis delectuselit. Adipisci animi commodi cum debitis ' +
+        'delectus dolore doloremque, eos e',
+      address: {
+        country: 'russia',
+        city: 'moscow'
+      },
+      starsCount: 1,
+      countReviews: 10,
+      hotelRating: 9.6,
+      minPrice: 2300,
+      currency: '$',
+      freeCancellation: true,
+      services: [
+        {
+          name: 'car',
+          iconUrl: 'assets/icons/car.svg'
+        },
+        {
+          name: 'dryer',
+          iconUrl: 'assets/icons/dryer.svg'
+        }
+      ]
+    },
+    {
+      name: 'Hotel super puper ',
+      hotelImgUrl: 'assets/icons/hotel2.jpg',
+      description:
+        'третий, eos elmet, consectetur adipisicing eos elmet, consectetur adipisicing elit. ' +
+        'Adipisci animi commodi cum debitis delectuseos elmet, consectetur adipisicing elit. ' +
+        'Adipisci animi commodi cum debitis delectuseos elmet, consectetur adipisicing elit. ' +
+        'Adipisci animi commodi cum debitis delectuseos elmet, consectetur adipisicing elit. ' +
+        'Adipisci animi commodi cum debitis delectuseos elmet, consectetur adipisicing elit. ' +
+        'Adipisci animi commodi cum debitis delectuseos elmet, consectetur adipisicing elit. ' +
+        'Adipisci animi commodi cum debitis delectuseos elmet, consectetur adipisicing elit. ' +
+        'Adipisci animi commodi cum debitis delectuseos elmet, consectetur adipisicing elit. ' +
+        'Adipisci animi commodi cum debitis delectuselit. Adipisci animi commodi cum debitis ' +
+        'delectus dolore doloremque, eos e',
+      address: {
+        country: 'russia',
+        city: 'moscow'
+      },
+      starsCount: 1,
+      countReviews: 10,
+      hotelRating: 9.6,
+      minPrice: 2300,
+      currency: '$',
+      freeCancellation: true,
+      services: [
+        {
+          name: 'car',
+          iconUrl: 'assets/icons/car.svg'
+        },
+        {
+          name: 'dryer',
+          iconUrl: 'assets/icons/dryer.svg'
+        }
+      ]
+    }
+  ];
+
+  selectedHotel: HotelInfoModel;
+
+  descriptionText = '';
+
+  private subscription: Subscription = new Subscription();
+  private hotelsList: HotelInfoModel[];
+
   @ViewChild('description') elementDescription: ElementRef;
 
   @ViewChild('scroll') elementScroll: ElementRef;
 
-  @Input()
-  hotelInfo;
-
-  imageHotel = '';
-
-  imagesHotels = [
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-    8,
-    9,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19,
-    20,
-    21,
-    22,
-    23,
-    24,
-    25,
-    26,
-    27
-  ];
-
-  descriptionText = '';
-
   @HostListener('window:resize', ['$event'])
   onResize() {
-    this.elementDescription.nativeElement.innerText = this.hotelInfo.description;
-    this.blockReSizing();
+    this.elementDescription.nativeElement.innerText = this.selectedHotel.description;
+    this.truncateText();
   }
 
-  ngOnInit() {
-    this.descriptionText = this.hotelInfo.description;
+  constructor(private hotelService: HotelDataService) {}
+
+  ngOnInit(): void {
+    this.subscription = this.hotelService
+      .getHotels()
+      .subscribe((hotels: HotelInfoModel[]) => {
+        this.hotelsList = hotels;
+      });
+    this.selectedHotel = this.hotelsInfo[0];
+    this.descriptionText = this.selectedHotel.description;
   }
 
-  ngAfterViewInit() {
-    this.blockReSizing();
+  ngAfterViewInit(): void {
+    this.truncateText();
   }
 
-  public blockReSizing(): void {
+  selectHotel(i: number): void {
+    this.selectedHotel = this.hotelsInfo[i];
+    this.elementDescription.nativeElement.innerText = this.selectedHotel.description;
+    this.truncateText();
+  }
+
+  truncateText(): void {
     while (this.elementDescription.nativeElement.offsetHeight > 74) {
       this.elementDescription.nativeElement.innerText = this.elementDescription.nativeElement.innerText.slice(
         0,
         -1
       );
     }
-    this.descriptionText = this.hotelInfo.description;
+    this.elementDescription.nativeElement.append('...');
   }
 
-  scrollLeft() {
+  scrollLeft(): void {
     this.elementScroll.nativeElement.scrollLeft += 200;
   }
 
-  scrollRight() {
+  scrollRight(): void {
     this.elementScroll.nativeElement.scrollLeft -= 200;
   }
 }
