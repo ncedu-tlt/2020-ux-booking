@@ -7,32 +7,32 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectorComponent {
-  value = '';
-  isNotFound = false;
-  filteredSuggestions;
-  arrow: 'default' | 'rotate' = 'default';
-  popupItems = false;
-  selectedItems: string[] = [];
-  selectedHint = '';
   @Input()
   itemList: string[];
   @Input()
-  titleSelector;
+  titleSelector: string;
   @Input()
   mode: 'multi' | 'default' = 'default';
   @Input()
-  typeUser: 'admin' | 'default' = 'default';
+  userType: 'admin' | 'default' = 'default';
+  value = '';
+  isNotFound = true;
+  filteredSuggestions;
+  isRotated = false;
+  popupItems = false;
+  selectedItems: string[] = [];
+  selectedHint = '';
 
   showPopup(): void {
     this.popupItems = !this.popupItems;
-    this.arrow == 'rotate' ? (this.arrow = 'default') : (this.arrow = 'rotate');
+    this.isRotated == true ? (this.isRotated = false) : (this.isRotated = true);
   }
 
   closePopup($event): void {
     const isSelector = $event.target.classList.contains('selector');
     if (isSelector) {
       this.popupItems = false;
-      this.arrow = 'default';
+      this.isRotated = false;
     }
   }
 
@@ -41,18 +41,18 @@ export class SelectorComponent {
     if (this.value.length < 3) {
       return this.filteredSuggestions;
     } else {
-      const newData = this.filteredSuggestions.filter(data =>
+      return this.filteredSuggestions.filter(data =>
         data.toLowerCase().includes(this.value.toLowerCase())
       );
-      newData.length === 0
-        ? (this.isNotFound = true)
-        : (this.isNotFound = false);
-      return newData;
     }
   }
 
-  handleChange(event) {
-    this.value = event.target.value;
+  handleChange($event): void {
+    this.value = $event.target.value;
+    this.value.length === 0
+      ? (this.isNotFound = true)
+      : (this.isNotFound = false);
+    console.log(this.isNotFound);
   }
 
   showTitle(item: string): void {
@@ -75,7 +75,7 @@ export class SelectorComponent {
     return array.toString();
   }
 
-  outputMode(): boolean {
+  resetMode(): boolean {
     return this.mode === 'default';
   }
 
@@ -83,11 +83,7 @@ export class SelectorComponent {
     this.filteredSuggestions.push(this.value);
   }
 
-  getStyleMode(item: string): string {
-    return this.getStatus(item) ? 'checked' : 'default';
-  }
-
-  getStatus(item: string): boolean {
+  isItemSelected(item: string): boolean {
     return this.selectedItems.includes(item);
   }
 }

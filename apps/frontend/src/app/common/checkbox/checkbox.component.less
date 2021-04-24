@@ -23,7 +23,7 @@
       border: 2px solid @color-blue-dark;
     }
 
-    &.disabled {
+    &._disabled {
       background-color: @color-grey-light;
       cursor: default;
 
@@ -34,11 +34,15 @@
 
     &-checkmark {
       opacity: 0;
-      &.disabled{
-        opacity: 0
-      }
-      &.checked {
+
+      &._checked {
         opacity: 100%;
+      }
+
+      &._disabled {
+        &:hover {
+          opacity: 0;
+        }
       }
 
       &:hover {
@@ -47,11 +51,11 @@
     }
   }
 
-
   &__text {
     color: @color-blue-deep-dark;
     margin: 0;
-    &.disabled {
+
+    &._disabled {
       color: @color-grey-middle
     }
   }
