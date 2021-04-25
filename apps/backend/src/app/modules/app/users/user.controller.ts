@@ -3,6 +3,7 @@ import { RegisterUserDto } from './register.user.dto';
 import { Response } from 'express';
 import { getRepository } from 'typeorm';
 import { User } from '../../db/domain/user.dao';
+import * as bcrypt from 'bcrypt';
 
 @Controller('users')
 export class UserController {
@@ -20,7 +21,7 @@ export class UserController {
     const answer = await userRepository
       .insert({
         firstName: registerUserDto.name,
-        password: registerUserDto.password,
+        password: await bcrypt.hash(registerUserDto.password, 10),
         email: registerUserDto.email
       })
       .then(() => {
