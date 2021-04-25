@@ -8,8 +8,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { appConfig } from '../../config/app.config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { MessagesModule } from '../messages/messages.module';
-import { UserController } from './users/user.controller';
-import { UserService } from './users/user.service';
+import { UsersModule } from './users/users.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -35,9 +35,11 @@ import { UserService } from './users/user.service';
         }
       })
     }),
-    MessagesModule
+    MessagesModule,
+    UsersModule,
+    AuthModule
   ],
-  controllers: [AppController, UserController],
-  providers: [AppService, UserService]
+  controllers: [AppController],
+  providers: [AppService]
 })
 export class AppModule {}
