@@ -26,5 +26,19 @@
     "errorMessage": {
       "fieldIsEmpty": "Поле не заполнено"
     }
+  },
+  "authorization": {
+    "title": "Авторизация",
+    "input": {
+      "email": "Почта",
+      "email placeholder": "Введите почту",
+      "password": "Пароль",
+      "password placeholder": "Введите пароль"
+    },
+    "button": "Войти",
+    "forgot password": "Забыли пароль?",
+    "forgot password link": "Восстановить пароль",
+    "registration": "Впервые тут?",
+    "registration link": "Регистрация"
   }
 }

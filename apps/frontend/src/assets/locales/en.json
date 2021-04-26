@@ -26,5 +26,19 @@
     "errorMessage": {
       "fieldIsEmpty": "The field is incomplete"
     }
+  },
+  "authorization": {
+    "title": "Authorization",
+    "input": {
+      "email": "Email",
+      "email placeholder": "Enter mail",
+      "password": "Password",
+      "password placeholder": "Enter password"
+    },
+    "button": "Log in",
+    "forgot password": "Forgot your password?",
+    "forgot password link": "Recover password",
+    "registration": "First time here?",
+    "registration link": "Registration"
   }
 }

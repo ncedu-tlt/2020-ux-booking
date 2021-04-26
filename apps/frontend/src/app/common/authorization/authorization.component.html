@@ -1,0 +1,39 @@
+<div class='authorization'>
+  <div class='authorization__popup'>
+    <div class='authorization__cloud'>
+      <svg-icon class='authorization__cloud-svg'
+                src='assets/icons/curve.svg'>
+      </svg-icon>
+            <h2 class='authorization__cloud-title'>
+              {{"authorization.title" | i18next}}</h2>
+    </div>
+    <div class='authorization__input'>
+      <b-input-field
+        title='{{"authorization.input.email" | i18next}}'
+        placeholder='{{"authorization.input.email placeholder" | i18next}}'>
+      </b-input-field>
+    </div>
+    <div class='authorization__input'>
+      <b-input-field
+        title='{{"authorization.input.password" | i18next}}'
+        placeholder='{{"authorization.input.password placeholder" | i18next}}'>
+      </b-input-field>
+    </div>
+      <b-button  class='authorization__button'
+                 text='{{"authorization.button" | i18next}}'></b-button>
+    <span class='authorization__under-link'>
+      {{"authorization.forgot password" | i18next}}
+    </span>
+    <b-link
+      text='{{"authorization.forgot password link" | i18next}}'>
+
+    </b-link>
+    <span class='authorization__under-link'>
+      {{"authorization.registration" | i18next}}
+    </span>
+    <b-link
+      text='{{"authorization.registration link" | i18next}}'>
+
+    </b-link>
+  </div>
+</div>
