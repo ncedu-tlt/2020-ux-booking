@@ -126,20 +126,15 @@ export class BannerComponent implements AfterViewInit, OnInit {
 
   selectedHotel: HotelInfoModel;
 
-  descriptionText = '';
+  descriptionText: string = '';
 
-  private subscription: Subscription = new Subscription();
-  private hotelsList: HotelInfoModel[];
+  subscription: Subscription = new Subscription();
+
+  hotelsList: HotelInfoModel[];
 
   @ViewChild('description') elementDescription: ElementRef;
 
   @ViewChild('scroll') elementScroll: ElementRef;
-
-  @HostListener('window:resize', ['$event'])
-  onResize() {
-    this.elementDescription.nativeElement.innerText = this.selectedHotel.description;
-    this.truncateText();
-  }
 
   constructor(private hotelService: HotelDataService) {}
 
@@ -157,8 +152,14 @@ export class BannerComponent implements AfterViewInit, OnInit {
     this.truncateText();
   }
 
-  selectHotel(i: number): void {
-    this.selectedHotel = this.hotelsInfo[i];
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.elementDescription.nativeElement.innerText = this.selectedHotel.description;
+    this.truncateText();
+  }
+
+  selectHotel(index: number): void {
+    this.selectedHotel = this.hotelsInfo[index];
     this.elementDescription.nativeElement.innerText = this.selectedHotel.description;
     this.truncateText();
   }
