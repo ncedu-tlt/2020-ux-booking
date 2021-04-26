@@ -15,6 +15,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BannerComponent } from './banner/banner.component';
 import { LinkComponent } from './link/link.component';
 import { HotelCardComponent } from './hotel-card/hotel-card.component';
+import { CheckboxComponent } from './checkbox/checkbox.component';
+import { SelectorComponent } from './selector/selector.component';
 
 @NgModule({
   imports: [
@@ -35,7 +37,9 @@ import { HotelCardComponent } from './hotel-card/hotel-card.component';
     HotelCardComponent,
     ButtonIconComponent,
     LinkComponent,
-    InputFieldComponent
+    InputFieldComponent,
+    CheckboxComponent,
+    SelectorComponent
   ],
   exports: [
     ButtonComponent,
@@ -49,7 +53,9 @@ import { HotelCardComponent } from './hotel-card/hotel-card.component';
     BannerComponent,
     LinkComponent,
     HotelCardComponent,
-    InputFieldComponent
+    InputFieldComponent,
+    CheckboxComponent,
+    SelectorComponent
   ]
 })
 export class CommonModule {}
