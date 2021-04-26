@@ -18,7 +18,7 @@
   },
   "hotelCard": {
     "reviews": "reviews",
-    "free cancellation": "Free cancellation",
+    "freeCancellation": "Free cancellation",
     "price": "MinPrice",
     "day": "day"
   },
@@ -29,16 +29,16 @@
   },
   "authorization": {
     "title": "Authorization",
-    "input": {
+    "field": {
       "email": "Email",
-      "email placeholder": "Enter mail",
+      "emailPlaceholder": "Enter mail",
       "password": "Password",
-      "password placeholder": "Enter password"
+      "passwordPlaceholder": "Enter password"
     },
     "button": "Log in",
-    "forgot password": "Forgot your password?",
-    "forgot password link": "Recover password",
+    "forgotPassword": "Forgot your password?",
+    "forgotPasswordLink": "Recover password",
     "registration": "First time here?",
-    "registration link": "Registration"
+    "registrationLink": "Registration"
   }
 }

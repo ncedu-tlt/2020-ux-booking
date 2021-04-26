@@ -18,7 +18,7 @@
   },
   "hotelCard": {
     "reviews": "отзыв(-а, -ов)",
-    "free cancellation": "Бесплатная отмена бронирования",
+    "freeCancellation": "Бесплатная отмена бронирования",
     "price": "Мин. цена от",
     "day": "сутки"
   },
@@ -31,14 +31,14 @@
     "title": "Авторизация",
     "input": {
       "email": "Почта",
-      "email placeholder": "Введите почту",
+      "emailPlaceholder": "Введите почту",
       "password": "Пароль",
-      "password placeholder": "Введите пароль"
+      "passwordPlaceholder": "Введите пароль"
     },
     "button": "Войти",
-    "forgot password": "Забыли пароль?",
-    "forgot password link": "Восстановить пароль",
+    "forgotPassword": "Забыли пароль?",
+    "forgotPasswordLink": "Восстановить пароль",
     "registration": "Впервые тут?",
-    "registration link": "Регистрация"
+    "registrationLink": "Регистрация"
   }
 }
