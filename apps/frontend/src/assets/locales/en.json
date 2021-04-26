@@ -26,5 +26,10 @@
     "errorMessage": {
       "fieldIsEmpty": "The field is incomplete"
     }
+  },
+  "selector": {
+    "not-found": "Value not found",
+    "button": "Add value",
+    "input-hint": "Enter or select from the list"
   }
 }

@@ -1,0 +1,44 @@
+<div class='selector'
+     (click)='closePopup($event)'>
+  <span class='selector__title'>{{titleSelector}}</span>
+  <label class='selector__input-container'
+         (click)='showPopup()'>
+    <input class='selector__input'
+           placeholder='{{"selector.input-hint" | i18next}}'
+           [value]='selectedHint'
+           (change)='handleChange($event)'
+    />
+    <svg-icon class='selector__input-arrow'
+              src='assets/icons/arrow.svg'
+              [class._rotate]='isRotated'
+              (click)='showPopup()'></svg-icon>
+  </label>
+  <div *ngIf='popupItems'
+       class='selector__list'>
+    <div *ngFor='let item of filteredData()'
+         class='selector__list-item'
+         [class._checked]='isItemSelected(item)'
+         (click)='showTitle(item)'>
+      <span *ngIf='resetMode()'
+            class='selector__list-text'>
+        {{item}}
+      </span>
+      <b-checkbox *ngIf='!resetMode()'
+                  [isChecked]='isItemSelected(item)'
+                  label='{{item}}'
+      ></b-checkbox>
+    </div>
+    <div class='selector__notification'>
+    <span class='selector__list-alert'
+          [class._invisible]='isNotFound'>
+      {{"selector.not-found" | i18next}}
+      </span>
+      <b-button *ngIf='userType === "admin" && isNotFound'
+                type='secondary'
+                hasIcon='true'
+                size='small'
+                text='{{"selector.button" | i18next}}'
+                (click)='addItem()'></b-button>
+    </div>
+  </div>
+</div>
