@@ -165,10 +165,10 @@ export class BannerComponent implements AfterViewInit, OnInit {
   }
 
   truncateText(): void {
-    while (this.elementDescription.nativeElement.offsetHeight > 74) {
+    while (this.elementDescription.nativeElement.offsetHeight > 70) {
       this.elementDescription.nativeElement.innerText = this.elementDescription.nativeElement.innerText.slice(
         0,
-        -1
+        -35
       );
     }
     this.elementDescription.nativeElement.append('...');

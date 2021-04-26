@@ -22,20 +22,30 @@
   &__scroll-left,
   &__scroll-right {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: center;
     position: absolute;
-    width: 70px;
-    height: 90px;
+    width: 50px;
+    height: 50px;
     cursor: pointer;
+    border-radius: 50%;
+    background-color: @color-grey-light;
+    opacity: 0.5;
+    margin-top: 20px;
+    z-index: 1;
 
     @media @not-desktop {
       display: none;
     }
   }
 
+  &__scroll-left {
+    margin-left: 8px;
+  }
+
   &__scroll-right {
     right: 0;
+    margin-right: 8px;
   }
 
   &__more-hotel {
@@ -82,7 +92,6 @@
     display: flex;
     flex-basis: 100%;
     margin-top: 56px;
-
 
     @media @not-desktop {
       flex-direction: column;
@@ -154,7 +163,6 @@
       margin-left: 12px;
       display: flex;
       flex-direction: column;
-
       flex-basis: 44%;
 
       @media @mobile {
@@ -167,7 +175,6 @@
         margin-right: 0;
         margin-top: 24px;
         margin-left: 0;
-
       }
 
       &-name {
@@ -183,11 +190,8 @@
           height: auto;
           font-size: 28px;
           background-color: @color-blue-deep-dark;
+          padding-left: 8px;
         }
-      }
-
-      &-stars {
-        /*margin-top: 8px;*/
       }
 
       &-country {
@@ -212,9 +216,12 @@
         display: flex;
         flex-direction: column;
         flex-grow: 1;
+
+        @media @not-desktop {
+          margin-left: 8px;
+        }
       }
     }
   }
-
 }
 

@@ -1,17 +1,20 @@
 <div class='banner'>
   <div class='banner__background'>
     <div #scroll class='banner__more-hotel'>
-      <div (click)='scrollLeft()' class='banner__scroll-left'>
-        <svg-icon  class='icon _rotate-l _size-xxl _stroke-blue-dark'
+      <div class='banner__scroll-left'
+           (click)='scrollLeft()'>
+        <svg-icon  class='icon _rotate-l _size-xl _stroke-blue-dark'
                    src="assets/icons/arrow.svg">
         </svg-icon>
       </div>
-      <div (click)='scrollRight()' class='banner__scroll-right'>
-        <svg-icon  class='icon _size-xxl _stroke-blue-dark'
+      <div class='banner__scroll-right'
+           (click)='scrollRight()'>
+        <svg-icon  class='icon _size-xl _stroke-blue-dark'
                    src="assets/icons/arrow.svg">
         </svg-icon>
       </div>
-      <div class='banner__more-hotel-img' *ngFor='let hotel of hotelsInfo; index as i;' (click)='selectHotel(i)'>
+      <div class='banner__more-hotel-img' *ngFor='let hotel of hotelsInfo; index as i;'
+                                          (click)='selectHotel(i)'>
         <img *ngIf='selectedHotel.hotelImgUrl.length > 0; else placeholder' src='{{hotelsInfo[i].hotelImgUrl}}' alt=''>
         <ng-template #placeholder>
           <div>
@@ -25,7 +28,8 @@
     <div class='banner__hotel-info'>
       <div class='banner__hotel-info-photo-wrapper'>
       <div class='banner__hotel-info-photo'>
-          <img *ngIf='selectedHotel.hotelImgUrl.length > 0; else placeholderTemplateMobile' src='{{selectedHotel.hotelImgUrl}}' alt=''>
+          <img *ngIf='selectedHotel.hotelImgUrl.length > 0; else placeholderTemplateMobile'
+               src='{{selectedHotel.hotelImgUrl}}' alt=''>
           <ng-template #placeholderTemplateMobile>
             <div class='banner__container-img-svg'>
               <svg-icon  class='icon _size-l _stroke-grey'
