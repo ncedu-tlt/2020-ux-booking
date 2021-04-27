@@ -27,7 +27,7 @@ export class StarSelectorComponent {
   sizeClassName: string;
 
   @Input()
-  set isSizeSmall(value: string) {
+  set isSizeValue(value: string) {
     this.sizeClassName = value;
   }
 

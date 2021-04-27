@@ -15,7 +15,7 @@
       </div>
       <div class='banner__more-hotel-img' *ngFor='let hotel of hotelsInfo; index as i;'
                                           (click)='selectHotel(i)'>
-        <img *ngIf='hotelsInfo[i].hotelImgUrl.length > 0; else placeholder' src='{{hotelsInfo[i].hotelImgUrl}}' alt=''>
+        <img *ngIf='hotelsInfo[i].hotelImgUrl?.length > 0; else placeholder' src='{{hotelsInfo[i].hotelImgUrl}}' alt=''>
         <ng-template #placeholder>
           <div>
             <svg-icon  class='icon _size-m _stroke-grey'
@@ -28,7 +28,7 @@
     <div class='banner__hotel-info'>
       <div class='banner__hotel-info-photo-wrapper'>
       <div class='banner__hotel-info-photo'>
-          <img *ngIf='selectedHotel.hotelImgUrl.length; else placeholderTemplateMobile'
+          <img *ngIf='selectedHotel.hotelImgUrl.length > 0; else placeholderTemplateMobile'
                src='{{selectedHotel.hotelImgUrl}}' alt=''>
           <ng-template #placeholderTemplateMobile>
             <div class='banner__container-img-svg'>
@@ -47,7 +47,7 @@
         <div class='banner__hotel-info-text-wrapper'>
           <b-star-selector [isEditable]='false'
                            [selectedItem]='selectedHotel.starsCount'
-                           [isSizeSmall]='""'
+                           [isSizeValue]='"_size-l"'
                            class='banner__hotel-info-text-stars'>
           </b-star-selector>
           <div class='banner__hotel-info-text-country'>
@@ -59,7 +59,7 @@
           </div>
 
           <div class='banner__hotel-info-text-more'>
-            {{"banner.moreDetails" | i18next}}
+            <b-link text='{{"banner.moreDetails" | i18next}}'></b-link>
           </div>
         </div>
       </div>
