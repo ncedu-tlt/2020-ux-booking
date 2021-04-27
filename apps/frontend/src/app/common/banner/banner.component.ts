@@ -126,11 +126,13 @@ export class BannerComponent implements AfterViewInit, OnInit {
 
   selectedHotel: HotelInfoModel;
 
-  descriptionText: string = '';
+  descriptionText = '';
 
   subscription: Subscription = new Subscription();
 
   hotelsList: HotelInfoModel[];
+
+  readonly lengthScroll = 200;
 
   @ViewChild('description') elementDescription: ElementRef;
 
@@ -175,10 +177,10 @@ export class BannerComponent implements AfterViewInit, OnInit {
   }
 
   scrollLeft(): void {
-    this.elementScroll.nativeElement.scrollLeft += 200;
+    this.elementScroll.nativeElement.scrollLeft += this.lengthScroll;
   }
 
   scrollRight(): void {
-    this.elementScroll.nativeElement.scrollLeft -= 200;
+    this.elementScroll.nativeElement.scrollLeft -= this.lengthScroll;
   }
 }

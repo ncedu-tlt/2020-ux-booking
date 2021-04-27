@@ -8,6 +8,6 @@ export class HotelDataService {
   constructor(private http: HttpClient) {}
 
   getHotels(): Observable<HotelInfoModel[]> {
-    return this.http.get<HotelInfoModel[]>('http://localhost:3000/api/hotels');
+    return this.http.get<HotelInfoModel[]>('/api/hotels');
   }
 }
