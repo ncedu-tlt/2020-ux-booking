@@ -4,6 +4,7 @@ import { Response } from 'express';
 import { getRepository } from 'typeorm';
 import { User } from '../../db/domain/user.dao';
 import * as bcrypt from 'bcrypt';
+import { Role } from '../../db/domain/role.dao';
 
 @Controller('users')
 export class UserController {
@@ -18,12 +19,15 @@ export class UserController {
       return res.send('Such user is already registered');
     }
 
+    const roles = [await getRepository(Role).findOne({ name: 'admin' })];
+    const user = new User();
+    user.firstName = registerUserDto.name;
+    user.password = await bcrypt.hash(registerUserDto.password, 10);
+    user.email = registerUserDto.email;
+    user.roles = roles;
+
     const answer = await userRepository
-      .insert({
-        firstName: registerUserDto.name,
-        password: await bcrypt.hash(registerUserDto.password, 10),
-        email: registerUserDto.email
-      })
+      .save(user)
       .then(() => {
         res.status(HttpStatus.CREATED);
         return;

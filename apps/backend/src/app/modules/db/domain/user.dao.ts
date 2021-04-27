@@ -1,11 +1,4 @@
-import {
-  Column,
-  Entity,
-  ManyToMany,
-  ManyToOne,
-  OneToMany,
-  PrimaryGeneratedColumn
-} from 'typeorm';
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Address } from './addresses.dao';
 import { Role } from './role.dao';
 import { Review } from './review.dao';
@@ -42,8 +35,9 @@ export class User {
   @Column({ nullable: true })
   emailNotification: boolean;
 
-  @ManyToOne(type => Role, role => role.users)
-  role: Role;
+  @ManyToMany(type => Role, role => role.users, { cascade: true })
+  @JoinTable()
+  roles: Role[];
 
   @ManyToOne(type => Address, address => address.users, {
     nullable: true
@@ -72,5 +66,6 @@ export class User {
     nullable: true,
     onDelete: 'SET NULL'
   })
+  @JoinTable()
   bookmarks: Promise<Hotel[]>;
 }

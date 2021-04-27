@@ -1,9 +1,12 @@
-import { Controller, Get, Request, Post, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Request, UseGuards } from '@nestjs/common';
 import type { Data } from '@booking/models/data.model';
 import { AppService } from './app.service';
 import { LocalAuthGuard } from './auth/local-auth.guard';
 import { AuthService } from './auth/auth.service';
 import { JwtAuthGuard } from './auth/jwt-auth.guard';
+import { Roles } from './auth/decorators/role.decorator';
+import { DefRole } from './auth/role.enum';
+import { RolesGuard } from './auth/roles.guard';
 
 @Controller()
 export class AppController {
@@ -27,5 +30,19 @@ export class AppController {
   @Get('profile')
   getProfile(@Request() req) {
     return req.user;
+  }
+
+  @Get('is/admin')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(DefRole.admin)
+  isAdmin() {
+    return true;
+  }
+
+  @Get('is/user')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(DefRole.user)
+  isUser() {
+    return true;
   }
 }
