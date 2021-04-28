@@ -22,6 +22,9 @@
     "price": "Мин. цена от",
     "day": "сутки"
   },
+  "banner": {
+    "moreDetails": "Подробнее"
+  },
   "input": {
     "errorMessage": {
       "fieldIsEmpty": "Поле не заполнено"

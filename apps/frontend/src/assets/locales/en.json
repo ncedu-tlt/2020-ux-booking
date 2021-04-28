@@ -16,6 +16,9 @@
       "enter": "Login"
     }
   },
+  "banner": {
+    "moreDetails": "More details"
+  },
   "hotelCard": {
     "reviews": "reviews",
     "free cancellation": "Free cancellation",

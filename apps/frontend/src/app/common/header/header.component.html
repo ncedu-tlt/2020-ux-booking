@@ -24,7 +24,8 @@
           <div class='header__name'>
             {{userName}}
           </div>
-          <svg-icon class='icon _size-m _rotate-d _stroke-white' [class._rotate-u]="isShowMenu"
+          <svg-icon class='icon _size-m _rotate-d _stroke-white'
+                    [class._rotate-u]="isShowMenu"
                     src="assets/icons/arrow.svg">
           </svg-icon>
         </div>
@@ -56,7 +57,8 @@
 </header>
 <div class='header__modal' *ngIf='isHiddenModal'>
   <div class='header__modal-header'>
-    <svg-icon (click)='showModal()' class='icon _size-m _stroke-white header__cross '
+    <svg-icon class='icon _size-m _stroke-white header__cross'
+              (click)='showModal()'
               src="assets/icons/cross.svg">
     </svg-icon>
   </div>
@@ -92,14 +94,18 @@
 
 <ng-template #switchersTemplate>
   <ng-container>
-    <div [class._dark]="!isNightTheme" class='header__night-theme _rotate' (click)='changeNight()'>
+    <div  class='header__night-theme _rotate'
+          [class._dark]="!isNightTheme"
+          (click)='changeNight()'>
       <div>
-        <svg-icon [ngClass]='isNightTheme ? "_stroke-blue  _fill-none" : "_fill-none  _stroke-white"' class='icon _size-m'
+        <svg-icon class='icon _size-m'
+                  [ngClass]='isNightTheme ? "_stroke-blue-deep-dark  _fill-none" : "_fill-none  _stroke-white"'
                   src="assets/icons/sun.svg">
         </svg-icon>
       </div>
       <div>
-        <svg-icon [ngClass]='isNightTheme ? "_fill-none _stroke-white" : "_stroke-blue _fill-none"' class='icon _size-m'
+        <svg-icon class='icon _size-m'
+                  [ngClass]='isNightTheme ? "_fill-none _stroke-white" : "_stroke-blue-deep-dark _fill-none"'
                   src="assets/icons/moon.svg">
         </svg-icon>
       </div>
@@ -107,9 +113,14 @@
   </ng-container>
 
   <ng-container>
-    <div [class._dark]="!isLanguageRu" class='header__language _rotate'>
-      <div class='header__ru' [class._white]="!isLanguageRu" (click)='changeLanguage("en")'>EN</div>
-      <div class='header__en' [class._dark]="!isLanguageRu" (click)='changeLanguage("ru")'>RU</div>
+    <div class='header__language _rotate'
+         [class._dark]="!isLanguageRu">
+      <div class='header__ru'
+           [class._white]="!isLanguageRu"
+           (click)='changeLanguage("en")'>EN</div>
+      <div class='header__en'
+           [class._dark]="!isLanguageRu"
+           (click)='changeLanguage("ru")'>RU</div>
     </div>
   </ng-container>
 </ng-template>

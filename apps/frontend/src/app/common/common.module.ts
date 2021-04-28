@@ -12,6 +12,7 @@ import { StarSelectorComponent } from './star-selector/star-selector.component';
 import { ButtonIconComponent } from './icon/button-icon.component';
 import { InputFieldComponent } from './input-field/input-field.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BannerComponent } from './banner/banner.component';
 import { LinkComponent } from './link/link.component';
 import { HotelCardComponent } from './hotel-card/hotel-card.component';
 
@@ -30,6 +31,7 @@ import { HotelCardComponent } from './hotel-card/hotel-card.component';
     DropdownComponent,
     HeaderComponent,
     StarSelectorComponent,
+    BannerComponent,
     HotelCardComponent,
     ButtonIconComponent,
     LinkComponent,
@@ -44,6 +46,7 @@ import { HotelCardComponent } from './hotel-card/hotel-card.component';
     HeaderComponent,
     StarSelectorComponent,
     ButtonIconComponent,
+    BannerComponent,
     LinkComponent,
     HotelCardComponent,
     InputFieldComponent
