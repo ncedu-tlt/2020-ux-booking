@@ -1,60 +1,36 @@
 @import './../../../assets/styles/common/shared';
 
-.input-field {
-  display: flex;
-  flex-direction: column;
-
-  &__sub-title {
-    margin-left: 16px;
-    margin-bottom: 4px;
-    color: @color-blue-dark;
-    .font-bold;
-  }
-
-  &__input {
-    padding: 16px 0 16px 24px;
-    outline: none;
-    background: @color-white;
-    border: 2px solid @color-grey-light;
-    box-sizing: border-box;
-    border-radius: 24px;
-    color: @color-blue-deep-dark;
-    &::-webkit-input-placeholder {
-      color: @color-grey-middle;
-    }
-
-    &:-ms-input-placeholder {
-      color: @color-grey-middle;
-    }
-
-    &::placeholder {
-      color: @color-grey-middle;
-    }
-    &._error {
-      border-color: @color-red;
-    }
-
-    &[disabled] {
-      .bg-color-light-grey;
-
-      &:active,
-      &:focus {
-        border-color: @color-grey-light;
-      }
-    }
-
-    &:active,
-    &:focus {
-      outline: none;
-      border: 2px solid @color-blue-dark;
-    }
-  }
-
-  &__error-text {
-    margin-left: 16px;
-    margin-top: 4px;
-    color: @color-red;
-  }
+.input__file-button {
+  align-items: center;
+  padding: 0 16px;
+  height: 56px;
+  background-color: @color-white;
+  border: 2px solid @color-grey-light;
+  border-radius: 24px;
+  cursor: pointer;
+  min-width: 120px;
 }
+.input__file-button-text {
+  color: @color-grey-middle;
+  font-size: 20px;
+}
+.input-field {
+  visibility: hidden;
+  position: absolute;
+}
+  &:hover {
+    color: @color-blue-deep-dark;
+    & .icon svg {
+      stroke: @color-blue-deep-dark;
+    }
+  }
+  & .icon {
+    margin-right: 4px;
+    & svg {
+      stroke: @color-blue;
+    }
+  }
+
+
 
 

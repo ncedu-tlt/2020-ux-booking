@@ -1,14 +1,5 @@
-<div class='input-field'>
-  <span class='input-field__sub-title'>
-    {{title}}
-    <span *ngIf='isMandatory'>*</span>
-  </span>
-  <input class='input-field__input'
-         [ngClass]="{ '_error' : !input.valid && input.touched && isMandatory}"
-         [formControl]='input'
-         [placeholder]='placeholder' />
-  <span *ngIf='!input.valid && input.touched && isMandatory'
-        class='input-field__error-text'>
-    {{"input.errorMessage.fieldIsEmpty" | i18next }}
-  </span>
-</div>
+<input type='file' class='input-field'  [ngClass]="['input']" id="uploadPhoto">
+<label for='uploadPhoto' class="input__file-button">
+    <span class='input__file-icon-wrapper'><svg-icon class="icon" src="assets/icons/save.svg"></svg-icon></span>
+  <span class='input__file-button-text'>{{text}}</span>
+ </label>

@@ -1,12 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output
-} from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'b-input-field',
@@ -14,28 +6,11 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./input-field.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class InputFieldComponent implements OnInit {
+export class InputFieldComponent {
   @Input()
-  title: string;
+  text: string;
   @Input()
-  placeholder: string;
+  icon: boolean;
   @Input()
-  isMandatory: boolean;
-  @Input()
-  isDisabled: boolean;
-
-  @Output() handleChange: EventEmitter<string> = new EventEmitter();
-
-  _value = '';
-  input: FormControl;
-
-  ngOnInit(): void {
-    this.input = new FormControl(this._value, Validators.required);
-    if (this.isDisabled) {
-      this.input.disable();
-    }
-    this.input.valueChanges.subscribe((value: string) => {
-      this.handleChange.emit(value);
-    });
-  }
+  uploadPhoto: string;
 }
