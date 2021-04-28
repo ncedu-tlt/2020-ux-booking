@@ -1,5 +1,5 @@
-<div class='banner'
-     *ngIf='hotelsList.length > 0'>
+<div *ngIf='hotelsList.length > 0'
+     class='banner'>
   <div class='banner__background'>
     <div #scroll class='banner__more-hotel'>
       <div class='banner__scroll-left'
@@ -14,9 +14,12 @@
                    src="assets/icons/arrow.svg">
         </svg-icon>
       </div>
-      <div class='banner__more-hotel-img' *ngFor='let hotel of hotelsList; index as i;'
-                                          (click)='selectHotel(i)'>
-        <img *ngIf='hotelsList[i].hotelImgUrl?.length > 0; else placeholder' src='{{hotelsList[i].hotelImgUrl}}' alt=''>
+      <div *ngFor='let hotel of hotelsList; index as i;'
+           class='banner__more-hotel-img'
+           (click)='selectHotel(i)'>
+        <img *ngIf='hotelsList[i].hotelImgUrl?.length > 0; else placeholder'
+             src='{{hotelsList[i].hotelImgUrl}}'
+             alt=''>
         <ng-template #placeholder>
           <div>
             <svg-icon  class='icon _size-m _stroke-grey'
@@ -30,7 +33,8 @@
       <div class='banner__hotel-info-photo-wrapper'>
       <div class='banner__hotel-info-photo'>
           <img *ngIf='selectedHotel.hotelImgUrl.length > 0; else placeholderTemplateMobile'
-               src='{{selectedHotel.hotelImgUrl}}' alt=''>
+               src='{{selectedHotel.hotelImgUrl}}'
+               alt=''>
           <ng-template #placeholderTemplateMobile>
             <div class='banner__container-img-svg'>
               <svg-icon  class='icon _size-l _stroke-grey'
@@ -46,10 +50,10 @@
           {{selectedHotel.name}}
         </div>
         <div class='banner__hotel-info-text-wrapper'>
-          <b-star-selector [isEditable]='false'
+          <b-star-selector class='banner__hotel-info-text-stars'
+                           [isEditable]='false'
                            [selectedItem]='selectedHotel.starsCount'
-                           [isSizeValue]='"_size-l"'
-                           class='banner__hotel-info-text-stars'>
+                           [isSizeValue]='"_size-l"'>
           </b-star-selector>
           <div class='banner__hotel-info-text-country'>
             {{selectedHotel.address.city}}, {{selectedHotel.address.country}}
