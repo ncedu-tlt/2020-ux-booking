@@ -16,114 +16,6 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./banner.component.less']
 })
 export class BannerComponent implements AfterViewInit, OnInit {
-  hotelsInfo: HotelInfoModel[] = [
-    {
-      name: 'Hotel super puper ',
-      hotelImgUrl: 'assets/icons/hotel.jpg',
-      description:
-        'первый, eos elmet, consectetur adipisicing eos elmet, consectetur adipisicing elit. ' +
-        'Adipisci animi commodi cum debitis delectuseos elmet, consectetur adipisicing elit. ' +
-        'Adipisci animi commodi cum debitis delectuseos elmet, consectetur adipisicing elit. ' +
-        'Adipisci animi commodi cum debitis delectuseos elmet, consectetur adipisicing elit. ' +
-        'Adipisci animi commodi cum debitis delectuseos elmet, consectetur adipisicing elit. ' +
-        'Adipisci animi commodi cum debitis delectuseos elmet, consectetur adipisicing elit. ' +
-        'Adipisci animi commodi cum debitis delectuseos elmet, consectetur adipisicing elit. ' +
-        'Adipisci animi commodi cum debitis delectuseos elmet, consectetur adipisicing elit. ' +
-        'Adipisci animi commodi cum debitis delectuselit. Adipisci animi commodi cum debitis ' +
-        'delectus dolore doloremque, eos e',
-      address: {
-        country: 'russia',
-        city: 'moscow'
-      },
-      starsCount: 1,
-      countReviews: 10,
-      hotelRating: 9.6,
-      minPrice: 2300,
-      currency: '$',
-      freeCancellation: true,
-      services: [
-        {
-          name: 'car',
-          iconUrl: 'assets/icons/car.svg'
-        },
-        {
-          name: 'dryer',
-          iconUrl: 'assets/icons/dryer.svg'
-        }
-      ]
-    },
-    {
-      name: 'Hotel super puper ',
-      hotelImgUrl: 'assets/icons/hotel1.jpg',
-      description:
-        'второй, eos elmet, consectetur adipisicing eos elmet, consectetur adipisicing elit. ' +
-        'Adipisci animi commodi cum debitis delectuseos elmet, consectetur adipisicing elit. ' +
-        'Adipisci animi commodi cum debitis delectuseos elmet, consectetur adipisicing elit. ' +
-        'Adipisci animi commodi cum debitis delectuseos elmet, consectetur adipisicing elit. ' +
-        'Adipisci animi commodi cum debitis delectuseos elmet, consectetur adipisicing elit. ' +
-        'Adipisci animi commodi cum debitis delectuseos elmet, consectetur adipisicing elit. ' +
-        'Adipisci animi commodi cum debitis delectuseos elmet, consectetur adipisicing elit. ' +
-        'Adipisci animi commodi cum debitis delectuseos elmet, consectetur adipisicing elit. ' +
-        'Adipisci animi commodi cum debitis delectuselit. Adipisci animi commodi cum debitis ' +
-        'delectus dolore doloremque, eos e',
-      address: {
-        country: 'russia',
-        city: 'moscow'
-      },
-      starsCount: 1,
-      countReviews: 10,
-      hotelRating: 9.6,
-      minPrice: 2300,
-      currency: '$',
-      freeCancellation: true,
-      services: [
-        {
-          name: 'car',
-          iconUrl: 'assets/icons/car.svg'
-        },
-        {
-          name: 'dryer',
-          iconUrl: 'assets/icons/dryer.svg'
-        }
-      ]
-    },
-    {
-      name: 'Hotel super puper ',
-      hotelImgUrl: 'assets/icons/hotel2.jpg',
-      description:
-        'третий, eos elmet, consectetur adipisicing eos elmet, consectetur adipisicing elit. ' +
-        'Adipisci animi commodi cum debitis delectuseos elmet, consectetur adipisicing elit. ' +
-        'Adipisci animi commodi cum debitis delectuseos elmet, consectetur adipisicing elit. ' +
-        'Adipisci animi commodi cum debitis delectuseos elmet, consectetur adipisicing elit. ' +
-        'Adipisci animi commodi cum debitis delectuseos elmet, consectetur adipisicing elit. ' +
-        'Adipisci animi commodi cum debitis delectuseos elmet, consectetur adipisicing elit. ' +
-        'Adipisci animi commodi cum debitis delectuseos elmet, consectetur adipisicing elit. ' +
-        'Adipisci animi commodi cum debitis delectuseos elmet, consectetur adipisicing elit. ' +
-        'Adipisci animi commodi cum debitis delectuselit. Adipisci animi commodi cum debitis ' +
-        'delectus dolore doloremque, eos e',
-      address: {
-        country: 'russia',
-        city: 'moscow'
-      },
-      starsCount: 1,
-      countReviews: 10,
-      hotelRating: 9.6,
-      minPrice: 2300,
-      currency: '$',
-      freeCancellation: true,
-      services: [
-        {
-          name: 'car',
-          iconUrl: 'assets/icons/car.svg'
-        },
-        {
-          name: 'dryer',
-          iconUrl: 'assets/icons/dryer.svg'
-        }
-      ]
-    }
-  ];
-
   selectedHotel: HotelInfoModel;
 
   descriptionText = '';
@@ -132,7 +24,9 @@ export class BannerComponent implements AfterViewInit, OnInit {
 
   hotelsList: HotelInfoModel[];
 
-  readonly lengthScroll = 200;
+  private readonly lengthScroll: number = 200;
+
+  private readonly lengthDescription: number = 70;
 
   @ViewChild('description') elementDescription: ElementRef;
 
@@ -146,7 +40,8 @@ export class BannerComponent implements AfterViewInit, OnInit {
       .subscribe((hotels: HotelInfoModel[]) => {
         this.hotelsList = hotels;
       });
-    this.selectedHotel = this.hotelsInfo[0];
+
+    this.selectedHotel = this.hotelsList[0];
     this.descriptionText = this.selectedHotel.description;
   }
 
@@ -155,19 +50,22 @@ export class BannerComponent implements AfterViewInit, OnInit {
   }
 
   @HostListener('window:resize', ['$event'])
-  onResize() {
+  onResize(): void {
     this.elementDescription.nativeElement.innerText = this.selectedHotel.description;
     this.truncateText();
   }
 
   selectHotel(index: number): void {
-    this.selectedHotel = this.hotelsInfo[index];
+    this.selectedHotel = this.hotelsList[index];
     this.elementDescription.nativeElement.innerText = this.selectedHotel.description;
     this.truncateText();
   }
 
   truncateText(): void {
-    while (this.elementDescription.nativeElement.offsetHeight > 70) {
+    while (
+      this.elementDescription.nativeElement.offsetHeight >
+      this.lengthDescription
+    ) {
       this.elementDescription.nativeElement.innerText = this.elementDescription.nativeElement.innerText.slice(
         0,
         -35

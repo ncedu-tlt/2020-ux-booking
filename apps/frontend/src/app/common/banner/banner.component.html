@@ -13,9 +13,9 @@
                    src="assets/icons/arrow.svg">
         </svg-icon>
       </div>
-      <div class='banner__more-hotel-img' *ngFor='let hotel of hotelsInfo; index as i;'
+      <div class='banner__more-hotel-img' *ngFor='let hotel of hotelsList; index as i;'
                                           (click)='selectHotel(i)'>
-        <img *ngIf='hotelsInfo[i].hotelImgUrl?.length > 0; else placeholder' src='{{hotelsInfo[i].hotelImgUrl}}' alt=''>
+        <img *ngIf='hotelsList[i].hotelImgUrl?.length > 0; else placeholder' src='{{hotelsList[i].hotelImgUrl}}' alt=''>
         <ng-template #placeholder>
           <div>
             <svg-icon  class='icon _size-m _stroke-grey'
