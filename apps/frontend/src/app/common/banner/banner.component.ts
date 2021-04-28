@@ -24,9 +24,9 @@ export class BannerComponent implements AfterViewInit, OnInit {
 
   hotelsList: HotelInfoModel[];
 
-  private readonly lengthScroll: number = 200;
+  private readonly LENGTH_SCROLL: number = 200;
 
-  private readonly lengthDescription: number = 70;
+  private readonly LENGTH_DESCRIPTION: number = 70;
 
   @ViewChild('description') elementDescription: ElementRef;
 
@@ -64,7 +64,7 @@ export class BannerComponent implements AfterViewInit, OnInit {
   truncateText(): void {
     while (
       this.elementDescription.nativeElement.offsetHeight >
-      this.lengthDescription
+      this.LENGTH_DESCRIPTION
     ) {
       this.elementDescription.nativeElement.innerText = this.elementDescription.nativeElement.innerText.slice(
         0,
@@ -75,10 +75,10 @@ export class BannerComponent implements AfterViewInit, OnInit {
   }
 
   scrollLeft(): void {
-    this.elementScroll.nativeElement.scrollLeft += this.lengthScroll;
+    this.elementScroll.nativeElement.scrollLeft += this.LENGTH_SCROLL;
   }
 
   scrollRight(): void {
-    this.elementScroll.nativeElement.scrollLeft -= this.lengthScroll;
+    this.elementScroll.nativeElement.scrollLeft -= this.LENGTH_SCROLL;
   }
 }

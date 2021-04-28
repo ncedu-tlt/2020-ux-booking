@@ -31,18 +31,18 @@
     </div>
     <div class='banner__hotel-info'>
       <div class='banner__hotel-info-photo-wrapper'>
-      <div class='banner__hotel-info-photo'>
-          <img *ngIf='selectedHotel.hotelImgUrl.length > 0; else placeholderTemplateMobile'
-               src='{{selectedHotel.hotelImgUrl}}'
-               alt=''>
-          <ng-template #placeholderTemplateMobile>
-            <div class='banner__container-img-svg'>
-              <svg-icon  class='icon _size-l _stroke-grey'
-                         src="assets/icons/placeholder.svg">
-              </svg-icon>
-            </div>
-          </ng-template>
-        </div>
+        <div class='banner__hotel-info-photo'>
+            <img *ngIf='selectedHotel.hotelImgUrl.length > 0; else placeholderTemplateMobile'
+                 src='{{selectedHotel.hotelImgUrl}}'
+                 alt=''>
+            <ng-template #placeholderTemplateMobile>
+              <div class='banner__container-img-svg'>
+                <svg-icon  class='icon _size-l _stroke-grey'
+                           src="assets/icons/placeholder.svg">
+                </svg-icon>
+              </div>
+            </ng-template>
+          </div>
       </div>
       <div class='banner__hotel-info-text'>
 
