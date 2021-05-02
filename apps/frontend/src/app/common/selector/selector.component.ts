@@ -17,7 +17,7 @@ export class SelectorComponent {
   userType: 'admin' | 'default' = 'default';
   value = '';
   isNotFound = true;
-  filteredSuggestions;
+  filteredSuggestions: string[] = [];
   isRotated = false;
   popupItems = false;
   selectedItems: string[] = [];
@@ -25,7 +25,7 @@ export class SelectorComponent {
 
   showPopup(): void {
     this.popupItems = !this.popupItems;
-    this.isRotated == true ? (this.isRotated = false) : (this.isRotated = true);
+    this.isRotated = !this.isRotated;
   }
 
   closePopup($event): void {
@@ -52,7 +52,6 @@ export class SelectorComponent {
     this.value.length === 0
       ? (this.isNotFound = true)
       : (this.isNotFound = false);
-    console.log(this.isNotFound);
   }
 
   showTitle(item: string): void {
@@ -67,6 +66,7 @@ export class SelectorComponent {
         ? this.selectedItems.push(item)
         : (this.selectedItems[0] = item);
       this.popupItems = false;
+      this.isRotated = false;
       this.selectedHint = item;
     }
   }
