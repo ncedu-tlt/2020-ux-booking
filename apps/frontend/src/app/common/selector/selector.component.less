@@ -1,7 +1,7 @@
 @import './../../../assets/styles/common/shared';
 
 svg path {
-  stroke: @color-blue
+  stroke: @color-blue-dark;
 }
 
 .selector {
@@ -36,10 +36,10 @@ svg path {
 
     &-arrow {
       content: "";
-      right: 10px;
+      right: 15px;
       position: absolute;
-      width: 38px;
-      height: 38px;
+      width: 24px;
+      height: 24px;
       cursor: pointer;
       transform: rotate(90deg);
 
@@ -52,7 +52,6 @@ svg path {
         background: @color-blue-light;
       }
     }
-
   }
 
   &__input:focus {
@@ -60,19 +59,20 @@ svg path {
   }
 
   &__list {
-    overflow: auto;
+    position: absolute;
+    z-index: 1;
+    background-color: @color-white;
     max-height: 232px;
-    max-width: @mobile-min-width;
+    min-width: @mobile-min-width;
     margin-top: 4px;
     border: 2px solid @color-blue-dark;
     border-radius: 24px;
-    padding-top: 24px;
-    padding-bottom: 24px;
+    padding-top: 12px;
 
     &-item {
       display: flex;
       align-items: center;
-      padding: 15px 0 15px 24px;
+      padding: 12px 0 12px 24px;
       border-top: 1px solid @color-blue;
       cursor: pointer;
 
@@ -92,15 +92,20 @@ svg path {
     }
 
     &-text {
+
       color: @color-blue-deep-dark;
       margin: 0;
+
+      &._checked {
+        color: @color-white;
+      }
     }
 
     &-alert {
-      color: @color-blue-deep-dark;
-      margin-right: 72px;
-      text-align: center;
-
+      color: @color-grey-middle;
+      padding-top: 10px;
+      margin-bottom: 16px;
+      font-weight: bold;
       &._invisible {
         font-size: 0;
       }
@@ -108,6 +113,9 @@ svg path {
   }
 
   &__notification {
-    margin-left: 70px;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
   }
 }

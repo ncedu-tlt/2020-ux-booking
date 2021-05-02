@@ -20,7 +20,10 @@
          [class._checked]='isItemSelected(item)'
          (click)='showTitle(item)'>
       <span *ngIf='resetMode()'
-            class='selector__list-text'>
+            class='selector__list-text'
+            [class._checked]='isItemSelected(item)'
+      >
+
         {{item}}
       </span>
       <b-checkbox *ngIf='!resetMode()'
@@ -33,7 +36,7 @@
           [class._invisible]='isNotFound'>
       {{"selector.not-found" | i18next}}
       </span>
-      <b-button *ngIf='userType === "admin" && isNotFound'
+      <b-button *ngIf='(userType === "admin") && !isNotFound'
                 type='secondary'
                 hasIcon='true'
                 size='small'
