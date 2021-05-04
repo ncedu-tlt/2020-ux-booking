@@ -1,4 +1,4 @@
-export enum DefRole {
+export enum SystemDefinedRole {
   user,
   admin
 }

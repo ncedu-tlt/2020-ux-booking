@@ -2,7 +2,7 @@ import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { ROLES_KEY } from './decorators/role.decorator';
 import { UsersService } from '../users/users.service';
-import { DefRole } from './role.enum';
+import { SystemDefinedRole } from './role.enum';
 
 @Injectable()
 export class RolesGuard implements CanActivate {
@@ -12,7 +12,7 @@ export class RolesGuard implements CanActivate {
   ) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
-    const requiredRoles = this.reflector.getAllAndOverride<DefRole[]>(
+    const requiredRoles = this.reflector.getAllAndOverride<SystemDefinedRole[]>(
       ROLES_KEY,
       [context.getHandler(), context.getClass()]
     );
@@ -21,13 +21,13 @@ export class RolesGuard implements CanActivate {
     }
     const { user } = context.switchToHttp().getRequest();
     const roles = await this.usersService.findRoles(user.username);
-    const defRolArr = [DefRole.user];
+    const definedRoles = [SystemDefinedRole.user];
     if (roles) {
       roles.forEach(value => {
-        const v: DefRole = DefRole[value.name];
-        defRolArr.push(v);
+        const v: SystemDefinedRole = SystemDefinedRole[value.name];
+        definedRoles.push(v);
       });
     }
-    return requiredRoles.some(role => defRolArr?.includes(role));
+    return requiredRoles.some(role => definedRoles.includes(role));
   }
 }

@@ -1,3 +1,5 @@
+import { environment } from '../../../../environments/environment';
+
 export const jwtConstants = {
-  secret: 'test'
+  secret: environment.jwtSecret
 };

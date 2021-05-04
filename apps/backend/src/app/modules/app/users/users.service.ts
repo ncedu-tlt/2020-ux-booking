@@ -1,12 +1,18 @@
 import { Injectable } from '@nestjs/common';
-import { getRepository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { User } from '../../db/domain/user.dao';
 import { Role } from '../../db/domain/role.dao';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class UsersService {
+  constructor(
+    @InjectRepository(User)
+    private usersRepository: Repository<User>
+  ) {}
+
   async findOne(email: string): Promise<User | undefined> {
-    return getRepository(User).findOne(
+    return this.usersRepository.findOne(
       { email: email },
       { relations: ['roles'] }
     );

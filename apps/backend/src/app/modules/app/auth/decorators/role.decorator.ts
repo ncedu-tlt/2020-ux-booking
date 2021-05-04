@@ -1,5 +1,6 @@
 import { SetMetadata } from '@nestjs/common';
-import { DefRole } from '../role.enum';
+import { SystemDefinedRole } from '../role.enum';
 
 export const ROLES_KEY = 'roles';
-export const Roles = (...roles: DefRole[]) => SetMetadata(ROLES_KEY, roles);
+export const Roles = (...roles: SystemDefinedRole[]) =>
+  SetMetadata(ROLES_KEY, roles);
