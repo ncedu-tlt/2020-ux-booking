@@ -1,15 +1,12 @@
 import { Meta, Story } from '@storybook/angular/types-6-0';
 import { HeaderComponent } from './header.component';
-import { moduleMetadata } from '@storybook/angular';
-import { AngularSvgIconModule } from 'angular-svg-icon';
-import { HttpClientModule } from '@angular/common/http';
+import { bookingModuleDecorator } from '../../stories.helpers';
 
 export default {
   component: HeaderComponent,
   decorators: [
-    moduleMetadata({
-      declarations: [HeaderComponent],
-      imports: [AngularSvgIconModule.forRoot(), HttpClientModule]
+    bookingModuleDecorator({
+      declarations: [HeaderComponent]
     })
   ],
   title: 'header',

@@ -133,6 +133,7 @@
 
     @media @mobile {
       border: solid 1px @color-blue-dark;
+      margin-top: 24px;
     }
 
     &._dark {
@@ -143,7 +144,7 @@
 
 
   &__ru {
-      color: @color-blue-dark;
+      color: @color-blue-deep-dark;
     &._white {
       color: @color-white;
     }
@@ -152,7 +153,7 @@
   &__en {
       color: @color-white;
     &._dark {
-      color: @color-blue-dark;
+      color: @color-blue-deep-dark;
     }
   }
 
@@ -279,6 +280,9 @@
   }
 
   &__modal-items-false {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-bottom: 50px;
   }
 

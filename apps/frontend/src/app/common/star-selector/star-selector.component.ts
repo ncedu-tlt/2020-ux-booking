@@ -24,14 +24,21 @@ export class StarSelectorComponent {
 
   arrState: number[] = [1, 2, 3, 4, 5, 6];
 
+  sizeClassName: string;
+
+  @Input()
+  set isSizeValue(value: string) {
+    this.sizeClassName = value;
+  }
+
   getItemClass(index: number): string {
     if (this.selectedItem >= index) {
       this.savedStateSelectedItems = this.selectedItem;
-      return '_blue-dark';
+      return '_fill-blue-dark _stroke-blue-dark';
     } else if (this.hoveredItems >= index) {
-      return '_blue';
+      return '_fill-blue _stroke-blue';
     } else {
-      return '_grey-light';
+      return '_fill-grey _stroke-grey';
     }
   }
 

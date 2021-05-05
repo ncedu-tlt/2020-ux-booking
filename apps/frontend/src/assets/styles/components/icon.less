@@ -6,45 +6,70 @@
     stroke: @color-blue-dark;
   }
 
-  &._white {
-    & svg {
+  &._fill {
+    &-none svg {
       fill: none;
-      stroke: @color-white;
     }
-  }
 
-  &._white-full {
-    & svg {
+    &-white svg {
       fill: @color-white;
-      stroke: @color-white;
+    }
+
+    &-grey svg {
+      fill: @color-grey-light;
+    }
+
+    &-blue-light svg {
+      fill: @color-blue-light;
+    }
+
+    &-blue svg {
+      fill: @color-blue;
+    }
+
+    &-blue-dark svg {
+      fill: @color-blue-dark;
+    }
+
+    &-blue-deep-dark svg {
+      fill: @color-blue-deep-dark;
     }
   }
 
-  &._blue {
-    & svg {
-      fill: @color-blue-light;
+  &._stroke {
+    &-none svg {
+      stroke: none;
+    }
+
+    &-white svg {
+      stroke: @color-white;
+    }
+
+    &-grey svg {
+      stroke: @color-grey-light;
+    }
+
+    &-blue-light svg {
       stroke: @color-blue-light;
     }
-  }
 
-  &._blue-dark {
-    & svg {
-      fill: @color-blue-deep-dark;
+    &-blue svg {
+      stroke: @color-blue;
+    }
+
+    &-blue-dark svg {
+      stroke: @color-blue-dark;
+    }
+
+    &-blue-deep-dark svg {
       stroke: @color-blue-deep-dark;
     }
   }
 
-  &._blue-dark-white {
+  &._color-none {
     & svg {
-      fill: @color-white;
-      stroke: @color-blue-deep-dark;
-    }
-  }
-
-  &._grey-light {
-    & svg {
-      fill: @color-grey-light;
-      stroke: @color-grey-light;
+      fill: none;
+      stroke: none;
     }
   }
 
@@ -54,23 +79,20 @@
       width: 16px;
       height: 16px;
     }
-  }
 
-  &._size {
     &-l,
     &-l svg {
       width: 32px;
       height: 32px;
     }
-  }
 
-  &._size {
     &-xl,
     &-xl svg {
       width: 48px;
       height: 48px;
     }
   }
+
 
   &._rotate {
     &-d svg {
@@ -79,29 +101,9 @@
     &-u svg {
       transform: rotate(270deg);
     }
-  }
-
-  &._fill {
-    &-none {
-      fill: none;
+    &-l svg {
+      transform: rotate(180deg);
     }
   }
 
-  &._stroke {
-    &-green svg {
-      stroke: @color-green-success;
-    }
-    &-grey svg {
-      stroke: @color-grey-middle;
-    }
-    &-red svg {
-      stroke: @color-red;
-    }
-    &-white svg {
-      stroke: @color-white;
-    }
-    &-deep-dark svg {
-      stroke: @color-blue-deep-dark;
-    }
-  }
 }
