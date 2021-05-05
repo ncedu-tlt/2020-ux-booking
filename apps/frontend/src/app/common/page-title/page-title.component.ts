@@ -8,8 +8,5 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 })
 export class PageTitleComponent {
   @Input()
-  type = 'default';
-
-  @Input()
-  item: string;
+  title: string;
 }

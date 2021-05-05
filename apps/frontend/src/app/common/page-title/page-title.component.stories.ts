@@ -7,13 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 const meta: Meta = {
   title: 'Page-title',
   argTypes: {
-    type: {
-      control: {
-        type: 'text',
-        options: ''
-      }
-    },
-    item: {
+    title: {
       control: {
         type: 'text',
         options: ''
@@ -36,13 +30,12 @@ const template: Story<PageTitleComponent> = args => ({
     ...args
   },
   template: `
-    <b-page-title [type]="type" [item]="item" >
+    <b-page-title [title]="title" >
     </b-page-title>
   `
 });
 
 export const normal = template.bind({});
 normal.args = {
-  type: 'default',
-  item: 'Отели'
+  title: 'Отели'
 };
