@@ -1,5 +1,5 @@
-import { environment } from '../../../../environments/environment';
+import { appConfig } from '../../../config/app.config';
 
 export const jwtConstants = {
-  secret: environment.jwtSecret
+  secret: appConfig().jwtSecret
 };
