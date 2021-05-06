@@ -6,27 +6,31 @@
     <input class='selector__input'
            placeholder='{{"selector.input-hint" | i18next}}'
            [value]='selectedHint'
-           (change)='handleChange($event)'
+           (input)='handleChange($event)'
     />
-    <svg-icon class='selector__input-arrow'
-              src='assets/icons/arrow.svg'
-              [class._rotate]='isRotated'
-              (click)='showPopup()'></svg-icon>
+    <span
+      class='selector__input-arrow'
+      (click)='showPopup()'
+      [class._rotate]='isRotated'>
+      <svg-icon
+        class='icon'
+        src='assets/icons/arrow.svg'>
+      </svg-icon>
+    </span>
   </label>
-  <div *ngIf='popupItems'
+  <div *ngIf='isRotated'
        class='selector__list'>
-    <div *ngFor='let item of filteredData()'
+    <div *ngFor='let item of filteredSuggestions'
          class='selector__list-item'
          [class._checked]='isItemSelected(item)'
-         (click)='showTitle(item)'>
-      <span *ngIf='resetMode()'
+         (click)='isAddControlActive(item)'>
+      <span *ngIf='this.mode === "default"'
             class='selector__list-text'
             [class._checked]='isItemSelected(item)'
       >
-
         {{item}}
       </span>
-      <b-checkbox *ngIf='!resetMode()'
+      <b-checkbox *ngIf='!(this.mode === "default")'
                   [isChecked]='isItemSelected(item)'
                   label='{{item}}'
       ></b-checkbox>
@@ -36,7 +40,8 @@
           [class._invisible]='isNotFound'>
       {{"selector.not-found" | i18next}}
       </span>
-      <b-button *ngIf='(userType === "admin") && !isNotFound'
+      <b-button *ngIf='isAdmin && !isNotFound'
+                class='selector__notification-button'
                 type='secondary'
                 hasIcon='true'
                 size='small'

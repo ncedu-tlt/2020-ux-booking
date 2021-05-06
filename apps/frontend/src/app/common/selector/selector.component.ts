@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit
+} from '@angular/core';
 
 @Component({
   selector: 'b-selector',
@@ -6,7 +11,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   styleUrls: ['./selector.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SelectorComponent {
+export class SelectorComponent implements OnInit {
   @Input()
   itemList: string[];
   @Input()
@@ -14,76 +19,66 @@ export class SelectorComponent {
   @Input()
   mode: 'multi' | 'default' = 'default';
   @Input()
-  userType: 'admin' | 'default' = 'default';
+  isAdmin: boolean;
   value = '';
   isNotFound = true;
   filteredSuggestions: string[] = [];
   isRotated = false;
-  popupItems = false;
   selectedItems: string[] = [];
   selectedHint = '';
 
   showPopup(): void {
-    this.popupItems = !this.popupItems;
     this.isRotated = !this.isRotated;
   }
 
-  closePopup($event): void {
-    const isSelector = $event.target.classList.contains('selector');
+  closePopup(event: Event): void {
+    const isSelector = (event.target as HTMLInputElement).classList.contains(
+      'selector'
+    );
     if (isSelector) {
-      this.popupItems = false;
       this.isRotated = false;
     }
   }
 
-  filteredData(): string[] {
-    this.filteredSuggestions = this.itemList;
-    if (this.value.length < 3) {
-      return this.filteredSuggestions;
-    } else {
-      return this.filteredSuggestions.filter(data =>
+  handleChange(event: Event): void {
+    this.value = (event.target as HTMLInputElement).value;
+    if (this.value.length > 3) {
+      this.filteredSuggestions = this.itemList.filter(data =>
         data.toLowerCase().includes(this.value.toLowerCase())
       );
+    } else {
+      this.filteredSuggestions = this.itemList;
     }
+    this.isNotFound = !!this.filteredSuggestions.length;
   }
 
-  handleChange($event): void {
-    this.value = $event.target.value;
-    this.value.length === 0
-      ? (this.isNotFound = true)
-      : (this.isNotFound = false);
-  }
-
-  showTitle(item: string): void {
+  isAddControlActive(item: string): void {
     if (this.mode === 'multi') {
       if (this.selectedItems.indexOf(item) != -1) {
         this.selectedItems.splice(this.selectedItems.indexOf(item), 1);
-        this.selectedHint = this.getString(this.selectedItems);
+        this.selectedHint = this.selectedItems.toString();
       } else this.selectedItems.push(item);
-      this.selectedHint = this.getString(this.selectedItems);
+      this.selectedHint = this.selectedItems.toString();
     } else if (this.mode === 'default' && +this.selectedItems.length < 2) {
-      +this.selectedItems.length === 0
-        ? this.selectedItems.push(item)
-        : (this.selectedItems[0] = item);
-      this.popupItems = false;
+      if (!this.selectedItems.length) {
+        this.selectedItems.push(item);
+      } else this.selectedItems[0] = item;
       this.isRotated = false;
       this.selectedHint = item;
     }
   }
 
-  getString(array: string[]): string {
-    return array.toString();
-  }
-
-  resetMode(): boolean {
-    return this.mode === 'default';
-  }
-
   addItem(): void {
     this.filteredSuggestions.push(this.value);
+    this.itemList.push(this.value);
+    this.isNotFound = !this.isNotFound;
   }
 
   isItemSelected(item: string): boolean {
     return this.selectedItems.includes(item);
+  }
+
+  ngOnInit(): void {
+    this.filteredSuggestions = this.itemList;
   }
 }
