@@ -8,6 +8,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { appConfig } from '../../config/app.config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { MessagesModule } from '../messages/messages.module';
+import { HotelsModule } from '../hotels-list/hotels.module';
 
 @Module({
   imports: [
@@ -33,7 +34,8 @@ import { MessagesModule } from '../messages/messages.module';
         }
       })
     }),
-    MessagesModule
+    MessagesModule,
+    HotelsModule
   ],
   controllers: [AppController],
   providers: [AppService]
