@@ -62,7 +62,7 @@
 
   &__list {
     position: absolute;
-    overflow-y: scroll;
+    overflow: auto;
     z-index: 1;
     background-color: @color-white;
     max-height: 232px;
@@ -95,10 +95,8 @@
     }
 
     &-text {
-
       color: @color-blue-deep-dark;
       margin: 0;
-
       &._checked {
         color: @color-white;
       }

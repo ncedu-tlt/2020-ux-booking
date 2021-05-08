@@ -2,7 +2,7 @@
      (click)='closePopup($event)'>
   <span class='selector__title'>{{titleSelector}}</span>
   <label class='selector__input-container'
-         (click)='showPopup()'>
+         (click)='togglePopupVisibility()'>
     <input class='selector__input'
            placeholder='{{"selector.input-hint" | i18next}}'
            [value]='selectedHint'
@@ -10,20 +10,20 @@
     />
     <span
       class='selector__input-arrow'
-      (click)='showPopup()'
-      [class._rotate]='isRotated'>
+      (click)='togglePopupVisibility()'
+      [class._rotate]='isOpened'>
       <svg-icon
         class='icon'
         src='assets/icons/arrow.svg'>
       </svg-icon>
     </span>
   </label>
-  <div *ngIf='isRotated'
+  <div *ngIf='isOpened'
        class='selector__list'>
     <div *ngFor='let item of filteredSuggestions'
          class='selector__list-item'
          [class._checked]='isItemSelected(item)'
-         (click)='isAddControlActive(item)'>
+         (click)='setSelectedItem(item)'>
       <span *ngIf='this.mode === "default"'
             class='selector__list-text'
             [class._checked]='isItemSelected(item)'
@@ -40,7 +40,7 @@
           [class._invisible]='isNotFound'>
       {{"selector.not-found" | i18next}}
       </span>
-      <b-button *ngIf='isAdmin && !isNotFound'
+      <b-button *ngIf='isAddControlActive && !isNotFound'
                 class='selector__notification-button'
                 type='secondary'
                 hasIcon='true'

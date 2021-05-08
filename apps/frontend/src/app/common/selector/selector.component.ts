@@ -19,16 +19,16 @@ export class SelectorComponent implements OnInit {
   @Input()
   mode: 'multi' | 'default' = 'default';
   @Input()
-  isAdmin: boolean;
+  isAddControlActive: boolean;
   value = '';
   isNotFound = true;
   filteredSuggestions: string[] = [];
-  isRotated = false;
+  isOpened = false;
   selectedItems: string[] = [];
   selectedHint = '';
 
-  showPopup(): void {
-    this.isRotated = !this.isRotated;
+  togglePopupVisibility(): void {
+    this.isOpened = !this.isOpened;
   }
 
   closePopup(event: Event): void {
@@ -36,7 +36,7 @@ export class SelectorComponent implements OnInit {
       'selector'
     );
     if (isSelector) {
-      this.isRotated = false;
+      this.isOpened = false;
     }
   }
 
@@ -52,7 +52,7 @@ export class SelectorComponent implements OnInit {
     this.isNotFound = !!this.filteredSuggestions.length;
   }
 
-  isAddControlActive(item: string): void {
+  setSelectedItem(item: string): void {
     if (this.mode === 'multi') {
       if (this.selectedItems.indexOf(item) != -1) {
         this.selectedItems.splice(this.selectedItems.indexOf(item), 1);
@@ -63,7 +63,7 @@ export class SelectorComponent implements OnInit {
       if (!this.selectedItems.length) {
         this.selectedItems.push(item);
       } else this.selectedItems[0] = item;
-      this.isRotated = false;
+      this.isOpened = false;
       this.selectedHint = item;
     }
   }
