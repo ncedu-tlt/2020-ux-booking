@@ -5,12 +5,13 @@
     position: relative;
     display: flex;
     overflow: hidden;
+    align-items: center;
     justify-content: center;
     min-height: 112px;
     background: @color-blue;
 
     &__headline{
-        margin: 24px auto 32px auto;
+        margin: 24px 40px 32px 40px;
         text-align: center;
         z-index: 1;
         padding: 0;
@@ -21,6 +22,7 @@
         color: @color-white;
 
         @media @mobile {
+            margin: 8px;
             font-size: 36px;
             line-height: 48px;
         }
