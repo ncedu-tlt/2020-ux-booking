@@ -1,8 +1,10 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
+  HostListener,
   Input,
-  OnInit
+  ViewChild
 } from '@angular/core';
 
 @Component({
@@ -11,13 +13,13 @@ import {
   styleUrls: ['./selector.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SelectorComponent implements OnInit {
+export class SelectorComponent {
   @Input()
   itemList: string[];
   @Input()
   titleSelector: string;
   @Input()
-  mode: 'multi' | 'default' = 'default';
+  isMultiMode: boolean;
   @Input()
   isAddControlActive: boolean;
   value = '';
@@ -26,23 +28,47 @@ export class SelectorComponent implements OnInit {
   isOpened = false;
   selectedItems: string[] = [];
   selectedHint = '';
+  @ViewChild('selector') selectorElement!: ElementRef;
+  @HostListener('window:click', ['$event'])
+  onClick = (event): void => {
+    if (
+      ['svg', 'path', 'SPAN', 'SVG-ICON'].includes(
+        (event.target as HTMLElement).nodeName
+      )
+    ) {
+      return;
+    }
+    const elementSelector = this.searchSelectorElement(event.target);
+    if (elementSelector !== this.selectorElement.nativeElement) {
+      this.isOpened = false;
+    } else {
+      this.isOpened = !this.isOpened;
+    }
+  };
 
-  togglePopupVisibility(): void {
-    this.isOpened = !this.isOpened;
+  searchSelectorElement(element: HTMLElement): HTMLElement {
+    if (element.classList.contains('selector')) {
+      return element;
+    }
+    if (element.parentElement) {
+      return this.searchSelectorElement(element.parentElement);
+    } else return null;
   }
 
-  closePopup(event: Event): void {
-    const isSelector = (event.target as HTMLInputElement).classList.contains(
-      'selector'
-    );
-    if (isSelector) {
-      this.isOpened = false;
+  filteredData(): string[] {
+    this.filteredSuggestions = this.itemList;
+    if (this.value.length < 3) {
+      return this.filteredSuggestions;
+    } else {
+      return this.filteredSuggestions.filter(data =>
+        data.toLowerCase().includes(this.value.toLowerCase())
+      );
     }
   }
 
   handleChange(event: Event): void {
     this.value = (event.target as HTMLInputElement).value;
-    if (this.value.length > 3) {
+    if (this.value.length > 2) {
       this.filteredSuggestions = this.itemList.filter(data =>
         data.toLowerCase().includes(this.value.toLowerCase())
       );
@@ -53,16 +79,16 @@ export class SelectorComponent implements OnInit {
   }
 
   setSelectedItem(item: string): void {
-    if (this.mode === 'multi') {
+    if (this.isMultiMode) {
       if (this.selectedItems.indexOf(item) != -1) {
         this.selectedItems.splice(this.selectedItems.indexOf(item), 1);
         this.selectedHint = this.selectedItems.toString();
       } else this.selectedItems.push(item);
       this.selectedHint = this.selectedItems.toString();
-    } else if (this.mode === 'default' && +this.selectedItems.length < 2) {
-      if (!this.selectedItems.length) {
-        this.selectedItems.push(item);
-      } else this.selectedItems[0] = item;
+    } else if (!this.isMultiMode && +this.selectedItems.length < 2) {
+      +this.selectedItems.length === 0
+        ? this.selectedItems.push(item)
+        : (this.selectedItems[0] = item);
       this.isOpened = false;
       this.selectedHint = item;
     }
@@ -70,15 +96,10 @@ export class SelectorComponent implements OnInit {
 
   addItem(): void {
     this.filteredSuggestions.push(this.value);
-    this.itemList.push(this.value);
-    this.isNotFound = !this.isNotFound;
+    this.isNotFound = true;
   }
 
   isItemSelected(item: string): boolean {
     return this.selectedItems.includes(item);
-  }
-
-  ngOnInit(): void {
-    this.filteredSuggestions = this.itemList;
   }
 }
