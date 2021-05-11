@@ -1,6 +1,7 @@
 import {
   Column,
   Entity,
+  JoinTable,
   ManyToMany,
   ManyToOne,
   OneToMany,
@@ -42,8 +43,9 @@ export class User {
   @Column({ nullable: true })
   emailNotification: boolean;
 
-  @ManyToOne(type => Role, role => role.users)
-  role: Role;
+  @ManyToMany(type => Role, role => role.users, { cascade: true })
+  @JoinTable()
+  roles: Role[];
 
   @ManyToOne(type => Address, address => address.users, {
     nullable: true
@@ -72,5 +74,6 @@ export class User {
     nullable: true,
     onDelete: 'SET NULL'
   })
+  @JoinTable()
   bookmarks: Promise<Hotel[]>;
 }

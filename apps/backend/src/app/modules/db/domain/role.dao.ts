@@ -1,4 +1,4 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { User } from './user.dao';
 
 @Entity('roles')
@@ -6,11 +6,11 @@ export class Role {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({ unique: true })
   name: string;
 
-  @OneToMany(type => User, users => users.role, {
-    nullable: false,
+  @ManyToMany(type => User, users => users.roles, {
+    nullable: true,
     onDelete: 'SET NULL'
   })
   users: Promise<User[]>;
