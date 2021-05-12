@@ -38,6 +38,8 @@ export class SelectorComponent {
 
   selectedHint = '';
 
+  private readonly MINIMUM_SEARCH_CHARS: number = 2;
+
   private readonly IGNORED_NODES: string[] = [
     'svg',
     'path',
@@ -66,12 +68,14 @@ export class SelectorComponent {
     }
     if (element.parentElement) {
       return this.searchSelectorElement(element.parentElement);
-    } else return null;
+    } else {
+      return null;
+    }
   }
 
-  filteredData(): string[] {
+  filterItems(): string[] {
     this.filteredSuggestions = this.itemList;
-    if (this.value.length < 3) {
+    if (this.value.length < this.MINIMUM_SEARCH_CHARS) {
       return this.filteredSuggestions;
     } else {
       return this.filteredSuggestions.filter(data =>
@@ -82,7 +86,7 @@ export class SelectorComponent {
 
   handleChange(event: Event): void {
     this.value = (event.target as HTMLInputElement).value;
-    if (this.value.length > 2) {
+    if (this.value.length > this.MINIMUM_SEARCH_CHARS) {
       this.filteredSuggestions = this.itemList.filter(data =>
         data.toLowerCase().includes(this.value.toLowerCase())
       );
@@ -100,9 +104,11 @@ export class SelectorComponent {
       } else this.selectedItems.push(item);
       this.selectedHint = this.selectedItems.toString();
     } else if (!this.isMultiMode && +this.selectedItems.length < 2) {
-      +this.selectedItems.length === 0
-        ? this.selectedItems.push(item)
-        : (this.selectedItems[0] = item);
+      if (this.selectedItems.length === 0) {
+        this.selectedItems.push(item);
+      } else {
+        this.selectedItems[0] = item;
+      }
       this.isOpened = false;
       this.selectedHint = item;
     }

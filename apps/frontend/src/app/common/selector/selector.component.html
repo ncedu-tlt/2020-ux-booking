@@ -17,7 +17,7 @@
   </label>
   <div *ngIf='isOpened'
        class='selector__list'>
-    <div *ngFor='let item of filteredData()'
+    <div *ngFor='let item of filterItems()'
          class='selector__list-item'
          [class._checked]='isItemSelected(item)'
          (click)='setSelectedItem(item)'>
