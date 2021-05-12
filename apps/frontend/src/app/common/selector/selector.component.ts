@@ -103,7 +103,10 @@ export class SelectorComponent {
         this.selectedHint = this.selectedItems.toString();
       } else this.selectedItems.push(item);
       this.selectedHint = this.selectedItems.toString();
-    } else if (!this.isMultiMode && +this.selectedItems.length < 2) {
+    } else if (
+      !this.isMultiMode &&
+      this.selectedItems.length < this.MINIMUM_SEARCH_CHARS
+    ) {
       if (this.selectedItems.length === 0) {
         this.selectedItems.push(item);
       } else {
