@@ -16,26 +16,40 @@ import {
 export class SelectorComponent {
   @Input()
   itemList: string[];
+
   @Input()
   titleSelector: string;
+
   @Input()
   isMultiMode: boolean;
+
   @Input()
   isAddControlActive: boolean;
+
   value = '';
+
   isNotFound = true;
+
   filteredSuggestions: string[] = [];
+
   isOpened = false;
+
   selectedItems: string[] = [];
+
   selectedHint = '';
+
+  private readonly IGNORED_NODES: string[] = [
+    'svg',
+    'path',
+    'SPAN',
+    'SVG-ICON'
+  ];
+
   @ViewChild('selector') selectorElement!: ElementRef;
+
   @HostListener('window:click', ['$event'])
   onClick = (event): void => {
-    if (
-      ['svg', 'path', 'SPAN', 'SVG-ICON'].includes(
-        (event.target as HTMLElement).nodeName
-      )
-    ) {
+    if (this.IGNORED_NODES.includes((event.target as HTMLElement).nodeName)) {
       return;
     }
     const elementSelector = this.searchSelectorElement(event.target);

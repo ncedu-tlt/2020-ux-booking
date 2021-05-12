@@ -38,8 +38,10 @@
 
     &-arrow {
       content: "";
-
       &-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         right: 15px;
         position: absolute;
         width: 38px;
@@ -83,12 +85,17 @@
       cursor: pointer;
 
       &._checked {
-        border-radius: 4px;
+        color: @color-white;
         border-top-color: @color-blue-dark;
         background: @color-blue-dark;
       }
 
+        &:hover {
+          color: @color-blue-deep-dark;
+        }
+
       &:hover {
+        color: @color-blue-deep-dark;
         background-color: @color-blue-light;
       }
 
@@ -98,12 +105,7 @@
     }
 
     &-text {
-      color: @color-blue-deep-dark;
       margin: 0;
-
-      &._checked {
-        color: @color-white;
-      }
     }
 
     &-alert {

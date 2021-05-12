@@ -10,7 +10,7 @@
       class='selector__input-arrow-wrapper'
       [class._rotate]='isOpened'>
       <svg-icon
-        class='icon selector__input-arrow'
+        class='icon'
         src='assets/icons/arrow.svg'
       ></svg-icon>
     </span>
@@ -28,6 +28,8 @@
         {{item}}
       </span>
       <b-checkbox *ngIf='isMultiMode'
+                  class='selector__list-text'
+                  [class._checked]='isItemSelected(item)'
                   [isChecked]='isItemSelected(item)'
                   label='{{item}}'
       ></b-checkbox>
