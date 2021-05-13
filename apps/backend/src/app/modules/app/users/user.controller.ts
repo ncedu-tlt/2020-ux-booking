@@ -22,7 +22,7 @@ export class UserController {
     @Body() registerUserDto: RegisterUserDto
   ) {
     if (!(await this.isValidEmail(registerUserDto.email))) {
-      res.status(HttpStatus.UNPROCESSABLE_ENTITY);
+      res.status(422);
       return res.send('Such user is already registered');
     }
 
@@ -36,17 +36,18 @@ export class UserController {
     const answer = await this.usersRepository
       .save(user)
       .then(() => {
-        res.status(HttpStatus.CREATED);
+        res.status(201);
         return;
       })
       .catch(error => {
-        res.status(HttpStatus.UNPROCESSABLE_ENTITY);
+        res.status(422);
         return error;
       });
     res.send(answer);
   }
 
-  async isValidEmail(email): Promise<boolean> {
-    return (await this.usersRepository.count({ email: email })) == 0;
+  private async isValidEmail(email): Promise<boolean> {
+    const countUsers = await this.usersRepository.count({ email: email });
+    return countUsers == 0;
   }
 }
