@@ -1,0 +1,11 @@
+<div class='checkbox'>
+  <button class='checkbox__rectangle'
+          [class._disabled]='isDisabled'>
+    <svg-icon class='checkbox__rectangle-checkmark'
+              [class._checked]='isChecked'
+              [class._disabled]='isDisabled'
+              src='assets/icons/checkmark.svg'>
+    </svg-icon>
+  </button>
+  <span class='checkbox__text' [class._disabled]='isDisabled'>{{label}}</span>
+</div>

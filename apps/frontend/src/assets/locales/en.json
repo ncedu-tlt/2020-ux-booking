@@ -16,6 +16,9 @@
       "enter": "Login"
     }
   },
+  "banner": {
+    "moreDetails": "More details"
+  },
   "hotelCard": {
     "reviews": "reviews",
     "freeCancellation": "Free cancellation",
@@ -26,6 +29,11 @@
     "errorMessage": {
       "fieldIsEmpty": "The field is incomplete"
     }
+  },
+  "selector": {
+    "not-found": "Value not found",
+    "button": "Add value",
+    "input-hint": "Enter or select from the list"
   },
   "authorization": {
     "title": "Authorization",

@@ -10,10 +10,14 @@ import { HeaderComponent } from './header/header.component';
 import { I18NextModule } from 'angular-i18next';
 import { StarSelectorComponent } from './star-selector/star-selector.component';
 import { ButtonIconComponent } from './icon/button-icon.component';
+import { PageTitleComponent } from './page-title/page-title.component';
 import { InputFieldComponent } from './input-field/input-field.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BannerComponent } from './banner/banner.component';
 import { LinkComponent } from './link/link.component';
 import { HotelCardComponent } from './hotel-card/hotel-card.component';
+import { CheckboxComponent } from './checkbox/checkbox.component';
+import { SelectorComponent } from './selector/selector.component';
 
 @NgModule({
   imports: [
@@ -30,10 +34,14 @@ import { HotelCardComponent } from './hotel-card/hotel-card.component';
     DropdownComponent,
     HeaderComponent,
     StarSelectorComponent,
+    PageTitleComponent,
+    BannerComponent,
     HotelCardComponent,
     ButtonIconComponent,
     LinkComponent,
-    InputFieldComponent
+    InputFieldComponent,
+    CheckboxComponent,
+    SelectorComponent
   ],
   exports: [
     ButtonComponent,
@@ -44,9 +52,13 @@ import { HotelCardComponent } from './hotel-card/hotel-card.component';
     HeaderComponent,
     StarSelectorComponent,
     ButtonIconComponent,
+    PageTitleComponent,
+    BannerComponent,
     LinkComponent,
     HotelCardComponent,
-    InputFieldComponent
+    InputFieldComponent,
+    CheckboxComponent,
+    SelectorComponent
   ]
 })
 export class CommonModule {}
