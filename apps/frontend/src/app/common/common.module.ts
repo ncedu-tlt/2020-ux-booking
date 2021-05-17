@@ -10,14 +10,17 @@ import { HeaderComponent } from './header/header.component';
 import { I18NextModule } from 'angular-i18next';
 import { StarSelectorComponent } from './star-selector/star-selector.component';
 import { ButtonIconComponent } from './icon/button-icon.component';
-import { PageTitleComponent } from './page-title/page-title.component';
 import { InputFieldComponent } from './input-field/input-field.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BannerComponent } from './banner/banner.component';
 import { LinkComponent } from './link/link.component';
 import { HotelCardComponent } from './hotel-card/hotel-card.component';
+import { AuthorizationComponent } from './authorization/authorization.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 import { SelectorComponent } from './selector/selector.component';
+import { PageTitleComponent } from './page-title/page-title.component';
+import { AppRoutingModule } from '../app-routing.module';
+import { RegistrationComponent } from './registration/registration.component';
 
 @NgModule({
   imports: [
@@ -40,8 +43,11 @@ import { SelectorComponent } from './selector/selector.component';
     ButtonIconComponent,
     LinkComponent,
     InputFieldComponent,
+    InputFieldComponent,
     CheckboxComponent,
-    SelectorComponent
+    SelectorComponent,
+    AuthorizationComponent,
+    RegistrationComponent
   ],
   exports: [
     ButtonComponent,
@@ -58,7 +64,11 @@ import { SelectorComponent } from './selector/selector.component';
     HotelCardComponent,
     InputFieldComponent,
     CheckboxComponent,
-    SelectorComponent
+    SelectorComponent,
+    InputFieldComponent,
+    AppRoutingModule,
+    AuthorizationComponent,
+    RegistrationComponent
   ]
 })
 export class CommonModule {}

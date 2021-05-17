@@ -6,4 +6,20 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./authorization.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AuthorizationComponent {}
+export class AuthorizationComponent {
+  email: string;
+  password: string;
+
+  getEmail(input: string) {
+    this.email = input;
+  }
+
+  getPassword(input: string) {
+    this.password = input;
+  }
+
+  setAuthorizationData() {
+    console.log(this.email);
+    console.log(this.password);
+  }
+}

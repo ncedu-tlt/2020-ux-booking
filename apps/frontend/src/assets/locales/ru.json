@@ -48,5 +48,21 @@
     "forgotPasswordLink": "Восстановить пароль",
     "registration": "Впервые тут?",
     "registrationLink": "Регистрация"
+  },
+  "registration": {
+    "title": "Регистрация",
+    "input": {
+      "name": "Имя",
+      "namePlaceholder": "Введите имя",
+      "email": "Почта",
+      "emailPlaceholder": "Введите почту",
+      "password": "Пароль",
+      "passwordPlaceholder": "Введите пароль",
+      "repeatPassword": "Повторите свой пароль"
+
+    },
+    "button": "Войти",
+    "registration": "Уже есть аккаунт?",
+    "registrationLink": "Авторизация"
   }
 }

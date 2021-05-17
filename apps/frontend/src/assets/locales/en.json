@@ -43,10 +43,26 @@
       "password": "Password",
       "passwordPlaceholder": "Enter password"
     },
-    "button": "Log in",
+    "button": "Enter",
     "forgotPassword": "Forgot your password?",
     "forgotPasswordLink": "Recover password",
     "registration": "First time here?",
     "registrationLink": "Registration"
+  },
+  "registration": {
+    "title": "Registration",
+    "input": {
+      "name": "Name",
+      "namePlaceholder": "Enter name",
+      "email": "Email",
+      "emailPlaceholder": "Enter mail",
+      "password": "Password",
+      "passwordPlaceholder": "Enter password",
+      "repeatPassword": "Repeat your password"
+
+    },
+    "button": "Enter",
+    "authorization": "Already have an account?",
+    "authorizationLink": "authorization"
   }
 }
