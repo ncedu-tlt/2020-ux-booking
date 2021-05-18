@@ -22,8 +22,11 @@ export class UserController {
     @Body() registerUserDto: RegisterUserDto
   ) {
     if (!(await this.isValidEmail(registerUserDto.email))) {
-      res.status(422);
-      return res.send('Such user is already registered');
+      res.status(HttpStatus.CONFLICT);
+      return res.json({
+        code: 'already_exists',
+        message: 'Such user is already registered'
+      });
     }
 
     const roles = [await this.rolesRepository.findOne({ name: 'user' })];
@@ -36,11 +39,11 @@ export class UserController {
     const answer = await this.usersRepository
       .save(user)
       .then(() => {
-        res.status(201);
+        res.status(HttpStatus.CREATED);
         return;
       })
       .catch(error => {
-        res.status(422);
+        res.status(HttpStatus.UNPROCESSABLE_ENTITY);
         return error;
       });
     res.send(answer);
