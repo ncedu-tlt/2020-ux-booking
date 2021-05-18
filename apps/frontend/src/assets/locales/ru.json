@@ -26,5 +26,8 @@
     "errorMessage": {
       "fieldIsEmpty": "Поле не заполнено"
     }
+  },
+  "file-selector": {
+    "fileNotSelected": "Файл не выбран"
   }
 }

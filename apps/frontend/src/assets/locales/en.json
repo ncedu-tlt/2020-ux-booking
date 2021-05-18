@@ -26,5 +26,8 @@
     "errorMessage": {
       "fieldIsEmpty": "The field is incomplete"
     }
+  },
+  "file-selector": {
+    "fileNotSelected": "File not selected"
   }
 }

@@ -10,7 +10,7 @@ import { HeaderComponent } from './header/header.component';
 import { I18NextModule } from 'angular-i18next';
 import { StarSelectorComponent } from './star-selector/star-selector.component';
 import { ButtonIconComponent } from './icon/button-icon.component';
-import { InputFieldComponent } from './input-field/input-field.component';
+import { FileSelectorComponent } from './file-selector/file-selector.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LinkComponent } from './link/link.component';
 import { HotelCardComponent } from './hotel-card/hotel-card.component';
@@ -33,7 +33,7 @@ import { HotelCardComponent } from './hotel-card/hotel-card.component';
     HotelCardComponent,
     ButtonIconComponent,
     LinkComponent,
-    InputFieldComponent
+    FileSelectorComponent
   ],
   exports: [
     ButtonComponent,
@@ -46,7 +46,7 @@ import { HotelCardComponent } from './hotel-card/hotel-card.component';
     ButtonIconComponent,
     LinkComponent,
     HotelCardComponent,
-    InputFieldComponent
+    FileSelectorComponent
   ]
 })
 export class CommonModule {}
