@@ -28,14 +28,17 @@ export class Photo {
   })
   services: Promise<Service[]>;
 
+  @OneToMany(type => Hotel, hotel => hotel.mainPhoto)
+  hotelMainPhoto: Hotel;
+
   @ManyToOne(type => Hotel, hotels => hotels.photos, {
-    nullable: false,
+    nullable: true /*false*/,
     onDelete: 'SET NULL'
   })
-  hotel: Promise<Hotel>;
+  hotel: /*Hotel*/ Promise<Hotel>;
 
   @ManyToOne(type => Room, rooms => rooms.photos, {
-    nullable: false,
+    nullable: true /*false*/,
     onDelete: 'SET NULL'
   })
   room: Promise<Room>;
