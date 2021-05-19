@@ -469,12 +469,12 @@ export class HotelsController {
         text: com.text,
         hotel: Promise.resolve(hotel)
       });
-
-      return {
-        id: id,
-        send: 'комментарии дополненно'
-      };
     }
+
+    return {
+      id: id,
+      send: 'комментарии дополненно'
+    };
   }
 
   @Patch(':id/7')
@@ -499,12 +499,12 @@ export class HotelsController {
         rating: rev.rating,
         hotel: Promise.resolve(hotel)
       });
-
-      return {
-        id: id,
-        send: 'отзывы дополненно'
-      };
     }
+
+    return {
+      id: id,
+      send: 'отзывы дополненно'
+    };
   }
 
   @Delete(':id')
