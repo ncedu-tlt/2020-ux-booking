@@ -1,8 +1,7 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Hotel } from './hotel.dao';
-import { User } from './user.dao';
 
-@Entity('currencies')
+@Entity('currency')
 export class Currency {
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -10,7 +9,7 @@ export class Currency {
   @Column()
   name: string;
 
-  @OneToMany(type => Hotel, hotels => hotels.currencies, {
+  @OneToMany(type => Hotel, hotels => hotels.serviceType, {
     nullable: false
   })
   hotels: Promise<Hotel[]>;

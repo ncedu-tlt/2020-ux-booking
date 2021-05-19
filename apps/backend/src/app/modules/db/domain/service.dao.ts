@@ -8,25 +8,29 @@ import {
 import { Photo } from './photo.dao';
 import { Hotel } from './hotel.dao';
 import { User } from './user.dao';
+import { Categories } from './categories.dao';
 
 @Entity('services')
 export class Service {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ type: 'decimal' })
+  @Column({
+    type: 'decimal',
+    nullable: true
+  })
   price: number;
 
   @Column()
   name: string;
 
-  // @ManyToOne(type => Categories, category => category.services)
-  // category: Categories;
-
-  @ManyToOne(type => Photo, icon => icon.services, {
-    nullable: false
+  @Column({
+    nullable: true /*false*/
   })
-  icon: Photo;
+  icon: string; /*String*/ /*++++++++++++++++++++++++++++++++++*/
+
+  @ManyToOne(type => Categories, category => category.services)
+  category: Categories;
 
   @ManyToMany(type => Hotel, hotels => hotels.services, {
     nullable: false

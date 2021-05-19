@@ -29,67 +29,49 @@ import { AmenitiesRoom } from '../db/domain/amenities_room.dao';
 import { Bed } from '../db/domain/bed.dao';
 import { Review } from '../db/domain/review.dao';
 import { Comments } from '../db/domain/comment.dao';
+import { User } from '../db/domain/user.dao';
 
 @Controller('/hotels')
 export class HotelsController {
   constructor(
     @InjectRepository(Hotel)
     private hotelsRepository: Repository<Hotel>,
-
     @InjectRepository(Country)
     private countryRepository: Repository<Country>,
-
     @InjectRepository(City)
     private cityRepository: Repository<City>,
-
     @InjectRepository(Address)
     private addressRepository: Repository<Address>,
-
     @InjectRepository(ServiceType)
     private serviceTypeRepository: Repository<ServiceType>,
-
     @InjectRepository(Service)
     private serviceRepository: Repository<Service>,
-
     @InjectRepository(Photo)
     private photoRepository: Repository<Photo>,
-
     @InjectRepository(Categories)
     private categoryRepository: Repository<Categories>,
-
     @InjectRepository(Currency)
     private currencyRepository: Repository<Currency>,
-
     @InjectRepository(Distance)
     private distanceRepository: Repository<Distance>,
-
     @InjectRepository(NearbyPlaces)
     private nearbyPlacesRepository: Repository<NearbyPlaces>,
-
     @InjectRepository(Leisure)
     private leisureRepository: Repository<Leisure>,
-
     @InjectRepository(BoardBasis)
     private boardBasisRepository: Repository<BoardBasis>,
-
     @InjectRepository(HotelBoardBasis)
     private hotelBoardBasisRepository: Repository<HotelBoardBasis>,
-
     @InjectRepository(Room)
     private roomRepository: Repository<Room>,
-
     @InjectRepository(Amenities)
     private amenitiesRepository: Repository<Amenities>,
-
     @InjectRepository(AmenitiesRoom)
     private amenitiesRoomRepository: Repository<AmenitiesRoom>,
-
     @InjectRepository(Bed)
     private BedsRepository: Repository<Bed>,
-
     @InjectRepository(Review)
     private reviewRepository: Repository<Review>,
-
     @InjectRepository(Comments)
     private commentsRepository: Repository<Comments>
   ) {}
@@ -104,13 +86,16 @@ export class HotelsController {
     return await this.hotelsRepository.find();
   }
 
-  /*@Get(':id/room/:roomId')
-  async getHo(@Param() params): Promise<any> {
+  @Post()
+  async addHotels(body: { name: string }): Promise<any> {
+    await this.hotelsRepository.save({
+      name: body.name
+    });
+
     return {
-      send: params.id,
-      sends: params.roomId
+      send: 'done'
     };
-  }*/
+  }
 
   @Get(':id/room/:roomId')
   async getRoom(@Param() params): Promise<any> {
@@ -464,8 +449,62 @@ export class HotelsController {
 
     return {
       id: id,
-      send: 'сервисы дополненно'
+      send: 'фото дополненно'
     };
+  }
+
+  @Patch(':id/6')
+  async changeHotelSixStep(
+    @Param('id') id: string,
+    @Body()
+    body: {
+      comments: {
+        text: string;
+      }[];
+    }
+  ): Promise<any> {
+    const hotel = await this.hotelsRepository.findOne({ id });
+    for (const com of body.comments) {
+      await this.commentsRepository.save({
+        text: com.text,
+        hotel: Promise.resolve(hotel)
+      });
+
+      return {
+        id: id,
+        send: 'комментарии дополненно'
+      };
+    }
+  }
+
+  @Patch(':id/7')
+  async changeHotelSevenStep(
+    @Param('id') id: string,
+    @Body()
+    body: {
+      review: {
+        text: string;
+        pros: string;
+        cons: string;
+        rating: number;
+      }[];
+    }
+  ): Promise<any> {
+    const hotel = await this.hotelsRepository.findOne({ id });
+    for (const rev of body.review) {
+      await this.commentsRepository.save({
+        text: rev.text,
+        pros: rev.pros,
+        cons: rev.cons,
+        rating: rev.rating,
+        hotel: Promise.resolve(hotel)
+      });
+
+      return {
+        id: id,
+        send: 'отзывы дополненно'
+      };
+    }
   }
 
   @Delete(':id')

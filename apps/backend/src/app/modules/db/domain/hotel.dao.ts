@@ -9,9 +9,8 @@ import {
 } from 'typeorm';
 import { Address } from './addresses.dao';
 import { User } from './user.dao';
-import { Currency } from './currency.dao';
 import { Review } from './review.dao';
-import { Comment } from './comment.dao';
+import { Comments } from './comment.dao';
 import { ServiceType } from './service_type.dao';
 import { Photo } from './photo.dao';
 import { Service } from './service.dao';
@@ -19,6 +18,10 @@ import { PaymentMethod } from './payment_method.dao';
 import { HotelBoardBasis } from './hotel_board_basis.dao';
 import { Room } from './room.dao';
 import { BookingCondition } from './booking_conditions.dao';
+import { Distance } from './distance';
+import { Leisure } from './leisure.dao';
+import { NearbyPlaces } from './nearbyPlaces.dao';
+import { Currency } from './currency.dao';
 
 @Entity('hotels')
 export class Hotel {
@@ -28,19 +31,19 @@ export class Hotel {
   @Column()
   name: string;
 
-  @Column()
+  @Column({ nullable: true })
   description: string;
 
-  @Column()
+  @Column({ nullable: true })
   bookingPolicy: string;
 
-  @Column()
+  @Column({ nullable: true })
   stars: number;
 
-  @Column({ type: 'decimal' })
+  @Column({ type: 'decimal', nullable: true })
   minPrice: number;
 
-  @Column()
+  @Column({ nullable: true })
   freeCancellation: boolean;
 
   @ManyToMany(type => User, user => user.bookmarks, {
@@ -54,11 +57,11 @@ export class Hotel {
   })
   reviews: Promise<Review[]>;
 
-  @OneToMany(type => Comment, comments => comments.hotel, {
+  @OneToMany(type => Comments, comments => comments.hotel, {
     nullable: false,
     onDelete: 'SET NULL'
   })
-  comments: Promise<Comment[]>;
+  comments: Promise<Comments[]>;
 
   @ManyToMany(type => Service, services => services.hotels, {
     nullable: false,
@@ -73,13 +76,31 @@ export class Hotel {
   @ManyToOne(type => ServiceType, serviceType => serviceType.hotels)
   serviceType: ServiceType;
 
-  @ManyToOne(type => Currency, currencies => currencies.hotels)
-  currencies: Currency;
+  @ManyToOne(type => Currency, car => car.hotels)
+  currency: Currency;
+
+  @ManyToOne(type => Photo, photo => photo.hotelMainPhoto)
+  mainPhoto: Photo;
 
   @OneToMany(type => Photo, photos => photos.hotel, {
     nullable: false
   })
   photos: Promise<Photo[]>;
+
+  @OneToMany(type => Distance, distance => distance.hotel, {
+    nullable: false
+  })
+  distance: Promise<Distance>;
+
+  @OneToMany(type => Leisure, leisure => leisure.hotel, {
+    nullable: false
+  })
+  leisure: Promise<Leisure>;
+
+  @OneToMany(type => NearbyPlaces, nearby => nearby.hotel, {
+    nullable: false
+  })
+  nearbyPlaces: Promise<NearbyPlaces>;
 
   @ManyToMany(type => PaymentMethod, paymentMethod => paymentMethod.hotels)
   paymentMethods: PaymentMethod[];
