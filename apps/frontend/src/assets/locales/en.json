@@ -34,5 +34,8 @@
     "not-found": "Value not found",
     "button": "Add value",
     "input-hint": "Enter or select from the list"
+  },
+  "file-selector": {
+    "fileNotSelected": "File not selected"
   }
 }
