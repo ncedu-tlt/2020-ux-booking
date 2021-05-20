@@ -13,19 +13,17 @@
 }
 .input__file-button-text {
   color: @color-grey-middle;
-  font-size: 20px;
+  font-size: 14px;
   text-overflow: ellipsis;
 }
+  & .interaction {
+    color: @color-blue-deep-dark;
+  }
+
 .input-field {
   visibility: hidden;
   position: absolute;
 }
-  &:hover {
-    color: @color-blue-deep-dark;
-    & .icon svg {
-      stroke: @color-blue-deep-dark;
-    }
-  }
   & .icon {
     margin-right: 4px;
     & svg {

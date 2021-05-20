@@ -1,6 +1,9 @@
 <input type='file' class='input-field'  [ngClass]="['input']" [id]="id"  (change)='changeValue($event)'>
-<label [for]="id" class="input__file-button">
-    <span class='input__file-icon-wrapper'><svg-icon class="icon" src="assets/icons/save.svg"></svg-icon></span>
-  <span class='input__file-button-text' *ngIf="uploadPhoto; else elseBlock" >{{uploadPhoto}}</span>
-  <ng-template #elseBlock>{{"file-selector.fileNotSelected" | i18next}}</ng-template>
- </label>
+<label [for]="id"  class="input__file-button "  >
+  <span class='input__file-icon-wrapper' ><svg-icon class="icon" [ngClass]="{'_stroke-blue-deep-dark': filePath }" src="assets/icons/save.svg"></svg-icon></span>
+  <div class='input__file-button-text'  [ngClass]="{'interaction': filePath }">
+  <span   *ngIf="filePath; else elseBlock" >{{filePath}}</span>
+  <ng-template #elseBlock> <span>{{"file-selector.fileNotSelected" | i18next}}</span></ng-template>
+  </div>
+</label>
+.

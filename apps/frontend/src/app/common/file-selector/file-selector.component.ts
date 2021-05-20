@@ -20,10 +20,10 @@ export class FileSelectorComponent {
   id: string;
   @Output()
   filesEvent: EventEmitter<FileList> = new EventEmitter<FileList>();
-  uploadPhoto = 'Файл не выбран';
+  filePath: string;
   changeValue(event: Event): void {
     const valueEvent = (event.target as HTMLInputElement).files;
     this.filesEvent.emit(valueEvent);
-    this.uploadPhoto = (event.target as HTMLInputElement).value;
+    this.filePath = (event.target as HTMLInputElement).value;
   }
 }
