@@ -16,6 +16,9 @@
       "enter": "Login"
     }
   },
+  "banner": {
+    "moreDetails": "More details"
+  },
   "hotelCard": {
     "reviews": "reviews",
     "free cancellation": "Free cancellation",
@@ -29,5 +32,10 @@
   },
   "file-selector": {
     "fileNotSelected": "File not selected"
+  },
+  "selector": {
+    "not-found": "Value not found",
+    "button": "Add value",
+    "input-hint": "Enter or select from the list"
   }
 }

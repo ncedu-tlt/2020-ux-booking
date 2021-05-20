@@ -22,10 +22,18 @@
     "price": "Мин. цена от",
     "day": "сутки"
   },
+  "banner": {
+    "moreDetails": "Подробнее"
+  },
   "input": {
     "errorMessage": {
       "fieldIsEmpty": "Поле не заполнено"
     }
+  },
+  "selector": {
+    "not-found": "Значение не найдено",
+    "button": "Добавить значение",
+    "input-hint": "Введите или выберите из списка"
   },
   "file-selector": {
     "fileNotSelected": "Файл не выбран"
