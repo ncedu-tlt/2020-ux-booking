@@ -9,7 +9,6 @@ import { Hotel } from './hotel.dao';
 import { Service } from './service.dao';
 import { Room } from './room.dao';
 import { Amenities } from './ameniries.dao';
-import { User } from './user.dao';
 
 @Entity('photos')
 export class Photo {
@@ -35,7 +34,7 @@ export class Photo {
     nullable: true /*false*/,
     onDelete: 'SET NULL'
   })
-  hotel: /*Hotel*/ Promise<Hotel>;
+  hotel: Promise<Hotel>;
 
   @ManyToOne(type => Room, rooms => rooms.photos, {
     nullable: true /*false*/,

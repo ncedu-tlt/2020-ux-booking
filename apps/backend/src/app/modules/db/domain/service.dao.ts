@@ -25,9 +25,9 @@ export class Service {
   name: string;
 
   @Column({
-    nullable: true /*false*/
+    nullable: true
   })
-  icon: string; /*String*/ /*++++++++++++++++++++++++++++++++++*/
+  icon: string;
 
   @ManyToOne(type => Categories, category => category.services)
   category: Categories;

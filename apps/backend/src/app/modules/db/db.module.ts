@@ -24,8 +24,6 @@ import { Amenities } from './domain/ameniries.dao';
 import { AmenitiesRoom } from './domain/amenities_room.dao';
 import { Categories } from './domain/categories.dao';
 import { Distance } from './domain/distance';
-import { Leisure } from './domain/leisure.dao';
-import { NearbyPlaces } from './domain/nearbyPlaces.dao';
 import { Currency } from './domain/currency.dao';
 
 @Module({
@@ -55,8 +53,6 @@ import { Currency } from './domain/currency.dao';
       MessageDao,
       Categories,
       Distance,
-      Leisure,
-      NearbyPlaces,
       Currency
     ])
   ],

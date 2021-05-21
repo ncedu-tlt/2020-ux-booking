@@ -5,10 +5,8 @@ import {
   OneToMany,
   PrimaryGeneratedColumn
 } from 'typeorm';
-import { City } from './city.dao';
-import { User } from './user.dao';
 import { Hotel } from './hotel.dao';
-import { Categories } from './categories.dao';
+
 
 @Entity('distance')
 export class Distance {
