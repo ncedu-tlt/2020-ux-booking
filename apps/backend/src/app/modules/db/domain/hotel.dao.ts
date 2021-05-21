@@ -19,8 +19,6 @@ import { HotelBoardBasis } from './hotel_board_basis.dao';
 import { Room } from './room.dao';
 import { BookingCondition } from './booking_conditions.dao';
 import { Distance } from './distance';
-import { Leisure } from './leisure.dao';
-import { NearbyPlaces } from './nearbyPlaces.dao';
 import { Currency } from './currency.dao';
 
 @Entity('hotels')
@@ -92,15 +90,6 @@ export class Hotel {
   })
   distance: Promise<Distance>;
 
-  @OneToMany(type => Leisure, leisure => leisure.hotel, {
-    nullable: false
-  })
-  leisure: Promise<Leisure>;
-
-  @OneToMany(type => NearbyPlaces, nearby => nearby.hotel, {
-    nullable: false
-  })
-  nearbyPlaces: Promise<NearbyPlaces>;
 
   @ManyToMany(type => PaymentMethod, paymentMethod => paymentMethod.hotels)
   paymentMethods: PaymentMethod[];

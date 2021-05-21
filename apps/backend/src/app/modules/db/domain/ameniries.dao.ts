@@ -5,10 +5,7 @@ import {
   OneToMany,
   PrimaryGeneratedColumn
 } from 'typeorm';
-
-import { Photo } from './photo.dao';
 import { AmenitiesRoom } from './amenities_room.dao';
-import { User } from './user.dao';
 
 @Entity('amenities')
 export class Amenities {

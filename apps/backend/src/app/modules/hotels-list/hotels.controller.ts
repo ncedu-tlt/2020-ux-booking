@@ -19,8 +19,6 @@ import { Photo } from '../db/domain/photo.dao';
 import { Categories } from '../db/domain/categories.dao';
 import { Currency } from '../db/domain/currency.dao';
 import { Distance } from '../db/domain/distance';
-import { NearbyPlaces } from '../db/domain/nearbyPlaces.dao';
-import { Leisure } from '../db/domain/leisure.dao';
 import { BoardBasis } from '../db/domain/board_basis.dao';
 import { HotelBoardBasis } from '../db/domain/hotel_board_basis.dao';
 import { Room } from '../db/domain/room.dao';
@@ -29,7 +27,6 @@ import { AmenitiesRoom } from '../db/domain/amenities_room.dao';
 import { Bed } from '../db/domain/bed.dao';
 import { Review } from '../db/domain/review.dao';
 import { Comments } from '../db/domain/comment.dao';
-import { User } from '../db/domain/user.dao';
 
 @Controller('/hotels')
 export class HotelsController {
@@ -54,10 +51,6 @@ export class HotelsController {
     private currencyRepository: Repository<Currency>,
     @InjectRepository(Distance)
     private distanceRepository: Repository<Distance>,
-    @InjectRepository(NearbyPlaces)
-    private nearbyPlacesRepository: Repository<NearbyPlaces>,
-    @InjectRepository(Leisure)
-    private leisureRepository: Repository<Leisure>,
     @InjectRepository(BoardBasis)
     private boardBasisRepository: Repository<BoardBasis>,
     @InjectRepository(HotelBoardBasis)
@@ -77,7 +70,7 @@ export class HotelsController {
   ) {}
 
   @Get(':id')
-  async getHotel(@Param() params): Promise<any> {
+  async getHotelById(@Param() params): Promise<any> {
     return await this.hotelsRepository.findOne(params.id);
   }
 
@@ -87,17 +80,20 @@ export class HotelsController {
   }
 
   @Post()
-  async addHotels(body: { name: string }): Promise<any> {
-    await this.hotelsRepository.save({
+  async addHotel(
+    @Body()
+    body: { name: string }): Promise<any> {
+    const hotel = await this.hotelsRepository.save({
       name: body.name
     });
 
     return {
-      send: 'done'
+      send: 'done',
+      id: hotel.id
     };
   }
 
-  @Get(':id/room/:roomId')
+  @Get(':id/rooms/:roomId')
   async getRoom(@Param() params): Promise<any> {
     return await this.roomRepository.findByIds([params.id, params.roomId]);
   }
@@ -107,145 +103,6 @@ export class HotelsController {
     return await this.roomRepository.find();
   }
 
-  @Post(':id/rooms')
-  async createRoom(
-    @Param() params,
-    body: {
-      name: string;
-      price: number;
-      count: number;
-      description: string;
-      capacity: number;
-      beds: string;
-      amenities: {
-        name: string;
-        default: boolean;
-        price: number;
-        icon: string;
-      }[];
-      photo: {
-        name: string;
-        src: string;
-      }[];
-    }
-  ): Promise<any> {
-    const hotel = await this.hotelsRepository.findOne(params.id);
-
-    const room2 = await this.roomRepository.save({
-      name: body.name,
-      price: body.price,
-      count: body.count,
-      description: body.description,
-      capacity: body.capacity,
-      hotel: Promise.resolve(hotel)
-    });
-
-    for (const p of body.photo) {
-      const photo = await this.photoRepository.save({
-        name: p.name,
-        src: p.src,
-        room: Promise.resolve(room2)
-      });
-    }
-
-    await this.BedsRepository.save({
-      name: body.beds,
-      rooms: Promise.resolve(room2)
-    });
-
-    for (const amenities1 of body.amenities) {
-      const amenities2 = await this.amenitiesRepository.save({
-        name: amenities1.name,
-        default: amenities1.default,
-        icon: amenities1.icon
-      });
-
-      const amenitiesRoom = await this.amenitiesRoomRepository.save({
-        price: amenities1.price,
-        room: room2,
-        amenities: amenities2
-      });
-    }
-
-    return {
-      id: room2.id,
-      send: 'комната успешно дополнена'
-    };
-  }
-
-  @Patch(':id/rooms/:roomId')
-  async changeRoom(
-    @Param() params,
-    body: {
-      name: string;
-      price: number;
-      count: number;
-      description: string;
-      capacity: number;
-      beds: string;
-      amenities: {
-        name: string;
-        default: boolean;
-        price: number;
-        icon: string;
-      }[];
-      photo: {
-        name: string;
-        src: string;
-      };
-    }
-  ): Promise<any> {
-    const hotel = await this.hotelsRepository.findOne(params.id);
-
-    const room2 = await this.roomRepository.update(params.roomId, {
-      name: body.name,
-      price: body.price,
-      count: body.count,
-      description: body.description,
-      capacity: body.capacity,
-      hotel: Promise.resolve(hotel)
-    });
-
-    const room3 = await this.roomRepository.findOne(params.roomId);
-
-    await this.BedsRepository.update(params.roomId, {
-      name: body.beds,
-      rooms: Promise.resolve(room2)
-    });
-
-    for (const amenities1 of body.amenities) {
-      await this.amenitiesRepository.update(params.roomId, {
-        name: amenities1.name,
-        default: amenities1.default,
-        icon: amenities1.icon
-      });
-
-      const amenities = await this.amenitiesRepository.findOne(params.roomId);
-
-      const amenitiesRoom = await this.amenitiesRoomRepository.update(
-        params.roomId,
-        {
-          price: amenities1.price,
-          room: room3,
-          amenities: amenities
-        }
-      );
-    }
-
-    return {
-      send: 'комната успешно дополнена'
-    };
-  }
-
-  @Delete(':id/rooms/:roomId')
-  async deleteRoom(@Param() params): Promise<any> {
-    await this.roomRepository.delete(params.roomId);
-
-    return {
-      send: 'комната удалена'
-    };
-  }
-
   @Patch(':id/1')
   async changeHotelFirstStep(
     @Param('id') id: string,
@@ -253,7 +110,6 @@ export class HotelsController {
     body: {
       name: string;
       description: string;
-
       country: string;
       city: string;
       street: string;
@@ -263,9 +119,7 @@ export class HotelsController {
       stars: number;
       minPrice: number;
       freeCancellation: boolean;
-
       serviceType: string;
-
       currency: string;
     }
   ): Promise<any> {
@@ -333,7 +187,7 @@ export class HotelsController {
         name: food.name
       });
 
-      const hotelBoardBasis = await this.hotelBoardBasisRepository.save({
+      await this.hotelBoardBasisRepository.save({
         hotel: hotel,
         boardBasis: boardBasis,
         price: food.price
@@ -407,6 +261,141 @@ export class HotelsController {
     };
   }
 
+  @Post(':id/rooms')
+  async createRoom(
+    @Param() params,
+    @Body()
+      body: {
+      name: string;
+      price: number;
+      count: number;
+      description: string;
+      capacity: number;
+      beds: string;
+      amenities: {
+        name: string;
+        default: boolean;
+        price: number;
+        icon: string;
+      }[];
+      photos: {
+        name: string;
+        src: string;
+      }[];
+    }
+  ): Promise<any> {
+    const hotel = await this.hotelsRepository.findOne(params.id);
+
+    const room = await this.roomRepository.save({
+      name: body.name,
+      price: body.price,
+      count: body.count,
+      description: body.description,
+      capacity: body.capacity,
+      hotel: Promise.resolve(hotel)
+    });
+
+    for (const photo of body.photos) {
+      await this.photoRepository.save({
+        name: photo.name,
+        src: photo.src,
+        room: Promise.resolve(room)
+      });
+    }
+
+    await this.BedsRepository.save({
+      name: body.beds,
+      rooms: Promise.resolve(room)
+    });
+
+    for (const a of body.amenities) {
+      const amenities = await this.amenitiesRepository.save({
+        name: a.name,
+        default: a.default,
+        icon: a.icon
+      });
+
+      await this.amenitiesRoomRepository.save({
+        price: a.price,
+        room: room,
+        amenities: amenities
+      });
+    }
+
+    return {
+      hotelId: hotel.id,
+      id: room.id,
+      send: 'комната успешно создана'
+    };
+  }
+
+  @Patch(':id/rooms/:roomId')
+  async changeRoom(
+    @Param() params,
+    @Body()
+      body: {
+      name: string;
+      price: number;
+      count: number;
+      description: string;
+      capacity: number;
+      beds: string;
+      amenities: {
+        name: string;
+        default: boolean;
+        price: number;
+        icon: string;
+      }[];
+      photo: {
+        name: string;
+        src: string;
+      };
+    }
+  ): Promise<any> {
+    const hotel = await this.hotelsRepository.findOne(params.id);
+
+    await this.roomRepository.update(params.roomId, {
+      name: body.name,
+      price: body.price,
+      count: body.count,
+      description: body.description,
+      capacity: body.capacity,
+      hotel: Promise.resolve(hotel)
+    });
+
+    const room = await this.roomRepository.findOne(params.roomId);
+
+    await this.BedsRepository.update(params.roomId, {
+      name: body.beds
+    });
+
+    for (const a of body.amenities) {
+      await this.amenitiesRepository.update(params.roomId, {
+        name: a.name,
+        default: a.default,
+        icon: a.icon
+      });
+
+      const amenities = await this.amenitiesRepository.findOne(params.roomId);
+
+      await this.amenitiesRoomRepository.update(
+        params.roomId,
+        {
+          price: a.price,
+          room: room,
+          amenities: amenities
+        }
+      );
+    }
+    const changedRoom = await this.roomRepository.findOne(params.roomId)
+
+    return {
+      hotelId: hotel.id,
+      id: changedRoom.id,
+      send: 'комната успешно change'
+    };
+  }
+
   @Patch(':id/5')
   async changeHotelFiveStep(
     @Param('id') id: string,
@@ -424,17 +413,17 @@ export class HotelsController {
     }
   ): Promise<any> {
     const hotel = await this.hotelsRepository.findOne({ id });
-    for (const mainPhoto of body.mainPhoto) {
-      const mainPhotos1 = await this.photoRepository.save({
-        name: mainPhoto.name,
-        src: mainPhoto.src,
+    for (const photo of body.mainPhoto) {
+      const mainPhotos = await this.photoRepository.save({
+        name: photo.name,
+        src: photo.src,
         hotel: Promise.resolve(hotel)
       });
 
       await this.hotelsRepository.update(
         { id },
         {
-          mainPhoto: mainPhotos1
+          mainPhoto: mainPhotos
         }
       );
     }
@@ -513,6 +502,15 @@ export class HotelsController {
 
     return {
       send: `hotel delete`
+    };
+  }
+
+  @Delete(':id/rooms/:roomId')
+  async deleteRoom(@Param() params): Promise<any> {
+    await this.roomRepository.delete(params.roomId);
+
+    return {
+      send: 'комната удалена'
     };
   }
 }
