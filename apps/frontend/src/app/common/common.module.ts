@@ -21,13 +21,15 @@ import { SelectorComponent } from './selector/selector.component';
 import { PageTitleComponent } from './page-title/page-title.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { RegistrationComponent } from './registration/registration.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
     NgCommonModule,
     AngularSvgIconModule,
     I18NextModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule
   ],
   declarations: [
     ButtonComponent,

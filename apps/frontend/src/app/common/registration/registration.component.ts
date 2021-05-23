@@ -28,7 +28,7 @@ export class RegistrationComponent {
     this.repeatPassword = input;
   }
 
-  setAuthorizationData() {
+  postAuthorizationData() {
     // //  api
     // console.log(this.email);
     // console.log(this.password);
