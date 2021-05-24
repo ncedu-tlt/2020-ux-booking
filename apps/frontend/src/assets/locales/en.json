@@ -35,7 +35,7 @@
     "button": "Add value",
     "input-hint": "Enter or select from the list"
   },
-  "file-selector": {
+  "fileSelector": {
     "fileNotSelected": "File not selected"
   }
 }

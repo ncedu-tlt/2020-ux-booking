@@ -13,17 +13,16 @@ import {
 })
 export class FileSelectorComponent {
   @Input()
-  text: string;
-  @Input()
-  icon: boolean;
-  @Input()
   id: string;
+
   @Output()
-  filesEvent: EventEmitter<FileList> = new EventEmitter<FileList>();
+  filesEvent: EventEmitter<File> = new EventEmitter<File>();
+
   filePath: string;
+
   changeValue(event: Event): void {
-    const valueEvent = (event.target as HTMLInputElement).files;
-    this.filesEvent.emit(valueEvent);
+    const file: File = (event.target as HTMLInputElement).files.item(0);
+    this.filesEvent.emit(file);
     this.filePath = (event.target as HTMLInputElement).value;
   }
 }

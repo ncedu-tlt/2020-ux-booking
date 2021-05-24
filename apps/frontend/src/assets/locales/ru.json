@@ -35,7 +35,7 @@
     "button": "Добавить значение",
     "input-hint": "Введите или выберите из списка"
   },
-  "file-selector": {
+  "fileSelector": {
     "fileNotSelected": "Файл не выбран"
   }
 }
