@@ -18,6 +18,7 @@ import { LinkComponent } from './link/link.component';
 import { HotelCardComponent } from './hotel-card/hotel-card.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 import { SelectorComponent } from './selector/selector.component';
+import { FileSelectorComponent } from './file-selector/file-selector.component';
 
 @NgModule({
   imports: [
@@ -41,7 +42,8 @@ import { SelectorComponent } from './selector/selector.component';
     LinkComponent,
     InputFieldComponent,
     CheckboxComponent,
-    SelectorComponent
+    SelectorComponent,
+    FileSelectorComponent
   ],
   exports: [
     ButtonComponent,
@@ -58,7 +60,8 @@ import { SelectorComponent } from './selector/selector.component';
     HotelCardComponent,
     InputFieldComponent,
     CheckboxComponent,
-    SelectorComponent
+    SelectorComponent,
+    FileSelectorComponent
   ]
 })
 export class CommonModule {}
