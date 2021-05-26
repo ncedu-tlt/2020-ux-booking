@@ -7,7 +7,6 @@ import {
 } from 'typeorm';
 import { Hotel } from './hotel.dao';
 
-
 @Entity('distance')
 export class Distance {
   @PrimaryGeneratedColumn('uuid')

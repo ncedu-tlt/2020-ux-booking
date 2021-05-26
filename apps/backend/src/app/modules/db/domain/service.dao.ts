@@ -35,5 +35,5 @@ export class Service {
   @ManyToMany(type => Hotel, hotels => hotels.services, {
     nullable: false
   })
-  hotels: Promise<Hotel[]>;
+  hotels: Hotel[];
 }
