@@ -44,22 +44,7 @@ export class Hotel {
   @Column({ nullable: true })
   freeCancellation: boolean;
 
-  @ManyToMany(type => User, user => user.bookmarks, {
-    nullable: false
-  })
-  users: Promise<User[]>;
 
-  @OneToMany(type => Review, reviews => reviews.hotel, {
-    nullable: false,
-    onDelete: 'SET NULL'
-  })
-  reviews: Promise<Review[]>;
-
-  @OneToMany(type => Comments, comments => comments.hotel, {
-    nullable: false,
-    onDelete: 'SET NULL'
-  })
-  comments: Promise<Comments[]>;
 
   @ManyToMany(type => Service, services => services.hotels, {
     nullable: false,
@@ -90,7 +75,6 @@ export class Hotel {
   })
   distance: Promise<Distance>;
 
-
   @ManyToMany(type => PaymentMethod, paymentMethod => paymentMethod.hotels)
   paymentMethods: PaymentMethod[];
 
@@ -117,4 +101,21 @@ export class Hotel {
     }
   )
   bookingConditions: BookingCondition[];
+
+  @ManyToMany(type => User, user => user.bookmarks, {
+    nullable: false
+  })
+  users: Promise<User[]>;
+
+  @OneToMany(type => Review, reviews => reviews.hotel, {
+    nullable: false,
+    onDelete: 'SET NULL'
+  })
+  reviews: Promise<Review[]>;
+
+  @OneToMany(type => Comments, comments => comments.hotel, {
+    nullable: false,
+    onDelete: 'SET NULL'
+  })
+  comments: Promise<Comments[]>;
 }
