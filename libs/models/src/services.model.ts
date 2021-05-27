@@ -3,6 +3,5 @@ export interface ServicesModel {
   price?: number;
   name?: string;
   icon?: string;
-  category?: any
-
+  category?: any;
 }
