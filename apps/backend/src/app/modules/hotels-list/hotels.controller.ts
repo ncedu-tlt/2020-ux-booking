@@ -134,7 +134,6 @@ export class HotelsController {
       }))
     );
 
-
     /*return hotel.map(m => ({
       id: m.id,
       name: m.name,

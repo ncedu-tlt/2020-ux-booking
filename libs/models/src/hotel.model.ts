@@ -22,5 +22,5 @@ export interface HotelModel {
   mainPhoto?: MainPhotoModel;
   photos?: PhotosModel[];
   distance?: DistanceModel;
-  hotelBoardBasis?: HotelBoardBasisModel[]
+  hotelBoardBasis?: HotelBoardBasisModel[];
 }
