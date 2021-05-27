@@ -44,8 +44,6 @@ export class Hotel {
   @Column({ nullable: true })
   freeCancellation: boolean;
 
-
-
   @ManyToMany(type => Service, services => services.hotels, {
     nullable: false,
     onDelete: 'RESTRICT'
