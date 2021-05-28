@@ -1,0 +1,32 @@
+<div>
+  <div class="info-header">
+    <div class="title">Персональные данные</div>
+    <b-button-icon [type]=buttonIconTypesEnum.edit (click)="onEditClick()"></b-button-icon>
+  </div>
+  <div class="avatar">
+    <img class="avatar" src="favicon.ico">
+  </div>
+  <div class="wrapper">
+    <div class="title">Личная информация</div>
+    <div class="personal-info">
+      <b-input-field title="Фамилия" [value]=user?.lastName [isDisabled]="!editable"></b-input-field>
+      <b-input-field title="Имя" [value]=user?.firstName [isDisabled]="!editable"></b-input-field>
+      <b-input-field title="Дата рождения" [value]=user?.dateOfBirth [isDisabled]="!editable"></b-input-field>
+      <b-input-field title="Гражданство" value="Россия" [isDisabled]="!editable"></b-input-field>
+      <b-input-field title="Пол" value="-" [isDisabled]="!editable"></b-input-field>
+    </div>
+  </div>
+  <div class="wrapper">
+    <div class="title">Контактная информация</div>
+    <div class="contact-info">
+      <b-input-field title="E-mail" [value]=user?.email [isDisabled]="!editable"></b-input-field>
+      <b-input-field title="Номер телефона" [value]=user?.phone [isDisabled]="!editable"></b-input-field>
+    </div>
+  </div>
+  <div class="button-holder" *ngIf="editable">
+    <div>
+      <b-button type="secondary" text="Отмена"></b-button>
+      <b-button type="primary" text="Cохранить"></b-button>
+    </div>
+  </div>
+</div>
