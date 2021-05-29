@@ -1,0 +1,51 @@
+<div #selector class='selector'>
+  <span class='selector__title'>{{titleSelector}}</span>
+  <label class='selector__input-container'>
+    <input class='selector__input'
+           placeholder='{{"selector.input-hint" | i18next}}'
+           [value]='selectedHint'
+           (input)='handleChange($event)'
+    />
+    <span
+      class='selector__input-arrow-wrapper'
+      [class._rotate]='isOpened'>
+      <svg-icon
+        class='icon'
+        src='assets/icons/arrow.svg'
+      ></svg-icon>
+    </span>
+  </label>
+  <div *ngIf='isOpened'
+       class='selector__list'>
+    <div *ngFor='let item of filterItems()'
+         class='selector__list-item'
+         [class._checked]='isItemSelected(item)'
+         (click)='setSelectedItem(item)'>
+      <span *ngIf='!isMultiMode'
+            class='selector__list-text'
+            [class._checked]='isItemSelected(item)'
+      >
+        {{item}}
+      </span>
+      <b-checkbox *ngIf='isMultiMode'
+                  class='selector__list-text'
+                  [class._checked]='isItemSelected(item)'
+                  [isChecked]='isItemSelected(item)'
+                  label='{{item}}'
+      ></b-checkbox>
+    </div>
+    <div class='selector__notification'>
+    <span class='selector__list-alert'
+          [class._invisible]='isNotFound'>
+      {{"selector.not-found" | i18next}}
+      </span>
+      <b-button *ngIf='isAddControlActive && !isNotFound'
+                class='selector__notification-button'
+                type='secondary'
+                hasIcon='true'
+                size='small'
+                text='{{"selector.button" | i18next}}'
+                (click)='addItem()'></b-button>
+    </div>
+  </div>
+</div>

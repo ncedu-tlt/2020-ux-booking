@@ -29,5 +29,13 @@
     "errorMessage": {
       "fieldIsEmpty": "Поле не заполнено"
     }
+  },
+  "selector": {
+    "not-found": "Значение не найдено",
+    "button": "Добавить значение",
+    "input-hint": "Введите или выберите из списка"
+  },
+  "fileSelector": {
+    "fileNotSelected": "Файл не выбран"
   }
 }
