@@ -50,7 +50,9 @@ const template: Story<TableComponent> = args => ({
   props: {
     ...args,
     buttonClicked: event => {
-      console.info(`handle button click event: ${event.buttonType} / ${event.itemId}`);
+      console.log(
+        `handle button click event: ${event.buttonType} / ${event.itemId}`
+      );
     }
   },
   template: `
@@ -62,18 +64,14 @@ const template: Story<TableComponent> = args => ({
 export const normal = template.bind({});
 normal.args = {
   items: [
-    {id: '1', name:'Отель 1', country:'Испания', city: 'Мадрид'},
-    {id: '2', name:'Отель 2', country:'Россия', city: 'Москва'},
-    {id: '3', name:'Отель 3', country:'Латвия', city: 'Рига'},
-    {id: '4', name:'Отель 4', country:'Нидерланды', city: 'Амстердам'},
-    {id: '5', name:'Отель 5', country:'Швейцария', city: 'Берн'}
+    { id: '1', name: 'Отель 1', country: 'Испания', city: 'Мадрид' },
+    { id: '2', name: 'Отель 2', country: 'Россия', city: 'Москва' },
+    { id: '3', name: 'Отель 3', country: 'Латвия', city: 'Рига' },
+    { id: '4', name: 'Отель 4', country: 'Нидерланды', city: 'Амстердам' },
+    { id: '5', name: 'Отель 5', country: 'Швейцария', city: 'Берн' }
   ],
 
-  columns: [
-    'name',
-    'country',
-    'city'
-  ],
+  columns: ['name', 'country', 'city'],
 
   headers: {
     name: 'Название',
@@ -82,7 +80,7 @@ normal.args = {
   },
 
   buttons: [
-    {type: ButtonIconTypesEnum.edit},
-    {type: ButtonIconTypesEnum.delete}
-  ],
+    { type: ButtonIconTypesEnum.edit },
+    { type: ButtonIconTypesEnum.delete }
+  ]
 };

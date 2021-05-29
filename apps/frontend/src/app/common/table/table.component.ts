@@ -15,16 +15,18 @@ import {
 })
 export class TableComponent {
   @Input()
-  items: object[] = [];
+  items: any[] = [];
 
   @Input()
   columns: string[] = [];
 
   @Input()
-  headers: object;
+  headers: {
+    [key: string]: string;
+  };
 
   @Input()
-  buttons: object[] = [];
+  buttons: TableButton[] = [];
 
   @Output()
   buttonClickEvent: EventEmitter<TableButtonClick> = new EventEmitter<TableButtonClick>();
@@ -32,6 +34,10 @@ export class TableComponent {
   buttonClick(buttonType: ButtonIconTypesEnum, itemId: any): void {
     this.buttonClickEvent.emit(new TableButtonClick(buttonType, itemId));
   }
+}
+
+export class TableButton {
+  public type: ButtonIconTypesEnum;
 }
 
 export class TableButtonClick {
