@@ -1,0 +1,23 @@
+<div>
+<table class='table'>
+  <thead>
+    <tr class='table__title-row'>
+      <th *ngFor="let column of columns">{{ headers[column] }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class='table__body-row' 
+    *ngFor='let item of items'>
+      <td *ngFor='let column of columns'>
+        <span>{{ headers[column] }}</span>
+        {{ item[column] }}
+      </td>
+      <td>
+        <div class="td-icon" >
+        <b-button-icon *ngFor='let button of buttons' (click)='buttonClick(button.type, item.id)' [type] = button.type></b-button-icon>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table> 
+</div>   

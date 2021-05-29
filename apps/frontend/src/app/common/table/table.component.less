@@ -1,0 +1,116 @@
+@import './../../../assets/styles/common/shared';
+
+.table {
+  table-layout: fixed;
+	width: 100%;
+	border: none;
+  border-collapse: collapse; 
+
+  @media @mobile {
+    box-shadow: 1px 1px 6px rgba(0, 50, 79, 0.3);
+    border-radius: 8px;
+  }
+
+  & thead {
+      @media @mobile {
+        display: none;
+      }
+  }
+
+  &__body-row td span {
+    display: none;
+
+    @media @mobile {
+      display: block;
+      padding-bottom: 8px;
+      color: @color-grey-middle;
+    }
+  }
+
+  &__body-row {
+    background: @color-white;
+
+    @media @mobile {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      padding: 24px 8px;
+      border-bottom: 1px solid @color-grey-light;
+      border-top: 1px solid @color-grey-light;
+    }
+  }
+
+  &__title-row th {
+    .font-light();
+    font-size: 20px;
+    line-height: 32px;
+    letter-spacing: 0.5px;
+    color: @color-grey-middle;
+    padding: 0 24px 0 24px;
+    text-align: left;
+    border: none;
+  }
+  
+  &__body-row td {
+    .font-regular();
+    font-size: 20px;
+    line-height: 32px;
+    letter-spacing: 0.5px;
+    color: @color-blue-deep-dark;
+    text-align: left;
+    overflow: hidden;
+    padding: 20px 24px;
+    border-bottom: 1px solid @color-grey-light;
+    border-top: 1px solid @color-grey-light;
+
+    @media @mobile {
+      font-size: 14px;
+      line-height: 20px;
+      padding: 8px 0px;
+      width: 100%;
+      position: relative;
+      border-bottom:none;
+      border-top:none;
+    }
+  }
+
+  &__body-row td:first-child {
+    @media @mobile {
+      padding-top: 0;
+    }
+  }
+
+  &__body-row td:last-child {
+    padding: 8px 24px;
+
+    @media @mobile {
+      padding: 8px 0 0 0;
+    }
+  }
+
+  &__body-row:hover {
+    background: @color-blue-light;
+    cursor: pointer;
+  }
+
+  &__body-row .td-icon{
+    display: none;
+    float: right;
+
+    @media @mobile {
+      display: flex;
+    }
+  }
+
+  &__body-row .td-icon b-button-icon{
+    margin-left: 32px;
+
+    @media @mobile {
+      margin-left: 16px;
+    }
+  }
+
+  &__body-row:hover .td-icon{
+    display: flex;
+  }  
+}
