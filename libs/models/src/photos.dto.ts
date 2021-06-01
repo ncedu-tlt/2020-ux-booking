@@ -1,11 +1,11 @@
 import { MainPhotoDto } from '@booking/models/mainPhoto.dto';
 
 export interface PhotosDto {
-  mainPhoto?: MainPhotoDto,
+  mainPhoto?: MainPhotoDto;
 
   photos?: {
-    id?: string,
-    name?: string,
-    src?: string
-  }[]
+    id?: string;
+    name?: string;
+    src?: string;
+  }[];
 }

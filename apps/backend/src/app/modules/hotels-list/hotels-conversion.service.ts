@@ -12,12 +12,9 @@ import { Amenities } from '../db/domain/ameniries.dao';
 import { AmenitiesDto } from '@booking/models/amenities.dto';
 import { AmenitiesRoom } from '../db/domain/amenities_room.dao';
 
-
 @Injectable()
 export class HotelsConversionService {
-
   convertAddressDaoToDto(address: Address): AddressDto {
-
     if (address === null) {
       return {
         country: '',
@@ -25,7 +22,7 @@ export class HotelsConversionService {
         street: '',
         part: '',
         number: Number()
-      }
+      };
     } else {
       return {
         country: address.city.country.name,
@@ -33,13 +30,11 @@ export class HotelsConversionService {
         street: address.street,
         part: address.part,
         number: address.number
-      }
+      };
     }
   }
 
-
   convertServiceDaoToDto(service: Service[]): ServicesDto[] {
-
     return service.map(value => {
       return {
         id: value.id,
@@ -47,52 +42,47 @@ export class HotelsConversionService {
         price: value.price,
         icon: value.icon,
         category: value.category.name
-      } as ServicesDto
-    })
+      } as ServicesDto;
+    });
   }
 
-
   convertServiceTypeDaoToDto(serviceType: ServiceType): ServiceTypeDto {
-
     if (serviceType === null) {
       return {
         id: '',
         name: ''
-      }
+      };
     } else {
       return {
         id: serviceType.id,
         name: serviceType.name
-      }
+      };
     }
   }
-
 
   convertPhotoDaoToDto(photos: Photo[]): PhotosDto[] {
     return photos.map(value => {
       return {
         id: value.id,
         name: value.name,
-        src: value.src,
-      } as PhotosDto
-    })
+        src: value.src
+      } as PhotosDto;
+    });
   }
 
   convertMainPhotoDaoToDto(photo: Photo): MainPhotoDto {
-
     if (photo === null) {
       return {
         id: '',
         name: '',
         src: ''
-      }
+      };
     } else {
       return {
         id: photo.id,
         name: photo.name,
         src: ''
-      }
-
+      };
     }
   }
 
@@ -106,7 +96,4 @@ export class HotelsConversionService {
       } as AmenitiesDto
     })
   }*/
-
 }
-
-

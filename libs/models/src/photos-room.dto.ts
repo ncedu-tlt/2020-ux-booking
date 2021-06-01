@@ -1,5 +1,5 @@
 export interface PhotosRoomDto {
-    id?: string,
-    name?: string,
-    src?: string
+  id?: string;
+  name?: string;
+  src?: string;
 }

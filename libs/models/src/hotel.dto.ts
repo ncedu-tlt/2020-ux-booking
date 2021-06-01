@@ -17,7 +17,7 @@ export interface HotelDto {
   minPrice?: number;
   freeCancellation?: boolean;
   services?: ServicesDto[];
-  address?: AddressDto
+  address?: AddressDto;
   serviceType?: ServiceTypeDto;
   currency?: CurrencyDto;
   mainPhoto?: MainPhotoDto;

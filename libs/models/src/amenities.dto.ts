@@ -1,9 +1,7 @@
 export interface AmenitiesDto {
-
-  id?: string,
-  name?: string,
-  default?: boolean,
-  price?: number,
-  icon?: string
-
+  id?: string;
+  name?: string;
+  default?: boolean;
+  price?: number;
+  icon?: string;
 }
