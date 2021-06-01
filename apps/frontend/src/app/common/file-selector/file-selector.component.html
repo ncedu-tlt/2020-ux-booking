@@ -1,0 +1,22 @@
+<div class='file-selector'>
+  <input type='file'
+       class='file-selector__input-field'
+       [id]="id"
+       (change)='changeValue($event)'>
+  <label class="file-selector__label"
+         [for]="id">
+    <span class='file-selector__icon-wrapper'>
+      <svg-icon class="icon file-selector__icon"
+                src="assets/icons/upload.svg"
+                [ngClass]="{'_stroke-blue-deep-dark': filePath }">
+      </svg-icon>
+    </span>
+    <span class='file-selector__text'
+         [ngClass]="{'_text-dark': filePath }">
+      <span *ngIf="filePath; else elseBlock">{{filePath}}</span>
+      <ng-template #elseBlock>
+        <span>{{"fileSelector.fileNotSelected" | i18next}}</span>
+      </ng-template>
+    </span>
+  </label>
+</div>

@@ -18,6 +18,7 @@ import { HotelCardComponent } from './hotel-card/hotel-card.component';
 import { AuthorizationComponent } from './authorization/authorization.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 import { SelectorComponent } from './selector/selector.component';
+import { FileSelectorComponent } from './file-selector/file-selector.component';
 import { PageTitleComponent } from './page-title/page-title.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { RegistrationComponent } from './registration/registration.component';
@@ -49,7 +50,9 @@ import { RouterModule } from '@angular/router';
     CheckboxComponent,
     SelectorComponent,
     AuthorizationComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    SelectorComponent,
+    FileSelectorComponent
   ],
   exports: [
     ButtonComponent,
@@ -70,7 +73,9 @@ import { RouterModule } from '@angular/router';
     InputFieldComponent,
     AppRoutingModule,
     AuthorizationComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    SelectorComponent,
+    FileSelectorComponent
   ]
 })
 export class CommonModule {}

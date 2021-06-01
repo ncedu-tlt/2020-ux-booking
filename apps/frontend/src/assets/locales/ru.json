@@ -64,5 +64,8 @@
     "button": "Войти",
     "registration": "Уже есть аккаунт?",
     "registrationLink": "Авторизация"
+  },
+  "fileSelector": {
+    "fileNotSelected": "Файл не выбран"
   }
 }

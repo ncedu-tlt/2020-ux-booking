@@ -35,6 +35,9 @@
     "button": "Add value",
     "input-hint": "Enter or select from the list"
   },
+  "fileSelector": {
+    "fileNotSelected": "File not selected"
+  },
   "authorization": {
     "title": "Authorization",
     "field": {
