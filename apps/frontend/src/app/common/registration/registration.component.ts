@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'b-registration',
@@ -7,30 +8,38 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegistrationComponent {
-  name: string;
+  firstName: string;
   email: string;
   password: string;
   repeatPassword: string;
 
-  getName(input: string) {
-    this.name = input;
+  constructor(private http: HttpClient) {}
+
+  setName(input: string) {
+    this.firstName = input;
   }
 
-  getEmail(input: string) {
+  setEmail(input: string) {
     this.email = input;
   }
 
-  getPassword(input: string) {
+  setPassword(input: string) {
     this.password = input;
   }
 
-  getRepeatPassword(input: string) {
+  // валидатор на проверку паролей
+  setRepeatPassword(input: string) {
     this.repeatPassword = input;
   }
 
-  postAuthorizationData() {
-    // //  api
-    // console.log(this.email);
-    // console.log(this.password);
+  postRegistrationData() {
+    const body = {
+      firstName: this.firstName,
+      email: this.email,
+      password: this.password
+    };
+    return this.http
+      .post('/api/auth/login', body)
+      .subscribe(error => console.log(error));
   }
 }

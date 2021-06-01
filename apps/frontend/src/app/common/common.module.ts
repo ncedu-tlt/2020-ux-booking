@@ -23,6 +23,7 @@ import { PageTitleComponent } from './page-title/page-title.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { RegistrationComponent } from './registration/registration.component';
 import { RouterModule } from '@angular/router';
+import { BackgroundSvgComponent } from './background-page/background-svg.component';
 
 @NgModule({
   imports: [
@@ -51,6 +52,8 @@ import { RouterModule } from '@angular/router';
     SelectorComponent,
     AuthorizationComponent,
     RegistrationComponent,
+    BackgroundSvgComponent,
+    RegistrationComponent,
     SelectorComponent,
     FileSelectorComponent
   ],
@@ -73,6 +76,8 @@ import { RouterModule } from '@angular/router';
     InputFieldComponent,
     AppRoutingModule,
     AuthorizationComponent,
+    RegistrationComponent,
+    BackgroundSvgComponent,
     RegistrationComponent,
     SelectorComponent,
     FileSelectorComponent

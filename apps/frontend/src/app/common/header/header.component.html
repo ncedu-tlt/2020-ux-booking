@@ -2,7 +2,7 @@
   <div class='header__logo'>
     <div class='header__wrapper-icon'>
       <svg-icon class='icon _fill-white _stroke-white _size-l'
-                src="assets/icons/palm.svg">
+                src='assets/icons/palm.svg'>
       </svg-icon>
     </div>
     <div>Hotel Booking Service</div>
@@ -18,15 +18,15 @@
         <div class='header__user'>
           <div class='header__wrapper-user-icon'>
             <svg-icon class='icon _size-l _fill-blue-dark'
-                      src="assets/icons/user_icon.svg">
+                      src='assets/icons/user_icon.svg'>
             </svg-icon>
           </div>
           <div class='header__name'>
             {{userName}}
           </div>
           <svg-icon class='icon _size-m _rotate-d _stroke-white'
-                    [class._rotate-u]="isShowMenu"
-                    src="assets/icons/arrow.svg">
+                    [class._rotate-u]='isShowMenu'
+                    src='assets/icons/arrow.svg'>
           </svg-icon>
         </div>
         <div class='header__user-menu' *ngIf='isShowMenu'>
@@ -39,9 +39,10 @@
       </div>
     </ng-container>
     <ng-template #loginTemplate>
-      <div class='header__enter-icon'>
+      <div *ngIf='isHiddenLoginButton'
+           class='header__enter-icon'>
         <svg-icon class='icon _size-l _stroke-white'
-                  src="assets/icons/enter.svg">
+                  src='assets/icons/enter.svg'>
         </svg-icon>
         <div class='header__enter'>
           {{"header.menu.enter" | i18next}}
@@ -51,7 +52,7 @@
   </div>
   <div class='header__burger' (click)='showModal()'>
     <svg-icon class='icon _size-m _stroke-white header__burger-icon'
-              src="assets/icons/burger.svg">
+              src='assets/icons/burger.svg'>
     </svg-icon>
   </div>
 </header>
@@ -59,7 +60,7 @@
   <div class='header__modal-header'>
     <svg-icon class='icon _size-m _stroke-white header__cross'
               (click)='showModal()'
-              src="assets/icons/cross.svg">
+              src='assets/icons/cross.svg'>
     </svg-icon>
   </div>
   <div class='header__modal-items'>
@@ -94,19 +95,19 @@
 
 <ng-template #switchersTemplate>
   <ng-container>
-    <div  class='header__night-theme _rotate'
-          [class._dark]="!isNightTheme"
-          (click)='changeNight()'>
+    <div class='header__night-theme _rotate'
+         [class._dark]='!isNightTheme'
+         (click)='changeNight()'>
       <div>
         <svg-icon class='icon _size-m'
                   [ngClass]='isNightTheme ? "_stroke-blue-deep-dark  _fill-none" : "_fill-none  _stroke-white"'
-                  src="assets/icons/sun.svg">
+                  src='assets/icons/sun.svg'>
         </svg-icon>
       </div>
       <div>
         <svg-icon class='icon _size-m'
                   [ngClass]='isNightTheme ? "_fill-none _stroke-white" : "_stroke-blue-deep-dark _fill-none"'
-                  src="assets/icons/moon.svg">
+                  src='assets/icons/moon.svg'>
         </svg-icon>
       </div>
     </div>
@@ -114,13 +115,15 @@
 
   <ng-container>
     <div class='header__language _rotate'
-         [class._dark]="!isLanguageRu">
+         [class._dark]='!isLanguageRu'>
       <div class='header__ru'
-           [class._white]="!isLanguageRu"
-           (click)='changeLanguage("en")'>EN</div>
+           [class._white]='!isLanguageRu'
+           (click)='changeLanguage("en")'>EN
+      </div>
       <div class='header__en'
-           [class._dark]="!isLanguageRu"
-           (click)='changeLanguage("ru")'>RU</div>
+           [class._dark]='!isLanguageRu'
+           (click)='changeLanguage("ru")'>RU
+      </div>
     </div>
   </ng-container>
 </ng-template>

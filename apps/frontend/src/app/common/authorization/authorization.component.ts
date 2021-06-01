@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'b-authorization',
@@ -10,16 +11,21 @@ export class AuthorizationComponent {
   email: string;
   password: string;
 
-  getEmail(input: string) {
+  constructor(private http: HttpClient) {}
+
+  setEmail(input: string) {
     this.email = input;
   }
 
-  getPassword(input: string) {
+  setPassword(input: string) {
     this.password = input;
   }
 
-  setAuthorizationData() {
-    console.log(this.email);
-    console.log(this.password);
+  postAuthorizationData() {
+    const body = {
+      email: this.email,
+      password: this.password
+    };
+    return this.http.post('/api/products', body);
   }
 }

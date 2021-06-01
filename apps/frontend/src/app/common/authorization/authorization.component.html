@@ -9,20 +9,21 @@
         isMandatory='true'
         title='{{"authorization.input.email" | i18next}}'
         placeholder='{{"authorization.input.emailPlaceholder" | i18next}}'
-        (handleChange)='getEmail($event)'>
+        (handleChange)='setEmail($event)'>
       </b-input-field>
     </div>
     <div class='authorization__input'>
+
       <b-input-field
         isMandatory='true'
         title='{{"authorization.input.password" | i18next}}'
         placeholder='{{"authorization.input.passwordPlaceholder" | i18next}}'
-        (handleChange)='getPassword($event)'>
+        (handleChange)='setPassword($event)'>
       </b-input-field>
     </div>
     <b-button class='authorization__button'
               text='{{"authorization.button" | i18next}}'
-              (submit)='setAuthorizationData()'
+              (submit)='postAuthorizationData()'
     ></b-button>
     <span class='authorization__under-link'>
       {{"authorization.forgotPassword" | i18next}}
@@ -39,27 +40,9 @@
       text='{{"authorization.registrationLink" | i18next}}'>
     </b-link>
   </div>
-  <svg-icon class='authorization__svg-bird authorization__svg'
-            src='assets/icons/bird.svg'>
-  </svg-icon>
-  <svg-icon class='authorization__svg-bird-second authorization__svg'
-            src='assets/icons/bird.svg'>
-  </svg-icon>
-  <svg-icon class='authorization__svg-tree authorization__svg'
-            src='assets/icons/tree.svg'>
-  </svg-icon>
-  <svg-icon class='authorization__svg-tree-second authorization__svg'
-            src='assets/icons/tree.svg'>
-  </svg-icon>
-  <svg-icon class='authorization__svg-tree-bent authorization__svg'
-            src='assets/icons/tree-bent.svg'>
-  </svg-icon>
-  <svg-icon class='authorization__svg-camel authorization__svg'
-            src='assets/icons/camel.svg'>
-  </svg-icon>
-  <svg-icon class='authorization__svg-camel-and-man authorization__svg'
-            src='assets/icons/camel-and-man.svg'>
-  </svg-icon>
+  <b-background-svg>
+
+  </b-background-svg>
   <span class='authorization__svg-sand'>
   </span>
 </div>

@@ -24,6 +24,8 @@ export class HeaderComponent {
 
   isShowMenu = false;
 
+  isHiddenLoginButton = false;
+
   private _language: string;
 
   constructor(
