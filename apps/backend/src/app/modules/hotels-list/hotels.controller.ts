@@ -129,26 +129,32 @@ export class HotelsController {
     @Res() res: Response
   ): Promise<void> {
     const hotels = await this.hotelsRepository
-      .find({ relations: ['address', 'address.city', 'address.city.country'], skip: range, take: 10 })
-      .then((value) => {
+      .find({
+        relations: ['address', 'address.city', 'address.city.country'],
+        skip: range,
+        take: 10
+      })
+      .then(value => {
         res.status(HttpStatus.OK).send(
           value.map(m => ({
             id: m.id,
             name: m.name,
             address: m.address
-          })))
+          }))
+        );
       })
       .catch(error => {
         res.status(HttpStatus.INTERNAL_SERVER_ERROR);
         return error;
       });
-    res.send(hotels)
+    res.send(hotels);
   }
 
   @Get(':id/rooms/:roomId')
   async getRoom(@Param() params): Promise<RoomDto> {
     const room = await this.roomRepository.findOne(params.roomId, {
-      relations: ['beds', 'amenitiesRoom', 'amenitiesRoom.amenities', 'photos']})
+      relations: ['beds', 'amenitiesRoom', 'amenitiesRoom.amenities', 'photos']
+    });
     const photos = await room.photos;
     return {
       send: 'комната успешно создана',
@@ -170,15 +176,16 @@ export class HotelsController {
     @Headers('range') range: number,
     @Res() res: Response
   ): Promise<void> {
-    const rooms = await this.roomRepository.find({
-      relations: ['beds'],
-      where: {
-        hotel: params.id
-      },
-      skip: range,
-      take: 10,
-    })
-      .then((value) => {
+    const rooms = await this.roomRepository
+      .find({
+        relations: ['beds'],
+        where: {
+          hotel: params.id
+        },
+        skip: range,
+        take: 10
+      })
+      .then(value => {
         res.status(HttpStatus.OK).send(
           value.map(m => ({
             id: m.id,
@@ -186,13 +193,14 @@ export class HotelsController {
             capacity: m.capacity,
             beds: m.beds,
             price: m.price
-          })))
+          }))
+        );
       })
       .catch(error => {
         res.status(HttpStatus.INTERNAL_SERVER_ERROR);
         return error;
       });
-    res.send(rooms)
+    res.send(rooms);
   }
 
   @Post(':id/rooms')
@@ -226,7 +234,7 @@ export class HotelsController {
       await this.photoRepository.manager.save(photo1);
     }
 
-    for (let bed of roomDto.beds) {
+    for (const bed of roomDto.beds) {
       await this.bedsRepository.save({
         name: bed.name,
         rooms: [room1]
@@ -237,7 +245,7 @@ export class HotelsController {
       const amenities = await this.amenitiesRepository.save({
         name: a.name,
         default: a.default,
-        icon: a.icon,
+        icon: a.icon
       });
 
       await this.amenitiesRoomRepository.save({
@@ -247,7 +255,17 @@ export class HotelsController {
       });
     }
 
-    const newRoom = await this.roomRepository.findOne({description: room.description, price: room.price, name: room.name}, {relations: ['beds', 'amenitiesRoom', 'amenitiesRoom.amenities', 'photos']})
+    const newRoom = await this.roomRepository.findOne(
+      { description: room.description, price: room.price, name: room.name },
+      {
+        relations: [
+          'beds',
+          'amenitiesRoom',
+          'amenitiesRoom.amenities',
+          'photos'
+        ]
+      }
+    );
     const photos = await newRoom.photos;
     return {
       send: 'комната успешно создана',
@@ -279,12 +297,11 @@ export class HotelsController {
     const hotel = await this.hotelsRepository.findOne(params.id);
     const room = await this.roomRepository.findOne(params.roomId);
 
-
-    for (let bed of roomDto.beds) {
+    for (const bed of roomDto.beds) {
       if (bed.id.length > 0) {
         await this.bedsRepository.update(bed.id, {
           name: bed.name
-        })
+        });
       } else {
         await this.bedsRepository.save({
           name: bed.name,
@@ -339,7 +356,17 @@ export class HotelsController {
       }
     }
 
-    const newRoom = await this.roomRepository.findOne({description: room.description, price: room.price, name: room.name}, {relations: ['beds', 'amenitiesRoom', 'amenitiesRoom.amenities', 'photos']})
+    const newRoom = await this.roomRepository.findOne(
+      { description: room.description, price: room.price, name: room.name },
+      {
+        relations: [
+          'beds',
+          'amenitiesRoom',
+          'amenitiesRoom.amenities',
+          'photos'
+        ]
+      }
+    );
     const photos = await newRoom.photos;
     return {
       send: 'комната успешно обновлена',
@@ -365,7 +392,9 @@ export class HotelsController {
       id: params.amenitiesId
     });
     await this.serviceRepository.delete(amenitiesRoom);
-    const newRoom = await this.roomRepository.findOne(params.roomId, {relations: ['beds', 'amenitiesRoom', 'amenitiesRoom.amenities', 'photos']})
+    const newRoom = await this.roomRepository.findOne(params.roomId, {
+      relations: ['beds', 'amenitiesRoom', 'amenitiesRoom.amenities', 'photos']
+    });
     return {
       send: 'комната обновлена',
       amenities: newRoom.amenitiesRoom
@@ -377,7 +406,9 @@ export class HotelsController {
     const photo = await this.photoRepository.findOne({ id: params.photo.id });
     await this.photoRepository.delete(photo);
 
-    const newRoom = await this.roomRepository.findOne(params.roomId, { relations: ['photos'] })
+    const newRoom = await this.roomRepository.findOne(params.roomId, {
+      relations: ['photos']
+    });
     const photos = await newRoom.photos;
     return {
       send: `photo room delete`,
@@ -388,7 +419,7 @@ export class HotelsController {
   @Post()
   async addHotel(
     @Body()
-      body: {
+    body: {
       name: string;
     }
   ): Promise<any> {
@@ -409,7 +440,9 @@ export class HotelsController {
   ): Promise<HotelDto> {
     const hotel = await this.hotelsRepository.findOne(params.id);
 
-    const city = await this.cityRepository.find({ name: hotelDto.address.city });
+    const city = await this.cityRepository.find({
+      name: hotelDto.address.city
+    });
 
     if (city.length === 0) {
       const country = await this.countryRepository.save({
@@ -439,12 +472,13 @@ export class HotelsController {
         freeCancellation: hotelDto.freeCancellation
       });
 
-
       if (hotelDto.serviceType.id.length > 0) {
         await this.serviceTypeRepository.update(hotelDto.serviceType.id, {
           name: hotelDto.serviceType.name
         });
-        const serviceType = await this.serviceTypeRepository.findOne(hotelDto.serviceType.id)
+        const serviceType = await this.serviceTypeRepository.findOne(
+          hotelDto.serviceType.id
+        );
         await this.hotelsRepository.update(params.id, {
           serviceType: serviceType
         });
@@ -457,12 +491,13 @@ export class HotelsController {
         });
       }
 
-
-      if (hotelDto.currency.id.length > 0 ) {
+      if (hotelDto.currency.id.length > 0) {
         await this.currencyRepository.update(hotelDto.currency.id, {
           name: hotelDto.currency.name
-        })
-        const currency = await this.currencyRepository.findOne(hotelDto.currency.id)
+        });
+        const currency = await this.currencyRepository.findOne(
+          hotelDto.currency.id
+        );
         await this.hotelsRepository.update(params.id, {
           currency: currency
         });
@@ -474,9 +509,10 @@ export class HotelsController {
           currency: currency
         });
       }
-
     } else {
-      const city = await this.cityRepository.findOne({ name: hotelDto.address.city });
+      const city = await this.cityRepository.findOne({
+        name: hotelDto.address.city
+      });
 
       const address = await this.addressRepository.save({
         street: hotelDto.address.street,
@@ -486,8 +522,6 @@ export class HotelsController {
         hotels: Promise.resolve(hotel)
       });
 
-
-
       await this.hotelsRepository.update(params.id, {
         name: hotelDto.name,
         description: hotelDto.description,
@@ -495,14 +529,16 @@ export class HotelsController {
         stars: hotelDto.stars,
         minPrice: hotelDto.minPrice,
         address: address,
-        freeCancellation: hotelDto.freeCancellation,
+        freeCancellation: hotelDto.freeCancellation
       });
 
       if (hotelDto.serviceType.id.length > 0) {
         await this.serviceTypeRepository.update(hotelDto.serviceType.id, {
           name: hotelDto.serviceType.name
         });
-        const serviceType = await this.serviceTypeRepository.findOne(hotelDto.serviceType.id)
+        const serviceType = await this.serviceTypeRepository.findOne(
+          hotelDto.serviceType.id
+        );
         await this.hotelsRepository.update(params.id, {
           serviceType: serviceType
         });
@@ -515,11 +551,13 @@ export class HotelsController {
         });
       }
 
-      if (hotelDto.currency.id.length > 0 ) {
+      if (hotelDto.currency.id.length > 0) {
         await this.currencyRepository.update(hotelDto.currency.id, {
           name: hotelDto.currency.name
-        })
-        const currency = await this.currencyRepository.findOne(hotelDto.currency.id)
+        });
+        const currency = await this.currencyRepository.findOne(
+          hotelDto.currency.id
+        );
         await this.hotelsRepository.update(params.id, {
           currency: currency
         });
@@ -541,7 +579,7 @@ export class HotelsController {
         'services',
         'services.category',
         'serviceType',
-        'currency',
+        'currency'
       ]
     });
     return {
@@ -554,10 +592,11 @@ export class HotelsController {
       minPrice: updatedHotel.minPrice,
       address: this.hotelsService.convertAddressDaoToDto(updatedHotel.address),
       freeCancellation: updatedHotel.freeCancellation,
-      serviceType: this.hotelsService.convertServiceTypeDaoToDto(updatedHotel.serviceType),
+      serviceType: this.hotelsService.convertServiceTypeDaoToDto(
+        updatedHotel.serviceType
+      ),
       currency: updatedHotel.currency
     };
-
   }
 
   @Patch(':id/2')
@@ -585,10 +624,7 @@ export class HotelsController {
       }
     }
     const updatedHotel = await this.hotelsRepository.findOne(params.id, {
-      relations: [
-        'hotelBoardBasis',
-        'hotelBoardBasis.boardBasis'
-      ]
+      relations: ['hotelBoardBasis', 'hotelBoardBasis.boardBasis']
     });
     return {
       id: params.id,
@@ -605,10 +641,7 @@ export class HotelsController {
     });
     await this.hotelBoardBasisRepository.delete(food);
     const updatedHotel = await this.hotelsRepository.findOne(params.id, {
-      relations: [
-        'hotelBoardBasis',
-        'hotelBoardBasis.boardBasis'
-      ]
+      relations: ['hotelBoardBasis', 'hotelBoardBasis.boardBasis']
     });
     return {
       hotelBoardBasis: updatedHotel.hotelBoardBasis,
@@ -622,7 +655,9 @@ export class HotelsController {
     @Body() distance: DistanceDto
   ): Promise<HotelDto> {
     const hotel = await this.hotelsRepository.findOne(params.id);
-    const findDistance = await this.distanceRepository.findOne({hotel: hotel})
+    const findDistance = await this.distanceRepository.findOne({
+      hotel: hotel
+    });
 
     if (distance.id.length > 0) {
       await this.distanceRepository.update(findDistance.id, {
@@ -639,11 +674,9 @@ export class HotelsController {
       });
     }
     const updatedHotel = await this.hotelsRepository.findOne(params.id, {
-      relations: [
-        'distance'
-      ]
+      relations: ['distance']
     });
-    const distanceUpdate = await updatedHotel.distance
+    const distanceUpdate = await updatedHotel.distance;
     return {
       distance: distanceUpdate,
       send: 'расстояние дополненно'
@@ -654,7 +687,6 @@ export class HotelsController {
   async changeHotelFourthStep(
     @Param() params,
     @Body() services: ServicesDto[]
-
   ): Promise<HotelDto> {
     const hotel = await this.hotelsRepository.findOne(params.id);
 
@@ -670,10 +702,10 @@ export class HotelsController {
           name: service1.category
         });
 
-        if(category === undefined){
-         const newCategory = await this.categoryRepository.save({
-           name: service1.category
-         })
+        if (category === undefined) {
+          const newCategory = await this.categoryRepository.save({
+            name: service1.category
+          });
           await this.serviceRepository.save({
             price: service1.price,
             name: service1.name,
@@ -690,17 +722,16 @@ export class HotelsController {
             hotels: [hotel]
           });
         }
-
       }
     }
     const updatedHotel = await this.hotelsRepository.findOne(params.id, {
-      relations: [
-        'services',
-        'services.category'
-      ]})
+      relations: ['services', 'services.category']
+    });
     return {
       id: params.id,
-      services: this.hotelsService.convertServiceDaoToDto(updatedHotel.services),
+      services: this.hotelsService.convertServiceDaoToDto(
+        updatedHotel.services
+      ),
       send: 'сервисы дополненно'
     };
   }
@@ -713,18 +744,16 @@ export class HotelsController {
     await this.serviceRepository.remove(service);
 
     const updatedHotel = await this.hotelsRepository.findOne(params.id, {
-      relations: [
-        'services',
-        'services.category'
-      ]})
+      relations: ['services', 'services.category']
+    });
 
     return {
-      services: this.hotelsService.convertServiceDaoToDto(updatedHotel.services),
+      services: this.hotelsService.convertServiceDaoToDto(
+        updatedHotel.services
+      ),
       send: `service delete`
     };
   }
-
-
 
   @Patch(':id/5')
   async changeHotelFiveStep(
@@ -748,31 +777,28 @@ export class HotelsController {
       }
     }
 
-      if (photos.mainPhoto.id.length > 0) {
-        await this.photoRepository.manager.update(Photo, photos.mainPhoto.id, {
-          name: photos.mainPhoto.name,
-          src: photos.mainPhoto.src
-        });
-      } else {
-        const photo1 = new Photo();
-        photo1.name = photos.mainPhoto.name;
-        photo1.src = photos.mainPhoto.src;
-        photo1.hotel = Promise.resolve(hotel);
-        const hotelMainPhoto = await this.photoRepository.manager.save(photo1);
+    if (photos.mainPhoto.id.length > 0) {
+      await this.photoRepository.manager.update(Photo, photos.mainPhoto.id, {
+        name: photos.mainPhoto.name,
+        src: photos.mainPhoto.src
+      });
+    } else {
+      const photo1 = new Photo();
+      photo1.name = photos.mainPhoto.name;
+      photo1.src = photos.mainPhoto.src;
+      photo1.hotel = Promise.resolve(hotel);
+      const hotelMainPhoto = await this.photoRepository.manager.save(photo1);
 
-        await this.hotelsRepository.update(params.id, {
-          mainPhoto: hotelMainPhoto
-        })
-      }
-
+      await this.hotelsRepository.update(params.id, {
+        mainPhoto: hotelMainPhoto
+      });
+    }
 
     const updatedHotel = await this.hotelsRepository.findOne(params.id, {
-      relations: [
-        'photos',
-        'mainPhoto'
-      ]})
+      relations: ['photos', 'mainPhoto']
+    });
     const newPhotos = await updatedHotel.photos;
-    const mainPhoto = await updatedHotel.mainPhoto
+    const mainPhoto = await updatedHotel.mainPhoto;
     return {
       photos: this.hotelsService.convertPhotoDaoToDto(newPhotos),
       mainPhoto: mainPhoto,
@@ -786,12 +812,10 @@ export class HotelsController {
     await this.photoRepository.delete(photo);
 
     const updatedHotel = await this.hotelsRepository.findOne(params.id, {
-      relations: [
-        'photos',
-        'mainPhoto'
-      ]})
+      relations: ['photos', 'mainPhoto']
+    });
     const newPhotos = await updatedHotel.photos;
-    const mainPhoto = await updatedHotel.mainPhoto
+    const mainPhoto = await updatedHotel.mainPhoto;
     return {
       photos: this.hotelsService.convertPhotoDaoToDto(newPhotos),
       mainPhoto: mainPhoto,
@@ -799,11 +823,10 @@ export class HotelsController {
     };
   }
 
-
   @Delete(':id')
   async deleteHotel(@Param() params): Promise<HotelDto> {
     await this.hotelsRepository.delete(params.id);
-    const hotelDelete = await this.hotelsRepository.findOne(params.id)
+    const hotelDelete = await this.hotelsRepository.findOne(params.id);
 
     return {
       send: `hotel delete`,
@@ -883,6 +906,4 @@ export class HotelsController {
       send: 'отзывы дополненно'
     };
   }*/
-
-
 }
