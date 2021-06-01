@@ -1,4 +1,4 @@
-export interface CurrencyModel {
+export interface CurrencyDto {
   id?: string;
   name?: string;
 }
