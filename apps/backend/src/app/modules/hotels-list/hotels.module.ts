@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { DbModule } from '../db/db.module';
 import { HotelsController } from './hotels.controller';
-import { HotelsConversionService } from './hotels-conversion.service';
+import { HotelsService } from './hotels.service';
 
 @Module({
   imports: [DbModule],
   controllers: [HotelsController],
-  providers: [HotelsConversionService]
+  providers: [HotelsService]
 })
 export class HotelsModule {}
