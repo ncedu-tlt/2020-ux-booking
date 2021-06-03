@@ -27,7 +27,6 @@ import { Comments } from '../db/domain/comment.dao';
 
 @Injectable()
 export class HotelsService {
-
   constructor(
     @InjectRepository(Hotel)
     private hotelsRepository: Repository<Hotel>,
@@ -65,8 +64,7 @@ export class HotelsService {
     private reviewRepository: Repository<Review>,
     @InjectRepository(Comments)
     private commentsRepository: Repository<Comments>
-  ) {
-  }
+  ) {}
   convertAddressDaoToDto(address: Address): AddressDto {
     if (address === null) {
       return {
@@ -142,23 +140,23 @@ export class HotelsService {
   async getHotelById(hotel) {
     const photos = await hotel.photos;
     const distance = await hotel.distance;
-     return {
-       id: hotel.id,
-       name: hotel.name,
-       description: hotel.description,
-       bookingPolicy: hotel.bookingPolicy,
-       stars: hotel.stars,
-       minPrice: hotel.minPrice,
-       freeCancellation: hotel.freeCancellation,
-       services: this.convertServiceDaoToDto(hotel.services),
-       address: this.convertAddressDaoToDto(hotel.address),
-       serviceType: hotel.serviceType,
-       currency: hotel.currency,
-       mainPhoto: this.convertMainPhotoDaoToDto(hotel.mainPhoto),
-       photos: this.convertPhotoDaoToDto(photos),
-       distance: distance,
-       hotelBoardBasis: hotel.hotelBoardBasis
-     }
+    return {
+      id: hotel.id,
+      name: hotel.name,
+      description: hotel.description,
+      bookingPolicy: hotel.bookingPolicy,
+      stars: hotel.stars,
+      minPrice: hotel.minPrice,
+      freeCancellation: hotel.freeCancellation,
+      services: this.convertServiceDaoToDto(hotel.services),
+      address: this.convertAddressDaoToDto(hotel.address),
+      serviceType: hotel.serviceType,
+      currency: hotel.currency,
+      mainPhoto: this.convertMainPhotoDaoToDto(hotel.mainPhoto),
+      photos: this.convertPhotoDaoToDto(photos),
+      distance: distance,
+      hotelBoardBasis: hotel.hotelBoardBasis
+    };
   }
 
   async getRoomById(room) {
@@ -174,7 +172,7 @@ export class HotelsService {
       beds: room.beds,
       amenities: room.amenitiesRoom,
       photos: photos
-    }
+    };
   }
 
   async createRoom(hotel, roomDto) {
@@ -247,8 +245,7 @@ export class HotelsService {
       beds: newRoom.beds,
       amenities: newRoom.amenitiesRoom,
       photos: photos
-    }
-
+    };
   }
 
   async changeRoom(roomDto, paramsId, paramsRoomId) {
@@ -350,7 +347,6 @@ export class HotelsService {
 
   async changeHotelFirstStep(hotelDto, paramsId) {
     const hotel = await this.hotelsRepository.findOne(paramsId);
-
 
     const city = await this.cityRepository.find({
       name: hotelDto.address.city
@@ -504,9 +500,7 @@ export class HotelsService {
       minPrice: updatedHotel.minPrice,
       address: this.convertAddressDaoToDto(updatedHotel.address),
       freeCancellation: updatedHotel.freeCancellation,
-      serviceType: this.convertServiceTypeDaoToDto(
-        updatedHotel.serviceType
-      ),
+      serviceType: this.convertServiceTypeDaoToDto(updatedHotel.serviceType),
       currency: updatedHotel.currency
     };
   }
@@ -613,9 +607,7 @@ export class HotelsService {
     });
     return {
       id: paramsId,
-      services: this.convertServiceDaoToDto(
-        updatedHotel.services
-      ),
+      services: this.convertServiceDaoToDto(updatedHotel.services),
       send: 'сервисы дополненно'
     };
   }
@@ -666,7 +658,6 @@ export class HotelsService {
       send: 'фото дополненно'
     };
   }
-
 
   /*convertAmenitiesDaoToDto(amenities: AmenitiesRoom[]): AmenitiesDto[] {
     return amenities.map(value => {

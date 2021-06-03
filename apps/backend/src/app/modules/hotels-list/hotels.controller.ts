@@ -11,25 +11,15 @@ import {
   HttpStatus
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { getRepository, Repository } from 'typeorm';
+import {  Repository } from 'typeorm';
 import { Hotel } from '../db/domain/hotel.dao';
-import { Country } from '../db/domain/countries.dao';
-import { City } from '../db/domain/city.dao';
-import { Address } from '../db/domain/addresses.dao';
-import { ServiceType } from '../db/domain/service_type.dao';
 import { Service } from '../db/domain/service.dao';
 import { Photo } from '../db/domain/photo.dao';
-import { Categories } from '../db/domain/categories.dao';
-import { Currency } from '../db/domain/currency.dao';
-import { Distance } from '../db/domain/distance';
 import { BoardBasis } from '../db/domain/board_basis.dao';
 import { HotelBoardBasis } from '../db/domain/hotel_board_basis.dao';
 import { Room } from '../db/domain/room.dao';
 import { Amenities } from '../db/domain/ameniries.dao';
 import { AmenitiesRoom } from '../db/domain/amenities_room.dao';
-import { Bed } from '../db/domain/bed.dao';
-import { Review } from '../db/domain/review.dao';
-import { Comments } from '../db/domain/comment.dao';
 import { HotelDto } from '@booking/models/hotel.dto';
 import { Response } from 'express';
 import { HotelBoardBasisDto } from '@booking/models/hotelBoardBasis.dto';
@@ -45,24 +35,10 @@ export class HotelsController {
   constructor(
     @InjectRepository(Hotel)
     private hotelsRepository: Repository<Hotel>,
-    @InjectRepository(Country)
-    private countryRepository: Repository<Country>,
-    @InjectRepository(City)
-    private cityRepository: Repository<City>,
-    @InjectRepository(Address)
-    private addressRepository: Repository<Address>,
-    @InjectRepository(ServiceType)
-    private serviceTypeRepository: Repository<ServiceType>,
     @InjectRepository(Service)
     private serviceRepository: Repository<Service>,
     @InjectRepository(Photo)
     private photoRepository: Repository<Photo>,
-    @InjectRepository(Categories)
-    private categoryRepository: Repository<Categories>,
-    @InjectRepository(Currency)
-    private currencyRepository: Repository<Currency>,
-    @InjectRepository(Distance)
-    private distanceRepository: Repository<Distance>,
     @InjectRepository(BoardBasis)
     private boardBasisRepository: Repository<BoardBasis>,
     @InjectRepository(HotelBoardBasis)
@@ -73,23 +49,15 @@ export class HotelsController {
     private amenitiesRepository: Repository<Amenities>,
     @InjectRepository(AmenitiesRoom)
     private amenitiesRoomRepository: Repository<AmenitiesRoom>,
-    @InjectRepository(Bed)
-    private bedsRepository: Repository<Bed>,
-    @InjectRepository(Review)
-    private reviewRepository: Repository<Review>,
-    @InjectRepository(Comments)
-    private commentsRepository: Repository<Comments>,
-
     private hotelsService: HotelsService
   ) {}
-
 
   @Get(':id')
   async getHotelById(@Param() params): Promise<HotelDto> {
     const hotel = await this.hotelsRepository.findOne(params.id, {
       relations: RELATIONS_GET_HOTEL_ID
     });
-    return this.hotelsService.getHotelById(hotel)
+    return this.hotelsService.getHotelById(hotel);
   }
 
   @Get()
@@ -124,7 +92,7 @@ export class HotelsController {
     const room = await this.roomRepository.findOne(params.roomId, {
       relations: ['beds', 'amenitiesRoom', 'amenitiesRoom.amenities', 'photos']
     });
-    return this.hotelsService.getRoomById(room)
+    return this.hotelsService.getRoomById(room);
   }
 
   @Get(':id/rooms')
@@ -166,7 +134,7 @@ export class HotelsController {
     @Body() roomDto: RoomDto
   ): Promise<RoomDto> {
     const hotel = await this.hotelsRepository.findOne(params.id);
-    return await this.hotelsService.createRoom(hotel, roomDto)
+    return await this.hotelsService.createRoom(hotel, roomDto);
   }
 
   @Patch(':id/rooms/:roomId')
@@ -174,7 +142,7 @@ export class HotelsController {
     @Param() params,
     @Body() roomDto: RoomDto
   ): Promise<RoomDto> {
-    return this.hotelsService.changeRoom(roomDto, params.id, params.roomId)
+    return this.hotelsService.changeRoom(roomDto, params.id, params.roomId);
   }
   @Delete(':id/room/:roomId/:amenitiesId')
   async deleteAmenities(@Param() params): Promise<RoomDto> {
@@ -233,9 +201,7 @@ export class HotelsController {
     @Param() params,
     @Body() hotelDto: HotelDto
   ): Promise<HotelDto> {
-
-   return await this.hotelsService.changeHotelFirstStep(hotelDto, params.id)
-
+    return await this.hotelsService.changeHotelFirstStep(hotelDto, params.id);
   }
 
   @Patch(':id/foodHotel')
@@ -243,7 +209,7 @@ export class HotelsController {
     @Param() params,
     @Body() foods: HotelBoardBasisDto[]
   ): Promise<HotelDto> {
-    return await this.hotelsService.changeHotelSecondStep(foods, params.id)
+    return await this.hotelsService.changeHotelSecondStep(foods, params.id);
   }
 
   @Delete(':id/foodHotel/:foodId')
@@ -267,7 +233,7 @@ export class HotelsController {
     @Param() params,
     @Body() distance: DistanceDto
   ): Promise<HotelDto> {
-    return await this.hotelsService.changeHotelThirdStep(distance, params.id)
+    return await this.hotelsService.changeHotelThirdStep(distance, params.id);
   }
 
   @Patch(':id/services')
@@ -275,7 +241,7 @@ export class HotelsController {
     @Param() params,
     @Body() services: ServicesDto[]
   ): Promise<HotelDto> {
-    return await this.hotelsService.changeHotelFourthStep(services, params.id)
+    return await this.hotelsService.changeHotelFourthStep(services, params.id);
   }
 
   @Delete(':id/services/:serviceId')
@@ -302,7 +268,7 @@ export class HotelsController {
     @Param() params,
     @Body() photos: PhotosDto
   ): Promise<HotelDto> {
-    return await this.hotelsService.changeHotelFiveStep(photos, params.id)
+    return await this.hotelsService.changeHotelFiveStep(photos, params.id);
   }
 
   @Delete(':id/photos/:photoId')
