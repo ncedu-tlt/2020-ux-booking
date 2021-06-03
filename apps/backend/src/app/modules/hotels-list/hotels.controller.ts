@@ -11,7 +11,7 @@ import {
   HttpStatus
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import {  Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { Hotel } from '../db/domain/hotel.dao';
 import { Service } from '../db/domain/service.dao';
 import { Photo } from '../db/domain/photo.dao';
