@@ -181,8 +181,7 @@ export class HotelsController {
   async deleteRoom(@Param() params): Promise<RoomDto> {
     await this.roomRepository.delete(params.roomId);
 
-    return {
-    };
+    return {};
   }
 
   @Post()
@@ -228,7 +227,7 @@ export class HotelsController {
       relations: ['hotelBoardBasis', 'hotelBoardBasis.boardBasis']
     });
     return {
-      hotelBoardBasis: updatedHotel.hotelBoardBasis,
+      hotelBoardBasis: updatedHotel.hotelBoardBasis
     };
   }
 
@@ -260,10 +259,7 @@ export class HotelsController {
     });
 
     return {
-      services: this.hotelsService.convertServiceDaoToDto(
-        updatedHotel.services
-      ),
-
+      services: this.hotelsService.convertServiceDaoToDto(updatedHotel.services)
     };
   }
 
@@ -287,7 +283,7 @@ export class HotelsController {
     const mainPhoto = await updatedHotel.mainPhoto;
     return {
       photos: this.hotelsService.convertPhotoDaoToDto(newPhotos),
-      mainPhoto: mainPhoto,
+      mainPhoto: mainPhoto
     };
   }
 
@@ -301,5 +297,4 @@ export class HotelsController {
       name: hotelDelete.name
     };
   }
-
 }
