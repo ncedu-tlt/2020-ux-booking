@@ -12,4 +12,5 @@ export const RELATIONS_GET_HOTEL_ID: string[] = [
   HotelRelations.photos,
   HotelRelations.distance,
   HotelRelations.hotelBoardBasis,
-  HotelRelations.boardBasis]
+  HotelRelations.boardBasis
+];
