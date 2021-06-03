@@ -252,7 +252,11 @@ export class HotelsService {
     };
   }
 
-  async changeRoom(roomDto: RoomDto, paramsId: string, paramsRoomId: string): Promise<RoomDto> {
+  async changeRoom(
+    roomDto: RoomDto,
+    paramsId: string,
+    paramsRoomId: string
+  ): Promise<RoomDto> {
     await this.roomRepository.update(paramsRoomId, {
       name: roomDto.name,
       price: roomDto.price,
@@ -349,7 +353,10 @@ export class HotelsService {
     };
   }
 
-  async changeHotelFirstStep(hotelDto: HotelDto, paramsId: string): Promise<HotelDto> {
+  async changeHotelFirstStep(
+    hotelDto: HotelDto,
+    paramsId: string
+  ): Promise<HotelDto> {
     const hotel = await this.hotelsRepository.findOne(paramsId);
 
     const city = await this.cityRepository.find({
@@ -509,7 +516,10 @@ export class HotelsService {
     };
   }
 
-  async changeHotelSecondStep(foods: HotelBoardBasisDto[], paramsId: string): Promise<HotelDto> {
+  async changeHotelSecondStep(
+    foods: HotelBoardBasisDto[],
+    paramsId: string
+  ): Promise<HotelDto> {
     const hotel = await this.hotelsRepository.findOne(paramsId);
 
     for (const food of foods) {
@@ -539,7 +549,10 @@ export class HotelsService {
     };
   }
 
-  async changeHotelThirdStep(distance: DistanceDto, paramsId: string): Promise<HotelDto> {
+  async changeHotelThirdStep(
+    distance: DistanceDto,
+    paramsId: string
+  ): Promise<HotelDto> {
     const hotel = await this.hotelsRepository.findOne(paramsId);
     const findDistance = await this.distanceRepository.findOne({
       hotel: hotel
@@ -569,7 +582,10 @@ export class HotelsService {
     };
   }
 
-  async changeHotelFourthStep(services: ServicesDto[], paramsId: string): Promise<HotelDto> {
+  async changeHotelFourthStep(
+    services: ServicesDto[],
+    paramsId: string
+  ): Promise<HotelDto> {
     const hotel = await this.hotelsRepository.findOne(paramsId);
 
     for (const service1 of services) {
@@ -616,7 +632,10 @@ export class HotelsService {
     };
   }
 
-  async changeHotelFiveStep(photos: PhotosDto, paramsId: string): Promise<HotelDto> {
+  async changeHotelFiveStep(
+    photos: PhotosDto,
+    paramsId: string
+  ): Promise<HotelDto> {
     const hotel = await this.hotelsRepository.findOne(paramsId);
 
     for (const photo of photos.photos) {
