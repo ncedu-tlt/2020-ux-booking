@@ -159,7 +159,6 @@ export class HotelsController {
       relations: ['beds', 'amenitiesRoom', 'amenitiesRoom.amenities', 'photos']
     });
     return {
-      send: 'комната обновлена',
       amenities: newRoom.amenitiesRoom
     };
   }
@@ -174,7 +173,6 @@ export class HotelsController {
     });
     const photos = await newRoom.photos;
     return {
-      send: `photo room delete`,
       photos: photos
     };
   }
@@ -184,7 +182,6 @@ export class HotelsController {
     await this.roomRepository.delete(params.roomId);
 
     return {
-      send: 'комната удалена'
     };
   }
 
@@ -200,13 +197,12 @@ export class HotelsController {
     });
 
     return {
-      send: 'done',
       id: hotel.id
     };
   }
 
   @Patch(':id/mainInfo')
-  async changeHotelFirstStep(
+  async changeHotelMainInfo(
     @Param() params,
     @Body() hotelDto: HotelDto
   ): Promise<HotelDto> {
@@ -214,7 +210,7 @@ export class HotelsController {
   }
 
   @Patch(':id/foodHotel')
-  async changeHotelSecondStep(
+  async changeHotelFood(
     @Param() params,
     @Body() foods: HotelBoardBasisDto[]
   ): Promise<HotelDto> {
@@ -233,12 +229,11 @@ export class HotelsController {
     });
     return {
       hotelBoardBasis: updatedHotel.hotelBoardBasis,
-      send: `food delete`
     };
   }
 
   @Patch(':id/addDistance')
-  async changeHotelThirdStep(
+  async changeHotelDistance(
     @Param() params,
     @Body() distance: DistanceDto
   ): Promise<HotelDto> {
@@ -246,7 +241,7 @@ export class HotelsController {
   }
 
   @Patch(':id/services')
-  async changeHotelFourthStep(
+  async changeHotelServices(
     @Param() params,
     @Body() services: ServicesDto[]
   ): Promise<HotelDto> {
@@ -268,12 +263,12 @@ export class HotelsController {
       services: this.hotelsService.convertServiceDaoToDto(
         updatedHotel.services
       ),
-      send: `service delete`
+
     };
   }
 
   @Patch(':id/photos')
-  async changeHotelFiveStep(
+  async changeHotelPhotos(
     @Param() params,
     @Body() photos: PhotosDto
   ): Promise<HotelDto> {
@@ -293,7 +288,6 @@ export class HotelsController {
     return {
       photos: this.hotelsService.convertPhotoDaoToDto(newPhotos),
       mainPhoto: mainPhoto,
-      send: 'photo delete'
     };
   }
 
@@ -303,72 +297,9 @@ export class HotelsController {
     const hotelDelete = await this.hotelsRepository.findOne(params.id);
 
     return {
-      send: `hotel delete`,
       id: hotelDelete.id,
       name: hotelDelete.name
     };
   }
 
-  /*@Patch(':id/6')
-  async changeHotelSixStep(
-    @Param('id') id: string,
-    @Body()
-    body: {
-      comments: {
-        id: string;
-        text: string;
-      }[];
-    }
-  ): Promise<any> {
-    const hotel = await this.hotelsRepository.findOne({ id });
-    for (const com of body.comments) {
-      /!*await this.commentsRepository.save({
-        text: com.text,
-        hotel: hotel
-      });*!/
-
-      if (com.id.length > 0) {
-
-      }
-
-      const comments = new Comments();
-      comments.text = com.text
-      comments.hotel = Promise.resolve(hotel)
-      await this.commentsRepository.manager.save(comments);
-    }
-
-    return {
-      id: id,
-      send: 'комментарии дополненно'
-    };
-  }
-
-  @Patch(':id/7')
-  async changeHotelSevenStep(
-    @Param('id') id: string,
-    @Body()
-    body: {
-      review: {
-        text: string;
-        pros: string;
-        cons: string;
-        rating: number;
-      }[];
-    }
-  ): Promise<any> {
-    const hotel = await this.hotelsRepository.findOne({ id });
-    for (const rev of body.review) {
-      await this.commentsRepository.save({
-        text: rev.text,
-        pros: rev.pros,
-        cons: rev.cons,
-        rating: rev.rating
-      });
-    }
-
-    return {
-      id: id,
-      send: 'отзывы дополненно'
-    };
-  }*/
 }
