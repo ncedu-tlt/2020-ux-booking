@@ -24,6 +24,10 @@ import { Room } from '../db/domain/room.dao';
 import { Bed } from '../db/domain/bed.dao';
 import { Review } from '../db/domain/review.dao';
 import { Comments } from '../db/domain/comment.dao';
+import { HotelDto } from '@booking/models/hotel.dto';
+import { RoomDto } from '@booking/models/room.dto';
+import { HotelBoardBasisDto } from '@booking/models/hotelBoardBasis.dto';
+import { DistanceDto } from '@booking/models/distance.dto';
 
 @Injectable()
 export class HotelsService {
@@ -137,7 +141,7 @@ export class HotelsService {
     }
   }
 
-  async getHotelById(hotel) {
+  async getHotelById(hotel: Hotel): Promise<HotelDto> {
     const photos = await hotel.photos;
     const distance = await hotel.distance;
     return {
@@ -159,7 +163,7 @@ export class HotelsService {
     };
   }
 
-  async getRoomById(room) {
+  async getRoomById(room: Room): Promise<RoomDto> {
     const photos = await room.photos;
     return {
       send: 'комната успешно создана',
@@ -175,7 +179,7 @@ export class HotelsService {
     };
   }
 
-  async createRoom(hotel, roomDto) {
+  async createRoom(hotel: Hotel, roomDto: RoomDto): Promise<RoomDto> {
     const room = new Room();
     room.name = roomDto.name;
     room.price = roomDto.price;
@@ -248,7 +252,7 @@ export class HotelsService {
     };
   }
 
-  async changeRoom(roomDto, paramsId, paramsRoomId) {
+  async changeRoom(roomDto: RoomDto, paramsId: string, paramsRoomId: string): Promise<RoomDto> {
     await this.roomRepository.update(paramsRoomId, {
       name: roomDto.name,
       price: roomDto.price,
@@ -345,7 +349,7 @@ export class HotelsService {
     };
   }
 
-  async changeHotelFirstStep(hotelDto, paramsId) {
+  async changeHotelFirstStep(hotelDto: HotelDto, paramsId: string): Promise<HotelDto> {
     const hotel = await this.hotelsRepository.findOne(paramsId);
 
     const city = await this.cityRepository.find({
@@ -505,7 +509,7 @@ export class HotelsService {
     };
   }
 
-  async changeHotelSecondStep(foods, paramsId) {
+  async changeHotelSecondStep(foods: HotelBoardBasisDto[], paramsId: string): Promise<HotelDto> {
     const hotel = await this.hotelsRepository.findOne(paramsId);
 
     for (const food of foods) {
@@ -535,7 +539,7 @@ export class HotelsService {
     };
   }
 
-  async changeHotelThirdStep(distance, paramsId) {
+  async changeHotelThirdStep(distance: DistanceDto, paramsId: string): Promise<HotelDto> {
     const hotel = await this.hotelsRepository.findOne(paramsId);
     const findDistance = await this.distanceRepository.findOne({
       hotel: hotel
@@ -565,7 +569,7 @@ export class HotelsService {
     };
   }
 
-  async changeHotelFourthStep(services, paramsId) {
+  async changeHotelFourthStep(services: ServicesDto[], paramsId: string): Promise<HotelDto> {
     const hotel = await this.hotelsRepository.findOne(paramsId);
 
     for (const service1 of services) {
@@ -612,7 +616,7 @@ export class HotelsService {
     };
   }
 
-  async changeHotelFiveStep(photos, paramsId) {
+  async changeHotelFiveStep(photos: PhotosDto, paramsId: string): Promise<HotelDto> {
     const hotel = await this.hotelsRepository.findOne(paramsId);
 
     for (const photo of photos.photos) {
