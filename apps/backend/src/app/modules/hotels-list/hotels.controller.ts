@@ -179,13 +179,22 @@ export class HotelsController {
     };
   }
 
+  @Delete(':id/rooms/:roomId')
+  async deleteRoom(@Param() params): Promise<RoomDto> {
+    await this.roomRepository.delete(params.roomId);
+
+    return {
+      send: 'комната удалена'
+    };
+  }
+
   @Post()
   async addHotel(
     @Body()
     body: {
       name: string;
     }
-  ): Promise<any> {
+  ): Promise<HotelDto> {
     const hotel = await this.hotelsRepository.save({
       name: body.name
     });
@@ -213,7 +222,7 @@ export class HotelsController {
   }
 
   @Delete(':id/foodHotel/:foodId')
-  async deleteFood(@Param() params): Promise<any> {
+  async deleteFood(@Param() params): Promise<HotelDto> {
     const food = await this.hotelBoardBasisRepository.findOne({
       hotel: params.id,
       boardBasis: params.foodId
@@ -297,15 +306,6 @@ export class HotelsController {
       send: `hotel delete`,
       id: hotelDelete.id,
       name: hotelDelete.name
-    };
-  }
-
-  @Delete(':id/rooms/:roomId')
-  async deleteRoom(@Param() params): Promise<any> {
-    await this.roomRepository.delete(params.roomId);
-
-    return {
-      send: 'комната удалена'
     };
   }
 
