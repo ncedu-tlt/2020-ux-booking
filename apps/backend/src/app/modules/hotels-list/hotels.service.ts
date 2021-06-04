@@ -30,7 +30,8 @@ import { HotelBoardBasisDto } from '@booking/models/hotelBoardBasis.dto';
 import { DistanceDto } from '@booking/models/distance.dto';
 import {
   RELATIONS_GET_HOTEL_FOOD,
-  RELATIONS_GET_HOTEL_ID, RELATIONS_GET_HOTEL_PHOTOS,
+  RELATIONS_GET_HOTEL_ID,
+  RELATIONS_GET_HOTEL_PHOTOS,
   RELATIONS_GET_HOTEL_SERVICES,
   RELATIONS_GET_ROOM
 } from './hotel.constants';
@@ -196,7 +197,12 @@ export class HotelsService {
     };
   }
 
-  async savedMainInfoHotel(hotelDto: HotelDto, paramsId: string, city: City, hotel: Hotel): Promise<void> {
+  async savedMainInfoHotel(
+    hotelDto: HotelDto,
+    paramsId: string,
+    city: City,
+    hotel: Hotel
+  ): Promise<void> {
     const address: Address = await this.addressRepository.save({
       street: hotelDto.address.street,
       number: hotelDto.address.number,
@@ -349,7 +355,9 @@ export class HotelsService {
           icon: a.icon
         });
 
-        const amenities: Amenities = await this.amenitiesRepository.findOne(a.id);
+        const amenities: Amenities = await this.amenitiesRepository.findOne(
+          a.id
+        );
 
         await this.amenitiesRoomRepository.update(a.id, {
           price: a.price,
@@ -591,5 +599,4 @@ export class HotelsService {
       mainPhoto: await updatedHotel.mainPhoto
     };
   }
-
 }
