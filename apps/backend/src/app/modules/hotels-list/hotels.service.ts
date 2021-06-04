@@ -142,12 +142,12 @@ export class HotelsService {
   }
 
   async photoRoomSave(ph, room, hotel): Promise<void> {
-      const photo = new Photo();
-      photo.name = ph.name;
-      photo.src = ph.src;
-      photo.room = Promise.resolve(room);
-      photo.hotel = Promise.resolve(hotel);
-      await this.photoRepository.manager.save(photo);
+    const photo = new Photo();
+    photo.name = ph.name;
+    photo.src = ph.src;
+    photo.room = Promise.resolve(room);
+    photo.hotel = Promise.resolve(hotel);
+    await this.photoRepository.manager.save(photo);
   }
 
   async getAllRoom(room) {
@@ -272,9 +272,6 @@ export class HotelsService {
     };
   }
 
-
-
-
   async createRoom(hotel: Hotel, roomDto: RoomDto): Promise<RoomDto> {
     const room = new Room();
     room.name = roomDto.name;
@@ -292,7 +289,7 @@ export class HotelsService {
     });
 
     for (const ph of roomDto.photos) {
-      await this.photoRoomSave(ph, roomFindOne, hotel)
+      await this.photoRoomSave(ph, roomFindOne, hotel);
     }
 
     for (const bed of roomDto.beds) {
@@ -316,8 +313,7 @@ export class HotelsService {
       });
     }
 
-    return await this.getAllRoom(room)
-
+    return await this.getAllRoom(room);
   }
 
   async changeRoom(
@@ -386,12 +382,11 @@ export class HotelsService {
           src: ph.src
         });
       } else {
-        await this.photoRoomSave(ph, room, hotel)
+        await this.photoRoomSave(ph, room, hotel);
       }
     }
 
-    return await this.getAllRoom(room)
-
+    return await this.getAllRoom(room);
   }
 
   async changeHotelMainInfo(
@@ -414,16 +409,13 @@ export class HotelsService {
         country: country
       });
 
-      await this.savedMainInfoHotel(hotelDto, paramsId, city, hotel)
-
-
+      await this.savedMainInfoHotel(hotelDto, paramsId, city, hotel);
     } else {
       const city = await this.cityRepository.findOne({
         name: hotelDto.address.city
       });
 
-      await this.savedMainInfoHotel(hotelDto, paramsId, city, hotel)
-
+      await this.savedMainInfoHotel(hotelDto, paramsId, city, hotel);
     }
 
     const updatedHotel = await this.hotelsRepository.findOne(paramsId, {
