@@ -158,9 +158,11 @@ export class HotelsController {
     });
     await this.serviceRepository.delete(amenities);
 
-    const amenitiesRoom: AmenitiesRoom = await this.amenitiesRoomRepository.findOne({
-      id: params.amenitiesId
-    });
+    const amenitiesRoom: AmenitiesRoom = await this.amenitiesRoomRepository.findOne(
+      {
+        id: params.amenitiesId
+      }
+    );
     await this.serviceRepository.delete(amenitiesRoom);
     const room: Room = await this.roomRepository.findOne(params.roomId, {
       relations: RELATIONS_GET_ROOM
@@ -172,7 +174,9 @@ export class HotelsController {
 
   @Delete(':id/room/:roomId/:photoId')
   async deletePhotoRoom(@Param() params): Promise<RoomDto> {
-    const photo: Photo = await this.photoRepository.findOne({ id: params.photo.id });
+    const photo: Photo = await this.photoRepository.findOne({
+      id: params.photo.id
+    });
     await this.photoRepository.delete(photo);
 
     const room: Room = await this.roomRepository.findOne(params.roomId, {
@@ -279,7 +283,9 @@ export class HotelsController {
 
   @Delete(':id/photos/:photoId')
   async deletePhotoHotel(@Param() params): Promise<HotelDto> {
-    const photo: Photo = await this.photoRepository.findOne({ id: params.photo.id });
+    const photo: Photo = await this.photoRepository.findOne({
+      id: params.photo.id
+    });
     await this.photoRepository.delete(photo);
 
     const updatedHotel: Hotel = await this.hotelsRepository.findOne(params.id, {
@@ -287,7 +293,9 @@ export class HotelsController {
     });
 
     return {
-      photos: this.hotelsService.convertPhotoDaoToDto(await updatedHotel.photos),
+      photos: this.hotelsService.convertPhotoDaoToDto(
+        await updatedHotel.photos
+      ),
       mainPhoto: await updatedHotel.mainPhoto
     };
   }
