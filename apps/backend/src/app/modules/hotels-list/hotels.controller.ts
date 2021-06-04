@@ -28,7 +28,13 @@ import { ServicesDto } from '@booking/models/services.dto';
 import { RoomDto } from '@booking/models/room.dto';
 import { PhotosDto } from '@booking/models/photos.dto';
 import { HotelsService } from './hotels.service';
-import { RELATIONS_GET_HOTEL_ID } from './hotel.constants';
+import {
+  RELATIONS_GET_HOTEL_FOOD,
+  RELATIONS_GET_HOTEL_ID, RELATIONS_GET_HOTEL_PHOTOS, RELATIONS_GET_HOTEL_SERVICES,
+  RELATIONS_GET_HOTELS,
+  RELATIONS_GET_ROOM,
+  RELATIONS_GET_ROOMS_BEDS, RELATIONS_GET_ROOMS_PHOTOS
+} from './hotel.constants';
 
 @Controller('/hotels')
 export class HotelsController {
@@ -53,79 +59,75 @@ export class HotelsController {
   ) {}
 
   @Get(':id')
-  async getHotelById(@Param() params): Promise<HotelDto> {
+  async getHotel(@Param() params): Promise<HotelDto> {
     const hotel = await this.hotelsRepository.findOne(params.id, {
       relations: RELATIONS_GET_HOTEL_ID
     });
-    return this.hotelsService.getHotelById(hotel);
+    return this.hotelsService.getHotel(hotel);
   }
 
   @Get()
   async getHotels(
-    @Headers('range') range: number,
+    @Headers() range: number, take: number,
     @Res() res: Response
   ): Promise<void> {
-    const hotels = await this.hotelsRepository
+    await this.hotelsRepository
       .find({
-        relations: ['address', 'address.city', 'address.city.country'],
+        relations: RELATIONS_GET_HOTELS,
         skip: range,
-        take: 10
+        take: take
       })
       .then(value => {
         res.status(HttpStatus.OK).send(
-          value.map(m => ({
-            id: m.id,
-            name: m.name,
-            address: m.address
+          value.map(hotel => ({
+            id: hotel.id,
+            name: hotel.name,
+            address: hotel.address
           }))
         );
       })
       .catch(error => {
-        res.status(HttpStatus.INTERNAL_SERVER_ERROR);
-        return error;
+        res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(error);
       });
-    res.send(hotels);
   }
 
   @Get(':id/rooms/:roomId')
-  async getRoomById(@Param() params): Promise<RoomDto> {
+  async getRoom(@Param() params): Promise<RoomDto> {
     const room = await this.roomRepository.findOne(params.roomId, {
-      relations: ['beds', 'amenitiesRoom', 'amenitiesRoom.amenities', 'photos']
+      relations: RELATIONS_GET_ROOM
     });
-    return this.hotelsService.getRoomById(room);
+    return this.hotelsService.getRoom(room);
   }
 
   @Get(':id/rooms')
   async getRooms(
     @Param() params,
-    @Headers('range') range: number,
+    @Headers() range: number, take: number,
     @Res() res: Response
   ): Promise<void> {
-    const rooms = await this.roomRepository
+    await this.roomRepository
       .find({
-        relations: ['beds'],
+        relations: RELATIONS_GET_ROOMS_BEDS,
         where: {
           hotel: params.id
         },
         skip: range,
-        take: 10
+        take: take
       })
       .then(value => {
         res.status(HttpStatus.OK).send(
-          value.map(m => ({
-            id: m.id,
-            name: m.name,
-            capacity: m.capacity,
-            beds: m.beds,
-            price: m.price
+          value.map(room => ({
+            id: room.id,
+            name: room.name,
+            capacity: room.capacity,
+            beds: room.beds,
+            price: room.price
           }))
         );
       })
       .catch(error => {
-        res.status(HttpStatus.INTERNAL_SERVER_ERROR);
-        return error;
+        res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(error);
       });
-    res.send(rooms);
   }
 
   @Post(':id/rooms')
@@ -155,11 +157,11 @@ export class HotelsController {
       id: params.amenitiesId
     });
     await this.serviceRepository.delete(amenitiesRoom);
-    const newRoom = await this.roomRepository.findOne(params.roomId, {
-      relations: ['beds', 'amenitiesRoom', 'amenitiesRoom.amenities', 'photos']
+    const room = await this.roomRepository.findOne(params.roomId, {
+      relations: RELATIONS_GET_ROOM
     });
     return {
-      amenities: newRoom.amenitiesRoom
+      amenities: room.amenitiesRoom
     };
   }
 
@@ -168,10 +170,10 @@ export class HotelsController {
     const photo = await this.photoRepository.findOne({ id: params.photo.id });
     await this.photoRepository.delete(photo);
 
-    const newRoom = await this.roomRepository.findOne(params.roomId, {
-      relations: ['photos']
+    const room = await this.roomRepository.findOne(params.roomId, {
+      relations: RELATIONS_GET_ROOMS_PHOTOS
     });
-    const photos = await newRoom.photos;
+    const photos = await room.photos;
     return {
       photos: photos
     };
@@ -205,7 +207,7 @@ export class HotelsController {
     @Param() params,
     @Body() hotelDto: HotelDto
   ): Promise<HotelDto> {
-    return await this.hotelsService.changeHotelFirstStep(hotelDto, params.id);
+    return await this.hotelsService.changeHotelMainInfo(hotelDto, params.id);
   }
 
   @Patch(':id/foodHotel')
@@ -213,7 +215,7 @@ export class HotelsController {
     @Param() params,
     @Body() foods: HotelBoardBasisDto[]
   ): Promise<HotelDto> {
-    return await this.hotelsService.changeHotelSecondStep(foods, params.id);
+    return await this.hotelsService.changeHotelFood(foods, params.id);
   }
 
   @Delete(':id/foodHotel/:foodId')
@@ -224,19 +226,19 @@ export class HotelsController {
     });
     await this.hotelBoardBasisRepository.delete(food);
     const updatedHotel = await this.hotelsRepository.findOne(params.id, {
-      relations: ['hotelBoardBasis', 'hotelBoardBasis.boardBasis']
+      relations: RELATIONS_GET_HOTEL_FOOD
     });
     return {
       hotelBoardBasis: updatedHotel.hotelBoardBasis
     };
   }
 
-  @Patch(':id/addDistance')
+  @Patch(':id/distance')
   async changeHotelDistance(
     @Param() params,
     @Body() distance: DistanceDto
   ): Promise<HotelDto> {
-    return await this.hotelsService.changeHotelThirdStep(distance, params.id);
+    return await this.hotelsService.changeHotelDistance(distance, params.id);
   }
 
   @Patch(':id/services')
@@ -244,7 +246,7 @@ export class HotelsController {
     @Param() params,
     @Body() services: ServicesDto[]
   ): Promise<HotelDto> {
-    return await this.hotelsService.changeHotelFourthStep(services, params.id);
+    return await this.hotelsService.changeHotelServices(services, params.id);
   }
 
   @Delete(':id/services/:serviceId')
@@ -255,7 +257,7 @@ export class HotelsController {
     await this.serviceRepository.remove(service);
 
     const updatedHotel = await this.hotelsRepository.findOne(params.id, {
-      relations: ['services', 'services.category']
+      relations: RELATIONS_GET_HOTEL_SERVICES
     });
 
     return {
@@ -268,7 +270,7 @@ export class HotelsController {
     @Param() params,
     @Body() photos: PhotosDto
   ): Promise<HotelDto> {
-    return await this.hotelsService.changeHotelFiveStep(photos, params.id);
+    return await this.hotelsService.changeHotelPhotos(photos, params.id);
   }
 
   @Delete(':id/photos/:photoId')
@@ -277,7 +279,7 @@ export class HotelsController {
     await this.photoRepository.delete(photo);
 
     const updatedHotel = await this.hotelsRepository.findOne(params.id, {
-      relations: ['photos', 'mainPhoto']
+      relations: RELATIONS_GET_HOTEL_PHOTOS
     });
     const newPhotos = await updatedHotel.photos;
     const mainPhoto = await updatedHotel.mainPhoto;
