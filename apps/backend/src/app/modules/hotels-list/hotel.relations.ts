@@ -12,3 +12,10 @@ export enum HotelRelations {
   hotelBoardBasis = 'hotelBoardBasis',
   boardBasis = 'hotelBoardBasis.boardBasis'
 }
+
+export enum RoomRelations {
+  beds = 'beds',
+  amenitiesRoom = 'amenitiesRoom',
+  amenities = 'amenitiesRoom.amenities',
+  photos = 'photos'
+}
