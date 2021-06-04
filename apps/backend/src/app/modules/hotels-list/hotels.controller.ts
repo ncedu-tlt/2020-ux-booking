@@ -30,10 +30,13 @@ import { PhotosDto } from '@booking/models/photos.dto';
 import { HotelsService } from './hotels.service';
 import {
   RELATIONS_GET_HOTEL_FOOD,
-  RELATIONS_GET_HOTEL_ID, RELATIONS_GET_HOTEL_PHOTOS, RELATIONS_GET_HOTEL_SERVICES,
+  RELATIONS_GET_HOTEL_ID,
+  RELATIONS_GET_HOTEL_PHOTOS,
+  RELATIONS_GET_HOTEL_SERVICES,
   RELATIONS_GET_HOTELS,
   RELATIONS_GET_ROOM,
-  RELATIONS_GET_ROOMS_BEDS, RELATIONS_GET_ROOMS_PHOTOS
+  RELATIONS_GET_ROOMS_BEDS,
+  RELATIONS_GET_ROOMS_PHOTOS
 } from './hotel.constants';
 
 @Controller('/hotels')
@@ -68,7 +71,8 @@ export class HotelsController {
 
   @Get()
   async getHotels(
-    @Headers() range: number, take: number,
+    @Headers() range: number,
+    take: number,
     @Res() res: Response
   ): Promise<void> {
     await this.hotelsRepository
@@ -102,7 +106,8 @@ export class HotelsController {
   @Get(':id/rooms')
   async getRooms(
     @Param() params,
-    @Headers() range: number, take: number,
+    @Headers() range: number,
+    take: number,
     @Res() res: Response
   ): Promise<void> {
     await this.roomRepository

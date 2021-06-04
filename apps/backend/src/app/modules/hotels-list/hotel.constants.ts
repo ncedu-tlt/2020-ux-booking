@@ -19,7 +19,7 @@ export const RELATIONS_GET_HOTELS: string[] = [
   HotelRelations.address,
   HotelRelations.city,
   HotelRelations.country
-]
+];
 
 export const RELATIONS_GET_HOTEL_FOOD: string[] = [
   HotelRelations.hotelBoardBasis,
@@ -41,12 +41,8 @@ export const RELATIONS_GET_ROOM: string[] = [
   RoomRelations.amenitiesRoom,
   RoomRelations.amenities,
   RoomRelations.photos
-]
+];
 
-export const RELATIONS_GET_ROOMS_BEDS: string[] = [
-  RoomRelations.beds
-]
+export const RELATIONS_GET_ROOMS_BEDS: string[] = [RoomRelations.beds];
 
-export const RELATIONS_GET_ROOMS_PHOTOS: string[] = [
-  RoomRelations.photos
-]
+export const RELATIONS_GET_ROOMS_PHOTOS: string[] = [RoomRelations.photos];
