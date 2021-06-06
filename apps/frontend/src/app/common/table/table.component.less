@@ -7,17 +7,17 @@
   border-collapse: collapse; 
 
   @media @mobile {
-    box-shadow: 1px 1px 6px rgba(0, 50, 79, 0.3);
+    .shadow-light();
     border-radius: 8px;
   }
 
-  & thead {
+  &__header {
       @media @mobile {
         display: none;
       }
   }
 
-  &__body-row td span {
+  &__cell-header {
     display: none;
 
     @media @mobile {
@@ -29,18 +29,21 @@
 
   &__body-row {
     background: @color-white;
+    border-bottom: 1px solid @color-grey-light;
 
     @media @mobile {
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
       padding: 24px 8px;
-      border-bottom: 1px solid @color-grey-light;
-      border-top: 1px solid @color-grey-light;
     }
   }
 
-  &__title-row th {
+  &__body-row:first-child {
+    border-top: 1px solid @color-grey-light;
+  }
+
+  &__header-cell {
     .font-light();
     font-size: 20px;
     line-height: 32px;
@@ -51,7 +54,7 @@
     border: none;
   }
   
-  &__body-row td {
+  &__body-cell {
     .font-regular();
     font-size: 20px;
     line-height: 32px;
@@ -60,8 +63,6 @@
     text-align: left;
     overflow: hidden;
     padding: 20px 24px;
-    border-bottom: 1px solid @color-grey-light;
-    border-top: 1px solid @color-grey-light;
 
     @media @mobile {
       font-size: 14px;
@@ -74,13 +75,13 @@
     }
   }
 
-  &__body-row td:first-child {
+  &__body-cell:first-child {
     @media @mobile {
       padding-top: 0;
     }
   }
 
-  &__body-row td:last-child {
+  &__body-cell:last-child {
     padding: 8px 24px;
 
     @media @mobile {
@@ -93,16 +94,16 @@
     cursor: pointer;
   }
 
-  &__body-row .td-icon{
+  &__body-icon{
     display: none;
-    float: right;
+    justify-content: right;
 
     @media @mobile {
       display: flex;
     }
   }
 
-  &__body-row .td-icon b-button-icon{
+  &__icon-item{
     margin-left: 32px;
 
     @media @mobile {
@@ -110,7 +111,7 @@
     }
   }
 
-  &__body-row:hover .td-icon{
+  &__body-row:hover &__body-icon{
     display: flex;
   }  
 }

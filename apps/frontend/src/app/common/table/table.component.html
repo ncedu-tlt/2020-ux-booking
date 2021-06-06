@@ -1,20 +1,20 @@
 <div>
 <table class='table'>
-  <thead>
-    <tr class='table__title-row'>
-      <th *ngFor="let column of columns">{{ headers[column] }}</th>
+  <thead class="table__header">
+    <tr class='table__header-row'>
+      <th class='table__header-cell' *ngFor="let column of config.columns">{{ config.headers[column] }}</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody class="table__body">
     <tr class='table__body-row' 
-    *ngFor='let item of items'>
-      <td *ngFor='let column of columns'>
-        <span>{{ headers[column] }}</span>
+    *ngFor='let item of config.items'>
+      <td class='table__body-cell' *ngFor='let column of config.columns'>
+        <span class='table__cell-header'>{{ config.headers[column] }}</span>
         {{ item[column] }}
       </td>
-      <td>
-        <div class="td-icon" >
-        <b-button-icon *ngFor='let button of buttons' (click)='buttonClick(button.type, item.id)' [type] = button.type></b-button-icon>
+      <td class='table__body-cell'>
+        <div class="table__body-icon">
+          <b-button-icon class="table__icon-item" *ngFor='let button of config.buttons' (click)='buttonClick(button.type, item.id)' [type] = button.type></b-button-icon>
         </div>
       </td>
     </tr>

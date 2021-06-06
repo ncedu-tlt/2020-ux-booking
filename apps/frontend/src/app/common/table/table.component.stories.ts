@@ -10,27 +10,9 @@ import { ButtonIconTypesEnum } from '../../enums/button-icon-types.enum';
 const meta: Meta = {
   title: 'Table',
   argTypes: {
-    items: {
-      control: {
-        type: 'array',
-        options: []
-      }
-    },
-    columns: {
-      control: {
-        type: 'array',
-        options: []
-      }
-    },
-    headers: {
+    config: {
       control: {
         type: 'object',
-        options: []
-      }
-    },
-    buttons: {
-      control: {
-        type: 'array',
         options: []
       }
     }
@@ -56,31 +38,33 @@ const template: Story<TableComponent> = args => ({
     }
   },
   template: `
-    <b-table [items]="items" [columns]="columns" [headers]="headers" [buttons]="buttons" (buttonClickEvent)="buttonClicked($event)" >
+    <b-table [config]="config" (buttonClickEvent)="buttonClicked($event)" >
     </b-table>
   `
 });
 
 export const normal = template.bind({});
 normal.args = {
-  items: [
-    { id: '1', name: 'Отель 1', country: 'Испания', city: 'Мадрид' },
-    { id: '2', name: 'Отель 2', country: 'Россия', city: 'Москва' },
-    { id: '3', name: 'Отель 3', country: 'Латвия', city: 'Рига' },
-    { id: '4', name: 'Отель 4', country: 'Нидерланды', city: 'Амстердам' },
-    { id: '5', name: 'Отель 5', country: 'Швейцария', city: 'Берн' }
-  ],
+  config: {
+    items: [
+      { id: '1', name: 'Отель 1', country: 'Испания', city: 'Мадрид' },
+      { id: '2', name: 'Отель 2', country: 'Россия', city: 'Москва' },
+      { id: '3', name: 'Отель 3', country: 'Латвия', city: 'Рига' },
+      { id: '4', name: 'Отель 4', country: 'Нидерланды', city: 'Амстердам' },
+      { id: '5', name: 'Отель 5', country: 'Швейцария', city: 'Берн' }
+    ],
 
-  columns: ['name', 'country', 'city'],
+    columns: ['name', 'country', 'city'],
 
-  headers: {
-    name: 'Название',
-    country: 'Страна',
-    city: 'Город'
-  },
+    headers: {
+      name: 'Название',
+      country: 'Страна',
+      city: 'Город'
+    },
 
-  buttons: [
-    { type: ButtonIconTypesEnum.edit },
-    { type: ButtonIconTypesEnum.delete }
-  ]
+    buttons: [
+      { type: ButtonIconTypesEnum.edit },
+      { type: ButtonIconTypesEnum.delete }
+    ]
+  }
 };

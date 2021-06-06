@@ -15,31 +15,32 @@ import {
 })
 export class TableComponent {
   @Input()
-  items: any[] = [];
-
-  @Input()
-  columns: string[] = [];
-
-  @Input()
-  headers: {
-    [key: string]: string;
-  };
-
-  @Input()
-  buttons: TableButton[] = [];
+  config: TableConfig;
 
   @Output()
   buttonClickEvent: EventEmitter<TableButtonClick> = new EventEmitter<TableButtonClick>();
 
-  buttonClick(buttonType: ButtonIconTypesEnum, itemId: any): void {
-    this.buttonClickEvent.emit(new TableButtonClick(buttonType, itemId));
+  buttonClick(buttonType: ButtonIconTypesEnum, itemId: ItemId): void {
+    this.buttonClickEvent.emit({ buttonType, itemId });
   }
 }
 
-export class TableButton {
-  public type: ButtonIconTypesEnum;
-}
+export type ItemId = unknown;
 
-export class TableButtonClick {
-  constructor(public buttonType: ButtonIconTypesEnum, public itemId: any) {}
-}
+export type Item = {
+  id: ItemId;
+};
+
+export type TableConfig = {
+  items: Item[];
+  columns: string[];
+  headers: {
+    [key: string]: string;
+  };
+  buttons: ButtonIconTypesEnum[];
+};
+
+export type TableButtonClick = {
+  buttonType: ButtonIconTypesEnum;
+  itemId: ItemId;
+};
