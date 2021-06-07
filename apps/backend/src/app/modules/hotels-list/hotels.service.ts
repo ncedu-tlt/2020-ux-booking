@@ -83,8 +83,7 @@ export class HotelsService {
       street: address?.street ?? '',
       part: address?.part ?? '',
       number: address?.number ?? Number()
-    }
-
+    };
   }
 
   convertServiceDaoToDto(service: Service[]): ServicesDto[] {
@@ -100,10 +99,10 @@ export class HotelsService {
   }
 
   convertServiceTypeDaoToDto(serviceType: ServiceType): ServiceTypeDto {
-      return {
-        id: serviceType?.id ?? '',
-        name: serviceType?.name ?? ''
-      };
+    return {
+      id: serviceType?.id ?? '',
+      name: serviceType?.name ?? ''
+    };
   }
 
   convertPhotoDaoToDto(photos: Photo[]): PhotosDto[] {
