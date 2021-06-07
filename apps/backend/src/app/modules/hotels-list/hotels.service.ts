@@ -77,23 +77,14 @@ export class HotelsService {
     private commentsRepository: Repository<Comments>
   ) {}
   convertAddressDaoToDto(address: Address): AddressDto {
-    if (address === null) {
-      return {
-        country: '',
-        city: '',
-        street: '',
-        part: '',
-        number: Number()
-      };
-    } else {
-      return {
-        country: address.city.country.name,
-        city: address.city.name,
-        street: address.street,
-        part: address.part,
-        number: address.number
-      };
+    return {
+      country: address?.city.country.name ?? '',
+      city: address?.city.name ?? '',
+      street: address?.street ?? '',
+      part: address?.part ?? '',
+      number: address?.number ?? Number()
     }
+
   }
 
   convertServiceDaoToDto(service: Service[]): ServicesDto[] {
@@ -109,17 +100,10 @@ export class HotelsService {
   }
 
   convertServiceTypeDaoToDto(serviceType: ServiceType): ServiceTypeDto {
-    if (serviceType === null) {
       return {
-        id: '',
-        name: ''
+        id: serviceType?.id ?? '',
+        name: serviceType?.name ?? ''
       };
-    } else {
-      return {
-        id: serviceType.id,
-        name: serviceType.name
-      };
-    }
   }
 
   convertPhotoDaoToDto(photos: Photo[]): PhotosDto[] {
@@ -133,25 +117,17 @@ export class HotelsService {
   }
 
   convertMainPhotoDaoToDto(photo: Photo): MainPhotoDto {
-    if (photo === null) {
-      return {
-        id: '',
-        name: '',
-        src: ''
-      };
-    } else {
-      return {
-        id: photo.id,
-        name: photo.name,
-        src: ''
-      };
-    }
+    return {
+      id: photo?.id ?? '',
+      name: photo?.name ?? '',
+      src: photo?.src ?? ''
+    };
   }
 
-  async photoRoomSave(ph, room, hotel): Promise<void> {
+  async photoRoomSave(photoRoom, room, hotel): Promise<void> {
     const photo = new Photo();
-    photo.name = ph.name;
-    photo.src = ph.src;
+    photo.name = photoRoom.name;
+    photo.src = photoRoom.src;
     photo.room = Promise.resolve(room);
     photo.hotel = Promise.resolve(hotel);
     await this.photoRepository.manager.save(photo);
@@ -197,7 +173,7 @@ export class HotelsService {
     };
   }
 
-  async savedMainInfoHotel(
+  async saveMainInfoHotel(
     hotelDto: HotelDto,
     paramsId: string,
     city: City,
@@ -347,46 +323,46 @@ export class HotelsService {
       }
     }
 
-    for (const a of roomDto.amenities) {
-      if (a.id.length > 0) {
-        await this.amenitiesRepository.update(a.id, {
-          name: a.name,
-          default: a.default,
-          icon: a.icon
+    for (const amenity of roomDto.amenities) {
+      if (amenity.id.length > 0) {
+        await this.amenitiesRepository.update(amenity.id, {
+          name: amenity.name,
+          default: amenity.default,
+          icon: amenity.icon
         });
 
         const amenities: Amenities = await this.amenitiesRepository.findOne(
-          a.id
+          amenity.id
         );
 
-        await this.amenitiesRoomRepository.update(a.id, {
-          price: a.price,
+        await this.amenitiesRoomRepository.update(amenity.id, {
+          price: amenity.price,
           room: room,
           amenities: amenities
         });
       } else {
         const amenities: Amenities = await this.amenitiesRepository.save({
-          name: a.name,
-          default: a.default,
-          icon: a.icon
+          name: amenity.name,
+          default: amenity.default,
+          icon: amenity.icon
         });
 
         await this.amenitiesRoomRepository.save({
-          price: a.price,
+          price: amenity.price,
           room: room,
           amenities: amenities
         });
       }
     }
 
-    for (const ph of roomDto.photos) {
-      if (ph.id.length > 0) {
-        await this.photoRepository.update(ph.id, {
-          name: ph.name,
-          src: ph.src
+    for (const photo of roomDto.photos) {
+      if (photo.id.length > 0) {
+        await this.photoRepository.update(photo.id, {
+          name: photo.name,
+          src: photo.src
         });
       } else {
-        await this.photoRoomSave(ph, room, hotel);
+        await this.photoRoomSave(photo, room, hotel);
       }
     }
 
@@ -413,13 +389,13 @@ export class HotelsService {
         country: country
       });
 
-      await this.savedMainInfoHotel(hotelDto, paramsId, city, hotel);
+      await this.saveMainInfoHotel(hotelDto, paramsId, city, hotel);
     } else {
       const city: City = await this.cityRepository.findOne({
         name: hotelDto.address.city
       });
 
-      await this.savedMainInfoHotel(hotelDto, paramsId, city, hotel);
+      await this.saveMainInfoHotel(hotelDto, paramsId, city, hotel);
     }
 
     const updatedHotel: Hotel = await this.hotelsRepository.findOne(paramsId, {
