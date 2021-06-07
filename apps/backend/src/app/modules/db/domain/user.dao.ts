@@ -29,6 +29,12 @@ export class User {
   patronymic: number;
 
   @Column({ nullable: true })
+  nationality: string;
+
+  @Column({ nullable: true })
+  sex: string;
+
+  @Column({ nullable: true })
   phone: string;
 
   @Column({ type: 'date', nullable: true })

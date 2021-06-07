@@ -18,6 +18,7 @@ import { Role } from '../../db/domain/role.dao';
 import { InjectRepository } from '@nestjs/typeorm';
 import { AuthGuard } from '@nestjs/passport';
 import { UserDto } from '@booking/models/user.dto';
+import { UpdateUserInfoDto } from './dto/udate.user-info.dto';
 
 @Controller('/users')
 export class UserController {
@@ -27,6 +28,12 @@ export class UserController {
     @InjectRepository(Role)
     private rolesRepository: Repository<Role>
   ) {}
+
+  @Get(':id')
+  async getUser(@Param('id') id): Promise<User> {
+    console.log('Get user: ' + id);
+    return this.usersRepository.findOne({ id: id });
+  }
 
   @UseGuards(AuthGuard('jwt'))
   @Get('/current')
@@ -71,6 +78,11 @@ export class UserController {
         return error;
       });
     res.send(answer);
+  }
+
+  @Patch(':id')
+  async updateUser(@Param('id') id, @Body() updateUserInfo: UpdateUserInfoDto) {
+    await this.usersRepository.update({ id: id }, updateUserInfo);
   }
 
   private async isValidEmail(email): Promise<boolean> {
