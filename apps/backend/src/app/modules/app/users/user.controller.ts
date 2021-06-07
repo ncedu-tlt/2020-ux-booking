@@ -1,11 +1,21 @@
-import { Body, Controller, HttpStatus, Post, Res } from '@nestjs/common';
-import { RegisterUserDto } from './register.user.dto';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpStatus,
+  Param,
+  Patch,
+  Post,
+  Res
+} from '@nestjs/common';
+import { RegisterUserDto } from './dto/register.user.dto';
 import { Response } from 'express';
 import { Repository } from 'typeorm';
 import { User } from '../../db/domain/user.dao';
 import * as bcrypt from 'bcrypt';
 import { Role } from '../../db/domain/role.dao';
 import { InjectRepository } from '@nestjs/typeorm';
+import { UpdateUserInfoDto } from './dto/udate.user-info.dto';
 
 @Controller('/users')
 export class UserController {
@@ -15,6 +25,12 @@ export class UserController {
     @InjectRepository(Role)
     private rolesRepository: Repository<Role>
   ) {}
+
+  @Get(':id')
+  async getUser(@Param('id') id): Promise<User> {
+    console.log('Get user: ' + id);
+    return this.usersRepository.findOne({ id: id });
+  }
 
   @Post()
   async register(
@@ -47,6 +63,11 @@ export class UserController {
         return error;
       });
     res.send(answer);
+  }
+
+  @Patch(':id')
+  async updateUser(@Param('id') id, @Body() updateUserInfo: UpdateUserInfoDto) {
+    await this.usersRepository.update({ id: id }, updateUserInfo);
   }
 
   private async isValidEmail(email): Promise<boolean> {

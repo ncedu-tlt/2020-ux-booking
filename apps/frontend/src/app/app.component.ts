@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'frontend';
   hotelInfo: any = {
-    name: 'Hotel super puper ',
+    "name": 'Hotel super puper ',
     hotelImgUrl: 'assets/icons/hotel.jpg',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci animi commodi cum debitis delectus dolore doloremque, eos e',

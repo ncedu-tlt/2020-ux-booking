@@ -4,7 +4,8 @@ import {
   EventEmitter,
   Input,
   OnInit,
-  Output, SimpleChanges
+  Output,
+  SimpleChanges
 } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 
@@ -42,9 +43,9 @@ export class InputFieldComponent implements OnInit {
     });
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    changes?.isDisabled.currentValue
-      ? this.input?.disable()
-      : this.input?.enable();
-  }
+  // ngOnChanges(changes: SimpleChanges) {
+  //   changes?.isDisabled.currentValue
+  //     ? this.input?.disable()
+  //     : this.input?.enable();
+  // }
 }

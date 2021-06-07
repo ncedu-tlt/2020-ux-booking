@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ButtonIconTypesEnum } from '../../enums/button-icon-types.enum';
 import { UserModel } from '../../models/user.model';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'b-user-info',
@@ -15,7 +16,13 @@ export class UserInfoComponent {
 
   buttonIconTypesEnum: typeof ButtonIconTypesEnum = ButtonIconTypesEnum;
 
+  constructor(private httpClient: HttpClient) {}
+
   onEditClick() {
     this.editable = !this.editable;
+  }
+
+  async save() {
+    // await this.httpClient.patch('/users/' + this.user.id);
   }
 }
