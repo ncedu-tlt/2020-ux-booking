@@ -10,6 +10,7 @@ import { LangModule } from './lang/lang.module';
 import { HotelDataService } from './services/hotel-data.service';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { UserInfoComponent } from './pages/user-info/user-info.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, UserProfileComponent, UserInfoComponent],
@@ -19,7 +20,8 @@ import { UserInfoComponent } from './pages/user-info/user-info.component';
     HttpClientModule,
     AngularSvgIconModule.forRoot(),
     I18NextModule.forRoot(),
-    LangModule
+    LangModule,
+    FormsModule
   ],
   providers: [I18N_PROVIDERS, HotelDataService],
   bootstrap: [AppComponent]

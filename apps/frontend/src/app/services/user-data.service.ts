@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UserModel } from '../models/user.model';
 import { HttpClient } from '@angular/common/http';
-import { UsersModule } from '../../../../backend/src/app/modules/app/users/users.module';
 
 @Injectable({
   providedIn: 'root'
@@ -12,5 +11,9 @@ export class UserDataService {
 
   getUser(id: string): Observable<UserModel> {
     return this.http.get<UserModel>('/api/users/' + id);
+  }
+
+  updateUserInfo(user: UserModel): Observable<any> {
+    return this.http.patch('/api/users/' + user.id, user);
   }
 }

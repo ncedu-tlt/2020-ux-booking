@@ -4,7 +4,8 @@ import {
   EventEmitter,
   Input,
   OnInit,
-  Output, SimpleChanges
+  Output,
+  SimpleChanges
 } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 
@@ -18,7 +19,7 @@ export class InputFieldComponent implements OnInit {
   @Input()
   title: string;
   @Input()
-  placeholder: string;
+  placeholder = '';
   @Input()
   isMandatory: boolean;
   @Input()
@@ -26,14 +27,14 @@ export class InputFieldComponent implements OnInit {
   @Input()
   simpleStyle: boolean;
   @Input()
-  value = '';
+  ngModel = '';
 
   @Output() handleChange: EventEmitter<string> = new EventEmitter();
 
   input: FormControl;
 
   ngOnInit(): void {
-    this.input = new FormControl(this.value, Validators.required);
+    this.input = new FormControl(this.ngModel, Validators.required);
     if (this.isDisabled) {
       this.input.disable();
     }
@@ -43,8 +44,12 @@ export class InputFieldComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    changes?.isDisabled.currentValue
-      ? this.input?.disable()
-      : this.input?.enable();
+    if (changes?.isDisabled?.currentValue != undefined) {
+      this.isDisabled ? this.input?.disable() : this.input?.enable();
+    }
+
+    if (changes?.value?.currentValue != undefined) {
+      this.input?.setValue(this.ngModel);
+    }
   }
 }

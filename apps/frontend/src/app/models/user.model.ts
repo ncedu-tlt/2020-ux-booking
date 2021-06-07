@@ -1,9 +1,9 @@
 export type UserModel = {
+  id: string;
+
   firstName: string;
 
   lastName: string;
-
-  patronymic: number;
 
   phone: string;
 
@@ -12,4 +12,8 @@ export type UserModel = {
   email: string;
 
   emailNotification: boolean;
+
+  nationality: string;
+
+  sex: string;
 };
