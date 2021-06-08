@@ -20,23 +20,23 @@ import { HotelBoardBasis } from '../db/domain/hotel_board_basis.dao';
 import { Room } from '../db/domain/room.dao';
 import { Amenities } from '../db/domain/ameniries.dao';
 import { AmenitiesRoom } from '../db/domain/amenities_room.dao';
-import { HotelDto } from '@booking/models/hotel.dto';
 import { Response } from 'express';
-import { HotelBoardBasisDto } from '@booking/models/hotelBoardBasis.dto';
-import { DistanceDto } from '@booking/models/distance.dto';
 import { ServicesDto } from '@booking/models/services.dto';
 import { RoomDto } from '@booking/models/room.dto';
 import { PhotosDto } from '@booking/models/photos.dto';
+import { HotelDto } from '@booking/models/hotel.dto';
+import { HotelBoardBasisDto } from '@booking/models/hotelBoardBasis.dto';
+import { DistanceDto } from '@booking/models/distance.dto';
 import { HotelsService } from './hotels.service';
 import {
   RELATIONS_GET_HOTEL_FOOD,
   RELATIONS_GET_HOTEL_ID,
-  RELATIONS_GET_HOTEL_PHOTOS,
   RELATIONS_GET_HOTEL_SERVICES,
   RELATIONS_GET_HOTELS,
   RELATIONS_GET_ROOM,
   RELATIONS_GET_ROOMS_BEDS,
-  RELATIONS_GET_ROOMS_PHOTOS
+  RELATIONS_GET_ROOMS_PHOTOS,
+  RELATIONS_GET_HOTEL_PHOTOS
 } from './hotel.constants';
 
 @Controller('/hotels')
