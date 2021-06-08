@@ -1,6 +1,7 @@
 import {
   Column,
   Entity,
+  JoinTable,
   ManyToMany,
   ManyToOne,
   OneToMany,
@@ -21,54 +22,58 @@ export class User {
   @Column()
   firstName: string;
 
-  @Column()
+  @Column({ nullable: true })
   lastName: string;
 
-  @Column()
+  @Column({ nullable: true })
   patronymic: number;
 
-  @Column()
+  @Column({ nullable: true })
   phone: string;
 
-  @Column({ type: 'date' })
+  @Column({ type: 'date', nullable: true })
   dateOfBirth: string;
 
-  @ManyToOne(type => Role, role => role.users)
-  role: Role;
+  @Column()
+  password: string;
 
-  @ManyToOne(type => Address, address => address.users)
+  @Column({ unique: true })
+  email: string;
+
+  @Column({ nullable: true })
+  emailNotification: boolean;
+
+  @ManyToMany(type => Role, role => role.users, { cascade: true })
+  @JoinTable()
+  roles: Role[];
+
+  @ManyToOne(type => Address, address => address.users, {
+    nullable: true
+  })
   address: Address;
 
   @OneToMany(type => Review, reviews => reviews.user, {
-    nullable: false,
+    nullable: true,
     onDelete: 'SET NULL'
   })
   reviews: Promise<Review[]>;
 
   @OneToMany(type => Comments, comments => comments.user, {
-    nullable: false,
+    nullable: true,
     onDelete: 'SET NULL'
   })
   comments: Promise<Comments[]>;
 
   @OneToMany(type => Booking, booking => booking.user, {
-    nullable: false,
+    nullable: true,
     onDelete: 'SET NULL'
   })
   bookings: Promise<Booking[]>;
 
   @ManyToMany(type => Hotel, hotel => hotel.users, {
-    nullable: false,
+    nullable: true,
     onDelete: 'SET NULL'
   })
+  @JoinTable()
   bookmarks: Promise<Hotel[]>;
-
-  @Column()
-  password: string;
-
-  @Column()
-  email: string;
-
-  @Column()
-  emailNotification: boolean;
 }
