@@ -14,6 +14,9 @@ export class HeaderComponent {
   @Input()
   userName = '';
 
+  @Input()
+  isHiddenLoginButton = false;
+
   isLanguageRu = true;
 
   isNightTheme = true;
@@ -23,8 +26,6 @@ export class HeaderComponent {
   isHiddenModal = false;
 
   isShowMenu = false;
-
-  isHiddenLoginButton = false;
 
   private _language: string;
 

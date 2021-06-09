@@ -4,8 +4,8 @@
     <span *ngIf='isMandatory'>*</span>
   </span>
   <input class='input-field__input'
-         [ngClass]="{ '_error' : !input.valid && input.touched && isMandatory}"
          [formControl]='input'
+         [ngClass]="{ '_error' : !input.valid && input.touched && isMandatory}"
          [placeholder]='placeholder' />
   <span *ngIf='!input.valid && input.touched && isMandatory'
         class='input-field__error-text'>

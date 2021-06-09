@@ -4,38 +4,49 @@
       <h2 class='registration__cloud-title'>
         {{"registration.title" | i18next}}</h2>
     </span>
-    <div class='registration__input'>
-      <b-input-field
-        isMandatory='true'
-        title='{{"registration.input.name" | i18next}}'
-        placeholder='{{"registration.input.namePlaceholder" | i18next}}'
-        (handleChange)='setName($event)'>
-      </b-input-field>
-    </div>
-    <div class='registration__input'>
-      <b-input-field
-        isMandatory='true'
-        title='{{"registration.input.email" | i18next}}'
-        placeholder='{{"registration.input.emailPlaceholder" | i18next}}'
-        (handleChange)='setEmail($event)'>
-      </b-input-field>
-    </div>
-    <div class='registration__input'>
-      <b-input-field
-        isMandatory='true'
-        title='{{"registration.input.password" | i18next}}'
-        placeholder='{{"registration.input.passwordPlaceholder" | i18next}}'
-        (handleChange)='setPassword($event)'>
-      </b-input-field>
-    </div>
-    <div class='registration__input'>
-      <b-input-field
-        isMandatory='true'
-        title='{{"registration.input.repeatPassword" | i18next}}'
-        placeholder='{{"registration.input.passwordPlaceholder" | i18next}}'
-        (handleChange)='setRepeatPassword($event)'>
-      </b-input-field>
-    </div>
+    <form  [formGroup]='formReview'>
+      <div class='registration__input'>
+        <b-input-field
+          formControlName='name'
+          isMandatory='true'
+          title='{{"registration.input.name" | i18next}}'
+          placeholder='{{"registration.input.namePlaceholder" | i18next}}'
+        >
+        </b-input-field>
+        <div
+          *ngIf=" formReview.controls['name'].invalid && formReview.controls['name'].dirty && formReview.controls['name'].touched"
+        >
+          fdfd</div>
+      </div>
+      <div class='registration__input'>
+        <b-input-field
+          isMandatory='true'
+          title='{{"registration.input.email" | i18next}}'
+          placeholder='{{"registration.input.emailPlaceholder" | i18next}}'
+          formControlName='email'
+        >
+        </b-input-field>
+      </div>
+      <div class='registration__input'>
+        <b-input-field
+          isMandatory='true'
+          title='{{"registration.input.password" | i18next}}'
+          placeholder='{{"registration.input.passwordPlaceholder" | i18next}}'
+          formControlName='password'
+        >
+        </b-input-field>
+      </div>
+      <div class='registration__input'>
+        <b-input-field
+          isMandatory='true'
+          title='{{"registration.input.repeatPassword" | i18next}}'
+          placeholder='{{"registration.input.passwordPlaceholder" | i18next}}'
+          formControlName='secPassword'
+        >
+        </b-input-field>
+      </div>
+    </form>
+
     <b-button
       text='{{"registration.button" | i18next}}'
       (click)='postRegistrationData()'
@@ -48,9 +59,11 @@
       text='{{"registration.registrationLink" | i18next}}'>
     </b-link>
   </div>
+
   <b-background-svg>
 
   </b-background-svg>
+
   <span class='registration__svg-sand'>
 </span>
 </div>

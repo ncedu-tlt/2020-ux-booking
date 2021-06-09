@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'b-registration',
@@ -8,38 +9,41 @@ import { HttpClient } from '@angular/common/http';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegistrationComponent {
-  firstName: string;
-  email: string;
-  password: string;
-  repeatPassword: string;
+  constructor(private http: HttpClient, private fb: FormBuilder) {}
 
-  constructor(private http: HttpClient) {}
-
-  setName(input: string) {
-    this.firstName = input;
-  }
-
-  setEmail(input: string) {
-    this.email = input;
-  }
-
-  setPassword(input: string) {
-    this.password = input;
-  }
-
-  // валидатор на проверку паролей
-  setRepeatPassword(input: string) {
-    this.repeatPassword = input;
-  }
+  formReview = this.fb.group({
+    name: [
+      null,
+      [Validators.required, Validators.minLength(2), Validators.maxLength(255)]
+    ],
+    email: [null, [Validators.required, Validators.email]],
+    password: [
+      null,
+      [Validators.required, Validators.minLength(8), Validators.maxLength(255)]
+    ],
+    secPassword: [
+      null,
+      [Validators.required, Validators.minLength(8), Validators.maxLength(255)]
+    ]
+  });
 
   postRegistrationData() {
+    // if (
+    //   this.formReview.controls.password === this.formReview.controls.secPassword
+    // )
     const body = {
-      firstName: this.firstName,
-      email: this.email,
-      password: this.password
+      name: this.formReview.value.name,
+      email: this.formReview.value.email,
+      password: this.formReview.value.password
     };
-    return this.http
-      .post('/api/auth/login', body)
-      .subscribe(error => console.log(error));
+    console.log(body);
+    return this.http.post('/api/users', body).subscribe(error => {
+      if (error) {
+        console.log('error');
+        console.log(error);
+      } else {
+        console.log('redirect');
+      }
+    });
   }
 }
