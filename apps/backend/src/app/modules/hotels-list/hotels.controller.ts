@@ -81,9 +81,9 @@ export class HotelsController {
         skip: range,
         take: take
       })
-      .then(value => {
+      .then(hotelsList => {
         res.status(HttpStatus.OK).send(
-          value.map(hotel => ({
+          hotelsList.map(hotel => ({
             id: hotel.id,
             name: hotel.name,
             address: hotel.address

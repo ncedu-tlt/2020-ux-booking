@@ -35,6 +35,8 @@ import {
   RELATIONS_GET_HOTEL_SERVICES,
   RELATIONS_GET_ROOM
 } from './hotel.constants';
+import { AmenitiesDto } from '@booking/models/amenities.dto';
+import { CurrencyDto } from '@booking/models/currency.dto';
 
 @Injectable()
 export class HotelsService {
@@ -78,8 +80,11 @@ export class HotelsService {
   ) {}
   convertAddressDaoToDto(address: Address): AddressDto {
     return {
+      id: address?.id ?? '' ,
       country: address?.city.country.name ?? '',
+      countryId: address?.city.country.id ?? '',
       city: address?.city.name ?? '',
+      cityId: address?.city.id ?? '',
       street: address?.street ?? '',
       part: address?.part ?? '',
       number: address?.number ?? Number()
@@ -93,7 +98,8 @@ export class HotelsService {
         name: value.name,
         price: value.price,
         icon: value.icon,
-        category: value.category.name
+        category: value.category.name,
+        categoryId: value.category.id
       } as ServicesDto;
     });
   }
@@ -125,6 +131,7 @@ export class HotelsService {
 
   async photoRoomSave(photoRoom, room, hotel): Promise<void> {
     const photo = new Photo();
+    photo.id = photoRoom?.id ?? undefined
     photo.name = photoRoom.name;
     photo.src = photoRoom.src;
     photo.room = Promise.resolve(room);
@@ -172,69 +179,6 @@ export class HotelsService {
     };
   }
 
-  async saveMainInfoHotel(
-    hotelDto: HotelDto,
-    paramsId: string,
-    city: City,
-    hotel: Hotel
-  ): Promise<void> {
-    const address: Address = await this.addressRepository.save({
-      street: hotelDto.address.street,
-      number: hotelDto.address.number,
-      part: hotelDto.address.part,
-      city: city,
-      hotels: Promise.resolve(hotel)
-    });
-
-    await this.hotelsRepository.update(paramsId, {
-      name: hotelDto.name,
-      description: hotelDto.description,
-      bookingPolicy: hotelDto.bookingPolicy,
-      stars: hotelDto.stars,
-      minPrice: hotelDto.minPrice,
-      address: address,
-      freeCancellation: hotelDto.freeCancellation
-    });
-
-    if (hotelDto.serviceType.id.length > 0) {
-      await this.serviceTypeRepository.update(hotelDto.serviceType.id, {
-        name: hotelDto.serviceType.name
-      });
-      const serviceType: ServiceType = await this.serviceTypeRepository.findOne(
-        hotelDto.serviceType.id
-      );
-      await this.hotelsRepository.update(paramsId, {
-        serviceType: serviceType
-      });
-    } else {
-      const serviceType: ServiceType = await this.serviceTypeRepository.save({
-        name: hotelDto.serviceType.name
-      });
-      await this.hotelsRepository.update(paramsId, {
-        serviceType: serviceType
-      });
-    }
-
-    if (hotelDto.currency.id.length > 0) {
-      await this.currencyRepository.update(hotelDto.currency.id, {
-        name: hotelDto.currency.name
-      });
-      const currency: Currency = await this.currencyRepository.findOne(
-        hotelDto.currency.id
-      );
-      await this.hotelsRepository.update(paramsId, {
-        currency: currency
-      });
-    } else {
-      const currency: Currency = await this.currencyRepository.save({
-        name: hotelDto.currency.name
-      });
-      await this.hotelsRepository.update(paramsId, {
-        currency: currency
-      });
-    }
-  }
-
   async getRoom(room: Room): Promise<RoomDto> {
     return {
       id: room.id,
@@ -265,8 +209,8 @@ export class HotelsService {
       description: roomDto.description
     });
 
-    for (const ph of roomDto.photos) {
-      await this.photoRoomSave(ph, roomFindOne, hotel);
+    for (const photo of roomDto.photos) {
+      await this.photoRoomSave(photo, roomFindOne, hotel);
     }
 
     for (const bed of roomDto.beds) {
@@ -298,7 +242,8 @@ export class HotelsService {
     paramsId: string,
     paramsRoomId: string
   ): Promise<RoomDto> {
-    await this.roomRepository.update(paramsRoomId, {
+    await this.roomRepository.manager.save(Room, {
+      id: paramsRoomId,
       name: roomDto.name,
       price: roomDto.price,
       count: roomDto.count,
@@ -310,62 +255,39 @@ export class HotelsService {
     const room: Room = await this.roomRepository.findOne(paramsRoomId);
 
     for (const bed of roomDto.beds) {
-      if (bed.id.length > 0) {
-        await this.bedsRepository.update(bed.id, {
-          name: bed.name
-        });
-      } else {
-        await this.bedsRepository.save({
-          name: bed.name,
-          rooms: [room]
-        });
-      }
+
+      await  this.bedsRepository.manager.save(Bed, {
+        id: bed?.id ?? undefined,
+        name: bed.name,
+        rooms: [room]
+      })
     }
 
     for (const amenity of roomDto.amenities) {
-      if (amenity.id.length > 0) {
-        await this.amenitiesRepository.update(amenity.id, {
-          name: amenity.name,
-          default: amenity.default,
-          icon: amenity.icon
-        });
 
-        const amenities: Amenities = await this.amenitiesRepository.findOne(
-          amenity.id
-        );
+      const amenities: AmenitiesDto = await this.amenitiesRepository.manager.save(Amenities, {
+        id: amenity?.id ?? undefined,
+        name: amenity.name,
+        default: amenity.default,
+        icon: amenity.icon
+      })
 
-        await this.amenitiesRoomRepository.update(amenity.id, {
-          price: amenity.price,
-          room: room,
-          amenities: amenities
-        });
-      } else {
-        const amenities: Amenities = await this.amenitiesRepository.save({
-          name: amenity.name,
-          default: amenity.default,
-          icon: amenity.icon
-        });
+      await this.amenitiesRoomRepository.manager.save(AmenitiesRoom, {
+        id: amenity?.id ?? undefined,
+        price: amenity.price,
+        room: room,
+        amenities: amenities
+      });
 
-        await this.amenitiesRoomRepository.save({
-          price: amenity.price,
-          room: room,
-          amenities: amenities
-        });
-      }
     }
 
     for (const photo of roomDto.photos) {
-      if (photo.id.length > 0) {
-        await this.photoRepository.update(photo.id, {
-          name: photo.name,
-          src: photo.src
-        });
-      } else {
-        await this.photoRoomSave(photo, room, hotel);
-      }
+
+      await this.photoRoomSave(photo, room, hotel)
+
     }
 
-    return await this.getAllRoom(room);
+    return await this.getAllRoom(await this.roomRepository.findOne(paramsRoomId));
   }
 
   async changeHotelMainInfo(
@@ -374,28 +296,51 @@ export class HotelsService {
   ): Promise<HotelDto> {
     const hotel: Hotel = await this.hotelsRepository.findOne(paramsId);
 
-    const city: City[] = await this.cityRepository.find({
-      name: hotelDto.address.city
-    });
-
-    if (city.length === 0) {
-      const country: Country = await this.countryRepository.save({
+    const country = await this.countryRepository.manager.save(Country,
+      {
+        id: hotelDto?.address.countryId ?? undefined,
         name: hotelDto.address.country
-      });
+      }
+      )
 
-      const city: City = await this.cityRepository.save({
+    const city = await this.cityRepository.manager.save(City,
+      {
+        id: hotelDto?.address.cityId ?? undefined,
         name: hotelDto.address.city,
         country: country
-      });
+      })
 
-      await this.saveMainInfoHotel(hotelDto, paramsId, city, hotel);
-    } else {
-      const city: City = await this.cityRepository.findOne({
-        name: hotelDto.address.city
-      });
+    const address = await this.addressRepository.manager.save(Address,{
+      id: hotelDto?.address.id ?? undefined,
+      street: hotelDto.address.street,
+      number: hotelDto.address.number,
+      part: hotelDto.address.part,
+      city: city,
+      hotels: Promise.resolve(hotel)
+    });
 
-      await this.saveMainInfoHotel(hotelDto, paramsId, city, hotel);
-    }
+    const serviceType: ServiceTypeDto = await this.serviceTypeRepository.manager.save(ServiceType,{
+      id: hotelDto?.serviceType.id ?? undefined,
+      name: hotelDto.serviceType.name
+    })
+
+    const currency: CurrencyDto = await this.currencyRepository.manager.save(Currency,{
+      id: hotelDto?.currency.id ?? undefined,
+      name: hotelDto.currency.name
+    });
+
+    await this.hotelsRepository.manager.save(Hotel, {
+      id: paramsId ?? undefined,
+      name: hotelDto.name,
+      description: hotelDto.description,
+      bookingPolicy: hotelDto.bookingPolicy,
+      stars: hotelDto.stars,
+      minPrice: hotelDto.minPrice,
+      address: address,
+      freeCancellation: hotelDto.freeCancellation,
+      serviceType: serviceType,
+      currency: currency
+    });
 
     const updatedHotel: Hotel = await this.hotelsRepository.findOne(paramsId, {
       relations: RELATIONS_GET_HOTEL_ID
@@ -421,21 +366,18 @@ export class HotelsService {
     const hotel: Hotel = await this.hotelsRepository.findOne(paramsId);
 
     for (const food of foods) {
-      if (food.id.length > 0) {
-        await this.hotelBoardBasisRepository.update(food.id, {
-          price: food.price
-        });
-      } else {
-        const boardBasis: BoardBasis = await this.boardBasisRepository.findOne(
-          food.boardBasis.id
-        ); //пока не заполнена таблица с потоянной едой ничего в последню графу приходить не будет
 
-        await this.hotelBoardBasisRepository.save({
+      const boardBasis: BoardBasis = await this.boardBasisRepository.findOne(
+        food.boardBasis.id
+      ); //пока не заполнена таблица с потоянной едой ничего в последню графу приходить не будет
+
+      await this.hotelBoardBasisRepository.manager.save(HotelBoardBasis,
+        {
+          id: food?.id ?? undefined,
+          price: food.price,
           hotel: hotel,
-          boardBasis: boardBasis,
-          price: food.price
-        });
-      }
+          boardBasis: boardBasis
+        })
     }
     const updatedHotel: Hotel = await this.hotelsRepository.findOne(paramsId, {
       relations: RELATIONS_GET_HOTEL_FOOD
@@ -451,24 +393,16 @@ export class HotelsService {
     paramsId: string
   ): Promise<HotelDto> {
     const hotel: Hotel = await this.hotelsRepository.findOne(paramsId);
-    const hotelDistance: Distance = await this.distanceRepository.findOne({
-      hotel: hotel
-    });
 
-    if (distance.id.length > 0) {
-      await this.distanceRepository.update(hotelDistance.id, {
-        distanceOfCenter: distance.distanceOfCenter,
-        distanceOfMetro: distance.distanceOfMetro,
-        distanceOfBeach: distance.distanceOfBeach
-      });
-    } else {
-      await this.distanceRepository.save({
+    await this.distanceRepository.manager.save(Distance,
+      {
+        id: distance?.id ?? undefined,
         distanceOfCenter: distance.distanceOfCenter,
         distanceOfMetro: distance.distanceOfMetro,
         distanceOfBeach: distance.distanceOfBeach,
         hotel: hotel
-      });
     }
+    )
     const updatedHotel: Hotel = await this.hotelsRepository.findOne(paramsId, {
       relations: RELATIONS_GET_HOTEL_ID
     });
@@ -485,38 +419,19 @@ export class HotelsService {
     const hotel: Hotel = await this.hotelsRepository.findOne(paramsId);
 
     for (const service of services) {
-      if (service.id.length > 0) {
-        await this.serviceRepository.update(service.id, {
-          price: service.price,
-          name: service.name,
-          icon: service.icon
-        });
-      } else {
-        const category: Categories = await this.categoryRepository.findOne({
-          name: service.category
-        });
 
-        if (category === undefined) {
-          const newCategory: Categories = await this.categoryRepository.save({
-            name: service.category
-          });
-          await this.serviceRepository.save({
-            price: service.price,
-            name: service.name,
-            category: newCategory,
-            icon: service.icon,
-            hotels: [hotel]
-          });
-        } else {
-          await this.serviceRepository.save({
-            price: service.price,
-            name: service.name,
-            category: category,
-            icon: service.icon,
-            hotels: [hotel]
-          });
-        }
-      }
+      const newCategory: ServicesDto = await this.categoryRepository.manager.save(Categories,{
+        id: service?.categoryId ?? undefined,
+        name: service.category
+      });
+      await this.serviceRepository.manager.save(Service,{
+        price: service.price,
+        name: service.name,
+        category: newCategory,
+        icon: service.icon,
+        hotels: [hotel]
+      });
+
     }
     const updatedHotel: Hotel = await this.hotelsRepository.findOne(paramsId, {
       relations: RELATIONS_GET_HOTEL_SERVICES
@@ -534,27 +449,18 @@ export class HotelsService {
     const hotel: Hotel = await this.hotelsRepository.findOne(paramsId);
 
     for (const photo of photos.photos) {
-      if (photo.id.length > 0) {
-        await this.photoRepository.manager.update(Photo, photo.id, {
-          name: photo.name,
-          src: photo.src
-        });
-      } else {
-        const photos: Photo = new Photo();
-        photos.name = photo.name;
-        photos.src = photo.src;
-        photos.hotel = Promise.resolve(hotel);
-        await this.photoRepository.manager.save(photos);
-      }
+
+      const photos: Photo = new Photo();
+      photos.id = photo?.id ?? undefined;
+      photos.name = photo.name;
+      photos.src = photo.src;
+      photos.hotel = Promise.resolve(hotel);
+      await this.photoRepository.manager.save(photos);
+
     }
 
-    if (photos.mainPhoto.id.length > 0) {
-      await this.photoRepository.manager.update(Photo, photos.mainPhoto.id, {
-        name: photos.mainPhoto.name,
-        src: photos.mainPhoto.src
-      });
-    } else {
       const photo: Photo = new Photo();
+      photo.id = photos?.mainPhoto.id ?? undefined;
       photo.name = photos.mainPhoto.name;
       photo.src = photos.mainPhoto.src;
       photo.hotel = Promise.resolve(hotel);
@@ -563,7 +469,6 @@ export class HotelsService {
       await this.hotelsRepository.update(paramsId, {
         mainPhoto: hotelMainPhoto
       });
-    }
 
     const updatedHotel: Hotel = await this.hotelsRepository.findOne(paramsId, {
       relations: RELATIONS_GET_HOTEL_PHOTOS

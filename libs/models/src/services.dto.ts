@@ -4,4 +4,5 @@ export interface ServicesDto {
   price?: number;
   icon?: string;
   category?: string;
+  categoryId?: string;
 }
