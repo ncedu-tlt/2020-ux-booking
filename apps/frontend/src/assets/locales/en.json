@@ -37,5 +37,37 @@
   },
   "fileSelector": {
     "fileNotSelected": "File not selected"
+  },
+  "adminTool": {
+    "hotelForm": {
+      "tabs": {
+        "nutrition": "Nutrition",
+        "distances": "Distances",
+        "optional": "Optional",
+        "hotelRooms": "Hotel Rooms",
+        "photo": "Photo",
+        "comments": "Comments",
+        "reviews": "Reviews"
+      },
+      "mainInfo": {
+        "title": "Main information",
+        "name": "Name",
+        "serviceType": "Service type",
+        "country": "Country",
+        "address": "Address",
+        "description": "Description",
+        "paymentMethod": "Payment method",
+        "city": "City",
+        "starClassification": "Star Classification",
+        "save": "Save",
+        "publish": "Publish",
+        "cancel": "Cancel",
+        "currency": "Currency"
+      },
+      "buttons": {
+        "cancel": "Cancel",
+        "save": "Save"
+      }
+    }
   }
 }

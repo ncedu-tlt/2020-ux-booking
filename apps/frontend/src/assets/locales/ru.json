@@ -37,5 +37,37 @@
   },
   "fileSelector": {
     "fileNotSelected": "Файл не выбран"
+  },
+  "adminTool": {
+    "hotelForm": {
+      "tabs": {
+        "nutrition": "Питание",
+        "distances": "Расстояния",
+        "optional": "Дополнительно",
+        "hotelRooms": "Номера",
+        "photo": "Фотографии",
+        "comments": "Комментарии",
+        "reviews": "Отзывы"
+      },
+      "mainInfo": {
+        "title": "Main information",
+        "name": "Название",
+        "serviceType": "Вид сервиса",
+        "country": "Страна",
+        "address": "Адрес",
+        "description": "Описание",
+        "paymentMethod": "Способ оплаты",
+        "city": "Город",
+        "starClassification": "Звездная классификация",
+        "save": "Сохранить",
+        "publish": "Опубликовать",
+        "cancel": "Отмена",
+        "currency": "Валюта"
+      },
+      "buttons": {
+        "cancel": "Отмена",
+        "save": "Сохранить"
+      }
+    }
   }
 }

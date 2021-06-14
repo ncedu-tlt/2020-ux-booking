@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Story } from '@storybook/angular/types-6-0';
+import { TabsComponent } from './common/tabs/tabs.component';
 
 @Component({
   selector: 'b-root',
@@ -31,4 +33,10 @@ export class AppComponent {
       }
     ]
   };
+  template: Story<TabsComponent> = args => ({
+    template: `
+    <b-tabs [type]='type' [items]='items' [selectedItem]='selectedItem' (selectedEvent)='selectedEvent($event)' >
+    </b-tabs>
+  `
+  });
 }

@@ -1,0 +1,126 @@
+
+
+<div class='main-info'>
+  <div class='main-info__title'>
+    <b-page-title [title]="'Gold Star Super-Puper Hotel'"></b-page-title>
+  </div>
+  <div class='main-info__content'>
+    <div class='main-info__tabs'>
+      <b-tabs [items]="['Основная информация']"
+              [selectedItem]="'Основная информация'"
+              [type]="'vertical'">
+
+      </b-tabs>
+    </div>
+    <div class='main-info__form'>
+      <div class='main-info__form-title'>
+        <h1>Основная информация</h1>
+      </div>
+      <div class='main-info__form-row'>
+        <div class='main-info__form-field'>
+          <b-input-field
+            [title]="'adminTool.hotelForm.mainInfo.name' | i18next"
+            [placeholder]="'Введите имя'"
+            [isMandatory]='true'
+            [isDisabled]='false'>
+
+          </b-input-field>
+        </div>
+        <div class='main-info__form-field'>
+          <b-star-selector [subName]="'adminTool.hotelForm.mainInfo.starClassification' | i18next" [selectedItem]='1' [isEditable]='true'></b-star-selector>
+        </div>
+
+
+      </div>
+      <div class='main-info__form-row'>
+        <div class='main-info__form-field'>
+          <b-selector
+                      [itemList]="[
+    'Наличные',
+    'Банковская карта'
+  ]"
+                      [titleSelector]="'adminTool.hotelForm.mainInfo.paymentMethod' | i18next"></b-selector>
+        </div>
+        <div class='main-info__form-field'>
+          <b-selector
+                      [itemList]="[
+    'Сначала дешевые',
+    'Сначала дорогие',
+    'По рейтингу пользователей',
+    'По количеству звёзд'
+  ]"
+                      [titleSelector]="'adminTool.hotelForm.mainInfo.serviceType' | i18next"></b-selector>
+        </div>
+
+
+      </div>
+      <div class='main-info__form-row'>
+        <div class='main-info__form-field'>
+          <b-input-field
+                         [title]="'adminTool.hotelForm.mainInfo.country' | i18next"
+                         [placeholder]="'Введите страну'"
+                         [isMandatory]='true'
+                         [isDisabled]='false'>
+
+          </b-input-field>
+        </div>
+        <div class='main-info__form-field'>
+          <b-input-field
+            [title]="'adminTool.hotelForm.mainInfo.city' | i18next"
+            [placeholder]="'Введите город'"
+            [isMandatory]='true'
+            [isDisabled]='false'>
+
+          </b-input-field>
+        </div>
+      </div>
+      <div class='main-info__form-row'>
+        <div class='main-info__form-field'>
+          <b-input-field
+            [title]="'adminTool.hotelForm.mainInfo.address' | i18next"
+            [placeholder]="'Введите адрес'"
+            [isMandatory]='true'
+            [isDisabled]='false'>
+          </b-input-field>
+        </div>
+        <div class='main-info__form-field'>
+          <div class='main-info__form-checkbox'>
+          <b-checkbox [label]="'Бесплатная отмена бронирования'"
+                      [isChecked]="false"
+                      [isDisabled]="false"></b-checkbox>
+        </div>
+        </div>
+      </div>
+      <div class='main-info__form-row'>
+          <div class='main-info__form-description'>
+            <b-file-area> </b-file-area>
+          </div>
+      </div>
+      <div class='main-info__form-row'>
+          <div class='main-info__form-currency'>
+          <b-input-field
+            [title]="'adminTool.hotelForm.mainInfo.currency' | i18next"
+            [placeholder]="'$'"
+            [isMandatory]='true'
+            [isDisabled]='false'>
+          </b-input-field>
+        </div>
+        </div>
+
+
+      <div class='main-info__form-row _flex-end'>
+
+          <div class='main-info__form-button'>
+          <b-button  [text]="'adminTool.hotelForm.buttons.cancel' | i18next">
+          </b-button>
+          </div>
+            <div class='main-info__form-button _flex-end'>
+          <b-button  [text]="'adminTool.hotelForm.buttons.save' | i18next">
+          </b-button>
+            </div>
+
+        </div>
+
+    </div>
+  </div>
+</div>
