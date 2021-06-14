@@ -33,7 +33,7 @@ const template: Story<TableComponent> = args => ({
     ...args,
     buttonClicked: event => {
       console.log(
-        `handle button click event: ${event.buttonType} / ${event.itemId}`
+        `handle button click event: ${event.buttonType} / ${event.item.id}`
       );
     }
   },

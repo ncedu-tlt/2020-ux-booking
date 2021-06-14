@@ -6,6 +6,7 @@ import {
   Input,
   Output
 } from '@angular/core';
+import { Item, TableButtonClick, TableConfig } from '../../models/table.model';
 
 @Component({
   selector: 'b-table',
@@ -20,27 +21,7 @@ export class TableComponent {
   @Output()
   buttonClickEvent: EventEmitter<TableButtonClick> = new EventEmitter<TableButtonClick>();
 
-  buttonClick(buttonType: ButtonIconTypesEnum, itemId: ItemId): void {
-    this.buttonClickEvent.emit({ buttonType, itemId });
+  buttonClick(buttonType: ButtonIconTypesEnum, item: Item): void {
+    this.buttonClickEvent.emit({ buttonType, item });
   }
 }
-
-export type ItemId = unknown;
-
-export type Item = {
-  id: ItemId;
-};
-
-export type TableConfig = {
-  items: Item[];
-  columns: string[];
-  headers: {
-    [key: string]: string;
-  };
-  buttons: ButtonIconTypesEnum[];
-};
-
-export type TableButtonClick = {
-  buttonType: ButtonIconTypesEnum;
-  itemId: ItemId;
-};
