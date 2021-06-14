@@ -38,6 +38,7 @@ import {
   RELATIONS_GET_ROOMS_BEDS,
   RELATIONS_GET_ROOMS_PHOTOS
 } from './hotel.constants';
+import { HotelsConversionService } from './hotels.conversion-service';
 
 @Controller('/hotels')
 export class HotelsController {
@@ -58,7 +59,8 @@ export class HotelsController {
     private amenitiesRepository: Repository<Amenities>,
     @InjectRepository(AmenitiesRoom)
     private amenitiesRoomRepository: Repository<AmenitiesRoom>,
-    private hotelsService: HotelsService
+    private hotelsService: HotelsService,
+    private hotelsConversionService: HotelsConversionService
   ) {}
 
   @Get(':id')
@@ -269,7 +271,9 @@ export class HotelsController {
     });
 
     return {
-      services: this.hotelsService.convertServiceDaoToDto(updatedHotel.services)
+      services: this.hotelsConversionService.convertServiceDaoToDto(
+        updatedHotel.services
+      )
     };
   }
 
@@ -293,7 +297,7 @@ export class HotelsController {
     });
 
     return {
-      photos: this.hotelsService.convertPhotoDaoToDto(
+      photos: this.hotelsConversionService.convertPhotoDaoToDto(
         await updatedHotel.photos
       ),
       mainPhoto: await updatedHotel.mainPhoto
