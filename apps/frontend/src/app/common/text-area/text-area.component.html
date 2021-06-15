@@ -3,11 +3,11 @@
       {{'adminTool.hotelForm.mainInfo.description' | i18next}}
       <span *ngIf='isMandatory'>*</span>
   </span>
-  <div class='text-area__input-form'>
+  <div class='text-area__input-form' formControlName='textarea'>
+    <form [formGroup]="formG">
       <textarea class='text-area__input' type="text"
                 (change)="changeValue($event)"
-                [placeholder]="'Введите описание'" >
+                [placeholder]="'Введите описание'">
       </textarea>
-  </div>
-
+    </form>
 </div>

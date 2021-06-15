@@ -37,6 +37,7 @@ export class TextAreaComponent implements ControlValueAccessor {
   isDisabled: boolean;
   @Input()
   value: string;
+  public formG: FormGroup;
   onChange(_: any) {
     //onChange
   }

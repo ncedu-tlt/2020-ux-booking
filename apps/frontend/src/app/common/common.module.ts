@@ -19,8 +19,9 @@ import { HotelCardComponent } from './hotel-card/hotel-card.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 import { SelectorComponent } from './selector/selector.component';
 import { FileSelectorComponent } from './file-selector/file-selector.component';
-import { Step1Component } from './step1/step1.component';
+import { PageComponent } from './page/page.component';
 import { TextAreaComponent } from './text-area/text-area.component';
+import { MainInfoFormComponent } from './main-info-form/main-info-form.component';
 
 @NgModule({
   imports: [
@@ -46,8 +47,9 @@ import { TextAreaComponent } from './text-area/text-area.component';
     CheckboxComponent,
     SelectorComponent,
     FileSelectorComponent,
-    Step1Component,
-    TextAreaComponent
+    PageComponent,
+    TextAreaComponent,
+    MainInfoFormComponent
   ],
   exports: [
     ButtonComponent,
@@ -66,8 +68,9 @@ import { TextAreaComponent } from './text-area/text-area.component';
     CheckboxComponent,
     SelectorComponent,
     FileSelectorComponent,
-    Step1Component,
-    TextAreaComponent
+    PageComponent,
+    TextAreaComponent,
+    MainInfoFormComponent
   ]
 })
 export class CommonModule {}
