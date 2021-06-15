@@ -1,7 +1,6 @@
-import { Component, Inject, Input, Output } from '@angular/core';
-import { I18NEXT_SERVICE, ITranslationService } from 'angular-i18next';
-import { CookieService } from 'ngx-cookie-service';
+import { Component, Input, Output } from '@angular/core';
 import { step1Model } from '../../models/step1.model';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'b-step1',
@@ -33,4 +32,17 @@ export class Step1Component {
   isChecked;
   @Input()
   isDisabled;
+  @Input()
+  value: string;
+  public formG: FormGroup;
+  constructor(private fb: FormBuilder) {
+    this.formG = fb.group({
+      textarea: ''
+    });
+  }
+  ngOnInit(): void {
+    this.formG.valueChanges.subscribe(value => {
+      console.log('value', value);
+    });
+  }
 }

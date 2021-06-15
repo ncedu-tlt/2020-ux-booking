@@ -20,7 +20,7 @@ import { CheckboxComponent } from './checkbox/checkbox.component';
 import { SelectorComponent } from './selector/selector.component';
 import { FileSelectorComponent } from './file-selector/file-selector.component';
 import { Step1Component } from './step1/step1.component';
-import { FieldAreaComponent } from './field-area/field-area.component';
+import { TextAreaComponent } from './text-area/text-area.component';
 
 @NgModule({
   imports: [
@@ -47,7 +47,7 @@ import { FieldAreaComponent } from './field-area/field-area.component';
     SelectorComponent,
     FileSelectorComponent,
     Step1Component,
-    FieldAreaComponent
+    TextAreaComponent
   ],
   exports: [
     ButtonComponent,
@@ -67,7 +67,7 @@ import { FieldAreaComponent } from './field-area/field-area.component';
     SelectorComponent,
     FileSelectorComponent,
     Step1Component,
-    FieldAreaComponent
+    TextAreaComponent
   ]
 })
 export class CommonModule {}

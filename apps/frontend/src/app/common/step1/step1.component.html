@@ -12,7 +12,8 @@
 
       </b-tabs>
     </div>
-    <div class='main-info__form'>
+    <b-main-info-form></b-main-info-form>
+    <form class='main-info__form' [formGroup]="formG">
       <div class='main-info__form-title'>
         <h1>Основная информация</h1>
       </div>
@@ -93,7 +94,7 @@
       </div>
       <div class='main-info__form-row'>
           <div class='main-info__form-description'>
-            <b-file-area> </b-file-area>
+            <b-text-area formControlName='textarea'                  > </b-text-area>
           </div>
       </div>
       <div class='main-info__form-row'>
@@ -121,6 +122,6 @@
 
         </div>
 
-    </div>
+    </form>
   </div>
 </div>
