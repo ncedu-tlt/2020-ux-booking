@@ -27,14 +27,19 @@ import {
 export class InputFieldComponent implements OnInit, ControlValueAccessor {
   @Input()
   title: string;
+
   @Input()
   placeholder: string;
+
   @Input()
   isMandatory: boolean;
+
   @Input()
   isDisabled: boolean;
+
   input: FormControl = new FormControl();
   onChange;
+
   onTouched = () => {
     //
   };
