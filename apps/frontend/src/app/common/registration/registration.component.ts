@@ -48,7 +48,6 @@ export class RegistrationComponent {
         this.router.navigate(['/authorization']).then(r => r);
       },
       error => {
-        // console.log(error);
         console.log(error.status);
         console.log(error.statusText);
       }

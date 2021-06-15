@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { CookieAuthorizationService } from '../../services/cookie-authorization.service';
 
 @Component({
   selector: 'b-authorization',
@@ -18,7 +19,8 @@ export class AuthorizationComponent {
     private http: HttpClient,
     private fb: FormBuilder,
     private router: Router,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private CookieAuthorizationService: CookieAuthorizationService
   ) {}
 
   formReview = this.fb.group({
@@ -39,18 +41,16 @@ export class AuthorizationComponent {
     };
     return this.http.post('/api/auth/login', bodyAuthorization).subscribe(
       data => {
-        let getFirstValue: string;
+        let token: string;
         for (const k in data) {
-          getFirstValue = data[k];
+          token = data[k];
         }
-        this.cookieService.set('token', getFirstValue);
-        this.cookieService.get('token');
-        console.log(this.cookieService.getAll());
+        this.CookieAuthorizationService.setTokenToCookie(token);
         this.router.navigate(['/']).then(r => r);
       },
       error => {
-        console.log(error);
-        // реализация передачи в некую функцию ошибки
+        console.log(error.status);
+        console.log(error.statusText);
       }
     );
   }
