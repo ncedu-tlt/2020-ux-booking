@@ -6,12 +6,9 @@ import {
   OnInit
 } from '@angular/core';
 import {
-  AbstractControl,
   ControlValueAccessor,
   FormControl,
-  NG_VALUE_ACCESSOR,
-  ValidationErrors,
-  Validator
+  NG_VALUE_ACCESSOR
 } from '@angular/forms';
 
 @Component({
@@ -36,8 +33,6 @@ export class InputFieldComponent implements OnInit, ControlValueAccessor {
   isMandatory: boolean;
   @Input()
   isDisabled: boolean;
-
-  touched = false;
   input: FormControl = new FormControl();
   onChange;
   onTouched = () => {
