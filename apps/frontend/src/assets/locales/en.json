@@ -62,7 +62,12 @@
       "password": "Password",
       "passwordPlaceholder": "Enter password",
       "repeatPassword": "Repeat your password"
-
+    },
+    "errorMessage": {
+      "required": "The field is empty",
+      "minLength": "The minimum number of characters has not been reached",
+      "maxLength": "The maximum number of characters has not been reached",
+      "badEmail" : "This email is not correct"
     },
     "button": "Enter",
     "authorization": "Already have an account?",

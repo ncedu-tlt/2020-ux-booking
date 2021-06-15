@@ -4,7 +4,8 @@
       <h2 class='registration__cloud-title'>
         {{"registration.title" | i18next}}</h2>
     </span>
-    <form  [formGroup]='formReview'>
+    <form class='registration__form'
+          [formGroup]='formReview'>
       <div class='registration__input'>
         <b-input-field
           formControlName='name'
@@ -14,9 +15,24 @@
         >
         </b-input-field>
         <div
-          *ngIf=" formReview.controls['name'].invalid && formReview.controls['name'].dirty && formReview.controls['name'].touched"
+          *ngIf="
+          formReview.controls['name'].invalid  &&
+           (formReview.controls['name'].dirty ||
+          formReview.controls['name'].touched)"
         >
-          fdfd</div>
+          <span class='registration__input-error-text'
+                *ngIf="formReview.controls['name'].errors.required">
+            {{"registration.errorMessage.required" | i18next}}
+          </span>
+          <span class='registration__input-error-text'
+                *ngIf="formReview.controls['name'].errors.minlength">
+            {{"registration.errorMessage.minLength" | i18next}}
+          </span>
+          <span class='registration__input-error-text'
+                *ngIf="formReview.controls['name'].errors.maxlength">
+           {{"registration.errorMessage.maxLength" | i18next}}
+          </span>
+        </div>
       </div>
       <div class='registration__input'>
         <b-input-field
@@ -26,6 +42,22 @@
           formControlName='email'
         >
         </b-input-field>
+        <div
+          *ngIf="
+          formReview.controls['email'].invalid  &&
+           (formReview.controls['email'].dirty ||
+          formReview.controls['email'].touched)"
+        >
+          <span class='registration__input-error-text'
+                *ngIf="formReview.controls['email'].errors.required">
+            {{"registration.errorMessage.required" | i18next}}
+          </span>
+          <span
+            class='registration__input-error-text'
+            *ngIf="formReview.controls['email'].errors.email">
+           {{"registration.errorMessage.badEmail" | i18next}}
+          </span>
+        </div>
       </div>
       <div class='registration__input'>
         <b-input-field
@@ -35,18 +67,61 @@
           formControlName='password'
         >
         </b-input-field>
+        <div
+          *ngIf="
+          formReview.controls['password'].invalid  &&
+           (formReview.controls['password'].dirty ||
+          formReview.controls['password'].touched)"
+        >
+          <span
+            class='registration__input-error-text'
+            *ngIf="formReview.controls['password'].errors.required">
+            {{"registration.errorMessage.required" | i18next}}
+          </span>
+          <span
+            class='registration__input-error-text'
+            *ngIf="formReview.controls['password'].errors.minlength">
+             {{"registration.errorMessage.minLength" | i18next}}
+          </span>
+          <span
+            class='registration__input-error-text'
+            *ngIf="formReview.controls['password'].errors.maxlength">
+            {{"registration.errorMessage.maxLength" | i18next}}
+          </span>
+        </div>
       </div>
       <div class='registration__input'>
         <b-input-field
           isMandatory='true'
           title='{{"registration.input.repeatPassword" | i18next}}'
           placeholder='{{"registration.input.passwordPlaceholder" | i18next}}'
-          formControlName='secPassword'
+          formControlName='repeatedPassword'
         >
         </b-input-field>
+        <div
+          *ngIf="
+          formReview.controls['repeatedPassword'].invalid  &&
+           (formReview.controls['repeatedPassword'].dirty ||
+          formReview.controls['repeatedPassword'].touched)"
+        >
+          <span
+            class='registration__input-error-text'
+            *ngIf="formReview.controls['repeatedPassword'].errors.required">
+              {{"registration.errorMessage.required" | i18next}}
+          </span>
+          <span
+            class='registration__input-error-text'
+            *ngIf="formReview.controls['repeatedPassword'].errors.minlength">
+             {{"registration.errorMessage.minLength" | i18next}}
+          </span>
+          <span
+            class='registration__input-error-text'
+            *ngIf="formReview.controls['repeatedPassword'].errors.maxlength">
+             {{"registration.errorMessage.maxLength" | i18next}}
+          </span>
+        </div>
       </div>
     </form>
-
     <b-button
       text='{{"registration.button" | i18next}}'
       (click)='postRegistrationData()'
@@ -59,11 +134,8 @@
       text='{{"registration.registrationLink" | i18next}}'>
     </b-link>
   </div>
-
   <b-background-svg>
-
   </b-background-svg>
-
   <span class='registration__svg-sand'>
 </span>
 </div>

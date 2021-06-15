@@ -42,10 +42,13 @@ export class InputFieldComponent
   disabled = false;
   input: FormControl = new FormControl();
   onChange;
-  onTouched;
+  onTouched = () => {
+    //
+  };
 
   validate(control: AbstractControl): ValidationErrors | null {
     const quantity = control.value;
+    console.log(quantity);
     if (quantity <= 0) {
       return {
         mustBePositive: {
@@ -59,8 +62,8 @@ export class InputFieldComponent
     this.input.setValue(value);
   }
 
-  registerOnChange(fn: any): void {
-    this.onChange = fn;
+  registerOnChange(onChange: any): void {
+    this.onChange = onChange;
   }
 
   registerOnTouched(onTouched: any): void {
@@ -71,17 +74,18 @@ export class InputFieldComponent
     if (!this.touched) {
       this.onTouched();
       this.touched = true;
-      console.log(this.touched, 'in main');
     }
-    console.log(this.touched, 'inside main');
   }
 
   ngOnInit(): void {
     if (this.isDisabled) {
       this.input.disable();
-      this.markAsTouched();
     }
     this.input.valueChanges.subscribe((val: string) => {
+      // if (val !== null) {
+      //   this.markAsTouched();
+      // }
+
       if (this.onChange) {
         this.onChange(val);
       }

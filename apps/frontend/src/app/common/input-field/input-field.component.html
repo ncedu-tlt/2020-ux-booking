@@ -6,7 +6,9 @@
   <input class='input-field__input'
          [formControl]='input'
          [ngClass]="{ '_error' : !input.valid && input.touched && isMandatory}"
-         [placeholder]='placeholder' />
+         [placeholder]='placeholder'
+         (blur)='onTouched()'
+  />
   <span *ngIf='!input.valid && input.touched && isMandatory'
         class='input-field__error-text'>
     {{"input.errorMessage.fieldIsEmpty" | i18next }}
