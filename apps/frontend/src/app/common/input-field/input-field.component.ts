@@ -27,8 +27,7 @@ import {
     }
   ]
 })
-export class InputFieldComponent
-  implements OnInit, ControlValueAccessor, Validator {
+export class InputFieldComponent implements OnInit, ControlValueAccessor {
   @Input()
   title: string;
   @Input()
@@ -39,24 +38,11 @@ export class InputFieldComponent
   isDisabled: boolean;
 
   touched = false;
-  disabled = false;
   input: FormControl = new FormControl();
   onChange;
   onTouched = () => {
     //
   };
-
-  validate(control: AbstractControl): ValidationErrors | null {
-    const quantity = control.value;
-    console.log(quantity);
-    if (quantity <= 0) {
-      return {
-        mustBePositive: {
-          quantity
-        }
-      };
-    }
-  }
 
   writeValue(value: string): void {
     this.input.setValue(value);
@@ -70,20 +56,13 @@ export class InputFieldComponent
     this.onTouched = onTouched;
   }
 
-  markAsTouched() {
-    if (!this.touched) {
-      this.onTouched();
-      this.touched = true;
-    }
-  }
-
   ngOnInit(): void {
     if (this.isDisabled) {
       this.input.disable();
     }
-    this.input.valueChanges.subscribe((val: string) => {
+    this.input.valueChanges.subscribe((value: string) => {
       if (this.onChange) {
-        this.onChange(val);
+        this.onChange(value);
       }
     });
   }
