@@ -50,7 +50,7 @@
         "reviews": "Отзывы"
       },
       "mainInfo": {
-        "title": "Main information",
+        "title": "Основная информация",
         "name": "Название",
         "serviceType": "Вид сервиса",
         "country": "Страна",
@@ -63,6 +63,13 @@
         "publish": "Опубликовать",
         "cancel": "Отмена",
         "currency": "Валюта"
+      },
+      "placeholder": {
+        "name": "Введите имя",
+        "country": "Введите страну",
+        "address": "Введите адрес",
+        "city": "Введите город",
+        "description": "Введите описание"
       },
       "buttons": {
         "cancel": "Отмена",

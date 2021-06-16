@@ -64,6 +64,13 @@
         "cancel": "Cancel",
         "currency": "Currency"
       },
+      "placeholder": {
+        "name": "Enter a name",
+        "country": "Enter a country",
+        "address": "Enter an address",
+        "city": "Enter a city",
+        "description": "Enter a description"
+      },
       "buttons": {
         "cancel": "Cancel",
         "save": "Save"

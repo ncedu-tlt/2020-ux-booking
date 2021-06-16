@@ -22,6 +22,7 @@ import { FileSelectorComponent } from './file-selector/file-selector.component';
 import { PageComponent } from './page/page.component';
 import { TextAreaComponent } from './text-area/text-area.component';
 import { MainInfoFormComponent } from './main-info-form/main-info-form.component';
+import { DistanceFormComponent } from './distance-form/distance-form.component';
 
 @NgModule({
   imports: [
@@ -49,7 +50,8 @@ import { MainInfoFormComponent } from './main-info-form/main-info-form.component
     FileSelectorComponent,
     PageComponent,
     TextAreaComponent,
-    MainInfoFormComponent
+    MainInfoFormComponent,
+    DistanceFormComponent
   ],
   exports: [
     ButtonComponent,
@@ -70,7 +72,8 @@ import { MainInfoFormComponent } from './main-info-form/main-info-form.component
     FileSelectorComponent,
     PageComponent,
     TextAreaComponent,
-    MainInfoFormComponent
+    MainInfoFormComponent,
+    DistanceFormComponent
   ]
 })
 export class CommonModule {}

@@ -1,0 +1,32 @@
+<div class='distance'>
+  <div class='distance__form-title'>
+    <h1>{{'adminTool.hotelForm.tabs.distances' | i18next}}</h1>
+  </div>
+  <form class='distance__form' >
+<!--        [formGroup]="formG"-->
+    <div class='distance__form-row'>
+      <div class='distance__form-field'>
+<b-selector></b-selector>
+      </div>
+        <div class='distance__form-field'>
+      <b-selector></b-selector>
+        </div>
+
+    </div>
+  <div class='distance__form-row'>
+    <b-selector></b-selector>
+
+  </div>
+    <div class='distance__form-row _flex-end'>
+      <div class='main-info__form-button'>
+        <b-button  [text]="'adminTool.hotelForm.buttons.cancel' | i18next">
+        </b-button>
+      </div>
+      <div class='distance__form-button _flex-end'>
+        <b-button  [text]="'adminTool.hotelForm.buttons.save' | i18next">
+        </b-button>
+      </div>
+    </div>
+  </form>
+  </div>
+
