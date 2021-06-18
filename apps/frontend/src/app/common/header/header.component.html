@@ -39,14 +39,16 @@
       </div>
     </ng-container>
     <ng-template #loginTemplate>
-      <div *ngIf='!isHiddenLoginButton'
+      <div *ngIf='isHiddenLoginButton'
            class='header__enter-icon'>
         <svg-icon class='icon _size-l _stroke-white'
                   src='assets/icons/enter.svg'>
         </svg-icon>
-        <div class='header__enter'>
+        <a class='header__enter'
+             href="/authorization"
+        >
           {{"header.menu.enter" | i18next}}
-        </div>
+        </a>
       </div>
     </ng-template>
   </div>

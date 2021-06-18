@@ -17,13 +17,13 @@ export class AuthorizationComponent {
 
   constructor(
     private http: HttpClient,
-    private fb: FormBuilder,
+    private formBuilder: FormBuilder,
     private router: Router,
     private cookieService: CookieService,
     private CookieAuthorizationService: CookieAuthorizationService
   ) {}
 
-  formReview = this.fb.group({
+  formReview = this.formBuilder.group({
     email: [
       'lorem@lorem.com',
       [Validators.required, Validators.email, Validators.maxLength(255)]
@@ -42,8 +42,8 @@ export class AuthorizationComponent {
     return this.http.post('/api/auth/login', bodyAuthorization).subscribe(
       data => {
         let token: string;
-        for (const k in data) {
-          token = data[k];
+        for (const item in data) {
+          token = data[item];
         }
         this.CookieAuthorizationService.setTokenToCookie(token);
         this.router.navigate(['/']).then(r => r);
@@ -53,5 +53,13 @@ export class AuthorizationComponent {
         console.log(error.statusText);
       }
     );
+    // this.http.get('/profile').subscribe(
+    //   data => {
+    //     console.log(data);
+    //   },
+    //   error => {
+    //     console.log(error);
+    //   }
+    // );
   }
 }

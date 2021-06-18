@@ -12,11 +12,11 @@ import { Router } from '@angular/router';
 export class RegistrationComponent {
   constructor(
     private http: HttpClient,
-    private fb: FormBuilder,
+    private formBuilder: FormBuilder,
     private router: Router
   ) {}
 
-  formReview = this.fb.group({
+  formReview = this.formBuilder.group({
     name: [
       null,
       [Validators.required, Validators.minLength(2), Validators.maxLength(255)]
@@ -35,7 +35,6 @@ export class RegistrationComponent {
     ]
   });
 
-  // receivedUser
   postRegistrationData() {
     const body = {
       name: this.formReview.value.name,
