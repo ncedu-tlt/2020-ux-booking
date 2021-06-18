@@ -103,20 +103,12 @@ export class HotelsConversionService {
       stars: hotel.stars,
       minPrice: hotel.minPrice,
       freeCancellation: hotel.freeCancellation,
-      services: this.convertServiceDaoToDto(
-        hotel.services
-      ),
-      address: this.convertAddressDaoToDto(
-        hotel.address
-      ),
+      services: this.convertServiceDaoToDto(hotel.services),
+      address: this.convertAddressDaoToDto(hotel.address),
       serviceType: hotel.serviceType,
       currency: hotel.currency,
-      mainPhoto: this.convertMainPhotoDaoToDto(
-        hotel.mainPhoto
-      ),
-      photos: this.convertPhotoDaoToDto(
-        await hotel.photos
-      ),
+      mainPhoto: this.convertMainPhotoDaoToDto(hotel.mainPhoto),
+      photos: this.convertPhotoDaoToDto(await hotel.photos),
       distance: await hotel.distance,
       hotelBoardBasis: hotel.hotelBoardBasis
     };
@@ -130,15 +122,10 @@ export class HotelsConversionService {
       bookingPolicy: updatedHotel.bookingPolicy,
       stars: updatedHotel.stars,
       minPrice: updatedHotel.minPrice,
-      address: this.convertAddressDaoToDto(
-        updatedHotel.address
-      ),
+      address: this.convertAddressDaoToDto(updatedHotel.address),
       freeCancellation: updatedHotel.freeCancellation,
-      serviceType: this.convertServiceTypeDaoToDto(
-        updatedHotel.serviceType
-      ),
+      serviceType: this.convertServiceTypeDaoToDto(updatedHotel.serviceType),
       currency: updatedHotel.currency
     };
   }
-
 }

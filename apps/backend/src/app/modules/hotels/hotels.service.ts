@@ -98,15 +98,15 @@ export class HotelsService {
         relations: RELATIONS_GET_ROOM
       }
     );
-     return this.hotelsConversionService.convertAllRoom(newRoom)
+    return this.hotelsConversionService.convertAllRoom(newRoom);
   }
 
   async getHotel(hotel: Hotel): Promise<HotelDto> {
-    return this.hotelsConversionService.convertHotel(hotel)
+    return this.hotelsConversionService.convertHotel(hotel);
   }
 
   async getRoom(room: Room): Promise<RoomDto> {
-    return this.hotelsConversionService.convertRoom(room)
+    return this.hotelsConversionService.convertRoom(room);
   }
 
   async createRoom(hotel: Hotel, roomDto: RoomDto): Promise<RoomDto> {
@@ -258,7 +258,7 @@ export class HotelsService {
     const updatedHotel: Hotel = await this.hotelsRepository.findOne(paramsId, {
       relations: RELATIONS_GET_HOTEL_ID
     });
-    return this.hotelsConversionService.convertUpdatedHotel(updatedHotel)
+    return this.hotelsConversionService.convertUpdatedHotel(updatedHotel);
   }
 
   async changeHotelFood(
@@ -350,7 +350,7 @@ export class HotelsService {
     const hotel: Hotel = await this.hotelsRepository.findOne(paramsId);
 
     for (const photo of photos.photos) {
-      await this.savePhoto(photo, hotel)
+      await this.savePhoto(photo, hotel);
     }
 
     const photo: Photo = new Photo();
