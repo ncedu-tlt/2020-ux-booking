@@ -1,4 +1,4 @@
-export enum HotelRelations {
+export enum HotelsRelations {
   address = 'address',
   city = 'address.city',
   country = 'address.city.country',

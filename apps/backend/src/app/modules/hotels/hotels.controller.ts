@@ -37,8 +37,8 @@ import {
   RELATIONS_GET_ROOM,
   RELATIONS_GET_ROOMS_BEDS,
   RELATIONS_GET_ROOMS_PHOTOS
-} from './hotel.constants';
-import { HotelsConversionService } from './hotels.conversion-service';
+} from './hotels.constants';
+import { HotelsConversionService } from './hotels-conversion.service.';
 
 @Controller('/hotels')
 export class HotelsController {

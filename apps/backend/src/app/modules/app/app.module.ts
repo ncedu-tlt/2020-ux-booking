@@ -10,7 +10,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { MessagesModule } from '../messages/messages.module';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
-import { HotelsModule } from '../hotels-list/hotels.module';
+import { HotelsModule } from '../hotels/hotels.module';
 
 @Module({
   imports: [
