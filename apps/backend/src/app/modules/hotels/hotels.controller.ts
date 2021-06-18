@@ -65,10 +65,10 @@ export class HotelsController {
 
   @Get(':id')
   async getHotel(@Param() params): Promise<HotelDto> {
-    const hotel = await this.hotelsRepository.findOne(params.id, {
+    const hotel: Hotel = await this.hotelsRepository.findOne(params.id, {
       relations: RELATIONS_GET_HOTEL_ID
     });
-    return this.hotelsService.getHotel(hotel);
+    return this.hotelsConversionService.convertHotel(hotel);
   }
 
   @Get()
@@ -99,10 +99,10 @@ export class HotelsController {
 
   @Get(':id/rooms/:roomId')
   async getRoom(@Param() params): Promise<RoomDto> {
-    const room = await this.roomRepository.findOne(params.roomId, {
+    const room: Room = await this.roomRepository.findOne(params.roomId, {
       relations: RELATIONS_GET_ROOM
     });
-    return this.hotelsService.getRoom(room);
+    return this.hotelsConversionService.convertRoom(room)
   }
 
   @Get(':id/rooms')
@@ -261,7 +261,7 @@ export class HotelsController {
 
   @Delete(':id/services/:serviceId')
   async deleteService(@Param() params): Promise<HotelDto> {
-    const service = await this.serviceRepository.findOne({
+    const service: Service = await this.serviceRepository.findOne({
       id: params.serviceId
     });
     await this.serviceRepository.remove(service);

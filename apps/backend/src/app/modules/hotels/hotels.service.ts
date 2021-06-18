@@ -36,6 +36,7 @@ import {
 import { AmenitiesDto } from '@booking/models/amenities.dto';
 import { CurrencyDto } from '@booking/models/currency.dto';
 import { HotelsConversionService } from './hotels-conversion.service.';
+import { PhotosRoomDto } from '@booking/models/photos-room.dto';
 
 @Injectable()
 export class HotelsService {
@@ -79,7 +80,7 @@ export class HotelsService {
     private hotelsConversionService: HotelsConversionService
   ) {}
 
-  async savePhoto(newPhoto: any, hotel: Hotel, room?: Room): Promise<void> {
+  async savePhoto(newPhoto: PhotosRoomDto, hotel: Hotel, room?: Room): Promise<void> {
     const photo = new Photo();
     photo.id = newPhoto.id ?? undefined;
     photo.name = newPhoto.name;
@@ -99,14 +100,6 @@ export class HotelsService {
       }
     );
     return this.hotelsConversionService.convertAllRoom(newRoom);
-  }
-
-  async getHotel(hotel: Hotel): Promise<HotelDto> {
-    return this.hotelsConversionService.convertHotel(hotel);
-  }
-
-  async getRoom(room: Room): Promise<RoomDto> {
-    return this.hotelsConversionService.convertRoom(room);
   }
 
   async createRoom(hotel: Hotel, roomDto: RoomDto): Promise<RoomDto> {
