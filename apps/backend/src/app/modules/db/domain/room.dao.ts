@@ -1,6 +1,7 @@
 import {
   Column,
   Entity,
+  JoinTable,
   ManyToMany,
   ManyToOne,
   OneToMany,
@@ -21,22 +22,26 @@ export class Room {
   @Column()
   name: string;
 
-  @Column({ type: 'decimal' })
+  @Column({
+    type: 'decimal',
+    nullable: true
+  })
   price: number;
 
-  @Column()
+  @Column({ nullable: true })
   count: number;
 
-  @Column()
+  @Column({ nullable: true })
   description: string;
 
-  @Column()
+  @Column({ nullable: true })
   capacity: number;
 
   @ManyToMany(type => Bed, beds => beds.rooms, {
     nullable: false,
     onDelete: 'RESTRICT'
   })
+  @JoinTable()
   beds: Bed[];
 
   @ManyToOne(type => Hotel, hotel => hotel.rooms, {

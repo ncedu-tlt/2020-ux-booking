@@ -13,6 +13,6 @@ export class HotelBoardBasis {
   @ManyToOne(type => BoardBasis, boardBasis => boardBasis.hotelBoardBasis)
   boardBasis: BoardBasis;
 
-  @Column()
+  @Column({ nullable: true })
   price: number;
 }

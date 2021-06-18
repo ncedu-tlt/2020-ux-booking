@@ -11,7 +11,7 @@ import { Address } from './addresses.dao';
 import { Role } from './role.dao';
 import { Review } from './review.dao';
 import { Hotel } from './hotel.dao';
-import { Comment } from './comment.dao';
+import { Comments } from './comment.dao';
 import { Booking } from './booking.dao';
 
 @Entity('users')
@@ -58,11 +58,11 @@ export class User {
   })
   reviews: Promise<Review[]>;
 
-  @OneToMany(type => Comment, comments => comments.user, {
+  @OneToMany(type => Comments, comments => comments.user, {
     nullable: true,
     onDelete: 'SET NULL'
   })
-  comments: Promise<Comment[]>;
+  comments: Promise<Comments[]>;
 
   @OneToMany(type => Booking, booking => booking.user, {
     nullable: true,
