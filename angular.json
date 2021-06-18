@@ -218,7 +218,8 @@
             "tsConfig": "apps/backend/tsconfig.app.json",
             "assets": [
               "apps/backend/src/assets"
-            ]
+            ],
+            "maxWorkers": 4
           },
           "configurations": {
             "production": {
