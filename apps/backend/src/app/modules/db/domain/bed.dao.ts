@@ -11,5 +11,5 @@ export class Bed {
   name: string;
 
   @ManyToMany(type => Room, rooms => rooms.beds, { onDelete: 'CASCADE' })
-  rooms: Promise<Room[]>;
+  rooms: Room[];
 }
