@@ -3,7 +3,7 @@ import { Hotel } from './hotel.dao';
 import { User } from './user.dao';
 
 @Entity('comments')
-export class Comment {
+export class Comments {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
