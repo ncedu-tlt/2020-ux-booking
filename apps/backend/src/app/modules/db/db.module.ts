@@ -7,9 +7,8 @@ import { MessageDao } from './domain/message.dao';
 import { User } from './domain/user.dao';
 import { Role } from './domain/role.dao';
 import { Hotel } from './domain/hotel.dao';
-import { Currency } from './domain/currency.dao';
 import { Review } from './domain/review.dao';
-import { Comment } from './domain/comment.dao';
+import { Comments } from './domain/comment.dao';
 import { Photo } from './domain/photo.dao';
 import { ServiceType } from './domain/service_type.dao';
 import { Service } from './domain/service.dao';
@@ -23,6 +22,9 @@ import { Bed } from './domain/bed.dao';
 import { Room } from './domain/room.dao';
 import { Amenities } from './domain/ameniries.dao';
 import { AmenitiesRoom } from './domain/amenities_room.dao';
+import { Categories } from './domain/categories.dao';
+import { Distance } from './domain/distance';
+import { Currency } from './domain/currency.dao';
 
 @Module({
   imports: [
@@ -35,11 +37,9 @@ import { AmenitiesRoom } from './domain/amenities_room.dao';
       Booking,
       BookingCondition,
       BookingDetail,
-      // Categories,
       City,
-      Comment,
+      Comments,
       Country,
-      Currency,
       HotelBoardBasis,
       Hotel,
       PaymentMethod,
@@ -50,7 +50,10 @@ import { AmenitiesRoom } from './domain/amenities_room.dao';
       ServiceType,
       Service,
       User,
-      MessageDao
+      MessageDao,
+      Categories,
+      Distance,
+      Currency
     ])
   ],
   exports: [TypeOrmModule]

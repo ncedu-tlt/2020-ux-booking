@@ -5,10 +5,7 @@ import {
   OneToMany,
   PrimaryGeneratedColumn
 } from 'typeorm';
-
-import { Photo } from './photo.dao';
 import { AmenitiesRoom } from './amenities_room.dao';
-import { User } from './user.dao';
 
 @Entity('amenities')
 export class Amenities {
@@ -18,11 +15,11 @@ export class Amenities {
   @Column()
   name: string;
 
-  @Column()
+  @Column({ nullable: true })
   default: boolean;
 
-  @ManyToOne(type => Photo, photos => photos.amenities, { nullable: false })
-  icon: Photo;
+  @Column()
+  icon: string;
 
   @OneToMany(
     type => AmenitiesRoom,
