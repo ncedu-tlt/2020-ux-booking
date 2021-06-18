@@ -4,7 +4,7 @@ import {
   EventEmitter,
   Input,
   OnInit,
-  Output
+  Output, SimpleChanges
 } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 
@@ -23,19 +23,28 @@ export class InputFieldComponent implements OnInit {
   isMandatory: boolean;
   @Input()
   isDisabled: boolean;
+  @Input()
+  simpleStyle: boolean;
+  @Input()
+  value = '';
 
   @Output() handleChange: EventEmitter<string> = new EventEmitter();
 
-  _value = '';
   input: FormControl;
 
   ngOnInit(): void {
-    this.input = new FormControl(this._value, Validators.required);
+    this.input = new FormControl(this.value, Validators.required);
     if (this.isDisabled) {
       this.input.disable();
     }
     this.input.valueChanges.subscribe((value: string) => {
       this.handleChange.emit(value);
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    changes?.isDisabled.currentValue
+      ? this.input?.disable()
+      : this.input?.enable();
   }
 }

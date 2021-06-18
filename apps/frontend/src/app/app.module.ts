@@ -8,9 +8,11 @@ import { I18NextModule } from 'angular-i18next';
 import { I18N_PROVIDERS } from './i18n/i18next';
 import { LangModule } from './lang/lang.module';
 import { HotelDataService } from './services/hotel-data.service';
+import { UserProfileComponent } from './pages/user-profile/user-profile.component';
+import { UserInfoComponent } from './pages/user-info/user-info.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, UserProfileComponent, UserInfoComponent],
   imports: [
     BrowserModule,
     CommonModule,
