@@ -102,7 +102,7 @@ export class HotelsController {
     const room: Room = await this.roomRepository.findOne(params.roomId, {
       relations: RELATIONS_GET_ROOM
     });
-    return this.hotelsConversionService.convertRoom(room)
+    return this.hotelsConversionService.convertRoom(room);
   }
 
   @Get(':id/rooms')

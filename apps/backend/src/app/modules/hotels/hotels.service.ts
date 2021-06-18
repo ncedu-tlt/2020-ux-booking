@@ -80,7 +80,11 @@ export class HotelsService {
     private hotelsConversionService: HotelsConversionService
   ) {}
 
-  async savePhoto(newPhoto: PhotosRoomDto, hotel: Hotel, room?: Room): Promise<void> {
+  async savePhoto(
+    newPhoto: PhotosRoomDto,
+    hotel: Hotel,
+    room?: Room
+  ): Promise<void> {
     const photo = new Photo();
     photo.id = newPhoto.id ?? undefined;
     photo.name = newPhoto.name;
