@@ -9,7 +9,6 @@ import { Hotel } from './hotel.dao';
 import { Service } from './service.dao';
 import { Room } from './room.dao';
 import { Amenities } from './ameniries.dao';
-import { User } from './user.dao';
 
 @Entity('photos')
 export class Photo {
@@ -28,14 +27,17 @@ export class Photo {
   })
   services: Promise<Service[]>;
 
+  @OneToMany(type => Hotel, hotel => hotel.mainPhoto)
+  hotelMainPhoto: Hotel;
+
   @ManyToOne(type => Hotel, hotels => hotels.photos, {
-    nullable: false,
+    nullable: true /*false*/,
     onDelete: 'SET NULL'
   })
   hotel: Promise<Hotel>;
 
   @ManyToOne(type => Room, rooms => rooms.photos, {
-    nullable: false,
+    nullable: true /*false*/,
     onDelete: 'SET NULL'
   })
   room: Promise<Room>;
