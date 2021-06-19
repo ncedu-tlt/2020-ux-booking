@@ -33,6 +33,7 @@ export class MainInfoFormComponent {
     });
   }
   ngOnInit(): void {
+    this.fb.group(FormGroup);
     this.formG.valueChanges.subscribe(value => {
       console.log('value', value);
     });
