@@ -19,6 +19,7 @@ import { HotelCardComponent } from './hotel-card/hotel-card.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 import { SelectorComponent } from './selector/selector.component';
 import { FileSelectorComponent } from './file-selector/file-selector.component';
+import { TableComponent } from './table/table.component';
 
 @NgModule({
   imports: [
@@ -36,6 +37,7 @@ import { FileSelectorComponent } from './file-selector/file-selector.component';
     HeaderComponent,
     StarSelectorComponent,
     PageTitleComponent,
+    TableComponent,
     BannerComponent,
     HotelCardComponent,
     ButtonIconComponent,
@@ -55,6 +57,7 @@ import { FileSelectorComponent } from './file-selector/file-selector.component';
     StarSelectorComponent,
     ButtonIconComponent,
     PageTitleComponent,
+    TableComponent,
     BannerComponent,
     LinkComponent,
     HotelCardComponent,
