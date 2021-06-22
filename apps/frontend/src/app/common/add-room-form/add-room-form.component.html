@@ -1,0 +1,148 @@
+<div class='add-room-form'>
+  <div *ngIf='!isOpenConstructorForm'>
+    <h3 class='add-room-form-title'>Номера</h3>
+    <div *ngFor='let room of roomData'
+         class='add-room-form__list'>
+      <div class='add-room-form__list-upper'>
+        <h3>{{room.name}}</h3>
+        <b-button-icon type='delete'
+        ></b-button-icon>
+      </div>
+      <div class='add-room-form__horizontal-line'></div>
+      <div class='add-room-form__list-under'>
+        <div class='add-room-form__list-under-type'>
+          <span>Тип кроватей</span>
+          <h4>{{room.beds}}</h4>
+          <span></span>
+        </div>
+        <div class='add-room-form__list-under-count'>
+          <span>Кол-во мест</span>
+          <div class='add-room-form__list-under-icon'>
+            <svg-icon
+              src='assets/icons/user_icon.svg'
+            ></svg-icon>
+          </div>
+
+
+        </div>
+        <div class='add-room-form__list-under-price'>
+          <span>Стоимость</span>
+          <h4>{{room.price}} Р/сутки</h4>
+        </div>
+      </div>
+    </div>
+    <div class='add-room-form__add-button'>
+      <b-button
+        [hasIcon]='true'
+        text='добавить номер'
+        type='secondary'
+        (click)='openForm()'
+      ></b-button>
+    </div>
+  </div>
+
+  <div *ngIf='isOpenConstructorForm'
+       class='add-room-form__form'>
+    <h2 class='add-room-form__form-title'>Добавление номера</h2>
+    <span class='add-room-form__basic-information-title'>Общая информация</span>
+    <div class='add-room-form__basic-information'>
+
+      <div class='add-room-form__basic-information-column'>
+
+        <b-selector class='add-room-form__basic-information-form'
+                    titleSelector='Тип номера'
+                    placeholder='Введите тип'></b-selector>
+
+        <b-input-field class='add-room-form__basic-information-form'
+                       title='Стоимость, Р/сутки'
+                       placeholder='Укажите кол-во'></b-input-field>
+
+        <b-selector class='add-room-form__basic-information-form'
+                    titleSelector='Тип кроватей'
+                    placeholder='Введите тип'></b-selector>
+
+        <b-input-field class='add-room-form__basic-information-form'
+                       title='Кол-во номеров данного типа'
+                       placeholder='Укажите кол-во'></b-input-field>
+      </div>
+
+      <b-input-field
+        class='add-room-form__basic-information-form'
+        title='Вмещаемость'
+        placeholder='Укажите кол-во'></b-input-field>
+      <b-input-field class='add-room-form__basic-information-description'
+                     title='Описание'
+                     placeholder='Введите описание'>
+
+      </b-input-field>
+
+
+    </div>
+    <div class='add-room-form__conveniences'>
+      <h4 class='add-room-form__conveniences-title'>
+        Удобства в номере</h4>
+      <div class='add-room-form__conveniences-header'>
+        <span class='add-room-form__conveniences-header-name'> Название</span>
+        <span> Цена. Р/сутки</span>
+        <span class='add-room-form__conveniences-header-icon'> Иконка</span>
+      </div>
+      <div class='add-room-form__horizontal-line'></div>
+      <div *ngFor='let id of countConveniences'>
+        <div class='add-room-form__conveniences-form'
+             [id]='id'>
+          <b-input-field
+            type='number'
+            class='add-room-form__conveniences-name'
+            placeholder='Введите название'
+          ></b-input-field>
+          <b-input-field
+            class='add-room-form__conveniences-price'
+            placeholder='0'></b-input-field>
+          <b-file-selector
+            class='add-room-form__conveniences-file'
+          ></b-file-selector>
+          <b-button-icon type='delete'
+                         (click)='deleteConveniences(id)'
+          ></b-button-icon>
+        </div>
+      </div>
+      <b-button [hasIcon]='true'
+                text='добавить'
+                type='secondary'
+                (click)='addNewConveniences()'
+      ></b-button>
+    </div>
+    <div class='add-room-form__photo'>
+      <h4 class='add-room-form__photo-title'>
+        Фотографии</h4>
+      <div
+        class='add-room-form__photo-form'
+        *ngFor='let id of countPhotos'>
+        <div class='add-room-form__photo-form'
+             [id]='id'>
+          <b-file-selector
+            class='add-room-form__photo-file'>
+          </b-file-selector>
+          <b-button-icon type='delete'
+                         (click)='deletePhotos(id)'
+          ></b-button-icon>
+        </div>
+      </div>
+      <b-button
+        [hasIcon]='true'
+        text='добавить'
+        type='primary'
+        (click)='addNewPhotos()'
+      ></b-button>
+    </div>
+
+  </div>
+  <div class='add-room-form__horizontal-line'></div>
+  <div class='add-room-form__footer'>
+    <b-button type='flat'
+              text='отмена'
+              (click)='remove()'></b-button>
+    <b-button type='primary'
+              text='сохранить'></b-button>
+  </div>
+</div>

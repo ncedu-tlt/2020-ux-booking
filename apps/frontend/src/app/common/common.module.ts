@@ -19,6 +19,7 @@ import { HotelCardComponent } from './hotel-card/hotel-card.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 import { SelectorComponent } from './selector/selector.component';
 import { FileSelectorComponent } from './file-selector/file-selector.component';
+import { AddRoomFormComponent } from './add-room-form/add-room-form.component';
 
 @NgModule({
   imports: [
@@ -43,7 +44,8 @@ import { FileSelectorComponent } from './file-selector/file-selector.component';
     InputFieldComponent,
     CheckboxComponent,
     SelectorComponent,
-    FileSelectorComponent
+    FileSelectorComponent,
+    AddRoomFormComponent
   ],
   exports: [
     ButtonComponent,
@@ -61,7 +63,8 @@ import { FileSelectorComponent } from './file-selector/file-selector.component';
     InputFieldComponent,
     CheckboxComponent,
     SelectorComponent,
-    FileSelectorComponent
+    FileSelectorComponent,
+    AddRoomFormComponent
   ]
 })
 export class CommonModule {}
