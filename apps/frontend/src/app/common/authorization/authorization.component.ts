@@ -25,11 +25,11 @@ export class AuthorizationComponent {
 
   formReview = this.formBuilder.group({
     email: [
-      'lorem@lorem.com',
+      '',
       [Validators.required, Validators.email, Validators.maxLength(255)]
     ],
     password: [
-      'loremlorem',
+      '',
       [Validators.required, Validators.minLength(8), Validators.maxLength(255)]
     ]
   });
@@ -40,26 +40,13 @@ export class AuthorizationComponent {
       password: this.formReview.value.password
     };
     return this.http.post('/api/auth/login', bodyAuthorization).subscribe(
-      data => {
-        let token: string;
-        for (const item in data) {
-          token = data[item];
-        }
-        this.CookieAuthorizationService.setTokenToCookie(token);
-        this.router.navigate(['/']).then(r => r);
+      accessToken => {
+        this.CookieAuthorizationService.setTokenToCookie(accessToken);
+        this.router.navigate(['/']);
       },
       error => {
-        console.log(error.status);
         console.log(error.statusText);
       }
     );
-    // this.http.get('/profile').subscribe(
-    //   data => {
-    //     console.log(data);
-    //   },
-    //   error => {
-    //     console.log(error);
-    //   }
-    // );
   }
 }

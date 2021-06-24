@@ -54,11 +54,16 @@
   }
   &__form{
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   &__input {
     width: 100%;
     padding: 0 32px 24px;
-
+    &-button{
+     margin: 0 auto;
+    }
     &-error-text {
       margin-left: 16px;
       margin-top: 4px;

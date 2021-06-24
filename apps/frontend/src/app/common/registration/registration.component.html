@@ -1,4 +1,10 @@
 <div class='registration'>
+  <b-notification
+    *ngIf='detectError'
+    [message]='errorMessage'
+    [type]='NotificationTypesEnum.error'
+    (closeEvent)='closeNotification()'>
+  </b-notification>
   <div class='registration__popup'>
     <span class='registration__cloud'>
       <h2 class='registration__cloud-title'>
@@ -121,11 +127,13 @@
           </span>
         </div>
       </div>
+      <b-button
+        class='registration__input-button'
+        [isDisabled]='!formReview.valid'
+        text='{{"registration.button" | i18next}}'
+        (click)='postRegistrationData()'
+      ></b-button>
     </form>
-    <b-button
-      text='{{"registration.button" | i18next}}'
-      (click)='postRegistrationData()'
-    ></b-button>
     <span class='registration__under-link'>
       {{"registration.registration" | i18next}}
     </span>

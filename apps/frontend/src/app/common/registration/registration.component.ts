@@ -1,39 +1,74 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { FormBuilder, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+  Validators
+} from '@angular/forms';
 import { Router } from '@angular/router';
+import { NotificationTypesEnum } from '../../enums/notification-types.enum';
 
 @Component({
   selector: 'b-registration',
   templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./registration.component.less']
 })
 export class RegistrationComponent {
+  detectError = false;
+  NotificationTypesEnum: typeof NotificationTypesEnum = NotificationTypesEnum;
+  errorMessage = '';
   constructor(
     private http: HttpClient,
     private formBuilder: FormBuilder,
     private router: Router
   ) {}
 
-  formReview = this.formBuilder.group({
-    name: [
-      null,
-      [Validators.required, Validators.minLength(2), Validators.maxLength(255)]
-    ],
-    email: [
-      null,
-      [Validators.required, Validators.email, Validators.maxLength(255)]
-    ],
-    password: [
-      null,
-      [Validators.required, Validators.minLength(8), Validators.maxLength(255)]
-    ],
-    repeatedPassword: [
-      null,
-      [Validators.required, Validators.minLength(8), Validators.maxLength(255)]
-    ]
-  });
+  formReview = new FormGroup(
+    {
+      name: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(255)
+      ]),
+      email: new FormControl(null, [
+        Validators.required,
+        Validators.email,
+        Validators.maxLength(255)
+      ]),
+      password: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(255)
+      ]),
+      repeatedPassword: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(255)
+      ])
+    },
+    {
+      validators: [this.passwordEqual()]
+    }
+  );
+
+  passwordEqual(): ValidatorFn {
+    return (form: FormGroup): ValidationErrors | null => {
+      const firstPassword = form.get('password').value;
+      const secondPassword = form.get('repeatedPassword').value;
+      if (firstPassword && secondPassword) {
+        const passwordValid = firstPassword === secondPassword;
+        return !passwordValid ? { passwordStrength: true } : null;
+      }
+      return null;
+    };
+  }
+
+  closeNotification(): void {
+    this.detectError = false;
+  }
 
   postRegistrationData() {
     const body = {
@@ -42,13 +77,15 @@ export class RegistrationComponent {
       password: this.formReview.value.password
     };
     return this.http.post('/api/users', body).subscribe(
-      data => {
-        console.log(data);
-        this.router.navigate(['/authorization']).then(r => r);
+      nothing => {
+        console.log(this.detectError);
+        this.detectError = false;
+        this.router.navigate(['/authorization']);
       },
       error => {
-        console.log(error.status);
-        console.log(error.statusText);
+        this.detectError = true;
+        // console.log(this.detectError);
+        this.errorMessage = error.statusText;
       }
     );
   }
