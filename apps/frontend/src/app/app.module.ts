@@ -9,6 +9,7 @@ import { I18N_PROVIDERS } from './i18n/i18next';
 import { LangModule } from './lang/lang.module';
 import { HotelDataService } from './services/hotel-data.service';
 
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
