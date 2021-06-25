@@ -69,7 +69,7 @@
       "maxLength": "The maximum number of characters has not been reached",
       "badEmail" : "This email is not correct"
     },
-    "button": "Enter",
+    "button": "Sign up",
     "authorization": "Already have an account?",
     "authorizationLink": "authorization"
   }

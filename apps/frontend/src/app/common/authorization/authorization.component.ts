@@ -1,19 +1,20 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { CookieAuthorizationService } from '../../services/cookie-authorization.service';
+import { NotificationTypesEnum } from '../../enums/notification-types.enum';
 
 @Component({
   selector: 'b-authorization',
   templateUrl: './authorization.component.html',
-  styleUrls: ['./authorization.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./authorization.component.less']
 })
 export class AuthorizationComponent {
-  email: string;
-  password: string;
+  detectError = false;
+  NotificationTypesEnum: typeof NotificationTypesEnum = NotificationTypesEnum;
+  errorMessage: string;
 
   constructor(
     private http: HttpClient,
@@ -34,6 +35,10 @@ export class AuthorizationComponent {
     ]
   });
 
+  closeNotification(): void {
+    this.detectError = false;
+  }
+
   postAuthorizationData() {
     const bodyAuthorization = {
       email: this.formReview.value.email,
@@ -41,11 +46,13 @@ export class AuthorizationComponent {
     };
     return this.http.post('/api/auth/login', bodyAuthorization).subscribe(
       accessToken => {
+        this.detectError = false;
         this.CookieAuthorizationService.setTokenToCookie(accessToken);
         this.router.navigate(['/']);
       },
       error => {
-        console.log(error.statusText);
+        this.detectError = true;
+        this.errorMessage = error.statusText;
       }
     );
   }

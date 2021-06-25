@@ -20,6 +20,7 @@ export class RegistrationComponent {
   detectError = false;
   NotificationTypesEnum: typeof NotificationTypesEnum = NotificationTypesEnum;
   errorMessage = '';
+
   constructor(
     private http: HttpClient,
     private formBuilder: FormBuilder,
@@ -78,13 +79,11 @@ export class RegistrationComponent {
     };
     return this.http.post('/api/users', body).subscribe(
       nothing => {
-        console.log(this.detectError);
         this.detectError = false;
         this.router.navigate(['/authorization']);
       },
       error => {
         this.detectError = true;
-        // console.log(this.detectError);
         this.errorMessage = error.statusText;
       }
     );

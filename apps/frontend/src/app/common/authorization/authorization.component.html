@@ -1,4 +1,10 @@
 <div class='authorization'>
+  <b-notification
+    *ngIf='detectError'
+    [message]='errorMessage'
+    [type]='NotificationTypesEnum.error'
+    (closeEvent)='closeNotification()'>
+  </b-notification>
   <div class='authorization__popup'>
     <span class='authorization__cloud'>
       <h2 class='authorization__cloud-title'>
