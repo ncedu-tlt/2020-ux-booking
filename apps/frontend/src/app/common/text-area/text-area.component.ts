@@ -1,18 +1,6 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  forwardRef,
-  Input,
-  Output
-} from '@angular/core';
-import {
-  ControlValueAccessor,
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  NG_VALUE_ACCESSOR
-} from '@angular/forms';
+import { ChangeDetectionStrategy, Component, forwardRef, Input } from '@angular/core';
+import { ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
+
 @Component({
   selector: 'b-text-area',
   templateUrl: './text-area.component.html',
@@ -37,9 +25,8 @@ export class TextAreaComponent implements ControlValueAccessor {
   isDisabled: boolean;
   @Input()
   value: string;
-  public formG: FormGroup;
-  onChange(_: any) {
-    //onChange
+  onChange(value: any) {
+    this.value = value;
   }
 
   writeValue(value: any) {
@@ -56,6 +43,5 @@ export class TextAreaComponent implements ControlValueAccessor {
   changeValue($event: Event) {
     this.value = ($event.target as HTMLTextAreaElement).value;
     this.onChange(this.value);
-    console.log($event);
   }
 }

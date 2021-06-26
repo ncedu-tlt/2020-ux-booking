@@ -8,6 +8,7 @@ import { I18NextModule } from 'angular-i18next';
 import { I18N_PROVIDERS } from './i18n/i18next';
 import { LangModule } from './lang/lang.module';
 import { HotelDataService } from './services/hotel-data.service';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,7 +18,8 @@ import { HotelDataService } from './services/hotel-data.service';
     HttpClientModule,
     AngularSvgIconModule.forRoot(),
     I18NextModule.forRoot(),
-    LangModule
+    LangModule,
+    AppRoutingModule
   ],
   providers: [I18N_PROVIDERS, HotelDataService],
   bootstrap: [AppComponent]

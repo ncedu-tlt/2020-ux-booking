@@ -37,5 +37,12 @@
   },
   "fileSelector": {
     "fileNotSelected": "File not selected"
+  },
+  "placeholder": {
+    "list": "Select from the list",
+    "country": "Enter a country",
+    "address": "Enter an address",
+    "description": "Enter a description"
   }
+
 }
