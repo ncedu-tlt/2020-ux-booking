@@ -13,7 +13,6 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MainInfoFormComponent {
-
   @Input()
   value: string;
   public formG: FormGroup;

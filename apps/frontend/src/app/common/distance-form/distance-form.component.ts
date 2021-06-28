@@ -12,6 +12,4 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./distance-form.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DistanceFormComponent {
-
-}
+export class DistanceFormComponent {}
