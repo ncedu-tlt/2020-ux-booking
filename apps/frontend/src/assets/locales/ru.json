@@ -37,5 +37,11 @@
   },
   "fileSelector": {
     "fileNotSelected": "Файл не выбран"
+  },
+  "placeholder": {
+    "list": "Выберите из списка",
+    "country": "Введите страну",
+    "address": "Введите адрес",
+    "description": "Введите описание"
   }
 }
