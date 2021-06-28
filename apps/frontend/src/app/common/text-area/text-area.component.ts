@@ -31,7 +31,7 @@ export class TextAreaComponent implements ControlValueAccessor {
   @Input()
   value: string;
   onChange(value: any) {
-    this.value = value;
+    //onChange
   }
 
   writeValue(value: any) {
