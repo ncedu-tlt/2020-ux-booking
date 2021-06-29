@@ -23,6 +23,8 @@ import { PageComponent } from './page/page.component';
 import { TextAreaComponent } from './text-area/text-area.component';
 import { MainInfoFormComponent } from './main-info-form/main-info-form.component';
 import { DistanceFormComponent } from './distance-form/distance-form.component';
+import { TableComponent } from './table/table.component';
+import { TextAreaComponent } from './text-area/text-area.component';
 
 @NgModule({
   imports: [
@@ -63,6 +65,7 @@ import { DistanceFormComponent } from './distance-form/distance-form.component';
     StarSelectorComponent,
     ButtonIconComponent,
     PageTitleComponent,
+    TableComponent,
     BannerComponent,
     LinkComponent,
     HotelCardComponent,

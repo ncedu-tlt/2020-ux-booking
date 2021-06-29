@@ -4,9 +4,11 @@
     <span *ngIf='isMandatory'>*</span>
   </span>
   <input class='input-field__input'
-         [ngClass]="{ '_error' : !input.valid && input.touched && isMandatory}"
          [formControl]='input'
-         [placeholder]='placeholder' />
+         [ngClass]="{ '_error' : !input.valid && input.touched && isMandatory}"
+         [placeholder]='placeholder'
+         (blur)='onTouched()'
+  />
   <span *ngIf='!input.valid && input.touched && isMandatory'
         class='input-field__error-text'>
     {{"input.errorMessage.fieldIsEmpty" | i18next }}

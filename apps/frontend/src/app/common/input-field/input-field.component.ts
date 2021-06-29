@@ -1,41 +1,69 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
+  forwardRef,
   Input,
-  OnInit,
-  Output
+  OnInit
 } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import {
+  ControlValueAccessor,
+  FormControl,
+  NG_VALUE_ACCESSOR
+} from '@angular/forms';
 
 @Component({
   selector: 'b-input-field',
   templateUrl: './input-field.component.html',
   styleUrls: ['./input-field.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => InputFieldComponent),
+      multi: true
+    }
+  ]
 })
-export class InputFieldComponent implements OnInit {
+export class InputFieldComponent implements OnInit, ControlValueAccessor {
   @Input()
   title: string;
+
   @Input()
   placeholder: string;
+
   @Input()
   isMandatory: boolean;
+
   @Input()
   isDisabled: boolean;
 
-  @Output() handleChange: EventEmitter<string> = new EventEmitter();
+  input: FormControl = new FormControl();
+  onChange;
 
-  _value = '';
-  input: FormControl;
+  onTouched = () => {
+    //
+  };
+
+  writeValue(value: string): void {
+    this.input.setValue(value);
+  }
+
+  registerOnChange(onChange: any): void {
+    this.onChange = onChange;
+  }
+
+  registerOnTouched(onTouched: any): void {
+    this.onTouched = onTouched;
+  }
 
   ngOnInit(): void {
-    this.input = new FormControl(this._value, Validators.required);
     if (this.isDisabled) {
       this.input.disable();
     }
     this.input.valueChanges.subscribe((value: string) => {
-      this.handleChange.emit(value);
+      if (this.onChange) {
+        this.onChange(value);
+      }
     });
   }
 }
