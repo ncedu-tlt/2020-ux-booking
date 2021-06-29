@@ -1,0 +1,11 @@
+<div class='text-area' >
+    <span class='text-area__title'>
+      {{'adminTool.hotelForm.mainInfo.description' | i18next}}
+      <span *ngIf='isMandatory'>*</span>
+  </span>
+  <div class='text-area__input-form' >
+      <textarea class='text-area__input'
+                (change)="changeValue($event)"
+                [placeholder]="'adminTool.hotelForm.placeholder.description' | i18next">
+      </textarea>
+</div>

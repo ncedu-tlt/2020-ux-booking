@@ -51,7 +51,10 @@
 
         <b-selector class='add-room-form__basic-information-form'
                     titleSelector='Тип номера'
-                    placeholder='Введите тип'></b-selector>
+                    placeholder='Введите тип'
+                    isAddControlActive='true'
+                    (handleClick)='setData($event)'
+        ></b-selector>
 
         <b-input-field class='add-room-form__basic-information-form'
                        title='Стоимость, Р/сутки'
@@ -59,7 +62,8 @@
 
         <b-selector class='add-room-form__basic-information-form'
                     titleSelector='Тип кроватей'
-                    placeholder='Введите тип'></b-selector>
+                    placeholder='Введите тип'
+                    [isAddControlActive]='true'></b-selector>
 
         <b-input-field class='add-room-form__basic-information-form'
                        title='Кол-во номеров данного типа'
@@ -70,11 +74,14 @@
         class='add-room-form__basic-information-form'
         title='Вмещаемость'
         placeholder='Укажите кол-во'></b-input-field>
-      <b-input-field class='add-room-form__basic-information-description'
-                     title='Описание'
-                     placeholder='Введите описание'>
+      <b-text-area class='add-room-form__basic-information-description'
+      >
+      </b-text-area>
+<!--      <b-input-field class='add-room-form__basic-information-description'-->
+<!--                     title='Описание'-->
+<!--                     placeholder='Введите описание'>-->
 
-      </b-input-field>
+<!--      </b-input-field>-->
 
 
     </div>
@@ -143,6 +150,7 @@
               text='отмена'
               (click)='remove()'></b-button>
     <b-button type='primary'
-              text='сохранить'></b-button>
+              text='сохранить'
+              (click)='saveRoomInformation()'></b-button>
   </div>
 </div>

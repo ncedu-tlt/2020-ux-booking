@@ -20,6 +20,7 @@ import { CheckboxComponent } from './checkbox/checkbox.component';
 import { SelectorComponent } from './selector/selector.component';
 import { FileSelectorComponent } from './file-selector/file-selector.component';
 import { TableComponent } from './table/table.component';
+import { TextAreaComponent } from './text-area/text-area.component';
 import { AddRoomFormComponent } from './add-room-form/add-room-form.component';
 
 @NgModule({
@@ -47,6 +48,8 @@ import { AddRoomFormComponent } from './add-room-form/add-room-form.component';
     CheckboxComponent,
     SelectorComponent,
     FileSelectorComponent,
+    TextAreaComponent,
+    FileSelectorComponent,
     AddRoomFormComponent
   ],
   exports: [
@@ -66,6 +69,8 @@ import { AddRoomFormComponent } from './add-room-form/add-room-form.component';
     InputFieldComponent,
     CheckboxComponent,
     SelectorComponent,
+    FileSelectorComponent,
+    TextAreaComponent,
     FileSelectorComponent,
     AddRoomFormComponent
   ]

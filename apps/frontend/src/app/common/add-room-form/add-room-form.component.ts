@@ -9,7 +9,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 export class AddRoomFormComponent {
   listOfRoom = [];
   flag = true;
-  isOpenConstructorForm = false;
+  isOpenConstructorForm = true;
   roomData = [
     {
       id: 0,
@@ -46,6 +46,10 @@ export class AddRoomFormComponent {
     this.countPhotos.push(this.countPhotos[this.countPhotos.length - 1] + 1);
   }
 
+  setData($event): void {
+    console.log($event);
+  }
+
   deletePhotos(id): void {
     this.countPhotos.splice(this.countPhotos.indexOf(id), 1);
   }
@@ -53,6 +57,14 @@ export class AddRoomFormComponent {
   remove(): void {
     if (this.isOpenConstructorForm) {
       this.isOpenConstructorForm = false;
+    }
+  }
+
+  saveRoomInformation(): void {
+    if (this.isOpenConstructorForm) {
+      //
+    } else {
+      // drop to back-end
     }
   }
 }
