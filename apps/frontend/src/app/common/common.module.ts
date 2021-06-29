@@ -10,6 +10,7 @@ import { HeaderComponent } from './header/header.component';
 import { I18NextModule } from 'angular-i18next';
 import { StarSelectorComponent } from './star-selector/star-selector.component';
 import { ButtonIconComponent } from './icon/button-icon.component';
+import { PageTitleComponent } from './page-title/page-title.component';
 import { InputFieldComponent } from './input-field/input-field.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BannerComponent } from './banner/banner.component';
@@ -19,7 +20,8 @@ import { AuthorizationComponent } from './authorization/authorization.component'
 import { CheckboxComponent } from './checkbox/checkbox.component';
 import { SelectorComponent } from './selector/selector.component';
 import { FileSelectorComponent } from './file-selector/file-selector.component';
-import { PageTitleComponent } from './page-title/page-title.component';
+import { TableComponent } from './table/table.component';
+import { TextAreaComponent } from './text-area/text-area.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { RegistrationComponent } from './registration/registration.component';
 import { RouterModule } from '@angular/router';
@@ -42,6 +44,7 @@ import { BackgroundSvgComponent } from './background-page/background-svg.compone
     HeaderComponent,
     StarSelectorComponent,
     PageTitleComponent,
+    TableComponent,
     BannerComponent,
     HotelCardComponent,
     ButtonIconComponent,
@@ -55,7 +58,8 @@ import { BackgroundSvgComponent } from './background-page/background-svg.compone
     BackgroundSvgComponent,
     RegistrationComponent,
     SelectorComponent,
-    FileSelectorComponent
+    FileSelectorComponent,
+    TextAreaComponent
   ],
   exports: [
     ButtonComponent,
@@ -67,6 +71,7 @@ import { BackgroundSvgComponent } from './background-page/background-svg.compone
     StarSelectorComponent,
     ButtonIconComponent,
     PageTitleComponent,
+    TableComponent,
     BannerComponent,
     LinkComponent,
     HotelCardComponent,
@@ -80,7 +85,8 @@ import { BackgroundSvgComponent } from './background-page/background-svg.compone
     BackgroundSvgComponent,
     RegistrationComponent,
     SelectorComponent,
-    FileSelectorComponent
+    FileSelectorComponent,
+    TextAreaComponent
   ]
 })
 export class CommonModule {}
