@@ -98,6 +98,7 @@
     "@storybook/addon-controls": "^6.1.21",
     "@storybook/angular": "^6.1.11",
     "@types/jest": "26.0.8",
+    "@types/multer": "^1.4.6",
     "@types/node": "12.12.38",
     "@types/passport-jwt": "^3.0.5",
     "@types/passport-local": "^1.0.33",
