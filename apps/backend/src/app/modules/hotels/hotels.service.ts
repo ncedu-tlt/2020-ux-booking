@@ -5,7 +5,6 @@ import { ServicesDto } from '@booking/models/services.dto';
 import { ServiceType } from '../db/domain/service_type.dao';
 import { ServiceTypeDto } from '@booking/models/serviceType.dto';
 import { Photo } from '../db/domain/photo.dao';
-import { PhotosDto } from '@booking/models/photos.dto';
 import { Amenities } from '../db/domain/ameniries.dao';
 import { AmenitiesRoom } from '../db/domain/amenities_room.dao';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -36,7 +35,6 @@ import {
 import { AmenitiesDto } from '@booking/models/amenities.dto';
 import { CurrencyDto } from '@booking/models/currency.dto';
 import { HotelsConversionService } from './hotels-conversion.service.';
-import { PhotosRoomDto } from '@booking/models/photos-room.dto';
 
 @Injectable()
 export class HotelsService {
@@ -80,15 +78,11 @@ export class HotelsService {
     private hotelsConversionService: HotelsConversionService
   ) {}
 
-  async savePhoto(
-    newPhoto: PhotosRoomDto,
-    hotel: Hotel,
-    room?: Room
-  ): Promise<void> {
+  async savePhoto(newPhoto, hotel: Hotel, room?: Room): Promise<void> {
     const photo = new Photo();
     photo.id = newPhoto.id ?? undefined;
-    photo.name = newPhoto.name;
-    photo.src = newPhoto.src;
+    photo.name = newPhoto.originalname;
+    photo.src = Buffer.from(newPhoto.buffer, 'base64');
     if (room) {
       photo.room = Promise.resolve(room);
     }
@@ -106,7 +100,7 @@ export class HotelsService {
     return this.hotelsConversionService.convertAllRoom(newRoom);
   }
 
-  async createRoom(hotel: Hotel, roomDto: RoomDto): Promise<RoomDto> {
+  async createRoom(hotel: Hotel, roomDto: RoomDto, photos): Promise<RoomDto> {
     const room: Room = new Room();
     room.name = roomDto.name;
     room.price = roomDto.price;
@@ -122,8 +116,10 @@ export class HotelsService {
       description: roomDto.description
     });
 
-    for (const photo of roomDto.photos) {
-      await this.savePhoto(photo, hotel, roomFindOne);
+    if (photos.length > 0) {
+      for (const photo of roomDto.photos) {
+        await this.savePhoto(photo, hotel, roomFindOne);
+      }
     }
 
     for (const bed of roomDto.beds) {
@@ -153,7 +149,8 @@ export class HotelsService {
   async changeRoom(
     roomDto: RoomDto,
     paramsId: string,
-    paramsRoomId: string
+    paramsRoomId: string,
+    photos
   ): Promise<RoomDto> {
     await this.roomRepository.manager.save(Room, {
       id: paramsRoomId,
@@ -194,8 +191,10 @@ export class HotelsService {
       });
     }
 
-    for (const photo of roomDto.photos) {
-      await this.savePhoto(photo, hotel, room);
+    if (photos.length > 0) {
+      for (const photo of roomDto.photos) {
+        await this.savePhoto(photo, hotel, room);
+      }
     }
 
     return await this.getAllRoom(
@@ -340,25 +339,28 @@ export class HotelsService {
     };
   }
 
-  async changeHotelPhotos(
-    photos: PhotosDto,
-    paramsId: string
-  ): Promise<HotelDto> {
+  async changeHotelPhotos(photos, paramsId: string): Promise<HotelDto> {
     const hotel: Hotel = await this.hotelsRepository.findOne(paramsId);
 
-    for (const photo of photos.photos) {
-      await this.savePhoto(photo, hotel);
+    if (photos.img) {
+      for (const photo of photos.img) {
+        await this.savePhoto(photo, hotel);
+      }
     }
 
-    const photo: Photo = new Photo();
-    photo.id = photos.mainPhoto?.id ?? undefined;
-    photo.name = photos.mainPhoto.name;
-    photo.src = photos.mainPhoto.src;
-    photo.hotel = Promise.resolve(hotel);
+    if (photos.mainImg) {
+      for (const photoMain of photos.mainImg) {
+        const photo: Photo = new Photo();
+        photo.id = photoMain?.id ?? undefined;
+        photo.name = photoMain.originalname;
+        photo.src = photoMain.buffer;
+        photo.hotel = Promise.resolve(hotel);
 
-    await this.hotelsRepository.update(paramsId, {
-      mainPhoto: await this.photoRepository.manager.save(photo)
-    });
+        await this.hotelsRepository.update(paramsId, {
+          mainPhoto: await this.photoRepository.manager.save(photo)
+        });
+      }
+    }
 
     const updatedHotel: Hotel = await this.hotelsRepository.findOne(paramsId, {
       relations: RELATIONS_GET_HOTEL_PHOTOS
@@ -367,8 +369,8 @@ export class HotelsService {
     return {
       photos: this.hotelsConversionService.convertPhotoDaoToDto(
         await updatedHotel.photos
-      ),
-      mainPhoto: await updatedHotel.mainPhoto
+      ) /*,
+      mainPhoto: await updatedHotel.mainPhoto*/
     };
   }
 }
