@@ -8,7 +8,10 @@ import {
   Post,
   Headers,
   Res,
-  HttpStatus
+  HttpStatus,
+  UseInterceptors,
+  UploadedFiles,
+  Header
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -26,7 +29,6 @@ import { HotelBoardBasisDto } from '@booking/models/hotelBoardBasis.dto';
 import { DistanceDto } from '@booking/models/distance.dto';
 import { ServicesDto } from '@booking/models/services.dto';
 import { RoomDto } from '@booking/models/room.dto';
-import { PhotosDto } from '@booking/models/photos.dto';
 import { HotelsService } from './hotels.service';
 import {
   RELATIONS_GET_HOTEL_FOOD,
@@ -39,6 +41,7 @@ import {
   RELATIONS_GET_ROOMS_PHOTOS
 } from './hotels.constants';
 import { HotelsConversionService } from './hotels-conversion.service.';
+import { FileFieldsInterceptor } from '@nestjs/platform-express';
 
 @Controller('/hotels')
 export class HotelsController {
@@ -140,18 +143,25 @@ export class HotelsController {
   @Post(':id/rooms')
   async createRoom(
     @Param() params,
-    @Body() roomDto: RoomDto
+    @Body() roomDto: RoomDto,
+    @UploadedFiles() photos
   ): Promise<RoomDto> {
     const hotel: Hotel = await this.hotelsRepository.findOne(params.id);
-    return await this.hotelsService.createRoom(hotel, roomDto);
+    return await this.hotelsService.createRoom(hotel, roomDto, photos);
   }
 
   @Patch(':id/rooms/:roomId')
   async changeRoom(
     @Param() params,
-    @Body() roomDto: RoomDto
+    @Body() roomDto: RoomDto,
+    @UploadedFiles() photos
   ): Promise<RoomDto> {
-    return this.hotelsService.changeRoom(roomDto, params.id, params.roomId);
+    return this.hotelsService.changeRoom(
+      roomDto,
+      params.id,
+      params.roomId,
+      photos
+    );
   }
   @Delete(':id/room/:roomId/:amenitiesId')
   async deleteAmenities(@Param() params): Promise<RoomDto> {
@@ -185,7 +195,9 @@ export class HotelsController {
       relations: RELATIONS_GET_ROOMS_PHOTOS
     });
     return {
-      photos: await room.photos
+      photos: this.hotelsConversionService.convertPhotoRoomDaoToDto(
+        await room.photos
+      )
     };
   }
 
@@ -278,11 +290,25 @@ export class HotelsController {
   }
 
   @Patch(':id/photos')
+  @UseInterceptors(
+    FileFieldsInterceptor([
+      { name: 'mainImg', maxCount: 1 },
+      { name: 'img', maxCount: 5 }
+    ])
+  )
   async changeHotelPhotos(
     @Param() params,
-    @Body() photos: PhotosDto
+    @UploadedFiles() photos
   ): Promise<HotelDto> {
+    console.log(photos);
     return await this.hotelsService.changeHotelPhotos(photos, params.id);
+  }
+
+  @Get('file/:id')
+  @Header('Content-Type', 'image/jpeg')
+  async getPhoto(@Param() params, @Res() res: Response): Promise<void> {
+    const photo: Photo = await this.photoRepository.findOne(params.id);
+    res.end(photo.src);
   }
 
   @Delete(':id/photos/:photoId')
@@ -300,7 +326,9 @@ export class HotelsController {
       photos: this.hotelsConversionService.convertPhotoDaoToDto(
         await updatedHotel.photos
       ),
-      mainPhoto: await updatedHotel.mainPhoto
+      mainPhoto: this.hotelsConversionService.convertMainPhotoDaoToDto(
+        await updatedHotel.mainPhoto
+      )
     };
   }
 
