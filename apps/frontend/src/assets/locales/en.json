@@ -67,17 +67,17 @@
       "emailPlaceholder": "Enter mail",
       "password": "Password",
       "passwordPlaceholder": "Enter password",
-      "repeatPassword": "Repeat your password"
+      "repeatPassword": "Repeat your password",
+      "passwordInvalid": "Password mismatch"
     },
     "errorMessage": {
       "required": "The field is empty",
       "minLength": "The minimum number of characters has not been reached",
       "maxLength": "The maximum number of characters has not been reached",
-      "badEmail" : "This email is not correct"
+      "badEmail": "This email is not correct"
     },
     "button": "Sign up",
     "authorization": "Already have an account?",
     "authorizationLink": "authorization"
   }
-
 }

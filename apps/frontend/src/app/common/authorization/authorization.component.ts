@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
-import { CookieAuthorizationService } from '../../services/cookie-authorization.service';
 import { NotificationTypesEnum } from '../../enums/notification-types.enum';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'b-authorization',
@@ -12,16 +9,13 @@ import { NotificationTypesEnum } from '../../enums/notification-types.enum';
   styleUrls: ['./authorization.component.less']
 })
 export class AuthorizationComponent {
-  detectError = false;
+  isDetectError = false;
   NotificationTypesEnum: typeof NotificationTypesEnum = NotificationTypesEnum;
   errorMessage: string;
 
   constructor(
-    private http: HttpClient,
     private formBuilder: FormBuilder,
-    private router: Router,
-    private cookieService: CookieService,
-    private CookieAuthorizationService: CookieAuthorizationService
+    private LoginService: LoginService
   ) {}
 
   formReview = this.formBuilder.group({
@@ -36,7 +30,7 @@ export class AuthorizationComponent {
   });
 
   closeNotification(): void {
-    this.detectError = false;
+    this.isDetectError = false;
   }
 
   postAuthorizationData() {
@@ -44,16 +38,8 @@ export class AuthorizationComponent {
       email: this.formReview.value.email,
       password: this.formReview.value.password
     };
-    return this.http.post('/api/auth/login', bodyAuthorization).subscribe(
-      accessToken => {
-        this.detectError = false;
-        this.CookieAuthorizationService.setTokenToCookie(accessToken);
-        this.router.navigate(['/']);
-      },
-      error => {
-        this.detectError = true;
-        this.errorMessage = error.statusText;
-      }
-    );
+    this.LoginService.postAuthorizationData(bodyAuthorization);
+    this.isDetectError = this.LoginService.isDetectError;
+    this.errorMessage = this.LoginService.errorMessage;
   }
 }

@@ -32,6 +32,9 @@ export class InputFieldComponent implements OnInit, ControlValueAccessor {
   placeholder: string;
 
   @Input()
+  typeInput: string;
+
+  @Input()
   isMandatory: boolean;
 
   @Input()

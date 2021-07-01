@@ -1,23 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
+import { Component } from '@angular/core';
+import { LoginService } from './services/login.service';
 
 @Component({
   selector: 'b-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.less']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
+  constructor(private LoginService: LoginService) {}
+
   title = 'frontend';
-  isLoginPage = false;
-  currentUrl: string;
-
-  constructor(private location: Location) {}
-
-  ngOnInit(): void {
-    this.currentUrl = this.location.path();
-    this.isLoginPage = !(
-      this.location.path() === '/registration' ||
-      this.location.path() === '/authorization'
-    );
-  }
+  userName = this.LoginService.user.firstName;
 }

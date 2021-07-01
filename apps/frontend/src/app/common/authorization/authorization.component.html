@@ -1,6 +1,6 @@
 <div class='authorization'>
   <b-notification
-    *ngIf='detectError'
+    *ngIf='isDetectError'
     [message]='errorMessage'
     [type]='NotificationTypesEnum.error'
     (closeEvent)='closeNotification()'>
@@ -40,6 +40,7 @@
     <div class='authorization__input'>
       <b-input-field
         isMandatory='true'
+        typeInput='password'
         title='{{"authorization.input.password" | i18next}}'
         placeholder='{{"authorization.input.passwordPlaceholder" | i18next}}'
         formControlName='password'

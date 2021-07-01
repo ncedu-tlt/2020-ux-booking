@@ -1,6 +1,6 @@
 <div class='registration'>
   <b-notification
-    *ngIf='detectError'
+    *ngIf='isDetectError'
     [message]='errorMessage'
     [type]='NotificationTypesEnum.error'
     (closeEvent)='closeNotification()'>
@@ -68,6 +68,7 @@
       <div class='registration__input'>
         <b-input-field
           isMandatory='true'
+          typeInput='password'
           title='{{"registration.input.password" | i18next}}'
           placeholder='{{"registration.input.passwordPlaceholder" | i18next}}'
           formControlName='password'
@@ -99,6 +100,7 @@
       <div class='registration__input'>
         <b-input-field
           isMandatory='true'
+          typeInput='password'
           title='{{"registration.input.repeatPassword" | i18next}}'
           placeholder='{{"registration.input.passwordPlaceholder" | i18next}}'
           formControlName='repeatedPassword'
@@ -126,6 +128,11 @@
              {{"registration.errorMessage.maxLength" | i18next}}
           </span>
         </div>
+        <span
+          class='registration__input-error-text'
+          *ngIf="!isPasswordValid && isRepeatedPasswordMinLength">
+             {{"registration.errorMessage.passwordInvalid" | i18next}}
+          </span>
       </div>
       <b-button
         class='registration__input-button'
