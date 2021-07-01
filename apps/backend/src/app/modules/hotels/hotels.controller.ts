@@ -3,15 +3,15 @@ import {
   Controller,
   Delete,
   Get,
-  Header,
-  Headers,
-  HttpStatus,
   Param,
   Patch,
   Post,
+  Headers,
   Res,
+  HttpStatus,
+  UseInterceptors,
   UploadedFiles,
-  UseInterceptors
+  Header
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -293,7 +293,7 @@ export class HotelsController {
   @UseInterceptors(
     FileFieldsInterceptor([
       { name: 'mainImg', maxCount: 1 },
-      { name: 'img', maxCount: 10 }
+      { name: 'img', maxCount: 5 }
     ])
   )
   async changeHotelPhotos(
@@ -301,12 +301,7 @@ export class HotelsController {
     @UploadedFiles() photos
   ): Promise<HotelDto> {
     console.log(photos);
-    await this.hotelsService.changeHotelPhotos(photos, params.id);
-
-    const hotel: Hotel = await this.hotelsRepository.findOne(params.hotelId, {
-      relations: RELATIONS_GET_HOTEL_ID
-    });
-    return this.hotelsConversionService.convertHotel(hotel);
+    return await this.hotelsService.changeHotelPhotos(photos, params.id);
   }
 
   @Get('file/:id')
@@ -316,16 +311,25 @@ export class HotelsController {
     res.end(photo.src);
   }
 
-  @Delete(':hotelId/photos/:id')
+  @Delete(':id/photos/:photoId')
   async deletePhotoHotel(@Param() params): Promise<HotelDto> {
-    const photo: Photo = await this.photoRepository.findOne(params.id);
-    console.log(photo);
-    await this.photoRepository.delete(photo.id);
-
-    const hotel: Hotel = await this.hotelsRepository.findOne(params.hotelId, {
-      relations: RELATIONS_GET_HOTEL_ID
+    const photo: Photo = await this.photoRepository.findOne({
+      id: params.photo.id
     });
-    return this.hotelsConversionService.convertHotel(hotel);
+    await this.photoRepository.delete(photo);
+
+    const updatedHotel: Hotel = await this.hotelsRepository.findOne(params.id, {
+      relations: RELATIONS_GET_HOTEL_PHOTOS
+    });
+
+    return {
+      photos: this.hotelsConversionService.convertPhotoDaoToDto(
+        await updatedHotel.photos
+      ),
+      mainPhoto: this.hotelsConversionService.convertMainPhotoDaoToDto(
+        await updatedHotel.mainPhoto
+      )
+    };
   }
 
   @Delete(':id')
