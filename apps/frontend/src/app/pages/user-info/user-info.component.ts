@@ -13,6 +13,8 @@ import { Observable } from 'rxjs';
 export class UserInfoComponent {
   editable = false;
 
+  isNotificationVisible = false;
+
   @Input()
   user: UserModel;
 
@@ -25,9 +27,10 @@ export class UserInfoComponent {
   }
 
   save() {
-    this.userDataService.updateUserInfo(this.user).subscribe(r => {
-      this.editable = false;
-    });
+    this.editable = false;
+    this.isNotificationVisible = true;
+    // this.userDataService.updateUserInfo(this.user).subscribe(r => {
+    // });
   }
 
   cancel() {
