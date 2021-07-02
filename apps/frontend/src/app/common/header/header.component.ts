@@ -2,6 +2,7 @@ import { Component, Inject, Input, OnInit } from '@angular/core';
 import { I18NEXT_SERVICE, ITranslationService } from 'angular-i18next';
 import { CookieService } from 'ngx-cookie-service';
 import { Location } from '@angular/common';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'b-header',
@@ -12,7 +13,6 @@ export class HeaderComponent implements OnInit {
   @Input()
   isAdmin = true;
 
-  @Input()
   userName = '';
 
   isHiddenLoginButton = false;
@@ -34,7 +34,8 @@ export class HeaderComponent implements OnInit {
   constructor(
     @Inject(I18NEXT_SERVICE) private i18NextService: ITranslationService,
     private cookieService: CookieService,
-    private location: Location
+    private location: Location,
+    private userService: UserService
   ) {
     this.language = i18NextService.language;
     if (this.language == 'en') {
@@ -77,6 +78,9 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userService.getUser().subscribe(name => {
+      this.userName = name;
+    });
     this.currentUrl = this.location.path();
     this.isHiddenLoginButton = !(
       this.location.path() === '/registration' ||

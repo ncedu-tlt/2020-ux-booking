@@ -7,13 +7,6 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class LoginService {
-  isDetectError = true;
-  errorMessage: string;
-  user = {
-    firstName: '',
-    lastName: ''
-  };
-
   constructor(
     private CookieAuthorizationService: CookieAuthorizationService,
     private router: Router,
@@ -21,31 +14,10 @@ export class LoginService {
   ) {}
 
   postAuthorizationData(bodyAuthorization) {
-    return this.http.post('/api/auth/login', bodyAuthorization).subscribe(
-      accessToken => {
-        this.isDetectError = false;
-        this.CookieAuthorizationService.setTokenToCookie(accessToken);
-        this.user.firstName = 'userName';
-        this.router.navigate(['/']);
-      },
-      error => {
-        this.isDetectError = true;
-        this.errorMessage = error.statusText;
-        console.log(this.errorMessage);
-      }
-    );
+    return this.http.post('/api/auth/login', bodyAuthorization);
   }
 
   postRegistrationData(bodyRegistration) {
-    return this.http.post('/api/users', bodyRegistration).subscribe(
-      () => {
-        this.isDetectError = false;
-        this.router.navigate(['/authorization']);
-      },
-      error => {
-        this.isDetectError = true;
-        this.errorMessage = error.statusText;
-      }
-    );
+    return this.http.post('/api/users', bodyRegistration);
   }
 }

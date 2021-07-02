@@ -9,6 +9,7 @@ import {
 } from '@angular/forms';
 
 import { NotificationTypesEnum } from '../../enums/notification-types.enum';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'b-registration',
@@ -22,7 +23,7 @@ export class RegistrationComponent {
   isPasswordValid = true;
   isRepeatedPasswordMinLength = false;
 
-  constructor(private LoginService: LoginService) {}
+  constructor(private LoginService: LoginService, private router: Router) {}
 
   formReview = new FormGroup(
     {
@@ -75,8 +76,15 @@ export class RegistrationComponent {
       email: this.formReview.value.email,
       password: this.formReview.value.password
     };
-    this.LoginService.postRegistrationData(body);
-    this.isDetectError = this.LoginService.isDetectError;
-    this.errorMessage = this.LoginService.errorMessage;
+    this.LoginService.postRegistrationData(body).subscribe(
+      () => {
+        this.isDetectError = false;
+        this.router.navigate(['/authorization']);
+      },
+      error => {
+        this.isDetectError = true;
+        this.errorMessage = error.statusText;
+      }
+    );
   }
 }

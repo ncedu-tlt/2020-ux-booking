@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NotificationTypesEnum } from '../../enums/notification-types.enum';
 import { LoginService } from '../../services/login.service';
+import { CookieAuthorizationService } from '../../services/cookie-authorization.service';
+import { Router } from '@angular/router';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'b-authorization',
@@ -15,7 +18,10 @@ export class AuthorizationComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private LoginService: LoginService
+    private LoginService: LoginService,
+    private CookieAuthorizationService: CookieAuthorizationService,
+    private router: Router,
+    private userService: UserService
   ) {}
 
   formReview = this.formBuilder.group({
@@ -38,8 +44,17 @@ export class AuthorizationComponent {
       email: this.formReview.value.email,
       password: this.formReview.value.password
     };
-    this.LoginService.postAuthorizationData(bodyAuthorization);
-    this.isDetectError = this.LoginService.isDetectError;
-    this.errorMessage = this.LoginService.errorMessage;
+    this.LoginService.postAuthorizationData(bodyAuthorization).subscribe(
+      accessToken => {
+        this.isDetectError = false;
+        this.CookieAuthorizationService.setTokenToCookie(accessToken);
+        this.userService.setUser('userName');
+        this.router.navigate(['/']);
+      },
+      error => {
+        this.isDetectError = true;
+        this.errorMessage = error.statusText;
+      }
+    );
   }
 }
