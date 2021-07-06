@@ -29,7 +29,7 @@ export class AppController {
   @UseGuards(LocalAuthGuard)
   @Post('/auth/login')
   async login(@Res() res: Response, @Request() req) {
-    const token = this.authService.login(req.user);
+    const token = await this.authService.login(req.user);
     if (!token) {
       res.status(HttpStatus.UNAUTHORIZED);
       return res.json({
@@ -37,7 +37,7 @@ export class AppController {
         message: 'Error during token generation'
       });
     }
-    return token;
+    return res.send(token);
   }
 
   @UseGuards(JwtAuthGuard)
