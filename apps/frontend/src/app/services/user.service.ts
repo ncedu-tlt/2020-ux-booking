@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-// import { UserDto } from '../../../../backend/src/app/modules/app/users/user.dto';
+
 import { CookieAuthorizationService } from './cookie-authorization.service';
+import { UserDto } from '@booking/models/user.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -29,8 +30,8 @@ export class UserService {
 
   fetchCurrentUser(): void {
     this.httpClient
-      .get<any>('/api/users/current')
-      .subscribe((userInfo: any) => {
+      .get<UserDto>('/api/users/current')
+      .subscribe((userInfo: UserDto) => {
         this.currentUserSubject.next(userInfo.user.username);
       });
   }

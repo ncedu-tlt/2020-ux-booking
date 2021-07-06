@@ -17,7 +17,7 @@ import * as bcrypt from 'bcrypt';
 import { Role } from '../../db/domain/role.dao';
 import { InjectRepository } from '@nestjs/typeorm';
 import { AuthGuard } from '@nestjs/passport';
-import { UserDto } from './user.dto';
+import { UserDto } from '@booking/models/user.dto';
 
 @Controller('/users')
 export class UserController {
