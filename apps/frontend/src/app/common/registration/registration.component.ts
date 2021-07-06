@@ -60,12 +60,11 @@ export class RegistrationComponent {
 
   passwordEqual(): ValidatorFn {
     return (form: FormGroup): ValidationErrors | null => {
-      // debugger;
       const firstPassword = form.get('password').value;
       const secondPassword = form.get('repeatedPassword').value;
       if (firstPassword && secondPassword) {
         this.isPasswordValid = firstPassword === secondPassword;
-        this.isRepeatedPasswordMinLength = secondPassword.length > 8;
+        this.isRepeatedPasswordMinLength = secondPassword.length >= 8;
         return !this.isPasswordValid ? { passwordStrength: true } : null;
       }
       return null;
