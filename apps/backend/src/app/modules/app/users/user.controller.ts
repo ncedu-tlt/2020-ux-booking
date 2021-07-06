@@ -1,4 +1,14 @@
-import { Body, Controller, HttpStatus, Post, Res } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpException,
+  HttpStatus,
+  Post,
+  Res,
+  UseGuards,
+  Request
+} from '@nestjs/common';
 import { RegisterUserDto } from './register.user.dto';
 import { Response } from 'express';
 import { Repository } from 'typeorm';
@@ -6,6 +16,8 @@ import { User } from '../../db/domain/user.dao';
 import * as bcrypt from 'bcrypt';
 import { Role } from '../../db/domain/role.dao';
 import { InjectRepository } from '@nestjs/typeorm';
+import { AuthGuard } from '@nestjs/passport';
+import { UserDto } from './user.dto';
 
 @Controller('/users')
 export class UserController {
@@ -15,6 +27,18 @@ export class UserController {
     @InjectRepository(Role)
     private rolesRepository: Repository<Role>
   ) {}
+
+  @UseGuards(AuthGuard('jwt'))
+  @Get('/current')
+  getCurrentUser(@Request() req): UserDto {
+    const user = req.user;
+    if (!user) {
+      throw new HttpException('users/userDoesNotExist', HttpStatus.NOT_FOUND);
+    }
+    return {
+      user: user
+    };
+  }
 
   @Post()
   async register(

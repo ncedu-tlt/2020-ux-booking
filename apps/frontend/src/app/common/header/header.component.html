@@ -82,7 +82,7 @@
           <ng-container *ngTemplateOutlet='switchersTemplate'></ng-container>
         </div>
       </div>
-      <div>{{"header.menu.exit" | i18next}}</div>
+      <div (click)='logOut()'>{{"header.menu.exit" | i18next}}</div>
     </ng-container>
     <ng-template #loginTemplateMobile>
       <div class='header__modal-items-false'>

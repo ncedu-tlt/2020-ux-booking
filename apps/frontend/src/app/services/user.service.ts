@@ -36,6 +36,7 @@ export class UserService {
   }
 
   deleteUser(): void {
-    //
+    this.CookieAuthorizationService.deleteToken();
+    location.reload();
   }
 }

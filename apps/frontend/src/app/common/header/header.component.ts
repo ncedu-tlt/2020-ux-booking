@@ -80,6 +80,11 @@ export class HeaderComponent implements OnInit {
     this.isShowMenu = !this.isShowMenu;
   }
 
+  logOut(): void {
+    this.userName = '';
+    this.userService.deleteUser();
+  }
+
   ngOnInit(): void {
     this.userService.getUser().subscribe(name => {
       this.userName = name;

@@ -5,8 +5,16 @@ import { RegistrationComponent } from './common/registration/registration.compon
 import { GuestGuard } from './guards/guest.guard';
 
 const routes: Routes = [
-  { path: 'authorization', component: AuthorizationComponent },
-  { path: 'registration', component: RegistrationComponent }
+  {
+    path: 'authorization',
+    component: AuthorizationComponent,
+    canActivate: [GuestGuard]
+  },
+  {
+    path: 'registration',
+    component: RegistrationComponent,
+    canActivate: [GuestGuard]
+  }
 ];
 
 @NgModule({
