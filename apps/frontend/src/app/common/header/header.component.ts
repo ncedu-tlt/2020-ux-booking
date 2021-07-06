@@ -41,6 +41,9 @@ export class HeaderComponent implements OnInit {
     if (this.language == 'en') {
       this.isLanguageRu = false;
     }
+    this.userService.getUser().subscribe((user: any) => {
+      this.userName = user;
+    });
   }
 
   get language(): string {
