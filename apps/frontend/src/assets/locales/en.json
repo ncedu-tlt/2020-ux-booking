@@ -46,11 +46,13 @@
   },
   "authorization": {
     "title": "Authorization",
-    "field": {
+    "input": {
       "email": "Email",
       "emailPlaceholder": "Enter mail",
       "password": "Password",
-      "passwordPlaceholder": "Enter password",
+      "passwordPlaceholder": "Enter password"
+    },
+    "errorMessage": {
       "unauthorized": "Incorrect login or password",
       "default": "Error"
     },
@@ -82,7 +84,7 @@
       "default": "Error"
     },
     "button": "Sign up",
-    "authorization": "Already have an account?",
-    "authorizationLink": "authorization"
+    "registration": "Already have an account?",
+    "registrationLink": "authorization"
   }
 }

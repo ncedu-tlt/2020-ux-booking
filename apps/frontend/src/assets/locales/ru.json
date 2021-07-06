@@ -41,7 +41,9 @@
       "email": "Почта",
       "emailPlaceholder": "Введите почту",
       "password": "Пароль",
-      "passwordPlaceholder": "Введите пароль",
+      "passwordPlaceholder": "Введите пароль"
+    },
+    "errorMessage": {
       "unauthorized": "Неверный логин или пароль",
       "default": "Ошибка"
     },
