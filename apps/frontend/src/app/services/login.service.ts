@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
-import { CookieAuthorizationService } from './cookie-authorization.service';
+import { TokenService } from './token-service.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { RegisterUserDto } from '@booking/models/register.user.dto';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
   constructor(
-    private CookieAuthorizationService: CookieAuthorizationService,
+    private CookieAuthorizationService: TokenService,
     private router: Router,
     private http: HttpClient
   ) {}
@@ -17,7 +18,7 @@ export class LoginService {
     return this.http.post('/api/auth/login', bodyAuthorization);
   }
 
-  postRegistrationData(bodyRegistration) {
+  postRegistrationData(bodyRegistration: RegisterUserDto) {
     return this.http.post('/api/users', bodyRegistration);
   }
 }

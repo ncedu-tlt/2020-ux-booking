@@ -50,7 +50,9 @@
       "email": "Email",
       "emailPlaceholder": "Enter mail",
       "password": "Password",
-      "passwordPlaceholder": "Enter password"
+      "passwordPlaceholder": "Enter password",
+      "unauthorized": "Incorrect login or password",
+      "default": "Error"
     },
     "button": "Enter",
     "forgotPassword": "Forgot your password?",
@@ -74,7 +76,10 @@
       "required": "The field is empty",
       "minLength": "The minimum number of characters has not been reached",
       "maxLength": "The maximum number of characters has not been reached",
-      "badEmail": "This email is not correct"
+      "badEmail": "This email is not correct",
+      "unauthorized": "Incorrect login or password",
+      "conflict": "A user with this email is already registered",
+      "default": "Error"
     },
     "button": "Sign up",
     "authorization": "Already have an account?",

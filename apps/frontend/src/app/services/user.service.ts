@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
-import { CookieAuthorizationService } from './cookie-authorization.service';
+import { TokenService } from './token-service.service';
 import { UserDto } from '@booking/models/user.dto';
 
 @Injectable({
@@ -15,7 +15,7 @@ export class UserService {
 
   constructor(
     private httpClient: HttpClient,
-    private CookieAuthorizationService: CookieAuthorizationService
+    private CookieAuthorizationService: TokenService
   ) {
     this.fetchCurrentUser();
   }

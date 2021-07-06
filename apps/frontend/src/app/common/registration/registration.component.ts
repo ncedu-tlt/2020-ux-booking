@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { LoginService } from '../../services/login.service';
 import {
   FormControl,
@@ -10,6 +10,7 @@ import {
 
 import { NotificationTypesEnum } from '../../enums/notification-types.enum';
 import { Router } from '@angular/router';
+import { I18NEXT_SERVICE, ITranslationService } from 'angular-i18next';
 
 @Component({
   selector: 'b-registration',
@@ -23,7 +24,11 @@ export class RegistrationComponent {
   isPasswordValid = true;
   isRepeatedPasswordMinLength = false;
 
-  constructor(private LoginService: LoginService, private router: Router) {}
+  constructor(
+    @Inject(I18NEXT_SERVICE) private i18NextService: ITranslationService,
+    private loginService: LoginService,
+    private router: Router
+  ) {}
 
   formReview = new FormGroup(
     {
@@ -55,6 +60,7 @@ export class RegistrationComponent {
 
   passwordEqual(): ValidatorFn {
     return (form: FormGroup): ValidationErrors | null => {
+      // debugger;
       const firstPassword = form.get('password').value;
       const secondPassword = form.get('repeatedPassword').value;
       if (firstPassword && secondPassword) {
@@ -70,20 +76,37 @@ export class RegistrationComponent {
     this.isDetectError = false;
   }
 
+  showError(errorMessage: string): void {
+    console.log(errorMessage);
+    this.isDetectError = true;
+    if (errorMessage === 'Unauthorized') {
+      this.errorMessage = this.i18NextService.t(
+        'registration.errorMessage.unauthorized'
+      );
+    } else if (errorMessage === 'Conflict') {
+      this.errorMessage = this.i18NextService.t(
+        'registration.errorMessage.conflict'
+      );
+    } else {
+      this.errorMessage = this.i18NextService.t(
+        'registration.errorMessage.default'
+      );
+    }
+  }
+
   postRegistrationData() {
     const body = {
       name: this.formReview.value.name,
       email: this.formReview.value.email,
       password: this.formReview.value.password
     };
-    this.LoginService.postRegistrationData(body).subscribe(
+    this.loginService.postRegistrationData(body).subscribe(
       () => {
         this.isDetectError = false;
         this.router.navigate(['/authorization']);
       },
       error => {
-        this.isDetectError = true;
-        this.errorMessage = error.statusText;
+        this.showError(error.statusText);
       }
     );
   }

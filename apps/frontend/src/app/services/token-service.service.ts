@@ -4,9 +4,7 @@ import { CookieService } from 'ngx-cookie-service';
 @Injectable({
   providedIn: 'root'
 })
-export class CookieAuthorizationService {
-  time = new Date();
-
+export class TokenService {
   accessToken;
 
   private readonly TOKEN_KEY: string = 'accessToken';
@@ -16,9 +14,10 @@ export class CookieAuthorizationService {
   }
 
   setTokenToCookie(token) {
+    const time = new Date();
     this.accessToken = token.accessToken;
-    this.time.setHours(this.time.getHours() + 1);
-    this.cookieService.set(this.TOKEN_KEY, this.accessToken, this.time, '/');
+    time.setHours(time.getHours() + 1);
+    this.cookieService.set(this.TOKEN_KEY, this.accessToken, time, '/');
   }
 
   getToken(): string {

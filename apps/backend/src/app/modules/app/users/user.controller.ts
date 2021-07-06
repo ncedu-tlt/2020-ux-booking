@@ -9,7 +9,7 @@ import {
   UseGuards,
   Request
 } from '@nestjs/common';
-import { RegisterUserDto } from './register.user.dto';
+import { RegisterUserDto } from '@booking/models/register.user.dto';
 import { Response } from 'express';
 import { Repository } from 'typeorm';
 import { User } from '../../db/domain/user.dao';

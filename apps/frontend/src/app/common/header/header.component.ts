@@ -11,7 +11,7 @@ import { UserService } from '../../services/user.service';
 })
 export class HeaderComponent implements OnInit {
   @Input()
-  isAdmin = true;
+  isAdmin = false;
 
   userName = '';
 

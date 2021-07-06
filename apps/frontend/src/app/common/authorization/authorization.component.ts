@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NotificationTypesEnum } from '../../enums/notification-types.enum';
 import { LoginService } from '../../services/login.service';
-import { CookieAuthorizationService } from '../../services/cookie-authorization.service';
+import { TokenService } from '../../services/token-service.service';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
+import { I18NEXT_SERVICE, ITranslationService } from 'angular-i18next';
 
 @Component({
   selector: 'b-authorization',
@@ -17,9 +18,10 @@ export class AuthorizationComponent {
   errorMessage: string;
 
   constructor(
+    @Inject(I18NEXT_SERVICE) private i18NextService: ITranslationService,
     private formBuilder: FormBuilder,
-    private LoginService: LoginService,
-    private CookieAuthorizationService: CookieAuthorizationService,
+    private loginService: LoginService,
+    private cookieAuthorizationService: TokenService,
     private router: Router,
     private userService: UserService
   ) {}
@@ -39,21 +41,33 @@ export class AuthorizationComponent {
     this.isDetectError = false;
   }
 
+  showError(errorMessage: string): void {
+    this.isDetectError = true;
+    if (errorMessage === 'Unauthorized') {
+      this.errorMessage = this.i18NextService.t(
+        'authorization.errorMessage.unauthorized'
+      );
+    } else {
+      this.errorMessage = this.i18NextService.t(
+        'authorization.errorMessage.default'
+      );
+    }
+  }
+
   postAuthorizationData() {
     const bodyAuthorization = {
       email: this.formReview.value.email,
       password: this.formReview.value.password
     };
-    this.LoginService.postAuthorizationData(bodyAuthorization).subscribe(
+    this.loginService.postAuthorizationData(bodyAuthorization).subscribe(
       accessToken => {
         this.isDetectError = false;
-        this.CookieAuthorizationService.setTokenToCookie(accessToken);
+        this.cookieAuthorizationService.setTokenToCookie(accessToken);
         this.userService.fetchCurrentUser();
         this.router.navigate(['/']);
       },
       error => {
-        this.isDetectError = true;
-        this.errorMessage = error.statusText;
+        this.showError(error.statusText);
       }
     );
   }

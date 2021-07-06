@@ -9,14 +9,11 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { CookieAuthorizationService } from '../services/cookie-authorization.service';
+import { TokenService } from '../services/token-service.service';
 
 @Injectable()
 export class AuthHttpInterceptor implements HttpInterceptor {
-  constructor(
-    private tokenService: CookieAuthorizationService,
-    private router: Router
-  ) {}
+  constructor(private tokenService: TokenService, private router: Router) {}
 
   intercept(
     req: HttpRequest<any>,

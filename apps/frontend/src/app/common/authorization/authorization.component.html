@@ -53,7 +53,7 @@
           formReview.controls['password'].touched)"
         >
           <span
-            class='registration__input-error-text'
+            class='authorization__input-error-text'
             *ngIf="formReview.controls['password'].errors.required">
             {{"registration.errorMessage.required" | i18next}}
           </span>
@@ -74,10 +74,10 @@
               text='{{"authorization.button" | i18next}}'
               (click)='postAuthorizationData()'
     ></b-button>
-    <span class='authorization__under-link'>
-      {{"authorization.forgotPassword" | i18next}}
-    </span>
     <!--    Will be implemented later-->
+    <!--    <span class='authorization__under-link'>-->
+    <!--      {{"authorization.forgotPassword" | i18next}}-->
+    <!--    </span>-->
     <!--    <b-link-->
     <!--      url='#'-->
     <!--      text='{{"authorization.forgotPasswordLink" | i18next}}'>-->
