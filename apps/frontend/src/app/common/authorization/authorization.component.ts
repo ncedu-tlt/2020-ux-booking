@@ -20,7 +20,8 @@ export class AuthorizationComponent {
     private formBuilder: FormBuilder,
     private LoginService: LoginService,
     private CookieAuthorizationService: CookieAuthorizationService,
-    private router: Router
+    private router: Router,
+    private userService: UserService
   ) {}
 
   formReview = this.formBuilder.group({
@@ -47,7 +48,7 @@ export class AuthorizationComponent {
       accessToken => {
         this.isDetectError = false;
         this.CookieAuthorizationService.setTokenToCookie(accessToken);
-        // this.userService.setUser('userName');
+        this.userService.fetchCurrentUser();
         this.router.navigate(['/']);
       },
       error => {
