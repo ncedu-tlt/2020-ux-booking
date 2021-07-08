@@ -1,18 +1,21 @@
-import { Component, Inject, Input } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { I18NEXT_SERVICE, ITranslationService } from 'angular-i18next';
 import { CookieService } from 'ngx-cookie-service';
+import { Location } from '@angular/common';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'b-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.less']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   @Input()
-  isAdmin = true;
+  isAdmin = false;
 
-  @Input()
   userName = '';
+
+  isHiddenLoginButton = false;
 
   isLanguageRu = true;
 
@@ -24,16 +27,23 @@ export class HeaderComponent {
 
   isShowMenu = false;
 
+  currentUrl: string;
+
   private _language: string;
 
   constructor(
     @Inject(I18NEXT_SERVICE) private i18NextService: ITranslationService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private location: Location,
+    private userService: UserService
   ) {
     this.language = i18NextService.language;
     if (this.language == 'en') {
       this.isLanguageRu = false;
     }
+    this.userService.getUser().subscribe((user: any) => {
+      this.userName = user;
+    });
   }
 
   get language(): string {
@@ -68,5 +78,21 @@ export class HeaderComponent {
 
   toggleMenu(): void {
     this.isShowMenu = !this.isShowMenu;
+  }
+
+  logOut(): void {
+    this.userName = '';
+    this.userService.deleteUser();
+  }
+
+  ngOnInit(): void {
+    this.userService.getUser().subscribe(name => {
+      this.userName = name;
+    });
+    this.currentUrl = this.location.path();
+    this.isHiddenLoginButton = !(
+      this.location.path() === '/registration' ||
+      this.location.path() === '/authorization'
+    );
   }
 }

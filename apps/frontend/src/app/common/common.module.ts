@@ -16,11 +16,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BannerComponent } from './banner/banner.component';
 import { LinkComponent } from './link/link.component';
 import { HotelCardComponent } from './hotel-card/hotel-card.component';
+import { AuthorizationComponent } from './authorization/authorization.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 import { SelectorComponent } from './selector/selector.component';
 import { FileSelectorComponent } from './file-selector/file-selector.component';
 import { TableComponent } from './table/table.component';
 import { TextAreaComponent } from './text-area/text-area.component';
+import { AppRoutingModule } from '../app-routing.module';
+import { RegistrationComponent } from './registration/registration.component';
+import { RouterModule } from '@angular/router';
+import { BackgroundSvgComponent } from './background-page/background-svg.component';
 import { AddRoomFormComponent } from './add-room-form/add-room-form.component';
 
 @NgModule({
@@ -28,7 +33,8 @@ import { AddRoomFormComponent } from './add-room-form/add-room-form.component';
     NgCommonModule,
     AngularSvgIconModule,
     I18NextModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule
   ],
   declarations: [
     ButtonComponent,
@@ -45,7 +51,13 @@ import { AddRoomFormComponent } from './add-room-form/add-room-form.component';
     ButtonIconComponent,
     LinkComponent,
     InputFieldComponent,
+    InputFieldComponent,
     CheckboxComponent,
+    SelectorComponent,
+    AuthorizationComponent,
+    RegistrationComponent,
+    BackgroundSvgComponent,
+    RegistrationComponent,
     SelectorComponent,
     FileSelectorComponent,
     TextAreaComponent,
@@ -68,6 +80,13 @@ import { AddRoomFormComponent } from './add-room-form/add-room-form.component';
     HotelCardComponent,
     InputFieldComponent,
     CheckboxComponent,
+    SelectorComponent,
+    InputFieldComponent,
+    AppRoutingModule,
+    AuthorizationComponent,
+    RegistrationComponent,
+    BackgroundSvgComponent,
+    RegistrationComponent,
     SelectorComponent,
     FileSelectorComponent,
     TextAreaComponent,

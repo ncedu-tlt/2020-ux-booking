@@ -1,0 +1,98 @@
+<div class='authorization'>
+  <b-notification
+    *ngIf='isDetectError'
+    [message]='errorMessage'
+    [type]='NotificationTypesEnum.error'
+    (closeEvent)='closeNotification()'>
+  </b-notification>
+  <div class='authorization__popup'>
+    <span class='authorization__cloud'>
+      <h2 class='authorization__cloud-title'>
+        {{"authorization.title" | i18next}}</h2>
+    </span>
+    <form class='authorization__form'
+          [formGroup]='formReview'>
+      <div class='authorization__input'>
+        <b-input-field
+          isMandatory='true'
+          title='{{"authorization.input.email" | i18next}}'
+          placeholder='{{"authorization.input.emailPlaceholder" | i18next}}'
+          formControlName='email'
+        >
+        </b-input-field>
+        <div
+          *ngIf="
+          formReview.controls['email'].invalid  &&
+           (formReview.controls['email'].dirty ||
+          formReview.controls['email'].touched)"
+        >
+          <span class='authorization__input-error-text'
+                *ngIf="formReview.controls['email'].errors.required">
+            {{"registration.errorMessage.required" | i18next}}
+          </span>
+          <span
+            class='authorization__input-error-text'
+            *ngIf="formReview.controls['email'].errors.email">
+           {{"registration.errorMessage.badEmail" | i18next}}
+          </span>
+        </div>
+      </div>
+      <div class='authorization__input'>
+        <b-input-field
+          isMandatory='true'
+          typeInput='password'
+          title='{{"authorization.input.password" | i18next}}'
+          placeholder='{{"authorization.input.passwordPlaceholder" | i18next}}'
+          formControlName='password'
+        >
+        </b-input-field>
+        <div
+          *ngIf="
+          formReview.controls['password'].invalid  &&
+           (formReview.controls['password'].dirty ||
+          formReview.controls['password'].touched)"
+        >
+          <span
+            class='authorization__input-error-text'
+            *ngIf="formReview.controls['password'].errors.required">
+            {{"registration.errorMessage.required" | i18next}}
+          </span>
+          <span
+            class='authorization__input-error-text'
+            *ngIf="formReview.controls['password'].errors.minlength">
+             {{"registration.errorMessage.minLength" | i18next}}
+          </span>
+          <span
+            class='authorization__input-error-text'
+            *ngIf="formReview.controls['password'].errors.maxlength">
+            {{"registration.errorMessage.maxLength" | i18next}}
+          </span>
+        </div>
+      </div>
+    </form>
+    <b-button class='authorization__button'
+              text='{{"authorization.button" | i18next}}'
+              (click)='postAuthorizationData()'
+    ></b-button>
+    <!--    Will be implemented later-->
+    <!--    <span class='authorization__under-link'>-->
+    <!--      {{"authorization.forgotPassword" | i18next}}-->
+    <!--    </span>-->
+    <!--    <b-link-->
+    <!--      url='#'-->
+    <!--      text='{{"authorization.forgotPasswordLink" | i18next}}'>-->
+    <!--    </b-link>-->
+    <span class='authorization__under-link'>
+      {{"authorization.registration" | i18next}}
+    </span>
+    <b-link
+      url='/registration'
+      text='{{"authorization.registrationLink" | i18next}}'>
+    </b-link>
+  </div>
+  <b-background-svg>
+
+  </b-background-svg>
+  <span class='authorization__svg-sand'>
+  </span>
+</div>

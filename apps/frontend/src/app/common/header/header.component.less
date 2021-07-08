@@ -224,9 +224,15 @@
   }
 
   &__enter {
+    text-decoration: none;
+    outline: none;
     cursor: pointer;
     margin-left: 5px;
     color: @color-white;
+    &:hover {
+      outline: none;
+      color: @color-white;
+    }
   }
 
   &__burger {
