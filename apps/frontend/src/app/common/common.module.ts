@@ -16,16 +16,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BannerComponent } from './banner/banner.component';
 import { LinkComponent } from './link/link.component';
 import { HotelCardComponent } from './hotel-card/hotel-card.component';
-import { AuthorizationComponent } from './authorization/authorization.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 import { SelectorComponent } from './selector/selector.component';
 import { FileSelectorComponent } from './file-selector/file-selector.component';
 import { PageComponent } from './page/page.component';
-import { TextAreaComponent } from './text-area/text-area.component';
+import { TableComponent } from './table/table.component';
 import { MainInfoFormComponent } from './main-info-form/main-info-form.component';
 import { DistanceFormComponent } from './distance-form/distance-form.component';
-import { TableComponent } from './table/table.component';
 import { TextAreaComponent } from './text-area/text-area.component';
+import { AuthorizationComponent } from './authorization/authorization.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { RegistrationComponent } from './registration/registration.component';
 import { RouterModule } from '@angular/router';
@@ -37,6 +36,7 @@ import { BackgroundSvgComponent } from './background-page/background-svg.compone
     AngularSvgIconModule,
     I18NextModule,
     ReactiveFormsModule,
+    AppRoutingModule,
     RouterModule
   ],
   declarations: [
@@ -53,18 +53,17 @@ import { BackgroundSvgComponent } from './background-page/background-svg.compone
     ButtonIconComponent,
     LinkComponent,
     InputFieldComponent,
-    InputFieldComponent,
     CheckboxComponent,
-    SelectorComponent,
-    AuthorizationComponent,
-    RegistrationComponent,
-    BackgroundSvgComponent,
-    RegistrationComponent,
+    TableComponent,
     SelectorComponent,
     FileSelectorComponent,
     PageComponent,
     TextAreaComponent,
     MainInfoFormComponent,
+    AuthorizationComponent,
+    RegistrationComponent,
+    BackgroundSvgComponent,
+    RegistrationComponent,
     DistanceFormComponent
   ],
   exports: [
@@ -84,17 +83,17 @@ import { BackgroundSvgComponent } from './background-page/background-svg.compone
     InputFieldComponent,
     CheckboxComponent,
     SelectorComponent,
+    FileSelectorComponent,
+    PageComponent,
+    TextAreaComponent,
+    MainInfoFormComponent,
+    SelectorComponent,
     InputFieldComponent,
     AppRoutingModule,
     AuthorizationComponent,
     RegistrationComponent,
     BackgroundSvgComponent,
     RegistrationComponent,
-    SelectorComponent,
-    FileSelectorComponent,
-    PageComponent,
-    TextAreaComponent,
-    MainInfoFormComponent,
     DistanceFormComponent
   ]
 })

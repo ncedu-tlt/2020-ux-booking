@@ -8,9 +8,20 @@ import { RegistrationComponent } from './common/registration/registration.compon
 import { GuestGuard } from './guards/guest.guard';
 
 const routes: Routes = [
-  { path: 'page', component: PageComponent },
-  { path: 'main-info-form', component: MainInfoFormComponent },
-  { path: 'distance-form', component: DistanceFormComponent },
+  {
+    path: 'admin-tool/hotel/:id',
+    component: PageComponent,
+    children: [
+      {
+        path: 'main-info',
+        component: MainInfoFormComponent
+      },
+      {
+        path: 'distance',
+        component: DistanceFormComponent
+      }
+    ]
+  },
   { path: '', redirectTo: 'page', pathMatch: 'full' },
   {
     path: 'authorization',

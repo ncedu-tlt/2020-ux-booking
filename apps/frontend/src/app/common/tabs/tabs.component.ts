@@ -17,7 +17,7 @@ export class TabsComponent {
   type: 'horizontal' | 'vertical' = 'vertical';
 
   @Input()
-  items: string[] = [];
+  items: { url: string; name: string }[] = [];
 
   @Input()
   selectedItem: string;
