@@ -4,7 +4,7 @@ export const appConfig = () => ({
   db: {
     url:
       process.env.DATABASE_URL ||
-      'postgres://postgres:postgres@localhost:5432/booking'
+      'postgres://postgres:nikita2228w@localhost:5432/booking'
   },
   jwtSecret: process.env.JWT_SECRET || 'test'
 });

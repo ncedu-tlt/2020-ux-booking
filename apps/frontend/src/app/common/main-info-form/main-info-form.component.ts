@@ -37,4 +37,9 @@ export class MainInfoFormComponent {
       console.log('value', value);
     });
   }
+  setStar(stars: number): void {
+    this.formG.patchValue({
+      starClassification: stars
+    });
+  }
 }

@@ -4,13 +4,12 @@
   </div>
   <div class='main-info__content'>
     <div class='main-info__tabs'>
-      <b-tabs [items]="['Основная информация']"
+      <b-tabs [items]= 'tabs'
               [selectedItem]="'Основная информация'"
               [type]="'vertical'">
       </b-tabs>
     </div>
-    <b-main-info-form></b-main-info-form>
-<!--    <b-distance-form></b-distance-form>-->
+    <router-outlet></router-outlet>
   </div>
 </div>
 git

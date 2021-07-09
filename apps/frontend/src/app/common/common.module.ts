@@ -29,6 +29,7 @@ import { AppRoutingModule } from '../app-routing.module';
 import { RegistrationComponent } from './registration/registration.component';
 import { RouterModule } from '@angular/router';
 import { BackgroundSvgComponent } from './background-page/background-svg.component';
+import { TestComponent } from './test/test.component';
 
 @NgModule({
   imports: [
@@ -64,7 +65,8 @@ import { BackgroundSvgComponent } from './background-page/background-svg.compone
     RegistrationComponent,
     BackgroundSvgComponent,
     RegistrationComponent,
-    DistanceFormComponent
+    DistanceFormComponent,
+    TestComponent
   ],
   exports: [
     ButtonComponent,
@@ -94,7 +96,8 @@ import { BackgroundSvgComponent } from './background-page/background-svg.compone
     RegistrationComponent,
     BackgroundSvgComponent,
     RegistrationComponent,
-    DistanceFormComponent
+    DistanceFormComponent,
+    TestComponent
   ]
 })
 export class CommonModule {}

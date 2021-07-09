@@ -6,6 +6,8 @@ import { MainInfoFormComponent } from './common/main-info-form/main-info-form.co
 import { AuthorizationComponent } from './common/authorization/authorization.component';
 import { RegistrationComponent } from './common/registration/registration.component';
 import { GuestGuard } from './guards/guest.guard';
+import { BannerComponent } from './common/banner/banner.component';
+import { TestComponent } from './common/test/test.component';
 
 const routes: Routes = [
   {
@@ -22,7 +24,6 @@ const routes: Routes = [
       }
     ]
   },
-  { path: '', redirectTo: 'page', pathMatch: 'full' },
   {
     path: 'authorization',
     component: AuthorizationComponent,
@@ -32,7 +33,8 @@ const routes: Routes = [
     path: 'registration',
     component: RegistrationComponent,
     canActivate: [GuestGuard]
-  }
+  },
+  { path: '', component: TestComponent, pathMatch: 'full' }
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
