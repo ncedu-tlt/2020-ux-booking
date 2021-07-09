@@ -18,7 +18,7 @@
   },
   "hotelCard": {
     "reviews": "отзыв(-а, -ов)",
-    "free cancellation": "Бесплатная отмена бронирования",
+    "freeCancellation": "Бесплатная отмена бронирования",
     "price": "Мин. цена от",
     "day": "сутки"
   },
@@ -34,6 +34,49 @@
     "not-found": "Значение не найдено",
     "button": "Добавить значение",
     "input-hint": "Введите или выберите из списка"
+  },
+  "authorization": {
+    "title": "Авторизация",
+    "input": {
+      "email": "Почта",
+      "emailPlaceholder": "Введите почту",
+      "password": "Пароль",
+      "passwordPlaceholder": "Введите пароль"
+    },
+    "errorMessage": {
+      "unauthorized": "Неверный логин или пароль",
+      "default": "Ошибка"
+    },
+    "button": "Войти",
+    "forgotPassword": "Забыли пароль?",
+    "forgotPasswordLink": "Восстановить пароль",
+    "registration": "Впервые тут?",
+    "registrationLink": "Регистрация"
+  },
+  "registration": {
+    "title": "Регистрация",
+    "input": {
+      "name": "Имя",
+      "namePlaceholder": "Введите имя",
+      "email": "Почта",
+      "emailPlaceholder": "Введите почту",
+      "password": "Пароль",
+      "passwordPlaceholder": "Введите пароль",
+      "repeatPassword": "Повторите свой пароль"
+    },
+    "errorMessage": {
+      "required": "Поле не заполнено",
+      "minLength": "Не достигнуто минимальное количество символов",
+      "maxLength": "Не достигнуто максимальное количество символов",
+      "badEmail": "Данная почта не правильная",
+      "passwordInvalid": "Пароли не совпадают",
+      "unauthorized": "Неверный логин или пароль",
+      "conflict": "Пользователь с такой почтой уже зарегистрирован",
+      "default": "Ошибка"
+    },
+    "button": "Зарегестрироваться",
+    "registration": "Уже есть аккаунт?",
+    "registrationLink": "Авторизация"
   },
   "fileSelector": {
     "fileNotSelected": "Файл не выбран"

@@ -21,7 +21,7 @@
   },
   "hotelCard": {
     "reviews": "reviews",
-    "free cancellation": "Free cancellation",
+    "freeCancellation": "Free cancellation",
     "price": "MinPrice",
     "day": "day"
   },
@@ -71,6 +71,36 @@
         "city": "Enter a city",
         "description": "Enter a description"
       },
+      "authorization": {
+        "title": "Authorization",
+        "input": {
+          "email": "Email",
+          "emailPlaceholder": "Enter mail",
+          "password": "Password",
+          "passwordPlaceholder": "Enter password"
+        },
+        "errorMessage": {
+          "unauthorized": "Incorrect login or password",
+          "default": "Error"
+        },
+        "button": "Enter",
+        "forgotPassword": "Forgot your password?",
+        "forgotPasswordLink": "Recover password",
+        "registration": "First time here?",
+        "registrationLink": "Registration"
+      },
+      "registration": {
+        "title": "Registration",
+        "input": {
+          "name": "Name",
+          "namePlaceholder": "Enter name",
+          "email": "Email",
+          "emailPlaceholder": "Enter mail",
+          "password": "Password",
+          "passwordPlaceholder": "Enter password",
+          "repeatPassword": "Repeat your password",
+          "passwordInvalid": "Password mismatch"
+        },
       "buttons": {
         "cancel": "Cancel",
         "save": "Save"

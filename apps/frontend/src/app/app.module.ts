@@ -3,11 +3,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { CommonModule } from './common/common.module';
 import { AngularSvgIconModule } from 'angular-svg-icon';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { I18NextModule } from 'angular-i18next';
 import { I18N_PROVIDERS } from './i18n/i18next';
 import { LangModule } from './lang/lang.module';
 import { HotelDataService } from './services/hotel-data.service';
+import { RouterModule } from '@angular/router';
+import { AuthHttpInterceptor } from './interceptors/auth-http.interceptor';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,9 +20,19 @@ import { HotelDataService } from './services/hotel-data.service';
     HttpClientModule,
     AngularSvgIconModule.forRoot(),
     I18NextModule.forRoot(),
-    LangModule
+    LangModule,
+    RouterModule
   ],
-  providers: [I18N_PROVIDERS, HotelDataService],
+  providers: [
+    I18N_PROVIDERS,
+    HotelDataService,
+    CookieService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthHttpInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
