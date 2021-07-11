@@ -6,6 +6,9 @@ import {
   Output
 } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { HotelInfoModel } from '../../models/hotel-Info.model';
+import { HotelDataService } from '../../services/hotel-data.service';
 @Component({
   selector: 'b-main-info-form',
   templateUrl: './main-info-form.component.html',
@@ -16,7 +19,10 @@ export class MainInfoFormComponent {
   @Input()
   value: string;
   public formG: FormGroup;
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private hotelDataService: HotelDataService
+  ) {
     this.formG = fb.group({
       textarea: '',
       name: '',
@@ -36,10 +42,12 @@ export class MainInfoFormComponent {
     this.formG.valueChanges.subscribe(value => {
       console.log('value', value);
     });
+    this.hotelDataService.postHotelsById();
   }
   setStar(stars: number): void {
     this.formG.patchValue({
       starClassification: stars
     });
   }
+
 }

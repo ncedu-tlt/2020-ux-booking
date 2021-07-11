@@ -1,4 +1,4 @@
-export type step1Model = {
+export type stepModel = {
   name: string;
   serviceType: string;
   country: string;
