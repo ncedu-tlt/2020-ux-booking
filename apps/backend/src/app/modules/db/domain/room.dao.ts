@@ -12,7 +12,6 @@ import { BookingDetail } from './booking_detail.dao';
 import { Hotel } from './hotel.dao';
 import { Bed } from './bed.dao';
 import { AmenitiesRoom } from './amenities_room.dao';
-import { User } from './user.dao';
 
 @Entity('rooms')
 export class Room {

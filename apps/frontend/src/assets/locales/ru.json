@@ -86,5 +86,37 @@
     "country": "Введите страну",
     "address": "Введите адрес",
     "description": "Введите описание"
+  },
+  "adminTool": {
+    "hotelForm": {
+      "addingNumber": "Добавление номера",
+      "roomAmenities": "Удобства в номере",
+      "photo": "Фотографии",
+      "mainInfo": {
+        "generalInformation": "Общая информация",
+        "roomType": "Тип номера",
+        "bedType": "Тип кроватей",
+        "capacity": "Вмещаемость",
+        "countIdenticalRooms": "Кол-во номеров данного типа",
+        "price": "Стоимость, Р/сутки",
+        "specifyTheQuantity": "Укажите кол-во",
+        "description": "Описание"
+      },
+      "conveniencesInfo": {
+        "title": "Название",
+        "price": "Цена, Р/сутки",
+        "icon": "Иконка",
+        "titlePlaceholder": "Укажите название",
+        "pricePlaceholder": "Укажите цену"
+      },
+      "errorMessage": {
+        "required": "Поле не заполнено",
+        "minLength": "Не достигнуто минимальное количество символов",
+        "maxLength": "Не достигнуто максимальное количество символов"
+      },
+      "buttonAdd": "Добавить",
+      "buttonSave": "Сохранить",
+      "buttonCancellation": "Отмена"
+    }
   }
 }

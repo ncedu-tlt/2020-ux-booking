@@ -86,5 +86,37 @@
     "button": "Sign up",
     "registration": "Already have an account?",
     "registrationLink": "authorization"
+  },
+  "adminTool": {
+    "hotelForm": {
+      "addingNumber": "Adding a number",
+      "roomAmenities": "Room amenities",
+      "photo": "Photos",
+      "mainInfo": {
+        "generalInformation": "General information",
+        "roomType": "Type of room",
+        "bedType": "Type of beds",
+        "capacity": "Capacity",
+        "countIdenticalRooms": "The number of rooms of this type",
+        "price": "Cost Р/day",
+        "specifyTheQuantity": "Specify the quantity",
+        "description": "Description"
+      },
+      "conveniencesInfo": {
+        "title": "Title",
+        "price": "Cost Р/day",
+        "icon": "Icon",
+        "titlePlaceholder": "Enter title",
+        "pricePlaceholder": "Enter price"
+      },
+      "errorMessage": {
+        "required": "The field is empty",
+        "minLength": "The minimum number of characters has not been reached",
+        "maxLength": "The maximum number of characters has not been reached"
+      },
+      "buttonAdd": "Add",
+      "buttonSave": "Save",
+      "buttonCancellation": "Cancellation"
+    }
   }
 }

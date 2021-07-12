@@ -22,8 +22,6 @@
               src='assets/icons/user_icon.svg'
             ></svg-icon>
           </div>
-
-
         </div>
         <div class='add-room-form__list-under-price'>
           <span>Стоимость</span>
@@ -40,104 +38,174 @@
       ></b-button>
     </div>
   </div>
-
   <div *ngIf='isOpenConstructorForm'
        class='add-room-form__form'>
-    <h2 class='add-room-form__form-title'>Добавление номера</h2>
-    <span class='add-room-form__basic-information-title'>Общая информация</span>
-    <div class='add-room-form__basic-information'>
-
-      <div class='add-room-form__basic-information-column'>
-
-        <b-selector class='add-room-form__basic-information-form'
-                    titleSelector='Тип номера'
-                    placeholder='Введите тип'
-                    isAddControlActive='true'
-                    (handleClick)='setData($event)'
-        ></b-selector>
-
-        <b-input-field class='add-room-form__basic-information-form'
-                       title='Стоимость, Р/сутки'
-                       placeholder='Укажите кол-во'></b-input-field>
-
-        <b-selector class='add-room-form__basic-information-form'
-                    titleSelector='Тип кроватей'
-                    placeholder='Введите тип'
-                    [isAddControlActive]='true'></b-selector>
-
-        <b-input-field class='add-room-form__basic-information-form'
-                       title='Кол-во номеров данного типа'
-                       placeholder='Укажите кол-во'></b-input-field>
-      </div>
-
-      <b-input-field
-        class='add-room-form__basic-information-form'
-        title='Вмещаемость'
-        placeholder='Укажите кол-во'></b-input-field>
-      <b-text-area class='add-room-form__basic-information-description'
-      >
-      </b-text-area>
-<!--      <b-input-field class='add-room-form__basic-information-description'-->
-<!--                     title='Описание'-->
-<!--                     placeholder='Введите описание'>-->
-
-<!--      </b-input-field>-->
+    <h2 class='add-room-form__form-title'>
+      {{"adminTool.hotelForm.addingNumber" | i18next}}</h2>
+    <span class='add-room-form__basic-information-title'>
+      {{"adminTool.hotelForm.mainInfo.generalInformation" | i18next}}</span>
+    <form class='registration__form'
+          [formGroup]='formRoom'>
+      <div class='add-room-form__basic-information'>
+        <div class='add-room-form__basic-information-column'>
+          <b-selector class='add-room-form__basic-information-form'
+                      titleSelector='{{"adminTool.hotelForm.mainInfo.roomType" | i18next}}'
+                      isAddControlActive='true'
+                      (handleClick)='setTypeRoomData($event)'
+          ></b-selector>
 
 
-    </div>
-    <div class='add-room-form__conveniences'>
-      <h4 class='add-room-form__conveniences-title'>
-        Удобства в номере</h4>
-      <div class='add-room-form__conveniences-header'>
-        <span class='add-room-form__conveniences-header-name'> Название</span>
-        <span> Цена. Р/сутки</span>
-        <span class='add-room-form__conveniences-header-icon'> Иконка</span>
-      </div>
-      <div class='add-room-form__horizontal-line'></div>
-      <div *ngFor='let id of countConveniences'>
-        <div class='add-room-form__conveniences-form'
-             [id]='id'>
-          <b-input-field
-            type='number'
-            class='add-room-form__conveniences-name'
-            placeholder='Введите название'
+          <div class='add-room-form__basic-information-form'>
+            <b-input-field
+              title='{{"adminTool.hotelForm.mainInfo.price" | i18next}}'
+              placeholder='{{"adminTool.hotelForm.mainInfo.specifyTheQuantity" | i18next}}'
+              typeInput='number'
+              formControlName='price'
+            ></b-input-field>
+            <div
+              *ngIf="
+          formRoom.controls['price'].invalid  &&
+           (formRoom.controls['price'].dirty ||
+          formRoom.controls['price'].touched)"
+            >
+          <span class='add-room-form__basic-information-error'
+                *ngIf="formRoom.controls['price'].errors.required">
+            {{"adminTool.hotelForm.errorMessage.required" | i18next}}
+          </span>
+            </div>
+          </div>
+
+
+          <b-selector class='add-room-form__basic-information-form'
+                      titleSelector='{{"adminTool.hotelForm.mainInfo.bedType" | i18next}}'
+                      [isAddControlActive]='true'
+                      (handleClick)='setTypeBadData($event)'
+          ></b-selector>
+
+          <b-input-field class='add-room-form__basic-information-form'
+                         title='{{"adminTool.hotelForm.mainInfo.countIdenticalRooms" | i18next}}'
+                         placeholder='{{"adminTool.hotelForm.mainInfo.specifyTheQuantity" | i18next}}'
+                         typeInput='number'
+                         formControlName='countRoom'
           ></b-input-field>
-          <b-input-field
-            class='add-room-form__conveniences-price'
-            placeholder='0'></b-input-field>
-          <b-file-selector
-            class='add-room-form__conveniences-file'
-          ></b-file-selector>
-          <b-button-icon type='delete'
-                         (click)='deleteConveniences(id)'
-          ></b-button-icon>
+          <div
+            *ngIf="
+          formRoom.controls['countRoom'].invalid  &&
+           (formRoom.controls['countRoom'].dirty ||
+          formRoom.controls['countRoom'].touched)"
+          >
+          <span class='add-room-form__basic-information-error'
+                *ngIf="formRoom.controls['countRoom'].errors.required">
+            {{"adminTool.hotelForm.errorMessage.required" | i18next}}
+          </span>
+          </div>
+        </div>
+        <b-input-field
+          class='add-room-form__basic-information-form'
+          title='{{"adminTool.hotelForm.mainInfo.capacity" | i18next}}'
+          placeholder='{{"adminTool.hotelForm.mainInfo.specifyTheQuantity" | i18next}}'
+          typeInput='number'
+          formControlName='capacity'
+        ></b-input-field>
+        <div
+          *ngIf="
+          formRoom.controls['capacity'].invalid  &&
+           (formRoom.controls['capacity'].dirty ||
+          formRoom.controls['capacity'].touched)"
+        >
+          <span class='add-room-form__basic-information-error'
+                *ngIf="formRoom.controls['capacity'].errors.required">
+            {{"adminTool.hotelForm.errorMessage.required" | i18next}}
+          </span>
+        </div>
+        <b-text-area class='add-room-form__basic-information-description'
+                     formControlName='description'
+        ></b-text-area>
+        <div
+          *ngIf="
+          formRoom.controls['description'].invalid  &&
+           (formRoom.controls['description'].dirty ||
+          formRoom.controls['description'].touched)"
+        >
+          <span class='add-room-form__basic-information-error'
+                *ngIf="formRoom.controls['description'].errors.required">
+            {{"adminTool.hotelForm.errorMessage.required" | i18next}}
+          </span>
         </div>
       </div>
+    </form>
+    <div class='add-room-form__conveniences'>
+      <h4 class='add-room-form__conveniences-title'>
+        {{"adminTool.hotelForm.roomAmenities" | i18next}}
+      </h4>
+      <div class='add-room-form__conveniences-header'>
+        <span
+          class='add-room-form__conveniences-header-name'>
+          {{"adminTool.hotelForm.conveniencesInfo.title" | i18next}}</span>
+        <span
+          class='add-room-form__conveniences-header-price'>
+          {{"adminTool.hotelForm.conveniencesInfo.price" | i18next}}</span>
+        <span
+          class='add-room-form__conveniences-header-icon'>
+          {{"adminTool.hotelForm.conveniencesInfo.icon" | i18next}}</span>
+      </div>
+      <div class='add-room-form__horizontal-line'></div>
+      <div [formGroup]='amenitiesRoomArray'>
+        <ng-container formArrayName='amenitiesInformation'>
+          <ng-container *ngFor='let dataForm of amenitiesInformation.controls;let id = index'>
+            <div class='add-room-form__conveniences-form' [formGroup]='dataForm'>
+              <b-input-field
+                class='add-room-form__conveniences-name'
+                placeholder='{{"adminTool.hotelForm.conveniencesInfo.titlePlaceholder" | i18next}}'
+                formControlName='name'
+              ></b-input-field>
+              <b-input-field
+                class='add-room-form__conveniences-price'
+                placeholder='{{"adminTool.hotelForm.conveniencesInfo.pricePlaceholder" | i18next}}'
+                typeInput='number'
+                formControlName='price'
+              ></b-input-field>
+              <b-file-selector
+                class='add-room-form__conveniences-file'
+                [id]='id'
+                (filesEvent)='setIcon($event)'
+              ></b-file-selector>
+              <b-button-icon type='delete'
+                             (click)='deleteConveniences(id)'
+              ></b-button-icon>
+            </div>
+          </ng-container>
+        </ng-container>
+      </div>
+
       <b-button [hasIcon]='true'
-                text='добавить'
-                type='secondary'
+                text='{{"adminTool.hotelForm.buttonAdd" | i18next}}'
+                type='primary'
                 (click)='addNewConveniences()'
       ></b-button>
     </div>
     <div class='add-room-form__photo'>
       <h4 class='add-room-form__photo-title'>
-        Фотографии</h4>
+        {{"adminTool.hotelForm.photo" | i18next}}</h4>
       <div
         class='add-room-form__photo-form'
-        *ngFor='let id of countPhotos'>
-        <div class='add-room-form__photo-form'
-             [id]='id'>
+        *ngFor='let item of photos; let i = index'>
+        <div class='add-room-form__photo-form'>
           <b-file-selector
-            class='add-room-form__photo-file'>
+            class='add-room-form__photo-file'
+            [id]='i'
+            (filesEvent)='setSoloIcon($event)'
+          >
+
           </b-file-selector>
           <b-button-icon type='delete'
-                         (click)='deletePhotos(id)'
+                         (click)='deletePhotos(i)'
           ></b-button-icon>
         </div>
       </div>
       <b-button
         [hasIcon]='true'
-        text='добавить'
+        text='{{"adminTool.hotelForm.buttonAdd" | i18next}}'
         type='primary'
         (click)='addNewPhotos()'
       ></b-button>
@@ -147,10 +215,10 @@
   <div class='add-room-form__horizontal-line'></div>
   <div class='add-room-form__footer'>
     <b-button type='flat'
-              text='отмена'
+              text='{{"adminTool.hotelForm.buttonCancellation" | i18next}}'
               (click)='remove()'></b-button>
     <b-button type='primary'
-              text='сохранить'
+              text='{{"adminTool.hotelForm.buttonSave" | i18next}}'
               (click)='saveRoomInformation()'></b-button>
   </div>
 </div>
