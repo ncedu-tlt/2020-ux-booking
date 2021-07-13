@@ -16,7 +16,7 @@ import { PhotosRoomDto } from '@booking/models/photos-room.dto';
 
 @Injectable()
 export class HotelsConversionService {
-  constructor(private hotelsConversionService: HotelsConversionService) {}
+  constructor() {}
   convertAddressDaoToDto(address: Address): AddressDto {
     return {
       id: address?.id ?? '',
@@ -62,16 +62,16 @@ export class HotelsConversionService {
   convertPhotoDaoToDto(photos: Photo[]): PhotosDto[] {
     return photos.map(value => {
       return {
-        id: value.id,
-        name: value.name
+        id: value?.id,
+        name: value?.name
       } as PhotosDto;
     });
   }
 
   convertMainPhotoDaoToDto(photo: Photo): MainPhotoDto {
     return {
-      id: photo?.id ?? '',
-      name: photo.name
+      id: photo?.id,
+      name: photo?.name
     };
   }
 
@@ -85,9 +85,7 @@ export class HotelsConversionService {
       capacity: newRoom.capacity,
       beds: newRoom.beds,
       amenities: newRoom.amenitiesRoom,
-      photos: this.hotelsConversionService.convertPhotoRoomDaoToDto(
-        await newRoom.photos
-      )
+      photos: this.convertPhotoRoomDaoToDto(await newRoom.photos)
     };
   }
 
@@ -101,9 +99,7 @@ export class HotelsConversionService {
       capacity: room.capacity,
       beds: room.beds,
       amenities: room.amenitiesRoom,
-      photos: this.hotelsConversionService.convertPhotoRoomDaoToDto(
-        await room.photos
-      )
+      photos: this.convertPhotoRoomDaoToDto(await room.photos)
     };
   }
 

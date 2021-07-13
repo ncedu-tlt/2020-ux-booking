@@ -43,6 +43,13 @@
     "country": "Enter a country",
     "address": "Enter an address",
     "description": "Enter a description"
+  },
+
+  "savePhotoComponent": {
+    "title": "Photos",
+    "mainPhoto": "Main photo",
+    "minorPhoto": "Photo",
+    "add": "Add"
   }
 
 }

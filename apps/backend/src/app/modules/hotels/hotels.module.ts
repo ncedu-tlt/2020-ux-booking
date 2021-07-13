@@ -7,6 +7,6 @@ import { HotelsConversionService } from './hotels-conversion.service.';
 @Module({
   imports: [DbModule],
   controllers: [HotelsController],
-  providers: [HotelsService, HotelsConversionService]
+  providers: [HotelsConversionService, HotelsService]
 })
 export class HotelsModule {}

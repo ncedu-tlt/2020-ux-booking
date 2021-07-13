@@ -21,6 +21,7 @@ import { SelectorComponent } from './selector/selector.component';
 import { FileSelectorComponent } from './file-selector/file-selector.component';
 import { TableComponent } from './table/table.component';
 import { TextAreaComponent } from './text-area/text-area.component';
+import { FormSavingPhotosComponent } from './form-saving-photos/form-saving-photos.component';
 
 @NgModule({
   imports: [
@@ -47,7 +48,8 @@ import { TextAreaComponent } from './text-area/text-area.component';
     CheckboxComponent,
     SelectorComponent,
     FileSelectorComponent,
-    TextAreaComponent
+    TextAreaComponent,
+    FormSavingPhotosComponent
   ],
   exports: [
     ButtonComponent,
@@ -67,7 +69,8 @@ import { TextAreaComponent } from './text-area/text-area.component';
     CheckboxComponent,
     SelectorComponent,
     FileSelectorComponent,
-    TextAreaComponent
+    TextAreaComponent,
+    FormSavingPhotosComponent
   ]
 })
 export class CommonModule {}

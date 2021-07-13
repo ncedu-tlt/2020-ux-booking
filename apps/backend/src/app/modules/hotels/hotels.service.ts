@@ -362,15 +362,13 @@ export class HotelsService {
       }
     }
 
-    const updatedHotel: Hotel = await this.hotelsRepository.findOne(paramsId, {
+    const updatedHotel: any = await this.hotelsRepository.findOne(paramsId, {
       relations: RELATIONS_GET_HOTEL_PHOTOS
     });
 
-    return {
+    return updatedHotel; /*{
       photos: this.hotelsConversionService.convertPhotoDaoToDto(
         await updatedHotel.photos
-      ) /*,
-      mainPhoto: await updatedHotel.mainPhoto*/
-    };
+      ) */
   }
 }
