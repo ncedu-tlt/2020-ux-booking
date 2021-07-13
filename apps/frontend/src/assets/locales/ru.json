@@ -118,5 +118,12 @@
     "country": "Введите страну",
     "address": "Введите адрес",
     "description": "Введите описание"
+  },
+
+  "savePhotoComponent": {
+    "title": "Фотографии",
+    "mainPhoto": "Главная фотография",
+    "minorPhoto": "Фотографии",
+    "add": "Добавить"
   }
 }
