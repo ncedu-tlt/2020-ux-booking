@@ -86,5 +86,12 @@
     "button": "Sign up",
     "registration": "Already have an account?",
     "registrationLink": "authorization"
+  },
+
+  "savePhotoComponent": {
+    "title": "Photos",
+    "mainPhoto": "Main photo",
+    "minorPhoto": "Photo",
+    "add": "Add"
   }
 }
