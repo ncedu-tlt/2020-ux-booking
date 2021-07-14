@@ -38,6 +38,7 @@ import { FormSavingPhotosComponent } from './form-saving-photos/form-saving-phot
     I18NextModule,
     ReactiveFormsModule,
     RouterModule,
+    RouterModule,
     AppRoutingModule
   ],
   declarations: [
@@ -54,7 +55,6 @@ import { FormSavingPhotosComponent } from './form-saving-photos/form-saving-phot
     HotelCardComponent,
     ButtonIconComponent,
     LinkComponent,
-    InputFieldComponent,
     InputFieldComponent,
     CheckboxComponent,
     SelectorComponent,
