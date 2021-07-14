@@ -22,13 +22,19 @@ import { FileSelectorComponent } from './file-selector/file-selector.component';
 import { TableComponent } from './table/table.component';
 import { TextAreaComponent } from './text-area/text-area.component';
 import { FormSavingPhotosComponent } from './form-saving-photos/form-saving-photos.component';
+import { AuthorizationComponent } from './authorization/authorization.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { BackgroundSvgComponent } from './background-page/background-svg.component';
+import { AppRoutingModule } from '../app-routing.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
     NgCommonModule,
     AngularSvgIconModule,
     I18NextModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule
   ],
   declarations: [
     ButtonComponent,
