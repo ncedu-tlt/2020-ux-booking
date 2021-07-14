@@ -26,6 +26,9 @@ import { AppRoutingModule } from '../app-routing.module';
 import { RegistrationComponent } from './registration/registration.component';
 import { RouterModule } from '@angular/router';
 import { BackgroundSvgComponent } from './background-page/background-svg.component';
+import { HotelPageComponent } from './admin-tool/hotel-page/hotel-page.component';
+import { MainInfoComponent } from './admin-tool/main-info/main-info/main-info.component';
+import { MainComponent } from './main/main.component';
 
 @NgModule({
   imports: [
@@ -33,7 +36,8 @@ import { BackgroundSvgComponent } from './background-page/background-svg.compone
     AngularSvgIconModule,
     I18NextModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    AppRoutingModule
   ],
   declarations: [
     ButtonComponent,
@@ -59,7 +63,10 @@ import { BackgroundSvgComponent } from './background-page/background-svg.compone
     RegistrationComponent,
     SelectorComponent,
     FileSelectorComponent,
-    TextAreaComponent
+    TextAreaComponent,
+    HotelPageComponent,
+    MainInfoComponent,
+    MainComponent
   ],
   exports: [
     ButtonComponent,
@@ -86,7 +93,10 @@ import { BackgroundSvgComponent } from './background-page/background-svg.compone
     RegistrationComponent,
     SelectorComponent,
     FileSelectorComponent,
-    TextAreaComponent
+    TextAreaComponent,
+    HotelPageComponent,
+    MainInfoComponent,
+    MainComponent
   ]
 })
 export class CommonModule {}
