@@ -26,6 +26,9 @@ import { AppRoutingModule } from '../app-routing.module';
 import { RegistrationComponent } from './registration/registration.component';
 import { RouterModule } from '@angular/router';
 import { BackgroundSvgComponent } from './background-page/background-svg.component';
+import { HotelPageComponent } from './admin-tool/hotel-page/hotel-page.component';
+import { MainInfoComponent } from './admin-tool/main-info/main-info/main-info.component';
+import { MainComponent } from './main/main.component';
 import { AddRoomFormComponent } from './add-room-form/add-room-form.component';
 
 @NgModule({
@@ -34,7 +37,8 @@ import { AddRoomFormComponent } from './add-room-form/add-room-form.component';
     AngularSvgIconModule,
     I18NextModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    AppRoutingModule
   ],
   declarations: [
     ButtonComponent,
@@ -60,6 +64,10 @@ import { AddRoomFormComponent } from './add-room-form/add-room-form.component';
     RegistrationComponent,
     SelectorComponent,
     FileSelectorComponent,
+    TextAreaComponent,
+    HotelPageComponent,
+    MainInfoComponent,
+    MainComponent,
     TextAreaComponent,
     FileSelectorComponent,
     AddRoomFormComponent
@@ -89,6 +97,10 @@ import { AddRoomFormComponent } from './add-room-form/add-room-form.component';
     RegistrationComponent,
     SelectorComponent,
     FileSelectorComponent,
+    TextAreaComponent,
+    HotelPageComponent,
+    MainInfoComponent,
+    MainComponent,
     TextAreaComponent,
     FileSelectorComponent,
     AddRoomFormComponent
