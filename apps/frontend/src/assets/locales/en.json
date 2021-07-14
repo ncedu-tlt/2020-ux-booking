@@ -38,53 +38,85 @@
   "fileSelector": {
     "fileNotSelected": "File not selected"
   },
-  "placeholder": {
-    "list": "Select from the list",
-    "country": "Enter a country",
-    "address": "Enter an address",
-    "description": "Enter a description"
-  },
-  "authorization": {
-    "title": "Authorization",
-    "input": {
-      "email": "Email",
-      "emailPlaceholder": "Enter mail",
-      "password": "Password",
-      "passwordPlaceholder": "Enter password"
-    },
-    "errorMessage": {
-      "unauthorized": "Incorrect login or password",
-      "default": "Error"
-    },
-    "button": "Enter",
-    "forgotPassword": "Forgot your password?",
-    "forgotPasswordLink": "Recover password",
-    "registration": "First time here?",
-    "registrationLink": "Registration"
-  },
-  "registration": {
-    "title": "Registration",
-    "input": {
-      "name": "Name",
-      "namePlaceholder": "Enter name",
-      "email": "Email",
-      "emailPlaceholder": "Enter mail",
-      "password": "Password",
-      "passwordPlaceholder": "Enter password",
-      "repeatPassword": "Repeat your password",
-      "passwordInvalid": "Password mismatch"
-    },
-    "errorMessage": {
-      "required": "The field is empty",
-      "minLength": "The minimum number of characters has not been reached",
-      "maxLength": "The maximum number of characters has not been reached",
-      "badEmail": "This email is not correct",
-      "unauthorized": "Incorrect login or password",
-      "conflict": "A user with this email is already registered",
-      "default": "Error"
-    },
-    "button": "Sign up",
-    "registration": "Already have an account?",
-    "registrationLink": "authorization"
+  "adminTool": {
+    "hotelForm": {
+      "tabs": {
+        "nutrition": "Nutrition",
+        "distances": "Distances",
+        "optional": "Optional",
+        "hotelRooms": "Hotel Rooms",
+        "photo": "Photo",
+        "comments": "Comments",
+        "reviews": "Reviews"
+      },
+      "mainInfo": {
+        "title": "Main information",
+        "name": "Name",
+        "serviceType": "Service type",
+        "country": "Country",
+        "address": "Address",
+        "description": "Description",
+        "paymentMethod": "Payment method",
+        "city": "City",
+        "starClassification": "Star Classification",
+        "save": "Save",
+        "publish": "Publish",
+        "cancel": "Cancel",
+        "currency": "Currency"
+      },
+      "buttons": {
+        "cancel": "Cancel",
+        "save": "Save"
+      },
+      "placeholder": {
+        "list": "Select from the list",
+        "country": "Enter a country",
+        "address": "Enter an address",
+        "description": "Enter a description"
+      },
+      "authorization": {
+        "title": "Authorization",
+        "input": {
+          "email": "Email",
+          "emailPlaceholder": "Enter mail",
+          "password": "Password",
+          "passwordPlaceholder": "Enter password"
+        },
+        "errorMessage": {
+          "unauthorized": "Incorrect login or password",
+          "default": "Error"
+        },
+        "button": "Enter",
+        "forgotPassword": "Forgot your password?",
+        "forgotPasswordLink": "Recover password",
+        "registration": "First time here?",
+        "registrationLink": "Registration"
+      },
+      "registration": {
+        "title": "Registration",
+        "input": {
+          "name": "Name",
+          "namePlaceholder": "Enter name",
+          "email": "Email",
+          "emailPlaceholder": "Enter mail",
+          "password": "Password",
+          "passwordPlaceholder": "Enter password",
+          "repeatPassword": "Repeat your password",
+          "passwordInvalid": "Password mismatch"
+        },
+        "errorMessage": {
+          "required": "The field is empty",
+          "minLength": "The minimum number of characters has not been reached",
+          "maxLength": "The maximum number of characters has not been reached",
+          "badEmail": "This email is not correct",
+          "unauthorized": "Incorrect login or password",
+          "conflict": "A user with this email is already registered",
+          "default": "Error"
+        },
+        "button": "Sign up",
+        "registration": "Already have an account?",
+        "registrationLink": "authorization"
+      }
+    }
   }
 }
