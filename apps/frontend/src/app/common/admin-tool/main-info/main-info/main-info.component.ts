@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'b-main-info',
   templateUrl: './main-info.component.html',
-  styleUrls: ['./main-info.component.css']
+  styleUrls: ['./main-info.component.less']
 })
 export class MainInfoComponent implements OnInit {
   id: string;
