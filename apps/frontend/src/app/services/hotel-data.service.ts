@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { HotelInfoModel } from '../models/hotel-Info.model';
-import { stepModel } from '../models/step1.model';
+import { HotelDto } from '@booking/models/hotel.dto';
 
 @Injectable()
 export class HotelDataService {
@@ -11,7 +11,10 @@ export class HotelDataService {
   getHotels(): Observable<HotelInfoModel[]> {
     return this.http.get<HotelInfoModel[]>('/api/hotels');
   }
-  postHotelsById(): Observable<stepModel> {
-    return this.http.post<stepModel>('/api/hotels' + id );
+  getHotelsById(id: string): Observable<HotelDto> {
+    return this.http.get<HotelDto>('/api/hotels/' + id);
+  }
+  patchChangeHotelMainInfo(body: string): Observable<HotelDto> {
+    return this.http.patch<HotelDto>(':id/mainInfo', body);
   }
 }
