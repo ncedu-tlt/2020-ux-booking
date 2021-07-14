@@ -87,6 +87,7 @@
     "registration": "Already have an account?",
     "registrationLink": "authorization"
   },
+  },
 
   "savePhotoComponent": {
     "title": "Photos",
@@ -94,4 +95,5 @@
     "minorPhoto": "Photo",
     "add": "Add"
   }
+
 }
