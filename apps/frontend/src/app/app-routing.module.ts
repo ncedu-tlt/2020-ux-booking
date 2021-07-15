@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthorizationComponent } from './common/authorization/authorization.component';
 import { RegistrationComponent } from './common/registration/registration.component';
 import { GuestGuard } from './guards/guest.guard';
-import { MainComponent } from './common/main/main.component';
 import { HotelPageComponent } from './common/admin-tool/hotel-page/hotel-page.component';
 import { MainInfoComponent } from './common/admin-tool/main-info/main-info/main-info.component';
 
@@ -28,7 +27,7 @@ const routes: Routes = [
     component: RegistrationComponent,
     canActivate: [GuestGuard]
   },
-  { path: '', component: MainComponent, pathMatch: 'full' }
+  { path: '', component: MainInfoComponent, pathMatch: 'full' }
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
