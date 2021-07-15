@@ -31,7 +31,6 @@ import { MainInfoComponent } from './admin-tool/main-info/main-info/main-info.co
 import { MainComponent } from './main/main.component';
 import { FormSavingPhotosComponent } from './form-saving-photos/form-saving-photos.component';
 
-
 @NgModule({
   imports: [
     NgCommonModule,
