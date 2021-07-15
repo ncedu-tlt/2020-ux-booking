@@ -16,20 +16,18 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BannerComponent } from './banner/banner.component';
 import { LinkComponent } from './link/link.component';
 import { HotelCardComponent } from './hotel-card/hotel-card.component';
-import { AuthorizationComponent } from './authorization/authorization.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 import { SelectorComponent } from './selector/selector.component';
 import { FileSelectorComponent } from './file-selector/file-selector.component';
 import { TableComponent } from './table/table.component';
 import { TextAreaComponent } from './text-area/text-area.component';
-import { AppRoutingModule } from '../app-routing.module';
-import { RegistrationComponent } from './registration/registration.component';
-import { RouterModule } from '@angular/router';
-import { BackgroundSvgComponent } from './background-page/background-svg.component';
-import { HotelPageComponent } from './admin-tool/hotel-page/hotel-page.component';
-import { MainInfoComponent } from './admin-tool/main-info/main-info/main-info.component';
-import { MainComponent } from './main/main.component';
 import { FormSavingPhotosComponent } from './form-saving-photos/form-saving-photos.component';
+import { AuthorizationComponent } from './authorization/authorization.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { BackgroundSvgComponent } from './background-page/background-svg.component';
+import { AppRoutingModule } from '../app-routing.module';
+import { RouterModule } from '@angular/router';
+import { MainInfoComponent } from './admin-tool/main-info/main-info/main-info.component';
 
 @NgModule({
   imports: [
@@ -37,7 +35,6 @@ import { FormSavingPhotosComponent } from './form-saving-photos/form-saving-phot
     AngularSvgIconModule,
     I18NextModule,
     ReactiveFormsModule,
-    RouterModule,
     RouterModule,
     AppRoutingModule
   ],
@@ -65,9 +62,7 @@ import { FormSavingPhotosComponent } from './form-saving-photos/form-saving-phot
     SelectorComponent,
     FileSelectorComponent,
     TextAreaComponent,
-    HotelPageComponent,
     MainInfoComponent,
-    MainComponent,
     FormSavingPhotosComponent
   ],
   exports: [
@@ -96,9 +91,7 @@ import { FormSavingPhotosComponent } from './form-saving-photos/form-saving-phot
     SelectorComponent,
     FileSelectorComponent,
     TextAreaComponent,
-    HotelPageComponent,
     MainInfoComponent,
-    MainComponent,
     FormSavingPhotosComponent
   ]
 })
