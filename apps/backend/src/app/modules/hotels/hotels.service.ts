@@ -366,9 +366,6 @@ export class HotelsService {
       relations: RELATIONS_GET_HOTEL_PHOTOS
     });
 
-    return updatedHotel; /*{
-      photos: this.hotelsConversionService.convertPhotoDaoToDto(
-        await updatedHotel.photos
-      ) */
+    return updatedHotel;
   }
 }
