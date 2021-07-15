@@ -28,6 +28,7 @@ import { BackgroundSvgComponent } from './background-page/background-svg.compone
 import { AppRoutingModule } from '../app-routing.module';
 import { RouterModule } from '@angular/router';
 import { MainInfoComponent } from './admin-tool/main-info/main-info/main-info.component';
+import { HotelPageComponent } from './admin-tool/hotel-page/hotel-page.component';
 
 @NgModule({
   imports: [
@@ -63,7 +64,8 @@ import { MainInfoComponent } from './admin-tool/main-info/main-info/main-info.co
     FileSelectorComponent,
     TextAreaComponent,
     MainInfoComponent,
-    FormSavingPhotosComponent
+    FormSavingPhotosComponent,
+    HotelPageComponent
   ],
   exports: [
     ButtonComponent,

@@ -16,7 +16,6 @@ import { PhotosRoomDto } from '@booking/models/photos-room.dto';
 
 @Injectable()
 export class HotelsConversionService {
-  constructor() {}
   convertAddressDaoToDto(address: Address): AddressDto {
     return {
       id: address?.id ?? '',
