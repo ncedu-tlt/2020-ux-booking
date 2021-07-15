@@ -1,0 +1,69 @@
+<div class='form-saving-photos'>
+  <div class='form-saving-photos__first-title'>{{"savePhotoComponent.title" | i18next}}</div>
+  <div class='form-saving-photos__second-title'>{{"savePhotoComponent.mainPhoto" | i18next}}</div>
+  <ng-container *ngIf='data?.mainPhoto?.id?.length > 0; else imgTemplate'>
+    <div class='form-saving-photos__photo-main'>
+      <img class='form-saving-photos__photo-main-hotel'
+           src='http://localhost:3333/api/hotels/file/{{data.mainPhoto.id}}'
+           alt='main'>
+
+      <div class='form-saving-photos__cross'
+           (click)='deletePhoto(data.mainPhoto.id)'>
+        <svg-icon  class='icon _size-l'
+                   src="assets/icons/cross.svg">
+        </svg-icon>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #imgTemplate>
+    <div class='form-saving-photos__add-main-photo'>
+      <b-file-selector class='form-saving-photos__selector'
+                       (change)='addMainPhoto($event)'>
+      </b-file-selector>
+    </div>
+  </ng-template>
+  <div class='form-saving-photos__third-title'>{{"savePhotoComponent.minorPhoto" | i18next}}</div>
+  <ng-container *ngFor='let photo of viewFileSelectorToMinorPhotos; let i = index'>
+    <div class='form-saving-photos__form-save-photo'>
+      <div class='form-saving-photos__add-minor-photo'>
+        <b-file-selector (change)='addMinorPhoto($event)'
+                         [id]='"selector-"+i'>
+        </b-file-selector>
+      </div>
+      <div class='form-saving-photos__btn-drop-field'>
+        <ng-container *ngIf='viewFileSelectorToMinorPhotos.length > 1'>
+          <div class='form-saving-photos__drop-field'
+               (click)='deleteField(i)'>
+            <svg-icon  class='icon _size-l'
+                       src="assets/icons/trash.svg">
+            </svg-icon>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </ng-container>
+  <div class='form-saving-photos__add-field'
+       (click)='createAddField()'>
+    <svg-icon  class='icon _size-l _stroke-blue-dark'
+               src="assets/icons/plus.svg">
+    </svg-icon>
+    <div class='form-saving-photos__add-field-text'>{{"savePhotoComponent.add" | i18next}}</div>
+  </div>
+  <div class='form-saving-photos__container-minor-photo'>
+    <ng-container *ngFor='let ph of dataPhotos'>
+     <div class='form-saving-photos__add-photo-minor'>
+       <img class='form-saving-photos__photo-hotel'
+            src='http://localhost:3333/api/hotels/file/{{ph.id}}'
+            alt=''>
+       <div class='form-saving-photos__drop'
+            (click)='deletePhoto(ph.id)'>
+         <svg-icon  class='icon _size-l'
+                    src="assets/icons/cross.svg">
+         </svg-icon>
+       </div>
+     </div>
+
+    </ng-container>
+  </div>
+  <b-button (click)='upload()' [text]='"savePhotoComponent.save" | i18next'></b-button>
+</div>
