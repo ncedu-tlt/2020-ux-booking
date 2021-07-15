@@ -29,6 +29,8 @@ import { BackgroundSvgComponent } from './background-page/background-svg.compone
 import { HotelPageComponent } from './admin-tool/hotel-page/hotel-page.component';
 import { MainInfoComponent } from './admin-tool/main-info/main-info/main-info.component';
 import { MainComponent } from './main/main.component';
+import { FormSavingPhotosComponent } from './form-saving-photos/form-saving-photos.component';
+
 
 @NgModule({
   imports: [
@@ -66,7 +68,8 @@ import { MainComponent } from './main/main.component';
     TextAreaComponent,
     HotelPageComponent,
     MainInfoComponent,
-    MainComponent
+    MainComponent,
+    FormSavingPhotosComponent
   ],
   exports: [
     ButtonComponent,
@@ -96,7 +99,8 @@ import { MainComponent } from './main/main.component';
     TextAreaComponent,
     HotelPageComponent,
     MainInfoComponent,
-    MainComponent
+    MainComponent,
+    FormSavingPhotosComponent
   ]
 })
 export class CommonModule {}
