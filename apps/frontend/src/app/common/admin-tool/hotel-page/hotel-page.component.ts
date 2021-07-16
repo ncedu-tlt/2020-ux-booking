@@ -21,7 +21,7 @@ export class HotelPageComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id');
     this.tabs = [
       {
-        name: 'tabs',
+        name: this.i18NextService.t('adminTool.hotelForm.mainInfo.title'),
         url: '/admin-tool/hotel/' + this.id + '/main-info'
       },
       {

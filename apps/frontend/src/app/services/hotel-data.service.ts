@@ -15,4 +15,10 @@ export class HotelDataService {
   getHotel(id): Observable<HotelDto> {
     return this.http.get<HotelDto>('http://localhost:3333/api/hotels/' + id);
   }
+  getHotelsById(id: string): Observable<HotelDto> {
+    return this.http.get<HotelDto>('/api/hotels/' + id);
+  }
+  patchChangeHotelMainInfo(body: HotelDto): Observable<HotelDto> {
+    return this.http.patch<HotelDto>(':id/mainInfo', body);
+  }
 }

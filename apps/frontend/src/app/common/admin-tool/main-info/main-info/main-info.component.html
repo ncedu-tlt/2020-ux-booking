@@ -1,1 +1,121 @@
-<p>main-info works {{id}}!</p>
+<div class='main-info'>
+  <div class='main-info__form-title'>
+    <h1>{{'adminTool.hotelForm.mainInfo.title' | i18next}}</h1>
+  </div>
+  <form class='main-info__form' [formGroup]="formG">
+
+    <div class='main-info__form-row'>
+      <b-input-field  formControlName='name'
+                      [title]="'adminTool.hotelForm.mainInfo.name' | i18next"
+                      [placeholder]="'adminTool.hotelForm.mainInfo.name' | i18next"
+                      [isMandatory]='true'
+                      [isDisabled]='false' >
+
+      </b-input-field>
+
+      <b-star-selector  (selectedItemEvent)='setStar($event)'
+                        [subName]="'adminTool.hotelForm.mainInfo.starClassification' | i18next"
+                        [selectedItem]='1'
+                        [isEditable]='true'>
+      </b-star-selector>
+
+
+
+    </div>
+    <div class='main-info__form-row'>
+
+      <b-selector
+        [itemList]="[
+    'Наличные',
+    'Банковская карта'
+  ]"
+        [titleSelector]="'adminTool.hotelForm.mainInfo.paymentMethod' | i18next"
+      ></b-selector>
+
+
+      <b-selector
+        [itemList]="[
+    'Сначала дешевые',
+    'Сначала дорогие',
+    'По рейтингу пользователей',
+    'По количеству звёзд'
+  ]"
+        [titleSelector]="'adminTool.hotelForm.mainInfo.serviceType' | i18next"
+
+      ></b-selector>
+
+
+
+    </div>
+    <div class='main-info__form-row'>
+
+      <b-input-field  formControlName='country'
+                      [title]="'adminTool.hotelForm.mainInfo.country' | i18next"
+                      [placeholder]="'adminTool.hotelForm.placeholder.country' | i18next"
+                      [isMandatory]='true'
+                      [isDisabled]='false'
+      >
+
+      </b-input-field>
+
+
+      <b-input-field formControlName='city'
+                     [title]="'adminTool.hotelForm.mainInfo.city' | i18next"
+                     [placeholder]="'adminTool.hotelForm.mainInfo.city' | i18next"
+                     [isMandatory]='true'
+                     [isDisabled]='false'
+      >
+      </b-input-field>
+
+    </div>
+    <div class='main-info__form-row'>
+
+      <b-input-field  formControlName='address'
+                      [title]="'adminTool.hotelForm.mainInfo.address' | i18next"
+                      [placeholder]="'adminTool.hotelForm.placeholder.address' | i18next"
+                      [isMandatory]='true'
+                      [isDisabled]='false'
+      >
+      </b-input-field>
+
+      <div class='main-info__form-field'>
+
+        <!--        <b-checkbox formControlName='checkbox'-->
+        <!--          [label]="'Бесплатная отмена бронирования'"-->
+        <!--                    [isChecked]="false"-->
+        <!--                    [isDisabled]="false"-->
+        <!--                   ></b-checkbox>-->
+
+      </div>
+    </div>
+    <div class='main-info__form-row'>
+      <div class='main-info__form-description' >
+        <b-text-area> </b-text-area>
+      </div>
+    </div>
+    <div class='main-info__form-row'>
+
+      <b-input-field formControlName='currency'
+                     [title]="'adminTool.hotelForm.mainInfo.currency' | i18next"
+                     [placeholder]="'$'"
+                     [isMandatory]='true'
+                     [isDisabled]='false'
+      >
+      </b-input-field>
+
+    </div>
+
+    <div class='main-info__form-row _flex-end'>
+      <div class='main-info__form-button'>
+        <b-button  [text]="'adminTool.hotelForm.buttons.cancel' | i18next">
+        </b-button>
+      </div>
+      <div class='main-info__form-button _flex-end'>
+        <b-button (click)='changeHotelMainInfo(pageForm)'  [text]="'adminTool.hotelForm.buttons.save' | i18next">
+        </b-button>
+      </div>
+    </div>
+  </form>
+</div>
+
+
