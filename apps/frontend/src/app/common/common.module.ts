@@ -26,6 +26,7 @@ import { AppRoutingModule } from '../app-routing.module';
 import { RegistrationComponent } from './registration/registration.component';
 import { RouterModule } from '@angular/router';
 import { BackgroundSvgComponent } from './background-page/background-svg.component';
+import { ListOfHotelsComponent } from './list-of-hotels/list-of-hotels.component';
 
 @NgModule({
   imports: [
@@ -57,6 +58,7 @@ import { BackgroundSvgComponent } from './background-page/background-svg.compone
     RegistrationComponent,
     BackgroundSvgComponent,
     RegistrationComponent,
+    ListOfHotelsComponent,
     SelectorComponent,
     FileSelectorComponent,
     TextAreaComponent
@@ -84,6 +86,7 @@ import { BackgroundSvgComponent } from './background-page/background-svg.compone
     RegistrationComponent,
     BackgroundSvgComponent,
     RegistrationComponent,
+    ListOfHotelsComponent,
     SelectorComponent,
     FileSelectorComponent,
     TextAreaComponent

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { AuthorizationComponent } from './common/authorization/authorization.component';
 import { RegistrationComponent } from './common/registration/registration.component';
 import { GuestGuard } from './guards/guest.guard';
+import { ListOfHotelsComponent } from './common/list-of-hotels/list-of-hotels.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,11 @@ const routes: Routes = [
     path: 'registration',
     component: RegistrationComponent,
     canActivate: [GuestGuard]
+  },
+  {
+    path: 'hotels',
+    component: ListOfHotelsComponent /*,
+    canActivate: [GuestGuard]*/
   }
 ];
 

@@ -1,0 +1,13 @@
+<div class='list-of-hotels'>
+  <div><b-page-title title="Отели"></b-page-title></div>
+  <div class='list-of-hotels__body'>
+    <div><b-button type="secondary" hasIcon="true" text="добавить отель"></b-button></div>
+    <div class='list-of-hotels__filter-line'>
+      <div class='list-of-hotels__input-field'><b-input-field title="Название" placeholder="Введите название"></b-input-field></div>
+      <div class='list-of-hotels__input-field'><b-input-field title="Страна" placeholder="Введите название"></b-input-field></div>
+      <div class='list-of-hotels__input-field'><b-input-field title="Город" placeholder="Введите название"></b-input-field></div>
+      <div class='list-of-hotels__search-button'><b-button text="найти" (click)="loadHotels()"></b-button></div>
+    </div>
+    <div><b-table [config]="config"></b-table></div>
+  </div>
+</div>
