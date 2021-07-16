@@ -5,6 +5,7 @@ import { RegistrationComponent } from './common/registration/registration.compon
 import { GuestGuard } from './guards/guest.guard';
 import { HotelPageComponent } from './common/admin-tool/hotel-page/hotel-page.component';
 import { MainInfoComponent } from './common/admin-tool/main-info/main-info/main-info.component';
+import { MainComponent } from './common/main/main.component';
 
 const routes: Routes = [
   {
@@ -27,7 +28,7 @@ const routes: Routes = [
     component: RegistrationComponent,
     canActivate: [GuestGuard]
   },
-  { path: '', component: MainInfoComponent, pathMatch: 'full' }
+  { path: '', component: MainComponent, pathMatch: 'full' }
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
