@@ -11,6 +11,10 @@ export class HotelDataService {
   getHotels(): Observable<HotelInfoModel[]> {
     return this.http.get<HotelInfoModel[]>('/api/hotels');
   }
+
+  getHotel(id): Observable<HotelDto> {
+    return this.http.get<HotelDto>('http://localhost:3333/api/hotels/' + id);
+  }
   getHotelsById(id: string): Observable<HotelDto> {
     return this.http.get<HotelDto>('/api/hotels/' + id);
   }

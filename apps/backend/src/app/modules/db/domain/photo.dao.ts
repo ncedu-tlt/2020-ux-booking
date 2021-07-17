@@ -15,11 +15,11 @@ export class Photo {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({ nullable: true })
   name: string;
 
-  @Column()
-  src: string;
+  @Column({ nullable: true, type: 'bytea' })
+  src: Buffer;
 
   @OneToMany(type => Service, services => services.icon, {
     nullable: false,

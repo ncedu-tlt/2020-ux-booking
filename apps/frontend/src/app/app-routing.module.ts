@@ -3,9 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthorizationComponent } from './common/authorization/authorization.component';
 import { RegistrationComponent } from './common/registration/registration.component';
 import { GuestGuard } from './guards/guest.guard';
+import { MainComponent } from './common/main/main.component';
 import { HotelPageComponent } from './common/admin-tool/hotel-page/hotel-page.component';
 import { MainInfoComponent } from './common/admin-tool/main-info/main-info/main-info.component';
-import { MainComponent } from './common/main/main.component';
+import { FormSavingPhotosComponent } from './common/form-saving-photos/form-saving-photos.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,10 @@ const routes: Routes = [
       {
         path: 'main-info',
         component: MainInfoComponent
+      },
+      {
+        path: 'photos',
+        component: FormSavingPhotosComponent
       }
     ]
   },
@@ -35,4 +40,3 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule {}
-//approut

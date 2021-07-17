@@ -1,11 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { HotelDto } from '@booking/models/hotel.dto';
 import { ActivatedRoute } from '@angular/router';
+import { HotelDto } from '@booking/models/hotel.dto';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { HotelDataService } from '../../../../services/hotel-data.service';
 
 @Component({
-  selector: 'b-main-info-form',
+  selector: 'b-main-info',
   templateUrl: './main-info.component.html',
   styleUrls: ['./main-info.component.less']
 })
