@@ -17,7 +17,6 @@ import { HotelDataService } from '../../services/hotel-data.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ListOfHotelsComponent implements OnInit {
-
   config: TableConfig;
 
   configTemplate: TableConfig = {

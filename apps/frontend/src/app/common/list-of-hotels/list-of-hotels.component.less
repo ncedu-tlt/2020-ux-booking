@@ -1,33 +1,52 @@
 @import './../../../assets/styles/common/shared';
 
 .list-of-hotels{
-    //display: flex;
+    &__title{
+        position: relative;
+        z-index: -1;
+    }
+
     &__body{
         padding: 40px;
     }
     
+    &__add-button{
+        display: flex;
+        
+        @media (max-width: 1200px) {
+            justify-content: center;
+        } 
+    }
+
     &__filter-line{
         display: grid;
         margin: 16px 0 26px 0;
-        //grid-template-rows: 1fr 1fr 1fr;
         grid-template-columns: 1fr 1fr 1fr 1fr;
         grid-column: auto;
-        //display: flex;
-        //justify-content:stretch;
         width: 100%;
-        //flex-direction: row;
-        //flex-wrap: nowrap;
+
+        @media (max-width: 1200px) {
+            display: block;
+        }    
     }
-    //&__filter-line div{
-        //width: auto;
-    //} 
+     
     &__input-field{
         width: auto;
         margin: 0 24px 0 0;
+
+        @media (max-width: 1200px) {
+            margin: 0 0 24px 0;
+        }   
     }
+
     &__search-button{
         display: grid;
-        width: 256px;
-        justify-content: right;
+        justify-self: right;
+        align-self: flex-end;
+
+        @media (max-width: 1200px) {
+            justify-content: center;
+        } 
     }
+
 }

@@ -1,7 +1,7 @@
 <div class='list-of-hotels'>
-  <div><b-page-title title="Отели"></b-page-title></div>
+  <div><b-page-title class='list-of-hotels__title' title="Отели"></b-page-title></div>
   <div class='list-of-hotels__body'>
-    <div><b-button type="secondary" hasIcon="true" text="добавить отель"></b-button></div>
+    <div class='list-of-hotels__add-button'><b-button type="secondary" hasIcon="true" text="добавить отель"></b-button></div>
     <div class='list-of-hotels__filter-line'>
       <div class='list-of-hotels__input-field'><b-input-field title="Название" placeholder="Введите название"></b-input-field></div>
       <div class='list-of-hotels__input-field'><b-input-field title="Страна" placeholder="Введите название"></b-input-field></div>
@@ -11,3 +11,4 @@
     <div><b-table [config]="config"></b-table></div>
   </div>
 </div>
+<!--<div><b-list-of-hotels-popup></b-list-of-hotels-popup></div>-->
