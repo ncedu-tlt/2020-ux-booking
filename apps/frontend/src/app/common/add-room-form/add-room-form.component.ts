@@ -136,7 +136,7 @@ export class AddRoomFormComponent implements OnInit {
 
   saveRoomInformation() {
     // const API_URL = '/api:' + this.id + '/room';
-    const API_URL = '/api:' + 1 + '/room';
+    const API_URL = '/api/hotels/:' + 1 + '/room';
     if (this.isOpenConstructorForm) {
       const roomData = {
         name: this.getTypeRoomData(),
