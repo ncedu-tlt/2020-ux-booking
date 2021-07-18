@@ -27,6 +27,10 @@ import { RegistrationComponent } from './registration/registration.component';
 import { RouterModule } from '@angular/router';
 import { BackgroundSvgComponent } from './background-page/background-svg.component';
 import { ListOfHotelsComponent } from './list-of-hotels/list-of-hotels.component';
+import { HotelPageComponent } from './admin-tool/hotel-page/hotel-page.component';
+import { MainInfoComponent } from './admin-tool/main-info/main-info/main-info.component';
+import { MainComponent } from './main/main.component';
+import { FormSavingPhotosComponent } from './form-saving-photos/form-saving-photos.component';
 
 @NgModule({
   imports: [
@@ -34,7 +38,8 @@ import { ListOfHotelsComponent } from './list-of-hotels/list-of-hotels.component
     AngularSvgIconModule,
     I18NextModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    AppRoutingModule
   ],
   declarations: [
     ButtonComponent,
@@ -61,7 +66,11 @@ import { ListOfHotelsComponent } from './list-of-hotels/list-of-hotels.component
     ListOfHotelsComponent,
     SelectorComponent,
     FileSelectorComponent,
-    TextAreaComponent
+    TextAreaComponent,
+    HotelPageComponent,
+    MainInfoComponent,
+    MainComponent,
+    FormSavingPhotosComponent
   ],
   exports: [
     ButtonComponent,
@@ -89,7 +98,11 @@ import { ListOfHotelsComponent } from './list-of-hotels/list-of-hotels.component
     ListOfHotelsComponent,
     SelectorComponent,
     FileSelectorComponent,
-    TextAreaComponent
+    TextAreaComponent,
+    HotelPageComponent,
+    MainInfoComponent,
+    MainComponent,
+    FormSavingPhotosComponent
   ]
 })
 export class CommonModule {}
