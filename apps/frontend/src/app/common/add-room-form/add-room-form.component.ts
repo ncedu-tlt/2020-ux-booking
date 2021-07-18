@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'b-add-room-form',
@@ -7,35 +9,28 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./add-room-form.component.less']
 })
 export class AddRoomFormComponent implements OnInit {
-  isOpenConstructorForm = true;
-  roomData = [
-    {
-      name: 'lorem',
-      price: 45,
-      count: 3,
-      description: 'lorem',
-      capacity: 5,
-      beds: 4,
-      photos: []
-    }
-  ];
+  isOpenConstructorForm = false;
+  roomData = [];
   photos: File[] = [];
   amenitiesPhotos: File[] = [];
-  typeRoomData = [];
+  typeRoomData;
   typeBadData = [];
+  id: string;
+
+  constructor(private http: HttpClient, private route: ActivatedRoute) {}
 
   formRoom = new FormGroup({
-    price: new FormControl(0, [
+    price: new FormControl(null, [
       Validators.required,
       Validators.min(0),
       Validators.max(9999999)
     ]),
-    countRoom: new FormControl(0, [
+    countRoom: new FormControl(null, [
       Validators.required,
       Validators.min(0),
       Validators.max(9999999)
     ]),
-    capacity: new FormControl(0, [
+    capacity: new FormControl(null, [
       Validators.required,
       Validators.min(0),
       Validators.max(9999999)
@@ -64,7 +59,7 @@ export class AddRoomFormComponent implements OnInit {
         Validators.minLength(30),
         Validators.maxLength(3000)
       ]),
-      price: new FormControl(0, [
+      price: new FormControl(null, [
         Validators.required,
         Validators.min(0),
         Validators.max(9999999)
@@ -75,7 +70,7 @@ export class AddRoomFormComponent implements OnInit {
 
   deleteConveniences(id): void {
     this.amenitiesInformation.removeAt(id);
-    this.deleteamenitiesPhotos(id);
+    this.deleteAmenitiesPhotos(id);
   }
 
   openForm(): void {
@@ -99,18 +94,21 @@ export class AddRoomFormComponent implements OnInit {
     for (const data of this.amenitiesInformation.controls) {
       amenitiesRoomArray.push({
         name: data.value.name,
-        price: data.value.price
+        price: data.value.price,
+        icon: undefined
       });
+    }
+    for (let i = 0; i < amenitiesRoomArray.length; i++) {
+      amenitiesRoomArray[i].icon = this.amenitiesPhotos[i];
     }
     return amenitiesRoomArray;
   }
 
   setTypeRoomData($event): void {
     this.typeRoomData = $event;
-    console.log();
   }
 
-  getTypeRoomData(): string[] {
+  getTypeRoomData(): string {
     return this.typeRoomData;
   }
 
@@ -118,7 +116,7 @@ export class AddRoomFormComponent implements OnInit {
     this.typeBadData = $event;
   }
 
-  getTypeBadData(): string[] {
+  getTypeBadData(): number {
     return this.typeRoomData;
   }
 
@@ -126,7 +124,7 @@ export class AddRoomFormComponent implements OnInit {
     this.photos.splice(this.photos.indexOf(id), 1);
   }
 
-  deleteamenitiesPhotos(id): void {
+  deleteAmenitiesPhotos(id): void {
     this.photos.splice(this.amenitiesPhotos.indexOf(id), 1);
   }
 
@@ -136,7 +134,9 @@ export class AddRoomFormComponent implements OnInit {
     }
   }
 
-  saveRoomInformation(): void {
+  saveRoomInformation() {
+    // const API_URL = '/api:' + this.id + '/room';
+    const API_URL = '/api:' + 1 + '/room';
     if (this.isOpenConstructorForm) {
       const roomData = {
         name: this.getTypeRoomData(),
@@ -145,15 +145,28 @@ export class AddRoomFormComponent implements OnInit {
         description: this.formRoom.value.description,
         capacity: this.formRoom.value.capacity,
         beds: this.getTypeBadData(),
+        amenities: this.amenitiesRoomData,
         photos: this.photos
       };
-      // this.roomData.push(roomData);
+      this.roomData.push(roomData);
+      this.isOpenConstructorForm = false;
     } else {
-      // drop to back-end
+      return this.http.post(API_URL, this.roomData).subscribe(
+        data => {
+          console.log(data);
+        },
+        error => {
+          console.log(error);
+        }
+      );
     }
   }
 
   ngOnInit(): void {
+    this.id = this.route.snapshot.paramMap.get('id');
+    console.log(this.route.snapshot.paramMap);
+    console.log(this.id);
+
     this.addNewConveniences();
     this.addNewPhotos();
   }

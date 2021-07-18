@@ -1,0 +1,33 @@
+<div class='add-room-list'>
+  <h3 class='add-room-list-title'>Номера</h3>
+  <div *ngFor='let room of roomData'
+       class='add-room-list__list'>
+    <div class='add-room-list__list-upper'>
+      <h3>{{room.name}}</h3>
+      <b-button-icon type='delete'
+      ></b-button-icon>
+    </div>
+    <div class='add-room-list__horizontal-line'></div>
+    <div class='add-room-list__list-under'>
+      <div class='add-room-list__list-under-type'>
+        <span>Тип кроватей</span>
+        <h4>{{room.beds}}</h4>
+        <span></span>
+      </div>
+      <div class='add-room-list__list-under-count'>
+        <span>Кол-во мест</span>
+        <div class='add-room-list__list-under-icon'>
+          <svg-icon
+            src='assets/icons/user_icon.svg'
+          ></svg-icon>
+        </div>
+        <h4>{{room.count}}</h4>
+      </div>
+      <div class='add-room-list__list-under-price'>
+        <span>Стоимость</span>
+        <h4>{{room.price}} Р/сутки</h4>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,35 +1,8 @@
 <div class='add-room-form'>
   <div *ngIf='!isOpenConstructorForm'>
-    <h3 class='add-room-form-title'>Номера</h3>
-    <div *ngFor='let room of roomData'
-         class='add-room-form__list'>
-      <div class='add-room-form__list-upper'>
-        <h3>{{room.name}}</h3>
-        <b-button-icon type='delete'
-        ></b-button-icon>
-      </div>
-      <div class='add-room-form__horizontal-line'></div>
-      <div class='add-room-form__list-under'>
-        <div class='add-room-form__list-under-type'>
-          <span>Тип кроватей</span>
-          <h4>{{room.beds}}</h4>
-          <span></span>
-        </div>
-        <div class='add-room-form__list-under-count'>
-          <span>Кол-во мест</span>
-          <div class='add-room-form__list-under-icon'>
-            <svg-icon
-              src='assets/icons/user_icon.svg'
-            ></svg-icon>
-          </div>
-        </div>
-        <div class='add-room-form__list-under-price'>
-          <span>Стоимость</span>
-          <h4>{{room.price}} Р/сутки</h4>
-        </div>
-      </div>
-    </div>
+    <b-add-room-list [roomData]='roomData'></b-add-room-list>
     <div class='add-room-form__add-button'>
+
       <b-button
         [hasIcon]='true'
         text='добавить номер'
@@ -189,11 +162,11 @@
         {{"adminTool.hotelForm.photo" | i18next}}</h4>
       <div
         class='add-room-form__photo-form'
-        *ngFor='let item of photos; let i = index'>
+        *ngFor='let item ofFf photos; let i = index'>
         <div class='add-room-form__photo-form'>
           <b-file-selector
             class='add-room-form__photo-file'
-            [id]='i'
+            [id]='i+1'
             (filesEvent)='setSoloIcon($event)'
           >
 

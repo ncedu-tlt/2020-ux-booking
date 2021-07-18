@@ -6,7 +6,7 @@
     </tr>
   </thead>
   <tbody class="table__body">
-    <tr class='table__body-row' 
+    <tr class='table__body-row'
     *ngFor='let item of config.items'>
       <td class='table__body-cell' *ngFor='let column of config.columns'>
         <span class='table__cell-header'>{{ config.headers[column] }}</span>
@@ -14,10 +14,13 @@
       </td>
       <td class='table__body-cell'>
         <div class="table__body-icon">
-          <b-button-icon class="table__icon-item" *ngFor='let button of config.buttons' (click)='buttonClick(button.type, item)' [type] = button.type></b-button-icon>
+          <b-button-icon class="table__icon-item"
+                         *ngFor='let button of config.buttons'
+                         (click)='buttonClick(button.type, item)'
+                         [type] = button.type></b-button-icon>
         </div>
       </td>
     </tr>
   </tbody>
-</table> 
-</div>   
+</table>
+</div>

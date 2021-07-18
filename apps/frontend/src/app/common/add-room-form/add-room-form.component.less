@@ -2,41 +2,7 @@
 
 .add-room-form {
   margin: 24px;
-
-  &-title {
-    margin-bottom: 24px;
-  }
-
-  &__list {
-    width: 100%;
-    margin-bottom: 24px;
-    padding-right: 25px;
-    padding-left: 25px;
-    padding-top: 20px;
-    background: #FFFFFF;
-    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.14), 0 3px 1px rgba(0, 0, 0, 0.12), 0 1px 5px rgba(0, 0, 0, 0.2);
-    border-radius: 24px;
-
-    &-upper {
-      width: 100%;
-      justify-content: space-between;
-      align-items: center;
-      display: flex;
-    }
-
-    &-under {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-bottom: 30px;
-
-      &-icon {
-        width: 24px;
-        height: 24px;
-      }
-    }
-  }
-
+  width: 100vh;
   &__add-button {
     display: flex;
     justify-content: center;
@@ -50,13 +16,16 @@
   &__basic-information {
     margin-top: 24px;
     display: flex;
+    height: 100%;
     flex-direction: column;
     justify-content: space-between;
-    &-error{
+
+    &-error {
       margin-left: 16px;
       margin-top: 4px;
       color: @color-red;
     }
+
     &-title {
       margin-top: 24px;
     }
@@ -64,8 +33,8 @@
     &-column {
       display: flex;
       flex-wrap: wrap;
-      width: 934px;
-      height: 160px;
+      max-width: 934px;
+      height: 100%;
       margin-bottom: 24px;
     }
 
@@ -76,7 +45,7 @@
     }
 
     &-description {
-     margin-bottom: 30px;
+      margin-bottom: 30px;
     }
   }
 
@@ -143,10 +112,12 @@
     }
 
   }
-  &__footer{
+
+  &__footer {
     display: flex;
     justify-content: flex-end;
   }
+
   &__horizontal-line {
     border: 1px solid @color-background-contrast;
     width: 100%;

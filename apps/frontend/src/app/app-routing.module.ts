@@ -16,6 +16,10 @@ const routes: Routes = [
       {
         path: 'main-info',
         component: MainInfoComponent
+      },
+      {
+        path: 'add-room',
+        component: AddRoomFormComponent
       }
     ]
   },
@@ -28,11 +32,6 @@ const routes: Routes = [
     path: 'registration',
     component: RegistrationComponent,
     canActivate: [GuestGuard]
-  },
-  {
-    path: 'add-room',
-    component: AddRoomFormComponent
-    // canActivate: [GuestGuard]
   },
   { path: '', component: MainComponent, pathMatch: 'full' }
 ];

@@ -15,10 +15,15 @@ export class HotelPageComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
+    console.log(this.route.snapshot.paramMap);
     this.tabs = [
       {
         name: 'tabs',
         url: '/admin-tool/hotel/' + this.id + '/main-info'
+      },
+      {
+        name: 'add-room',
+        url: '/admin-tool/hotel/' + this.id + '/add-room'
       }
     ];
   }
