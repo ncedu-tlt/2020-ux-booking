@@ -82,7 +82,7 @@ export class HotelsService {
     const photo = new Photo();
     photo.id = newPhoto.id ?? undefined;
     photo.name = newPhoto.originalname;
-    photo.src = Buffer.from(newPhoto.buffer, 'base64');
+    // photo.src = Buffer.from(newPhoto.buffer, 'base64');
     if (room) {
       photo.room = Promise.resolve(room);
     }
