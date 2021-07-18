@@ -60,11 +60,14 @@ export class Hotel {
   @ManyToOne(type => Currency, car => car.hotels)
   currency: Currency;
 
-  @ManyToOne(type => Photo, photo => photo.hotelMainPhoto)
+  @ManyToOne(type => Photo, photo => photo.hotelMainPhoto, {
+    onDelete: 'SET NULL'
+  })
   mainPhoto: Photo;
 
   @OneToMany(type => Photo, photos => photos.hotel, {
-    nullable: false
+    nullable: false,
+    onDelete: 'SET NULL'
   })
   photos: Promise<Photo[]>;
 

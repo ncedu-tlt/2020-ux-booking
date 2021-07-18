@@ -31,6 +31,7 @@ import { HotelsModule } from '../hotels/hotels.module';
         synchronize: true,
         autoLoadEntities: true,
         logging: false,
+        dropSchema: false,
         ssl: configService.get<boolean>('production') && {
           rejectUnauthorized: false
         }
