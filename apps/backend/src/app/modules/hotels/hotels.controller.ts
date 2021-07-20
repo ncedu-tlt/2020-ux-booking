@@ -81,7 +81,7 @@ export class HotelsController {
   ): Promise<void> {
     await this.hotelsRepository
       .find({
-        relations: RELATIONS_GET_HOTELS/*,
+        relations: RELATIONS_GET_HOTELS /*,
         skip: range,
         take: take*/
       })
@@ -330,8 +330,7 @@ export class HotelsController {
   @Delete(':id')
   async deleteHotel(@Param() params): Promise<HotelDto> {
     const hotelDelete: Hotel = await this.hotelsRepository.findOne(params.id);
-    if (!hotelDelete)
-      return {};
+    if (!hotelDelete) return {};
     await this.hotelsRepository.delete(params.id);
 
     return {

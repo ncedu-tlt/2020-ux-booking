@@ -64,7 +64,7 @@ export class ListOfHotelsComponent implements OnInit {
           city: hotel.address?.city?.name
         } as Item;
       });
-      console.log("loaded hotels: " + hotelItems.length);
+      console.log('loaded hotels: ' + hotelItems.length);
       this.config = {
         ...this.configTemplate,
         items: hotelItems
@@ -84,7 +84,7 @@ export class ListOfHotelsComponent implements OnInit {
     const hotelName = this.addHotelForm.value.hotelName;
     console.log(hotelName);
     this.hotelDataService.addHotel(hotelName).subscribe(res => {
-      this.addedEvent.emit();      
+      this.addedEvent.emit();
       this.closePopup();
       this.loadHotels();
     });
