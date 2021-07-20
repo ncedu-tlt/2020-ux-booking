@@ -1,7 +1,7 @@
 <div class='list-of-hotels'>
   <div><b-page-title class='list-of-hotels__title' title="Отели"></b-page-title></div>
   <div class='list-of-hotels__body'>
-    <div class='list-of-hotels__add-button'><b-button type="secondary" hasIcon="true" text="добавить отель"></b-button></div>
+    <div class='list-of-hotels__add-button'><b-button (click)='openPopup()' type="secondary" hasIcon="true" text="добавить отель"></b-button></div>
     <div class='list-of-hotels__filter-line'>
       <div class='list-of-hotels__input-field'><b-input-field title="Название" placeholder="Введите название"></b-input-field></div>
       <div class='list-of-hotels__input-field'><b-input-field title="Страна" placeholder="Введите название"></b-input-field></div>
@@ -9,8 +9,22 @@
       <div class='list-of-hotels__search-button'><b-button text="найти" (click)="loadHotels()"></b-button></div>
     </div>
     <div><b-table [config]="config"></b-table></div>
-    <b-list-of-hotel-popup (addedEvent)="loadHotels()">
-    </b-list-of-hotel-popup>
+    <div *ngIf='popupVisible' class="popup">
+      <div class='popup__content'>
+        <div class='popup__heading'>
+          <div class='popup__heading-title'><p class='popup__heading-title'>Введите название отеля</p></div>
+          <span (click)='closePopup()' class="popup__close">+</span>
+        </div>
+        <div class='popup__body'>
+          <form [formGroup]='addHotelForm'>
+            <div><b-input-field formControlName='hotelName' title="Название" placeholder="Название"></b-input-field></div>
+          </form>
+        </div>
+        <div class='popup__footer'>
+          <div><b-button (click)='addHotel()' text="добавить"></b-button></div>
+          <div><b-button (click)='closePopup()' text="отмена"></b-button></div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-<!--<div><b-list-of-hotels-popup></b-list-of-hotels-popup></div>-->
