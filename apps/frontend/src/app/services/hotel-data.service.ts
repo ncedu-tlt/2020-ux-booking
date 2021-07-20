@@ -15,4 +15,9 @@ export class HotelDataService {
   getHotel(id): Observable<HotelDto> {
     return this.http.get<HotelDto>('http://localhost:3333/api/hotels/' + id);
   }
+
+  addHotel(name: string): Observable<HotelDto> {
+    return this.http.post<HotelDto>('http://localhost:3333/api/hotels/', { name: name });
+  }
+
 }
