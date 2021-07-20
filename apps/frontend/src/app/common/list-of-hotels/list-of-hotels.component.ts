@@ -7,7 +7,7 @@ import {
   OnInit,
   Output
 } from '@angular/core';
-import { Item, TableConfig } from '../../models/table.model';
+import { Item, TableButtonClick, TableConfig } from '../../models/table.model';
 import { HotelDataService } from '../../services/hotel-data.service';
 import { FormBuilder, Validators } from '@angular/forms';
 
@@ -84,8 +84,22 @@ export class ListOfHotelsComponent implements OnInit {
     const hotelName = this.addHotelForm.value.hotelName;
     console.log(hotelName);
     this.hotelDataService.addHotel(hotelName).subscribe(res => {
-      this.addedEvent.emit();
+      this.addedEvent.emit();      
       this.closePopup();
+      this.loadHotels();
     });
+  }
+
+  public deleteHotel(id: string): void {
+    this.hotelDataService.deleteHotel(id).subscribe(res => {
+      this.loadHotels();
+    });
+  }
+
+  public buttonClicked(event: TableButtonClick): void {
+    if (event.buttonType === ButtonIconTypesEnum.delete) {
+      const id = event.item.id;
+      this.deleteHotel(id);
+    }
   }
 }

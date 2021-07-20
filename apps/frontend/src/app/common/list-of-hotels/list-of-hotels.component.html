@@ -8,7 +8,7 @@
       <div class='list-of-hotels__input-field'><b-input-field title="Город" placeholder="Введите название"></b-input-field></div>
       <div class='list-of-hotels__search-button'><b-button text="найти" (click)="loadHotels()"></b-button></div>
     </div>
-    <div><b-table [config]="config"></b-table></div>
+    <div><b-table (buttonClickEvent)="buttonClicked($event)" [config]="config"></b-table></div>
     <div *ngIf='popupVisible' class="popup">
       <div class='popup__content'>
         <div class='popup__heading'>

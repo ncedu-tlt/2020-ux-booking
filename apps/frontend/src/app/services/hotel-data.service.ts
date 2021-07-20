@@ -21,4 +21,8 @@ export class HotelDataService {
       name: name
     });
   }
+
+  deleteHotel(id: string): Observable<HotelDto> {
+    return this.http.delete<HotelDto>('/api/hotels/' + id);
+  }
 }
