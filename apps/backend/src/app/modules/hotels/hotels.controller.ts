@@ -81,9 +81,9 @@ export class HotelsController {
   ): Promise<void> {
     await this.hotelsRepository
       .find({
-        relations: RELATIONS_GET_HOTELS,
+        relations: RELATIONS_GET_HOTELS/*,
         skip: range,
-        take: take
+        take: take*/
       })
       .then(hotelsList => {
         res.status(HttpStatus.OK).send(
