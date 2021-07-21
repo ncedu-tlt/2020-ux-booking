@@ -18,9 +18,9 @@
       <div class='hotel-card__hotel-info'>
         <div class='hotel-card__main-info'>
         <div class='hotel-card__photo'>
-          <img *ngIf='hotelInfo.hotelImgUrl.length > 0; else imgTemplate'
-               src='{{hotelInfo.hotelImgUrl}}'
-               alt='photo hotel'>
+<!--          <img *ngIf='hotelInfo.hotelImgUrl.length > 0; else imgTemplate'-->
+<!--               src='{{hotelInfo.hotelImgUrl}}'-->
+<!--               alt='photo hotel'>-->
           <ng-template #imgTemplate>
             <svg-icon class='icon _fill-grey'
                       src="/assets/icons/placeholder.svg">
@@ -31,9 +31,9 @@
           <div class='hotel-card__description'>
             {{hotelInfo.description}}
           </div>
-          <div class='hotel-card__country'>
-            {{hotelInfo.address.country}}, {{hotelInfo.address.city}}
-          </div>
+<!--          <div class='hotel-card__country'>-->
+<!--            {{hotelInfo.address.country}}, {{hotelInfo.address.city}}-->
+<!--          </div>-->
         </div>
         </div>
         <div class='hotel-card__hotel-rating'>

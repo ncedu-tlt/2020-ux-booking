@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { CardsService } from '../../services/cards.service';
 
 @Component({
   selector: 'b-cards-list',
@@ -8,32 +9,19 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CardsListComponent implements OnInit {
   someData;
-  carts = [
-    {
-      name: 'Name',
-      hotelImgUrl: 'string',
-      description: 'Описание',
-      address: 'AddressModel',
-      starsCount: '7',
-      countReviews: '7',
-      hotelRating: '7',
-      minPrice: '7',
-      currency: 'Рублей',
-      freeCancellation: false,
-      services: 'ServiceType'
-    }
-  ];
+  carts = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private CardsService: CardsService) {}
 
   ngOnInit(): void {
-    this.http.get('/api/hotels').subscribe(
-      data => {
-        // this.carts.push(data);
-        console.log(data);
+    this.CardsService.getCardsListData().subscribe(
+      cartsData => {
+        // for (const cart of cartsData) {
+        //   this.carts.push(cart);
+        // }
       },
-      error => {
-        console.log(error);
+      () => {
+        //
       }
     );
   }

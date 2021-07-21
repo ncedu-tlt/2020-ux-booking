@@ -82,20 +82,28 @@ export class HotelsController {
     await this.hotelsRepository
       .find({
         relations: RELATIONS_GET_HOTELS,
-        skip: range,
-        take: take
+        take: 100
       })
       .then(hotelsList => {
+        console.log(hotelsList);
         res.status(HttpStatus.OK).send(
           hotelsList.map(hotel => ({
             id: hotel.id,
+            address: hotel.address,
             name: hotel.name,
-            address: hotel.address
+            description: hotel.description,
+            currency: hotel.currency,
+            minPrice: hotel.minPrice,
+            starsCount: hotel.stars,
+            reviews: hotel.reviews,
+            freeCancellation: hotel.freeCancellation,
+            services: hotel.services
           }))
         );
       })
       .catch(error => {
         res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(error);
+        console.log(error);
       });
   }
 
@@ -162,6 +170,7 @@ export class HotelsController {
       photos
     );
   }
+
   @Delete(':id/room/:roomId/:amenitiesId')
   async deleteAmenities(@Param() params): Promise<RoomDto> {
     const amenities: Amenities = await this.amenitiesRepository.findOne({
