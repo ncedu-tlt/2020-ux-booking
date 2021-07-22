@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
+  Inject,
   Input,
   OnInit,
   Output,
@@ -16,6 +17,7 @@ import {
 import { HotelDataService } from '../../../services/hotel-data.service';
 import { ListOfHotelPopupComponent } from '../list-of-hotel-popup/list-of-hotel-popup.component';
 import { Router } from '@angular/router';
+import { I18NEXT_SERVICE, ITranslationService } from 'angular-i18next';
 @Component({
   selector: 'b-list-of-hotels',
   templateUrl: './list-of-hotels.component.html',
@@ -29,9 +31,11 @@ export class ListOfHotelsComponent implements OnInit {
     items: [],
     columns: ['name', 'country', 'city'],
     headers: {
-      name: 'Название',
-      country: 'Страна',
-      city: 'Город'
+      name: this.i18NextService.t('adminTool.list-of-hotels.popup.table.name'),
+      country: this.i18NextService.t(
+        'adminTool.list-of-hotels.popup.table.country'
+      ),
+      city: this.i18NextService.t('adminTool.list-of-hotels.popup.table.city')
     },
     buttons: [ButtonIconTypesEnum.edit, ButtonIconTypesEnum.delete]
   };
@@ -39,6 +43,7 @@ export class ListOfHotelsComponent implements OnInit {
   @ViewChild(ListOfHotelPopupComponent) popup: ListOfHotelPopupComponent;
 
   constructor(
+    @Inject(I18NEXT_SERVICE) private i18NextService: ITranslationService,
     private hotelDataService: HotelDataService,
     private router: Router
   ) {}

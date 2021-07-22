@@ -1,5 +1,7 @@
 <div class='list-of-hotels'>
-  <div><b-page-title class='list-of-hotels__title' title='{{"adminTool.list-of-hotels.title" | i18next}}'></b-page-title></div>
+  <div>
+    <b-page-title class='list-of-hotels__title' title='{{"adminTool.list-of-hotels.title" | i18next}}'></b-page-title>
+  </div>
   <div class='list-of-hotels__body'>
     <div class='list-of-hotels__add-button'>
       <b-button type="secondary" hasIcon="true" (click)="popup.openPopup()"
@@ -7,12 +9,29 @@
       </b-button>
     </div>
     <div class='list-of-hotels__filter-line'>
-      <div class='list-of-hotels__input-field'><b-input-field title='{{"adminTool.list-of-hotels.input.name" | i18next}}' placeholder='{{"adminTool.list-of-hotels.input.namePlaceholder" | i18next}}'></b-input-field></div>
-      <div class='list-of-hotels__input-field'><b-input-field title='{{"adminTool.list-of-hotels.input.country" | i18next}}' placeholder='{{"adminTool.list-of-hotels.input.countryPlaceholder" | i18next}}'></b-input-field></div>
-      <div class='list-of-hotels__input-field'><b-input-field title='{{"adminTool.list-of-hotels.input.city" | i18next}}' placeholder='{{"adminTool.list-of-hotels.input.cityPlaceholder" | i18next}}'></b-input-field></div>
-      <div class='list-of-hotels__search-button'><b-button text='{{"adminTool.list-of-hotels.buttons.find" | i18next}}' (click)="loadHotels()"></b-button></div>
+      <div class='list-of-hotels__input-field'>
+        <b-input-field title='{{"adminTool.list-of-hotels.input.name" | i18next}}' 
+          placeholder='{{"adminTool.list-of-hotels.input.namePlaceholder" | i18next}}'>
+        </b-input-field>
+      </div>
+      <div class='list-of-hotels__input-field'>
+        <b-input-field title='{{"adminTool.list-of-hotels.input.country" | i18next}}' 
+          placeholder='{{"adminTool.list-of-hotels.input.countryPlaceholder" | i18next}}'>
+        </b-input-field>
+      </div>
+      <div class='list-of-hotels__input-field'>
+        <b-input-field title='{{"adminTool.list-of-hotels.input.city" | i18next}}' 
+          placeholder='{{"adminTool.list-of-hotels.input.cityPlaceholder" | i18next}}'>
+        </b-input-field>
+      </div>
+      <div class='list-of-hotels__search-button'>
+        <b-button text='{{"adminTool.list-of-hotels.buttons.find" | i18next}}' (click)="loadHotels()">
+        </b-button>
+      </div>
     </div>
-    <div><b-table (buttonClickEvent)="buttonClicked($event)" [config]="config"></b-table></div>
+    <div>
+      <b-table (buttonClickEvent)="buttonClicked($event)" [config]="config"></b-table>
+    </div>
     <b-list-of-hotel-popup (addedEvent)="loadHotels()">
     </b-list-of-hotel-popup>
   </div>

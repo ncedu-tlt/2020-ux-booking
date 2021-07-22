@@ -67,6 +67,11 @@
           "required": "The field is empty",
           "minLength": "The minimum number of characters has not been reached",
           "maxLength": "The maximum number of characters has been exceeded"
+        },
+        "table": {
+          "name": "Name",
+          "country": "Country",
+          "city": "City"
         }
       }
     },
