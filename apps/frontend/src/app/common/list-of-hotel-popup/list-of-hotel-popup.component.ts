@@ -6,6 +6,7 @@ import {
   Output
 } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { HotelDataService } from '../../services/hotel-data.service';
 
 @Component({
@@ -29,7 +30,8 @@ export class ListOfHotelPopupComponent {
 
   constructor(
     private hotelDataService: HotelDataService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router
   ) {}
 
   public openPopup(): void {
@@ -46,6 +48,7 @@ export class ListOfHotelPopupComponent {
     this.hotelDataService.addHotel(hotelName).subscribe(res => {
       this.addedEvent.emit();
       this.closePopup();
+      this.router.navigate(['/admin-tool/hotel/', res.id]);
     });
   }
 }

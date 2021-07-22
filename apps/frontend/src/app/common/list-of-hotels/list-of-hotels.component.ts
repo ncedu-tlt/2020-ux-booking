@@ -11,6 +11,7 @@ import {
 import { Item, TableButtonClick, TableConfig } from '../../models/table.model';
 import { HotelDataService } from '../../services/hotel-data.service';
 import { ListOfHotelPopupComponent } from '../list-of-hotel-popup/list-of-hotel-popup.component';
+import { Router } from '@angular/router';
 @Component({
   selector: 'b-list-of-hotels',
   templateUrl: './list-of-hotels.component.html',
@@ -33,7 +34,10 @@ export class ListOfHotelsComponent implements OnInit {
 
   @ViewChild(ListOfHotelPopupComponent) popup: ListOfHotelPopupComponent;
 
-  constructor(private hotelDataService: HotelDataService) {}
+  constructor(
+    private hotelDataService: HotelDataService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.config = this.configTemplate;
@@ -67,6 +71,10 @@ export class ListOfHotelsComponent implements OnInit {
     if (event.buttonType === ButtonIconTypesEnum.delete) {
       const id = event.item.id;
       this.deleteHotel(id);
+    }
+    if (event.buttonType === ButtonIconTypesEnum.edit) {
+      const id = event.item.id;
+      this.router.navigate(['/admin-tool/hotel/', id]);
     }
   }
 }
