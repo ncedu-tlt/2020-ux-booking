@@ -42,8 +42,7 @@ export class ListOfHotelPopupComponent {
 
   public addHotel(): void {
     if (!(this.addHotelForm.dirty && this.addHotelForm.valid)) return;
-    const hotelName = this.addHotelForm.value.hotelName;
-    console.log(hotelName);
+    const hotelName: string = this.addHotelForm.value.hotelName;
     this.hotelDataService.addHotel(hotelName).subscribe(res => {
       this.addedEvent.emit();
       this.closePopup();

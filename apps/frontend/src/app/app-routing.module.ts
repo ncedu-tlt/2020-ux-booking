@@ -36,8 +36,7 @@ const routes: Routes = [
   },
   {
     path: 'hotels',
-    component: ListOfHotelsComponent /*,
-    canActivate: [GuestGuard]*/
+    component: ListOfHotelsComponent
   },
   { path: '', component: MainComponent, pathMatch: 'full' }
 ];

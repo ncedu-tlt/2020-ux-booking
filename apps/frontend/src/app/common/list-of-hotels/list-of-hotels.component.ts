@@ -42,7 +42,7 @@ export class ListOfHotelsComponent implements OnInit {
 
   loadHotels(): void {
     this.hotelDataService.getHotels().subscribe(hotels => {
-      const hotelItems = hotels.map(hotel => {
+      const hotelItems: Item[] = hotels.map(hotel => {
         return {
           id: hotel.id,
           name: hotel.name,
@@ -50,7 +50,6 @@ export class ListOfHotelsComponent implements OnInit {
           city: hotel.address?.city?.name
         } as Item;
       });
-      console.log('loaded hotels: ' + hotelItems.length);
       this.config = {
         ...this.configTemplate,
         items: hotelItems
