@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { HotelDataService } from '../../services/hotel-data.service';
+import { HotelDataService } from '../../../services/hotel-data.service';
 
 @Component({
   selector: 'b-list-of-hotel-popup',

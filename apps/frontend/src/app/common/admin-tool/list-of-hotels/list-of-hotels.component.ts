@@ -1,4 +1,4 @@
-import { ButtonIconTypesEnum } from '../../enums/button-icon-types.enum';
+import { ButtonIconTypesEnum } from '../../../enums/button-icon-types.enum';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,8 +8,12 @@ import {
   Output,
   ViewChild
 } from '@angular/core';
-import { Item, TableButtonClick, TableConfig } from '../../models/table.model';
-import { HotelDataService } from '../../services/hotel-data.service';
+import {
+  Item,
+  TableButtonClick,
+  TableConfig
+} from '../../../models/table.model';
+import { HotelDataService } from '../../../services/hotel-data.service';
 import { ListOfHotelPopupComponent } from '../list-of-hotel-popup/list-of-hotel-popup.component';
 import { Router } from '@angular/router';
 @Component({
