@@ -5,12 +5,12 @@ import {
   EventEmitter,
   Input,
   OnInit,
-  Output
+  Output,
+  ViewChild
 } from '@angular/core';
 import { Item, TableButtonClick, TableConfig } from '../../models/table.model';
 import { HotelDataService } from '../../services/hotel-data.service';
-import { FormBuilder, Validators } from '@angular/forms';
-
+import { ListOfHotelPopupComponent } from '../list-of-hotel-popup/list-of-hotel-popup.component';
 @Component({
   selector: 'b-list-of-hotels',
   templateUrl: './list-of-hotels.component.html',
@@ -18,19 +18,6 @@ import { FormBuilder, Validators } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.Default
 })
 export class ListOfHotelsComponent implements OnInit {
-  @Output()
-  addedEvent: EventEmitter<void> = new EventEmitter<void>();
-
-  public popupVisible = false;
-
-  addHotelForm = this.formBuilder.group({
-    hotelName: [
-      '',
-      [Validators.required, Validators.minLength(5), Validators.maxLength(255)]
-      // Введите название длиной от 5 до 255 символов
-    ]
-  });
-
   config: TableConfig;
 
   configTemplate: TableConfig = {
@@ -44,10 +31,9 @@ export class ListOfHotelsComponent implements OnInit {
     buttons: [ButtonIconTypesEnum.edit, ButtonIconTypesEnum.delete]
   };
 
-  constructor(
-    private hotelDataService: HotelDataService,
-    private formBuilder: FormBuilder
-  ) {}
+  @ViewChild(ListOfHotelPopupComponent) popup: ListOfHotelPopupComponent;
+
+  constructor(private hotelDataService: HotelDataService) {}
 
   ngOnInit(): void {
     this.config = this.configTemplate;
@@ -69,24 +55,6 @@ export class ListOfHotelsComponent implements OnInit {
         ...this.configTemplate,
         items: hotelItems
       };
-    });
-  }
-
-  public openPopup(): void {
-    this.popupVisible = true;
-  }
-
-  public closePopup(): void {
-    this.popupVisible = false;
-  }
-
-  public addHotel(): void {
-    const hotelName = this.addHotelForm.value.hotelName;
-    console.log(hotelName);
-    this.hotelDataService.addHotel(hotelName).subscribe(res => {
-      this.addedEvent.emit();
-      this.closePopup();
-      this.loadHotels();
     });
   }
 

@@ -39,6 +39,37 @@
     "fileNotSelected": "File not selected"
   },
   "adminTool": {
+    "list-of-hotels": {
+      "title": "Hotels",
+      "input": {
+        "name": "Name",
+        "country": "Country",
+        "city": "City",
+        "namePlaceholder": "Enter a name",
+        "countryPlaceholder": "Enter a name",
+        "cityPlaceholder": "Enter a name"
+      },
+      "buttons": {
+        "addHotel": "Add hotel",
+        "find": "Find"
+      },
+      "popup": {
+        "title": "Enter a hotel name",
+        "input": {
+          "name": "Name",
+          "namePlaceholder": "Enter a name"
+        },
+        "buttons": {
+          "add": "Add",
+          "cancel": "Cancel"
+        },
+        "errorMessage": {
+          "required": "The field is empty",
+          "minLength": "The minimum number of characters has not been reached",
+          "maxLength": "The maximum number of characters has been exceeded"
+        }
+      }
+    },
     "hotelForm": {
       "tabs": {
         "nutrition": "Nutrition",
