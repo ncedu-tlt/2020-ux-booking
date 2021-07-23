@@ -1,5 +1,5 @@
 <div class='add-room-form'>
-  <div *ngIf='!isOpenConstructorForm'>
+  <div *ngIf='!isConstructorFormOpened'>
     <b-add-room-list [roomData]='roomData'></b-add-room-list>
     <div class='add-room-form__add-button'>
 
@@ -11,7 +11,7 @@
       ></b-button>
     </div>
   </div>
-  <div *ngIf='isOpenConstructorForm'
+  <div *ngIf='isConstructorFormOpened'
        class='add-room-form__form'>
     <h2 class='add-room-form__form-title'>
       {{"adminTool.hotelForm.addingNumber" | i18next}}</h2>
@@ -36,18 +36,15 @@
               formControlName='price'
             ></b-input-field>
             <div
-              *ngIf="
-          formRoom.controls['price'].invalid  &&
-           (formRoom.controls['price'].dirty ||
-          formRoom.controls['price'].touched)"
-            >
+              *ngIf="formRoom.controls['price'].invalid  &&
+                     (formRoom.controls['price'].dirty ||
+                      formRoom.controls['price'].touched)">
           <span class='add-room-form__basic-information-error'
                 *ngIf="formRoom.controls['price'].errors.required">
             {{"adminTool.hotelForm.errorMessage.required" | i18next}}
           </span>
             </div>
           </div>
-
 
           <b-selector class='add-room-form__basic-information-form'
                       titleSelector='{{"adminTool.hotelForm.mainInfo.bedType" | i18next}}'
@@ -62,11 +59,9 @@
                          formControlName='countRoom'
           ></b-input-field>
           <div
-            *ngIf="
-          formRoom.controls['countRoom'].invalid  &&
-           (formRoom.controls['countRoom'].dirty ||
-          formRoom.controls['countRoom'].touched)"
-          >
+            *ngIf="formRoom.controls['countRoom'].invalid  &&
+                  (formRoom.controls['countRoom'].dirty ||
+                   formRoom.controls['countRoom'].touched)">
           <span class='add-room-form__basic-information-error'
                 *ngIf="formRoom.controls['countRoom'].errors.required">
             {{"adminTool.hotelForm.errorMessage.required" | i18next}}
@@ -81,11 +76,9 @@
           formControlName='capacity'
         ></b-input-field>
         <div
-          *ngIf="
-          formRoom.controls['capacity'].invalid  &&
-           (formRoom.controls['capacity'].dirty ||
-          formRoom.controls['capacity'].touched)"
-        >
+          *ngIf="formRoom.controls['capacity'].invalid  &&
+                (formRoom.controls['capacity'].dirty ||
+                 formRoom.controls['capacity'].touched)">
           <span class='add-room-form__basic-information-error'
                 *ngIf="formRoom.controls['capacity'].errors.required">
             {{"adminTool.hotelForm.errorMessage.required" | i18next}}
@@ -95,10 +88,9 @@
                      formControlName='description'
         ></b-text-area>
         <div
-          *ngIf="
-          formRoom.controls['description'].invalid  &&
-           (formRoom.controls['description'].dirty ||
-          formRoom.controls['description'].touched)"
+          *ngIf="formRoom.controls['description'].invalid  &&
+                (formRoom.controls['description'].dirty ||
+                 formRoom.controls['description'].touched)"
         >
           <span class='add-room-form__basic-information-error'
                 *ngIf="formRoom.controls['description'].errors.required">
@@ -162,7 +154,7 @@
         {{"adminTool.hotelForm.photo" | i18next}}</h4>
       <div
         class='add-room-form__photo-form'
-        *ngFor='let item ofFf photos; let i = index'>
+        *ngFor='let item of photos; let i = index'>
         <div class='add-room-form__photo-form'>
           <b-file-selector
             class='add-room-form__photo-file'

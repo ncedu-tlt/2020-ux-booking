@@ -4,10 +4,6 @@
     "outDir": "../../dist/out-tsc",
     "types": []
   },
-  "files": [
-    "src/main.ts",
-    "src/polyfills.ts",
-    "../../node_modules/cypress/types/cypress-eventemitter.d.ts"
-  ],
+  "files": ["src/main.ts", "src/polyfills.ts"],
   "exclude": ["**/*.stories.ts", "**/*.stories.js"]
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { HotelDataService } from '../../services/hotel-data.service';
 
 @Component({
   selector: 'b-add-room-form',
@@ -9,15 +10,19 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./add-room-form.component.less']
 })
 export class AddRoomFormComponent implements OnInit {
-  isOpenConstructorForm = false;
+  isConstructorFormOpened = false;
   roomData = [];
   photos: File[] = [];
   amenitiesPhotos: File[] = [];
-  typeRoomData;
-  typeBadData = [];
+  typeRoomData: string[];
+  typeBadData: string[];
   id: string;
 
-  constructor(private http: HttpClient, private route: ActivatedRoute) {}
+  constructor(
+    private http: HttpClient,
+    private route: ActivatedRoute,
+    private HotelDataService: HotelDataService
+  ) {}
 
   formRoom = new FormGroup({
     price: new FormControl(null, [
@@ -46,7 +51,7 @@ export class AddRoomFormComponent implements OnInit {
     amenitiesInformation: new FormArray([])
   });
 
-  get amenitiesInformation() {
+  get amenitiesInformation(): FormArray {
     return this.amenitiesRoomArray.controls[
       'amenitiesInformation'
     ] as FormArray;
@@ -74,15 +79,16 @@ export class AddRoomFormComponent implements OnInit {
   }
 
   openForm(): void {
-    this.isOpenConstructorForm = true;
+    this.isConstructorFormOpened = true;
   }
 
-  setIcon(image): void {
+  setIcon(image: File): void {
     this.amenitiesPhotos.push(image);
   }
 
-  setSoloIcon(image) {
+  setSoloIcon(image: File): void {
     this.photos.push(image);
+    console.log(this.photos);
   }
 
   addNewPhotos(): void {
@@ -104,20 +110,20 @@ export class AddRoomFormComponent implements OnInit {
     return amenitiesRoomArray;
   }
 
-  setTypeRoomData($event): void {
-    this.typeRoomData = $event;
+  setTypeRoomData(typeRoom: string[]): void {
+    this.typeRoomData = typeRoom;
   }
 
-  getTypeRoomData(): string {
+  getTypeRoomData(): string[] {
     return this.typeRoomData;
   }
 
-  setTypeBadData($event): void {
-    this.typeBadData = $event;
+  setTypeBadData(typeBad: string[]): void {
+    this.typeBadData = typeBad;
   }
 
-  getTypeBadData(): number {
-    return this.typeRoomData;
+  getTypeBadData(): string[] {
+    return this.typeBadData;
   }
 
   deletePhotos(id): void {
@@ -125,21 +131,20 @@ export class AddRoomFormComponent implements OnInit {
   }
 
   deleteAmenitiesPhotos(id): void {
-    this.photos.splice(this.amenitiesPhotos.indexOf(id), 1);
+    this.amenitiesPhotos.splice(this.amenitiesPhotos.indexOf(id), 1);
   }
 
   remove(): void {
-    if (this.isOpenConstructorForm) {
-      this.isOpenConstructorForm = false;
+    if (this.isConstructorFormOpened) {
+      this.isConstructorFormOpened = false;
     }
   }
 
   saveRoomInformation() {
-    // const API_URL = '/api:' + this.id + '/room';
-    const API_URL = '/api/hotels/:' + 1 + '/room';
-    if (this.isOpenConstructorForm) {
+    const API_URL = '/api/hotels/1cdd3f84-188e-4fbe-9e98-ee1cd186930c/rooms';
+    if (this.isConstructorFormOpened) {
       const roomData = {
-        name: this.getTypeRoomData(),
+        name: this.getTypeRoomData()[0],
         price: this.formRoom.value.price,
         count: this.formRoom.value.countRoom,
         description: this.formRoom.value.description,
@@ -149,9 +154,9 @@ export class AddRoomFormComponent implements OnInit {
         photos: this.photos
       };
       this.roomData.push(roomData);
-      this.isOpenConstructorForm = false;
+      this.isConstructorFormOpened = false;
     } else {
-      return this.http.post(API_URL, this.roomData).subscribe(
+      this.HotelDataService.postHotelRooms(API_URL, this.roomData).subscribe(
         data => {
           console.log(data);
         },
@@ -163,10 +168,9 @@ export class AddRoomFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.paramMap.get('id');
-    console.log(this.route.snapshot.paramMap);
-    console.log(this.id);
-
+    this.route.parent.params.subscribe(params => {
+      this.id = params?.id || '';
+    });
     this.addNewConveniences();
     this.addNewPhotos();
   }

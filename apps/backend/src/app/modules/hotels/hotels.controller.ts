@@ -145,7 +145,10 @@ export class HotelsController {
     @Body() roomDto: RoomDto,
     @UploadedFiles() photos
   ): Promise<RoomDto> {
+    console.log(roomDto);
+    console.log(photos);
     const hotel: Hotel = await this.hotelsRepository.findOne(params.id);
+    console.log(hotel);
     return await this.hotelsService.createRoom(hotel, roomDto, photos);
   }
 
@@ -162,6 +165,7 @@ export class HotelsController {
       photos
     );
   }
+
   @Delete(':id/room/:roomId/:amenitiesId')
   async deleteAmenities(@Param() params): Promise<RoomDto> {
     const amenities: Amenities = await this.amenitiesRepository.findOne({
@@ -299,7 +303,6 @@ export class HotelsController {
     @Param() params,
     @UploadedFiles() photos
   ): Promise<HotelDto> {
-    console.log(photos);
     await this.hotelsService.changeHotelPhotos(photos, params.id);
 
     const hotel: Hotel = await this.hotelsRepository.findOne(params.hotelId, {
