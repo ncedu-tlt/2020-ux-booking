@@ -27,7 +27,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { RouterModule } from '@angular/router';
 import { BackgroundSvgComponent } from './background-page/background-svg.component';
 import { ListOfHotelsComponent } from './admin-tool/list-of-hotels/list-of-hotels.component';
-import { ListOfHotelPopupComponent } from './admin-tool/list-of-hotel-popup/list-of-hotel-popup.component';
+import { HotelCreationPopupComponent } from './admin-tool/hotel-creation-popup/hotel-creation-popup.component';
 import { HotelPageComponent } from './admin-tool/hotel-page/hotel-page.component';
 import { MainInfoComponent } from './admin-tool/main-info/main-info/main-info.component';
 import { MainComponent } from './main/main.component';
@@ -65,7 +65,7 @@ import { FormSavingPhotosComponent } from './form-saving-photos/form-saving-phot
     BackgroundSvgComponent,
     RegistrationComponent,
     ListOfHotelsComponent,
-    ListOfHotelPopupComponent,
+    HotelCreationPopupComponent,
     SelectorComponent,
     FileSelectorComponent,
     TextAreaComponent,
@@ -98,7 +98,7 @@ import { FormSavingPhotosComponent } from './form-saving-photos/form-saving-phot
     BackgroundSvgComponent,
     RegistrationComponent,
     ListOfHotelsComponent,
-    ListOfHotelPopupComponent,
+    HotelCreationPopupComponent,
     SelectorComponent,
     FileSelectorComponent,
     TextAreaComponent,

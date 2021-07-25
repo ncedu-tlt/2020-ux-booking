@@ -10,12 +10,12 @@ import { Router } from '@angular/router';
 import { HotelDataService } from '../../../services/hotel-data.service';
 
 @Component({
-  selector: 'b-list-of-hotel-popup',
-  templateUrl: './list-of-hotel-popup.component.html',
-  styleUrls: ['./list-of-hotel-popup.component.less'],
+  selector: 'b-hotel-creation-popup',
+  templateUrl: './hotel-creation-popup.component.html',
+  styleUrls: ['./hotel-creation-popup.component.less'],
   changeDetection: ChangeDetectionStrategy.Default
 })
-export class ListOfHotelPopupComponent {
+export class HotelCreationPopupComponent {
   @Output()
   addedEvent: EventEmitter<void> = new EventEmitter<void>();
 
@@ -43,7 +43,6 @@ export class ListOfHotelPopupComponent {
   }
 
   public addHotel(): void {
-    if (!(this.addHotelForm.dirty && this.addHotelForm.valid)) return;
     const hotelName: string = this.addHotelForm.value.hotelName;
     this.hotelDataService.addHotel(hotelName).subscribe(res => {
       this.addedEvent.emit();

@@ -32,7 +32,7 @@
     <div>
       <b-table (buttonClickEvent)="buttonClicked($event)" [config]="config"></b-table>
     </div>
-    <b-list-of-hotel-popup (addedEvent)="loadHotels()">
-    </b-list-of-hotel-popup>
+    <b-hotel-creation-popup (addedEvent)="loadHotels()">
+    </b-hotel-creation-popup>
   </div>
 </div>

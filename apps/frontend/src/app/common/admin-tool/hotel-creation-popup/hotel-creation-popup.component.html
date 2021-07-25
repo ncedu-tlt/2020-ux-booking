@@ -35,7 +35,9 @@
       </div>
       <div class='popup__footer'>
         <div>
-          <b-button (click)='addHotel()' text='{{"adminTool.list-of-hotels.popup.buttons.add" | i18next}}'></b-button>
+          <b-button (click)='addHotel()' text='{{"adminTool.list-of-hotels.popup.buttons.add" | i18next}}' 
+                      [isDisabled]='!(addHotelForm.valid && addHotelForm.dirty)'>
+          </b-button>
         </div>
         <div>
           <b-button (click)='closePopup()' text='{{"adminTool.list-of-hotels.popup.buttons.cancel" | i18next}}'></b-button>

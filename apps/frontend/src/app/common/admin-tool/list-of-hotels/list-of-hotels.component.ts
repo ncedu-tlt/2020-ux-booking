@@ -15,7 +15,7 @@ import {
   TableConfig
 } from '../../../models/table.model';
 import { HotelDataService } from '../../../services/hotel-data.service';
-import { ListOfHotelPopupComponent } from '../list-of-hotel-popup/list-of-hotel-popup.component';
+import { HotelCreationPopupComponent } from '../hotel-creation-popup/hotel-creation-popup.component';
 import { Router } from '@angular/router';
 import { I18NEXT_SERVICE, ITranslationService } from 'angular-i18next';
 @Component({
@@ -40,7 +40,7 @@ export class ListOfHotelsComponent implements OnInit {
     buttons: [ButtonIconTypesEnum.edit, ButtonIconTypesEnum.delete]
   };
 
-  @ViewChild(ListOfHotelPopupComponent) popup: ListOfHotelPopupComponent;
+  @ViewChild(HotelCreationPopupComponent) popup: HotelCreationPopupComponent;
 
   constructor(
     @Inject(I18NEXT_SERVICE) private i18NextService: ITranslationService,
@@ -77,12 +77,11 @@ export class ListOfHotelsComponent implements OnInit {
   }
 
   public buttonClicked(event: TableButtonClick): void {
+    const id: string = event.item.id;
     if (event.buttonType === ButtonIconTypesEnum.delete) {
-      const id = event.item.id;
       this.deleteHotel(id);
     }
     if (event.buttonType === ButtonIconTypesEnum.edit) {
-      const id = event.item.id;
       this.router.navigate(['/admin-tool/hotel/', id]);
     }
   }
