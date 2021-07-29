@@ -128,6 +128,11 @@ export class SelectorComponent {
   addItem(): void {
     this.itemList.push(this.value);
     this.isNotFound = true;
+    if (!this.isMultiMode) {
+      this.selectedItems = [];
+    }
+    this.selectedItems.push(this.value);
+    this.handleClick.emit(this.selectedItems);
   }
 
   isItemSelected(item: string): boolean {

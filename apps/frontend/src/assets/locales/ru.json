@@ -16,7 +16,7 @@
       "enter": "Вход"
     }
   },
-  "hotelCard": {
+   "hotelCard": {
     "reviews": "отзыв(-а, -ов)",
     "freeCancellation": "Бесплатная отмена бронирования",
     "price": "Мин. цена от",
@@ -81,44 +81,6 @@
   "fileSelector": {
     "fileNotSelected": "Файл не выбран"
   },
-  "adminTool": {
-    "hotelForm": {
-      "tabs": {
-        "nutrition": "Питание",
-        "distances": "Расстояния",
-        "optional": "Дополнительно",
-        "hotelRooms": "Номера",
-        "photo": "Фотографии",
-        "comments": "Комментарии",
-        "reviews": "Отзывы"
-      },
-      "mainInfo": {
-        "title": "Main information",
-        "name": "Название",
-        "serviceType": "Вид сервиса",
-        "country": "Страна",
-        "address": "Адрес",
-        "description": "Описание",
-        "paymentMethod": "Способ оплаты",
-        "city": "Город",
-        "starClassification": "Звездная классификация",
-        "save": "Сохранить",
-        "publish": "Опубликовать",
-        "cancel": "Отмена",
-        "currency": "Валюта"
-      },
-      "buttons": {
-        "cancel": "Отмена",
-        "save": "Сохранить"
-      }
-    }
-  },
-  "placeholder": {
-    "list": "Выберите из списка",
-    "country": "Введите страну",
-    "address": "Введите адрес",
-    "description": "Введите описание"
-  },
 
   "savePhotoComponent": {
     "title": "Фотографии",
@@ -132,6 +94,7 @@
       "addingNumber": "Добавление номера",
       "roomAmenities": "Удобства в номере",
       "photo": "Фотографии",
+      "listTitle": "Номера",
       "mainInfo": {
         "generalInformation": "Общая информация",
         "roomType": "Тип номера",
@@ -145,6 +108,9 @@
       "conveniencesInfo": {
         "title": "Название",
         "price": "Цена, Р/сутки",
+        "currencyTitle": "Стоимость",
+        "countTitle": "Кол-во мест",
+        "currency": "Р/сутки",
         "icon": "Иконка",
         "titlePlaceholder": "Укажите название",
         "pricePlaceholder": "Укажите цену"
@@ -154,9 +120,19 @@
         "minLength": "Не достигнуто минимальное количество символов",
         "maxLength": "Не достигнуто максимальное количество символов"
       },
-      "buttonAdd": "Добавить",
-      "buttonSave": "Сохранить",
-      "buttonCancellation": "Отмена"
+      "placeholder": {
+        "list": "Выберите из списка",
+        "country": "Введите страну",
+        "description": "Введите описание",
+        "address": "Введите адрес"
+      },
+      "buttons": {
+        "add": "Добавить",
+        "addRooms": "Добавить номер",
+        "save": "Сохранить",
+        "cancel": "Отмена"
+      }
     }
+
   }
 }

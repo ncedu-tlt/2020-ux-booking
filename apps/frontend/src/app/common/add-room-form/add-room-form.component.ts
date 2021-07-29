@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { HotelDataService } from '../../services/hotel-data.service';
+import { NotificationTypesEnum } from '../../enums/notification-types.enum';
+import { I18NEXT_SERVICE, ITranslationService } from 'angular-i18next';
 
 @Component({
   selector: 'b-add-room-form',
@@ -15,14 +16,12 @@ export class AddRoomFormComponent implements OnInit {
   photos: File[] = [];
   amenitiesPhotos: File[] = [];
   typeRoomData: string[];
-  typeBadData: string[];
+  typeBadData = [];
   id: string;
-
-  constructor(
-    private http: HttpClient,
-    private route: ActivatedRoute,
-    private HotelDataService: HotelDataService
-  ) {}
+  roomObject;
+  isDetectError = false;
+  NotificationTypesEnum: typeof NotificationTypesEnum = NotificationTypesEnum;
+  errorMessage: string;
 
   formRoom = new FormGroup({
     price: new FormControl(null, [
@@ -87,8 +86,10 @@ export class AddRoomFormComponent implements OnInit {
   }
 
   setSoloIcon(image: File): void {
+    if (this.photos[0] === undefined) {
+      delete this.photos[0];
+    }
     this.photos.push(image);
-    console.log(this.photos);
   }
 
   addNewPhotos(): void {
@@ -97,16 +98,13 @@ export class AddRoomFormComponent implements OnInit {
 
   get amenitiesRoomData() {
     const amenitiesRoomArray = [];
-    for (const data of this.amenitiesInformation.controls) {
+    this.amenitiesInformation.controls.forEach((item, i) => {
       amenitiesRoomArray.push({
-        name: data.value.name,
-        price: data.value.price,
-        icon: undefined
+        name: item.value.name,
+        price: item.value.price,
+        icon: this.amenitiesPhotos[i]
       });
-    }
-    for (let i = 0; i < amenitiesRoomArray.length; i++) {
-      amenitiesRoomArray[i].icon = this.amenitiesPhotos[i];
-    }
+    });
     return amenitiesRoomArray;
   }
 
@@ -119,7 +117,9 @@ export class AddRoomFormComponent implements OnInit {
   }
 
   setTypeBadData(typeBad: string[]): void {
-    this.typeBadData = typeBad;
+    for (const bed of typeBad) {
+      this.typeBadData.push({ name: bed });
+    }
   }
 
   getTypeBadData(): string[] {
@@ -140,38 +140,59 @@ export class AddRoomFormComponent implements OnInit {
     }
   }
 
-  saveRoomInformation() {
-    const API_URL = '/api/hotels/1cdd3f84-188e-4fbe-9e98-ee1cd186930c/rooms';
-    if (this.isConstructorFormOpened) {
-      const roomData = {
-        name: this.getTypeRoomData()[0],
-        price: this.formRoom.value.price,
-        count: this.formRoom.value.countRoom,
-        description: this.formRoom.value.description,
-        capacity: this.formRoom.value.capacity,
-        beds: this.getTypeBadData(),
-        amenities: this.amenitiesRoomData,
-        photos: this.photos
-      };
-      this.roomData.push(roomData);
-      this.isConstructorFormOpened = false;
+  showError(errorMessage: string): void {
+    this.isDetectError = true;
+    if (errorMessage === 'Unauthorized') {
+      this.errorMessage = this.i18NextService.t(
+        'authorization.errorMessage.unauthorized'
+      );
     } else {
-      this.HotelDataService.postHotelRooms(API_URL, this.roomData).subscribe(
-        data => {
-          console.log(data);
-        },
-        error => {
-          console.log(error);
-        }
+      this.errorMessage = this.i18NextService.t(
+        'authorization.errorMessage.default'
       );
     }
+  }
+
+  closeNotification(): void {
+    this.isDetectError = false;
+  }
+
+  saveRoomInformation() {
+    const API_URL = '/api/hotels/' + this.id + '/rooms';
+    this.roomObject = {
+      name: this.getTypeRoomData()[0],
+      price: this.formRoom.value.price,
+      count: this.formRoom.value.countRoom,
+      description: this.formRoom.value.description,
+      capacity: this.formRoom.value.capacity,
+      beds: this.getTypeBadData(),
+      amenities: this.amenitiesRoomData,
+      photos: this.photos
+    };
+    this.roomData.push(this.roomObject);
+    this.HotelDataService.postHotelRooms(API_URL, this.roomObject).subscribe(
+      () => {
+        //
+      },
+      error => {
+        this.showError(error.statusText);
+      }
+    );
+    this.isConstructorFormOpened = false;
+  }
+
+  constructor(
+    private route: ActivatedRoute,
+    private HotelDataService: HotelDataService,
+    @Inject(I18NEXT_SERVICE) private i18NextService: ITranslationService
+  ) {
+    this.addNewConveniences();
+    this.addNewPhotos();
   }
 
   ngOnInit(): void {
     this.route.parent.params.subscribe(params => {
       this.id = params?.id || '';
     });
-    this.addNewConveniences();
-    this.addNewPhotos();
   }
 }

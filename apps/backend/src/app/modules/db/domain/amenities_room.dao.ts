@@ -10,9 +10,13 @@ export class AmenitiesRoom {
   @Column({ type: 'decimal' })
   price: number;
 
-  @ManyToOne(type => Room, room => room.amenitiesRoom)
+  @ManyToOne(type => Room, room => room.amenitiesRoom, {
+    onDelete: 'CASCADE'
+  })
   room: Room;
 
-  @ManyToOne(type => Amenities, amenity => amenity.amenitiesRooms)
+  @ManyToOne(type => Amenities, amenity => amenity.amenitiesRooms, {
+    onDelete: 'CASCADE'
+  })
   amenities: Amenities;
 }
