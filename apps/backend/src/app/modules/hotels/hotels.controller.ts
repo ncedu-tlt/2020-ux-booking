@@ -337,4 +337,11 @@ export class HotelsController {
       name: hotelDelete.name
     };
   }
+  @Get(':id/name')
+  async getNameById(@Param() params): Promise<string> {
+    const hotel: Hotel = await this.hotelsRepository.findOne(params.name, {
+      relations: RELATIONS_GET_HOTEL_ID
+    });
+    return hotel.name;
+  }
 }
