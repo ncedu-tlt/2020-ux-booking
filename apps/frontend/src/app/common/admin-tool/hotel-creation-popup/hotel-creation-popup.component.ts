@@ -12,8 +12,7 @@ import { HotelDataService } from '../../../services/hotel-data.service';
 @Component({
   selector: 'b-hotel-creation-popup',
   templateUrl: './hotel-creation-popup.component.html',
-  styleUrls: ['./hotel-creation-popup.component.less'],
-  changeDetection: ChangeDetectionStrategy.Default
+  styleUrls: ['./hotel-creation-popup.component.less']
 })
 export class HotelCreationPopupComponent {
   @Output()
@@ -40,6 +39,7 @@ export class HotelCreationPopupComponent {
 
   public closePopup(): void {
     this.popupVisible = false;
+    this.addHotelForm.reset();
   }
 
   public addHotel(): void {

@@ -21,8 +21,7 @@ import { I18NEXT_SERVICE, ITranslationService } from 'angular-i18next';
 @Component({
   selector: 'b-list-of-hotels',
   templateUrl: './list-of-hotels.component.html',
-  styleUrls: ['./list-of-hotels.component.less'],
-  changeDetection: ChangeDetectionStrategy.Default
+  styleUrls: ['./list-of-hotels.component.less']
 })
 export class ListOfHotelsComponent implements OnInit {
   config: TableConfig;

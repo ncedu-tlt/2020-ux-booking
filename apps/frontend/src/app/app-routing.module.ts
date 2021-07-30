@@ -19,6 +19,11 @@ const routes: Routes = [
     component: HotelPageComponent,
     children: [
       {
+        path: '', 
+        redirectTo: 'main-info', 
+        pathMatch: 'full'
+      },
+      {
         path: 'main-info',
         component: MainInfoComponent
       },
