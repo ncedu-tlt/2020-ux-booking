@@ -46,8 +46,8 @@
         "country": "Country",
         "city": "City",
         "namePlaceholder": "Enter a name",
-        "countryPlaceholder": "Enter a name",
-        "cityPlaceholder": "Enter a name"
+        "countryPlaceholder": "Enter a country",
+        "cityPlaceholder": "Enter a city"
       },
       "buttons": {
         "addHotel": "Add hotel",
