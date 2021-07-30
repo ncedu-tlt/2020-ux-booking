@@ -1,0 +1,49 @@
+<div *ngIf='popupVisible' class="popup">
+    <div class='popup__content'>
+      <div class='popup__heading'>
+        <div class='popup__heading-title'>
+          <p class='popup__heading-title'>{{"adminTool.list-of-hotels.popup.title" | i18next}}</p>
+        </div>
+        <span (click)='closePopup()' class="popup__close">+</span>
+      </div>
+      <div class='popup__body'>
+        <form [formGroup]='addHotelForm'>
+          <div>
+            <b-input-field formControlName='hotelName' title='{{"adminTool.list-of-hotels.popup.input.name" | i18next}}'
+              placeholder='{{"adminTool.list-of-hotels.popup.input.namePlaceholder" | i18next}}'>
+            </b-input-field>
+          </div>
+          <div
+            *ngIf="
+              addHotelForm.controls['hotelName'].invalid  &&
+              (addHotelForm.controls['hotelName'].dirty ||
+              addHotelForm.controls['hotelName'].touched)">
+            <span class='popup__input-error-text'
+                    *ngIf="addHotelForm.controls['hotelName'].errors.required">
+                {{"adminTool.list-of-hotels.popup.errorMessage.required" | i18next}}
+            </span>
+            <span class='popup__input-error-text'
+                    *ngIf="addHotelForm.controls['hotelName'].errors.minlength">
+                {{"adminTool.list-of-hotels.popup.errorMessage.minLength" | i18next}}
+            </span>
+            <span class='popup__input-error-text'
+                    *ngIf="addHotelForm.controls['hotelName'].errors.maxlength">
+                {{"adminTool.list-of-hotels.popup.errorMessage.maxLength" | i18next}}
+            </span>
+          </div>
+        </form>
+      </div>
+      <div class='popup__footer'>
+        <div>
+          <b-button (click)='addHotel()' text='{{"adminTool.list-of-hotels.popup.buttons.add" | i18next}}' 
+                      [isDisabled]='!(addHotelForm.valid && addHotelForm.dirty)'>
+          </b-button>
+        </div>
+        <div>
+          <b-button type= "flat" (click)='closePopup()' 
+                      text='{{"adminTool.list-of-hotels.popup.buttons.cancel" | i18next}}'>
+          </b-button>
+        </div>
+      </div>
+    </div>
+</div>
