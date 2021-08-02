@@ -18,10 +18,12 @@ export class HotelDataService {
   getHotelsById(id: string): Observable<HotelDto> {
     return this.http.get<HotelDto>('/api/hotels/' + id);
   }
-  patchChangeHotelMainInfo(body: HotelDto): Observable<HotelDto> {
-    return this.http.patch<HotelDto>(':id/mainInfo', body);
+  patchChangeHotelMainInfo(id: HotelDto, body: HotelDto): Observable<HotelDto> {
+    return this.http.patch<HotelDto>('/api/hotels/' + id + '/mainInfo', body);
   }
   getNameById(id: string): Observable<string> {
-    return this.http.get<string>('/api/hotels/' + id + '/name/');
+    return this.http.get('/api/hotels/' + id + '/name', {
+      responseType: 'text'
+    });
   }
 }

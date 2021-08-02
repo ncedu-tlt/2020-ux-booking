@@ -339,7 +339,7 @@ export class HotelsController {
   }
   @Get(':id/name')
   async getNameById(@Param() params): Promise<string> {
-    const hotel: Hotel = await this.hotelsRepository.findOne(params.name, {
+    const hotel: Hotel = await this.hotelsRepository.findOne(params.id, {
       relations: RELATIONS_GET_HOTEL_ID
     });
     return hotel.name;
