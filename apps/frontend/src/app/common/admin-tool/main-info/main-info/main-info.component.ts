@@ -15,7 +15,7 @@ export class MainInfoComponent implements OnInit {
   public formG: FormGroup;
   public pageForm: HotelDto;
   public formId: string;
-  public id: HotelDto;
+  public id: string;
   constructor(
     private fb: FormBuilder,
     private hotelDataService: HotelDataService,
@@ -61,7 +61,7 @@ export class MainInfoComponent implements OnInit {
         });
     });
   }
-  changeHotelMainInfo(id: HotelDto, pageForm: HotelDto) {
+  changeHotelMainInfo(pageForm: HotelDto) {
     this.pageForm.description = this.formG.get('textarea').value;
     this.pageForm.name = this.formG.get('name').value;
     this.pageForm.serviceType = this.formG.get('serviceType').value;
@@ -72,7 +72,7 @@ export class MainInfoComponent implements OnInit {
     this.pageForm.currency = this.formG.get('currency').value;
     this.pageForm.freeCancellation = this.formG.get('checkbox').value;
     this.hotelDataService
-      .patchChangeHotelMainInfo(this.id, this.pageForm)
+      .patchChangeHotelMainInfo(this.formId, this.pageForm)
       .subscribe((pageForm: HotelDto) => {
         this.pageForm = pageForm;
       });

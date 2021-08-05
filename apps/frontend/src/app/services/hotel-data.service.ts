@@ -18,7 +18,7 @@ export class HotelDataService {
   getHotelsById(id: string): Observable<HotelDto> {
     return this.http.get<HotelDto>('/api/hotels/' + id);
   }
-  patchChangeHotelMainInfo(id: HotelDto, body: HotelDto): Observable<HotelDto> {
+  patchChangeHotelMainInfo(id: string, body: HotelDto): Observable<HotelDto> {
     return this.http.patch<HotelDto>('/api/hotels/' + id + '/mainInfo', body);
   }
   getNameById(id: string): Observable<string> {

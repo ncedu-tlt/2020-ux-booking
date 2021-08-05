@@ -208,13 +208,13 @@ export class HotelsService {
   ): Promise<HotelDto> {
     const hotel: Hotel = await this.hotelsRepository.findOne(paramsId);
 
-    const serviceType: ServiceTypeDto = await this.serviceTypeRepository.manager.save(
-      ServiceType,
-      {
+    let serviceType: ServiceTypeDto;
+    if (hotelDto.serviceType?.name) {
+      serviceType = await this.serviceTypeRepository.manager.save(ServiceType, {
         id: hotelDto.serviceType?.id ?? undefined,
         name: hotelDto.serviceType.name
-      }
-    );
+      });
+    }
 
     const currency: CurrencyDto = await this.currencyRepository.manager.save(
       Currency,
