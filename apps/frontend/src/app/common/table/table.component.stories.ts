@@ -62,9 +62,6 @@ normal.args = {
       city: 'Город'
     },
 
-    buttons: [
-      { type: ButtonIconTypesEnum.edit },
-      { type: ButtonIconTypesEnum.delete }
-    ]
+    buttons: [ButtonIconTypesEnum.edit, ButtonIconTypesEnum.delete]
   }
 };

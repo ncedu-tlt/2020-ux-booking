@@ -14,7 +14,7 @@
       </td>
       <td class='table__body-cell'>
         <div class="table__body-icon">
-          <b-button-icon class="table__icon-item" *ngFor='let button of config.buttons' (click)='buttonClick(button.type, item)' [type] = button.type></b-button-icon>
+          <b-button-icon class="table__icon-item" *ngFor='let button of config.buttons' (click)='buttonClick(button, item)' [type] = button></b-button-icon>
         </div>
       </td>
     </tr>

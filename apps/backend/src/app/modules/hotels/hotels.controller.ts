@@ -81,9 +81,9 @@ export class HotelsController {
   ): Promise<void> {
     await this.hotelsRepository
       .find({
-        relations: RELATIONS_GET_HOTELS,
+        relations: RELATIONS_GET_HOTELS /*,
         skip: range,
-        take: take
+        take: take*/
       })
       .then(hotelsList => {
         res.status(HttpStatus.OK).send(
@@ -329,8 +329,9 @@ export class HotelsController {
 
   @Delete(':id')
   async deleteHotel(@Param() params): Promise<HotelDto> {
-    await this.hotelsRepository.delete(params.id);
     const hotelDelete: Hotel = await this.hotelsRepository.findOne(params.id);
+    if (!hotelDelete) return {};
+    await this.hotelsRepository.delete(params.id);
 
     return {
       id: hotelDelete.id,

@@ -2,6 +2,7 @@ import { AddressModel } from './address.model';
 import { ServiceType } from './hotel-service.model';
 
 export type HotelInfoModel = {
+  id: string;
   name: string;
   hotelImgUrl: string;
   description: string;
