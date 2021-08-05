@@ -13,7 +13,17 @@ export class HotelDataService {
   }
 
   getHotel(id): Observable<HotelDto> {
-    return this.http.get<HotelDto>('http://localhost:3333/api/hotels/' + id);
+    return this.http.get<HotelDto>('/api/hotels/' + id);
+  }
+
+  addHotel(name: string): Observable<HotelDto> {
+    return this.http.post<HotelDto>('/api/hotels/', {
+      name: name
+    });
+  }
+
+  deleteHotel(id: string): Observable<HotelDto> {
+    return this.http.delete<HotelDto>('/api/hotels/' + id);
   }
   getHotelsById(id: string): Observable<HotelDto> {
     return this.http.get<HotelDto>('/api/hotels/' + id);
