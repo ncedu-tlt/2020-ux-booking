@@ -90,6 +90,42 @@
     "save": "Сохранить"
   },
   "adminTool": {
+    "list-of-hotels": {
+      "title": "Отели",
+      "input": {
+        "name": "Название",
+        "country": "Страна",
+        "city": "Город",
+        "namePlaceholder": "Введите название",
+        "countryPlaceholder": "Введите название",
+        "cityPlaceholder": "Введите название"
+      },
+      "buttons": {
+        "addHotel": "Добавить отель",
+        "find": "Найти"
+      },
+      "popup": {
+        "title": "Введите название отеля",
+        "input": {
+          "name": "Название",
+          "namePlaceholder": "Введите название"
+        },
+        "buttons": {
+          "add": "Добавить",
+          "cancel": "Отмена"
+        },
+        "errorMessage": {
+          "required": "Поле обязательно для ввода",
+          "minLength": "Не достигнуто минимальное количество символов",
+          "maxLength": "Превышено максимальное количество символов"
+        },
+        "table": {
+          "name": "Имя",
+          "country": "Страна",
+          "city": "Город"
+        }
+      }
+    },
     "hotelForm": {
       "addingNumber": "Добавление номера",
       "roomAmenities": "Удобства в номере",
@@ -132,7 +168,26 @@
         "save": "Сохранить",
         "cancel": "Отмена"
       }
-    }
+    },
 
+      "buttons": {
+        "cancel": "Отмена",
+        "save": "Сохранить",
+        "find": "Найти"
+      }
+      }
+  },
+  "placeholder": {
+    "list": "Выберите из списка",
+    "country": "Введите страну",
+    "address": "Введите адрес",
+    "description": "Введите описание"
+  },
+  "savePhotoComponent": {
+    "title": "Фотографии",
+    "mainPhoto": "Главная фотография",
+    "minorPhoto": "Фотографии",
+    "add": "Добавить",
+    "save": "Сохранить"
   }
 }
