@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, EventEmitter, OnInit, Output } from '@angular/core';
 import { HotelDataService } from '../../services/hotel-data.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -12,6 +12,8 @@ export class AddRoomListComponent implements OnInit {
   roomData;
   id: string;
 
+  @Output() handleClick: EventEmitter<string> = new EventEmitter();
+
   constructor(
     private route: ActivatedRoute,
     private HotelDataService: HotelDataService
@@ -21,9 +23,11 @@ export class AddRoomListComponent implements OnInit {
     this.roomData.splice(id, 1);
     this.HotelDataService.deleteHotelRoom(this.id, idRoom).subscribe();
   }
+
   getCount(id) {
     return new Array(this.roomData[id].count);
   }
+
   ngOnInit(): void {
     this.route.parent.params.subscribe(params => {
       this.id = params?.id || '';
@@ -31,5 +35,9 @@ export class AddRoomListComponent implements OnInit {
     this.HotelDataService.getHotelRooms(this.id).subscribe(data => {
       this.roomData = data;
     });
+  }
+
+  pathRoom(room: string) {
+    this.handleClick.emit(room);
   }
 }

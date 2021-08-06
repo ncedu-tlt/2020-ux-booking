@@ -101,10 +101,12 @@ export class HotelsService {
   }
 
   async createRoom(hotel: Hotel, roomDto: RoomDto, photos): Promise<RoomDto> {
+    console.log(roomDto);
     const room: Room = new Room();
     room.name = roomDto.name;
     room.price = roomDto.price;
     room.count = roomDto.count;
+    room.beds = roomDto.beds;
     room.description = roomDto.description;
     room.capacity = roomDto.capacity;
     room.hotel = Promise.resolve(hotel);

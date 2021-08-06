@@ -145,8 +145,9 @@ export class HotelsController {
     @Body() roomDto: RoomDto,
     @UploadedFiles() photos
   ): Promise<RoomDto> {
+    console.log(roomDto);
     const hotel: Hotel = await this.hotelsRepository.findOne(params.id);
-    return await this.hotelsService.createRoom(hotel, roomDto, hotel.photos);
+    return await this.hotelsService.createRoom(hotel, roomDto, roomDto.photos);
   }
 
   @Patch(':id/rooms/:roomId')

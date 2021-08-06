@@ -12,6 +12,7 @@ import { BookingDetail } from './booking_detail.dao';
 import { Hotel } from './hotel.dao';
 import { Bed } from './bed.dao';
 import { AmenitiesRoom } from './amenities_room.dao';
+import { BedsDto } from '@booking/models/beds.dto';
 
 @Entity('rooms')
 export class Room {
@@ -41,7 +42,7 @@ export class Room {
     onDelete: 'RESTRICT'
   })
   @JoinTable()
-  beds: Bed[];
+  beds: BedsDto[];
 
   @ManyToOne(type => Hotel, hotel => hotel.rooms, {
     onDelete: 'CASCADE'

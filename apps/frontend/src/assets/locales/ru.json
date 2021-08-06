@@ -16,7 +16,7 @@
       "enter": "Вход"
     }
   },
-   "hotelCard": {
+  "hotelCard": {
     "reviews": "отзыв(-а, -ов)",
     "freeCancellation": "Бесплатная отмена бронирования",
     "price": "Мин. цена от",
@@ -80,14 +80,6 @@
   },
   "fileSelector": {
     "fileNotSelected": "Файл не выбран"
-  },
-
-  "savePhotoComponent": {
-    "title": "Фотографии",
-    "mainPhoto": "Главная фотография",
-    "minorPhoto": "Фотографии",
-    "add": "Добавить",
-    "save": "Сохранить"
   },
   "adminTool": {
     "list-of-hotels": {
@@ -168,14 +160,7 @@
         "save": "Сохранить",
         "cancel": "Отмена"
       }
-    },
-
-      "buttons": {
-        "cancel": "Отмена",
-        "save": "Сохранить",
-        "find": "Найти"
-      }
-      }
+    }
   },
   "placeholder": {
     "list": "Выберите из списка",
@@ -189,5 +174,10 @@
     "minorPhoto": "Фотографии",
     "add": "Добавить",
     "save": "Сохранить"
+  },
+  "buttons": {
+    "cancel": "Отмена",
+    "save": "Сохранить",
+    "find": "Найти"
   }
 }

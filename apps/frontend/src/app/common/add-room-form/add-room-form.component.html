@@ -6,10 +6,14 @@
     (closeEvent)='closeNotification()'>
   </b-notification>
   <div *ngIf='!isConstructorFormOpened'>
-    <b-add-room-list [roomData]='roomData'></b-add-room-list>
+    <b-add-room-list
+      (handleClick)='openRedactorForm($event)'
+      [roomData]='roomData'>
+    </b-add-room-list>
     <div class='add-room-form__add-button'>
       <b-button
         [hasIcon]='true'
+
         text='{{"adminTool.hotelForm.buttons.addRooms" | i18next}}'
         type='secondary'
         (click)='openForm()'

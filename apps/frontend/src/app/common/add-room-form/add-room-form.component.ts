@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { HotelDataService } from '../../services/hotel-data.service';
 import { NotificationTypesEnum } from '../../enums/notification-types.enum';
 import { I18NEXT_SERVICE, ITranslationService } from 'angular-i18next';
+import { RoomDto } from '@booking/models/room.dto';
 
 @Component({
   selector: 'b-add-room-form',
@@ -12,6 +13,9 @@ import { I18NEXT_SERVICE, ITranslationService } from 'angular-i18next';
 })
 export class AddRoomFormComponent implements OnInit {
   isConstructorFormOpened = false;
+  roomDataFromApi: RoomDto;
+  roomPatchData: string;
+  isPatchMethod: boolean;
   roomData = [];
   photos: File[] = [];
   amenitiesPhotos: File[] = [];
@@ -117,12 +121,15 @@ export class AddRoomFormComponent implements OnInit {
   }
 
   setTypeBadData(typeBad: string[]): void {
+    this.typeBadData = [];
     for (const bed of typeBad) {
       this.typeBadData.push({ name: bed });
     }
+    console.log(this.typeBadData);
   }
 
   getTypeBadData(): string[] {
+    console.log(this.typeBadData);
     return this.typeBadData;
   }
 
@@ -179,6 +186,25 @@ export class AddRoomFormComponent implements OnInit {
       }
     );
     this.isConstructorFormOpened = false;
+  }
+
+  openRedactorForm(id: string) {
+    this.isPatchMethod = true;
+    const API_URL = '/api/hotels/' + this.id + '/rooms/' + id;
+    this.HotelDataService.getRoom(API_URL).subscribe(data => {
+      // this.roomDataFromApi = data;
+      this.isConstructorFormOpened = true;
+      this.setData(data);
+    });
+  }
+
+  setData(data): void {
+    this.formRoom.controls.price.setValue(+data.price);
+    this.formRoom.controls.capacity.setValue(+data.capacity);
+    this.formRoom.controls.countRoom.setValue(+data.count);
+    this.formRoom.controls.description.setValue(data.description);
+    console.log(this.formRoom.controls);
+    // this.formRoom.controls.name.setValue(+data.name);
   }
 
   constructor(
