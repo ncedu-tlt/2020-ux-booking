@@ -90,7 +90,7 @@
         "name": "Name",
         "serviceType": "Service type",
         "country": "Country",
-        "address": "Address",
+        "street": "Street",
         "description": "Description",
         "paymentMethod": "Payment method",
         "city": "City",
@@ -98,7 +98,8 @@
         "save": "Save",
         "publish": "Publish",
         "cancel": "Cancel",
-        "currency": "Currency"
+        "currency": "Currency",
+        "houseNumber": "House Number"
       },
       "buttons": {
         "cancel": "Cancel",

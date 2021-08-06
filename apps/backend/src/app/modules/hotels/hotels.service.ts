@@ -216,13 +216,19 @@ export class HotelsService {
       });
     }
 
-    const currency: CurrencyDto = await this.currencyRepository.manager.save(
-      Currency,
-      {
+    let currency: CurrencyDto;
+    if (hotelDto.currency?.name) {
+      currency = await this.currencyRepository.manager.save(Currency, {
         id: hotelDto.currency?.id ?? undefined,
         name: hotelDto.currency.name
-      }
-    );
+      });
+    }
+
+    const addressExist: boolean =
+      hotelDto.address.city &&
+      hotelDto.address.country &&
+      hotelDto.address.street &&
+      !!hotelDto.address.number;
 
     await this.hotelsRepository.manager.save(Hotel, {
       id: paramsId ?? undefined,
@@ -231,26 +237,27 @@ export class HotelsService {
       bookingPolicy: hotelDto.bookingPolicy,
       stars: hotelDto.stars,
       minPrice: hotelDto.minPrice,
-      address: await this.addressRepository.manager.save(Address, {
-        id: hotelDto.address?.id ?? undefined,
-        street: hotelDto.address.street,
-        number: hotelDto.address.number,
-        part: hotelDto.address.part,
-        city: await this.cityRepository.manager.save(City, {
-          id: hotelDto.address?.cityId ?? undefined,
-          name: hotelDto.address.city,
-          country: await this.countryRepository.manager.save(Country, {
-            id: hotelDto.address?.countryId ?? undefined,
-            name: hotelDto.address.country
-          })
-        }),
-        hotels: Promise.resolve(hotel)
-      }),
+      address: !addressExist
+        ? null
+        : await this.addressRepository.manager.save(Address, {
+            id: hotelDto.address?.id ?? undefined,
+            street: hotelDto.address.street,
+            number: hotelDto.address.number,
+            part: hotelDto.address.part,
+            city: await this.cityRepository.manager.save(City, {
+              id: hotelDto.address?.cityId ?? undefined,
+              name: hotelDto.address.city,
+              country: await this.countryRepository.manager.save(Country, {
+                id: hotelDto.address?.countryId ?? undefined,
+                name: hotelDto.address.country
+              })
+            }),
+            hotels: Promise.resolve(hotel)
+          }),
       freeCancellation: hotelDto.freeCancellation,
       serviceType: serviceType,
       currency: currency
     });
-
     const updatedHotel: Hotel = await this.hotelsRepository.findOne(paramsId, {
       relations: RELATIONS_GET_HOTEL_ID
     });

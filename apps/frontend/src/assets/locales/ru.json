@@ -133,7 +133,7 @@
         "name": "Название",
         "serviceType": "Вид сервиса",
         "country": "Страна",
-        "address": "Адрес",
+        "street": "Улица",
         "description": "Описание",
         "paymentMethod": "Способ оплаты",
         "city": "Город",
@@ -141,7 +141,8 @@
         "save": "Сохранить",
         "publish": "Опубликовать",
         "cancel": "Отмена",
-        "currency": "Валюта"
+        "currency": "Валюта",
+        "houseNumber": "Номер дома"
       },
       "buttons": {
         "cancel": "Отмена",

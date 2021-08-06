@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HotelDto } from '@booking/models/hotel.dto';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HotelDataService } from '../../../../services/hotel-data.service';
 
 @Component({
@@ -23,13 +23,14 @@ export class MainInfoComponent implements OnInit {
   ) {
     this.formG = fb.group({
       textarea: '',
-      name: '',
+      name: ['', [Validators.required]],
       serviceType: '',
-      country: '',
-      address: '',
+      country: ['', [Validators.required]],
+      street: ['', [Validators.required]],
+      houseNumber: ['', [Validators.required]],
       description: '',
       paymentMethod: '',
-      city: '',
+      city: ['', [Validators.required]],
       starClassification: '',
       currency: '',
       checkbox: ''
@@ -51,7 +52,8 @@ export class MainInfoComponent implements OnInit {
             name: this.pageForm.name,
             serviceType: this.pageForm.serviceType,
             country: this.pageForm.address.country,
-            address: this.pageForm.address.street,
+            street: this.pageForm.address.street,
+            houseNumber: this.pageForm.address.number,
             paymentMethod: this.pageForm,
             city: this.pageForm.address.city,
             starClassification: this.pageForm.stars,
@@ -61,12 +63,13 @@ export class MainInfoComponent implements OnInit {
         });
     });
   }
-  changeHotelMainInfo(pageForm: HotelDto) {
+  changeHotelMainInfo() {
     this.pageForm.description = this.formG.get('textarea').value;
     this.pageForm.name = this.formG.get('name').value;
     this.pageForm.serviceType = this.formG.get('serviceType').value;
     this.pageForm.address.country = this.formG.get('country').value;
-    this.pageForm.address.street = this.formG.get('address').value;
+    this.pageForm.address.street = this.formG.get('street').value;
+    this.pageForm.address.number = this.formG.get('houseNumber').value;
     this.pageForm.address.city = this.formG.get('city').value;
     this.pageForm.stars = this.formG.get('starClassification').value;
     this.pageForm.currency = this.formG.get('currency').value;

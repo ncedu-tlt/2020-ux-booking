@@ -6,10 +6,12 @@
 
     <div class='main-info__form-row'>
       <b-input-field  formControlName='name'
+                      required
                       [title]="'adminTool.hotelForm.mainInfo.name' | i18next"
                       [placeholder]="'adminTool.hotelForm.mainInfo.name' | i18next"
                       [isMandatory]='true'
-                      [isDisabled]='false' >
+                      [isDisabled]='false'
+                      >
 
       </b-input-field>
 
@@ -50,34 +52,47 @@
     <div class='main-info__form-row'>
 
       <b-input-field  formControlName='country'
+                      required
                       [title]="'adminTool.hotelForm.mainInfo.country' | i18next"
                       [placeholder]="'adminTool.hotelForm.mainInfo.country' | i18next"
                       [isMandatory]='true'
                       [isDisabled]='false'
+
       >
 
       </b-input-field>
 
 
       <b-input-field formControlName='city'
+                     required
                      [title]="'adminTool.hotelForm.mainInfo.city' | i18next"
                      [placeholder]="'adminTool.hotelForm.mainInfo.city' | i18next"
                      [isMandatory]='true'
                      [isDisabled]='false'
+
       >
       </b-input-field>
 
     </div>
     <div class='main-info__form-row'>
 
-      <b-input-field  formControlName='address'
-                      [title]="'adminTool.hotelForm.mainInfo.address' | i18next"
-                      [placeholder]="'adminTool.hotelForm.mainInfo.address' | i18next"
+      <b-input-field  formControlName='street'
+                      [title]="'adminTool.hotelForm.mainInfo.street' | i18next"
+                      [placeholder]="'adminTool.hotelForm.mainInfo.street' | i18next"
                       [isMandatory]='true'
                       [isDisabled]='false'
+                      required
       >
       </b-input-field>
 
+      <b-input-field  formControlName='houseNumber'
+                      [title]="'adminTool.hotelForm.mainInfo.houseNumber' | i18next"
+                      [placeholder]="'adminTool.hotelForm.mainInfo.houseNumber' | i18next"
+                      [isMandatory]='true'
+                      [isDisabled]='false'
+                      required
+      >
+      </b-input-field>
       <div class='main-info__form-field'>
 
         <!--        <b-checkbox formControlName='checkbox'-->
@@ -111,7 +126,7 @@
         </b-button>
       </div>
       <div class='main-info__form-button _flex-end'>
-        <b-button (click)='changeHotelMainInfo(pageForm)'  [text]="'adminTool.hotelForm.buttons.save' | i18next">
+        <b-button (click)='changeHotelMainInfo()'  [text]="'adminTool.hotelForm.buttons.save' | i18next">
         </b-button>
       </div>
     </div>
