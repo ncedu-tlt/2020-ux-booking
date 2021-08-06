@@ -1,4 +1,10 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import {
+  Component,
+  HostBinding,
+  Inject,
+  OnInit,
+  ViewEncapsulation
+} from '@angular/core';
 import { TabModel } from '../../../models/tab.model';
 import { ActivatedRoute } from '@angular/router';
 import { I18NEXT_SERVICE, ITranslationService } from 'angular-i18next';
@@ -8,9 +14,11 @@ import { HotelDto } from '@booking/models/hotel.dto';
 @Component({
   selector: 'b-hotel-page',
   templateUrl: './hotel-page.component.html',
-  styleUrls: ['./hotel-page.component.less']
+  styleUrls: ['./hotel-page.component.less'],
+  encapsulation: ViewEncapsulation.None
 })
 export class HotelPageComponent implements OnInit {
+  @HostBinding('class.hotel-page') hotelPage = true;
   tabs: TabModel[] = [];
   id: string;
   public nameId: string;

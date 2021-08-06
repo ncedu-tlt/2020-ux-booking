@@ -148,14 +148,14 @@
         "cancel": "Отмена",
         "save": "Сохранить",
         "find": "Найти"
+      },
+      "placeholder": {
+        "list": "Выберите из списка",
+        "country": "Введите страну",
+        "address": "Введите адрес",
+        "description": "Введите описание"
       }
     }
-  },
-  "placeholder": {
-    "list": "Выберите из списка",
-    "country": "Введите страну",
-    "address": "Введите адрес",
-    "description": "Введите описание"
   },
   "savePhotoComponent": {
     "title": "Фотографии",

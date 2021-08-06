@@ -12,7 +12,7 @@ import { StarSelectorComponent } from './star-selector/star-selector.component';
 import { ButtonIconComponent } from './icon/button-icon.component';
 import { PageTitleComponent } from './page-title/page-title.component';
 import { InputFieldComponent } from './input-field/input-field.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BannerComponent } from './banner/banner.component';
 import { LinkComponent } from './link/link.component';
 import { HotelCardComponent } from './hotel-card/hotel-card.component';
@@ -40,7 +40,8 @@ import { FormSavingPhotosComponent } from './form-saving-photos/form-saving-phot
     I18NextModule,
     ReactiveFormsModule,
     RouterModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   declarations: [
     ButtonComponent,

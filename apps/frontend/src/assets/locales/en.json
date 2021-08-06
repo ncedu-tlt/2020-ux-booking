@@ -101,15 +101,15 @@
         "currency": "Currency",
         "houseNumber": "House Number"
       },
-      "buttons": {
-        "cancel": "Cancel",
-        "save": "Save"
-      },
       "placeholder": {
         "list": "Select from the list",
         "country": "Enter a country",
         "address": "Enter an address",
         "description": "Enter a description"
+      },
+      "buttons": {
+        "cancel": "Cancel",
+        "save": "Save"
       },
       "authorization": {
         "title": "Authorization",

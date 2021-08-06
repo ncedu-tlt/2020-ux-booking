@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostBinding, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HotelDto } from '@booking/models/hotel.dto';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -7,9 +7,11 @@ import { HotelDataService } from '../../../../services/hotel-data.service';
 @Component({
   selector: 'b-main-info',
   templateUrl: './main-info.component.html',
-  styleUrls: ['./main-info.component.less']
+  styleUrls: ['./main-info.component.less'],
+  encapsulation: ViewEncapsulation.None
 })
 export class MainInfoComponent implements OnInit {
+  @HostBinding('class.main-info') mainInfo = true;
   @Input()
   value: string;
   public formG: FormGroup;
@@ -85,5 +87,8 @@ export class MainInfoComponent implements OnInit {
     this.formG.patchValue({
       starClassification: stars
     });
+  }
+  getStar(): number {
+    return this.formG.get('starClassification').value;
   }
 }
