@@ -229,7 +229,7 @@ export class HotelsService {
       hotelDto.address.country &&
       hotelDto.address.street &&
       !!hotelDto.address.number;
-
+console.log(addressExist);
     await this.hotelsRepository.manager.save(Hotel, {
       id: paramsId ?? undefined,
       name: hotelDto.name,
@@ -240,15 +240,17 @@ export class HotelsService {
       address: !addressExist
         ? null
         : await this.addressRepository.manager.save(Address, {
-            id: hotelDto.address?.id ?? undefined,
+            id: hotelDto.address?.id ? hotelDto.address?.id : null,
             street: hotelDto.address.street,
             number: hotelDto.address.number,
             part: hotelDto.address.part,
             city: await this.cityRepository.manager.save(City, {
-              id: hotelDto.address?.cityId ?? undefined,
+              id: hotelDto.address?.cityId ? hotelDto.address?.cityId : null,
               name: hotelDto.address.city,
               country: await this.countryRepository.manager.save(Country, {
-                id: hotelDto.address?.countryId ?? undefined,
+                id: hotelDto.address?.countryId
+                  ? hotelDto.address?.countryId
+                  : null,
                 name: hotelDto.address.country
               })
             }),
