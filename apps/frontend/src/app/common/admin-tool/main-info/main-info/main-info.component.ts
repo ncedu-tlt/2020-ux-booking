@@ -1,4 +1,10 @@
-import { Component, HostBinding, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  HostBinding,
+  Input,
+  OnInit,
+  ViewEncapsulation
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HotelDto } from '@booking/models/hotel.dto';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
