@@ -32,6 +32,8 @@ import { HotelPageComponent } from './admin-tool/hotel-page/hotel-page.component
 import { MainInfoComponent } from './admin-tool/main-info/main-info/main-info.component';
 import { MainComponent } from './main/main.component';
 import { FormSavingPhotosComponent } from './form-saving-photos/form-saving-photos.component';
+import { UserProfileComponent } from '../pages/user-profile/user-profile.component';
+import { UserInfoComponent } from '../pages/user-info/user-info.component';
 
 @NgModule({
   imports: [
@@ -72,7 +74,9 @@ import { FormSavingPhotosComponent } from './form-saving-photos/form-saving-phot
     HotelPageComponent,
     MainInfoComponent,
     MainComponent,
-    FormSavingPhotosComponent
+    FormSavingPhotosComponent,
+    UserProfileComponent,
+    UserInfoComponent
   ],
   exports: [
     ButtonComponent,

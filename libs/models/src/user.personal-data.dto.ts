@@ -1,11 +1,9 @@
-export type UserModel = {
+export class UserPersonalDataDto {
   id: string;
 
   firstName: string;
 
   lastName: string;
-
-  patronymic: number;
 
   gender: string;
 
@@ -16,6 +14,4 @@ export type UserModel = {
   dateOfBirth: string;
 
   email: string;
-
-  emailNotification: boolean;
-};
+}

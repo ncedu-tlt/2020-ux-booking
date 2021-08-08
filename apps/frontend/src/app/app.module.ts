@@ -13,9 +13,11 @@ import { UserInfoComponent } from './pages/user-info/user-info.component';
 import { RouterModule } from '@angular/router';
 import { AuthHttpInterceptor } from './interceptors/auth-http.interceptor';
 import { CookieService } from 'ngx-cookie-service';
+import { I18NextPipe } from './stories.helpers';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent, UserProfileComponent, UserInfoComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     CommonModule,
@@ -23,7 +25,8 @@ import { CookieService } from 'ngx-cookie-service';
     AngularSvgIconModule.forRoot(),
     I18NextModule.forRoot(),
     LangModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule
   ],
   providers: [
     I18N_PROVIDERS,
