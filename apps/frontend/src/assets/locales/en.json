@@ -75,6 +75,22 @@
         }
       }
     },
+    "list-of-users": {
+      "title": "Users",
+      "input": {
+        "name": "First Name/Last Name",
+        "phoneNumber": "Phone number",
+        "namePlaceholder": "Enter a First Name or a Last Name",
+        "countryPlaceholder": "Enter a phone number"
+      },
+      "buttons": {
+        "find": "Find"
+      },
+      "table": {
+        "name": "First Name, Last Name",
+        "phoneNumber": "Phone number"
+      }
+    },
     "hotelForm": {
       "tabs": {
         "nutrition": "Nutrition",

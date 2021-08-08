@@ -7,7 +7,9 @@ import {
   Post,
   Res,
   UseGuards,
-  Request
+  Request,
+  Delete,
+  Param
 } from '@nestjs/common';
 import { RegisterUserDto } from '@booking/models/register.user.dto';
 import { Response } from 'express';
@@ -27,6 +29,26 @@ export class UserController {
     @InjectRepository(Role)
     private rolesRepository: Repository<Role>
   ) {}
+
+  @Get()
+  async getUsers(@Res() res: Response<UserDto[]>): Promise<void> {
+    await this.usersRepository
+      .find({})
+      .then(usersList => {
+        res.status(HttpStatus.OK).send(
+          usersList.map(user => ({
+            user: {
+              id: user.id,
+              username: user.firstName,
+              phoneNumber: user.phone
+            }
+          }))
+        );
+      })
+      .catch(error => {
+        res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(error);
+      });
+  }
 
   @UseGuards(AuthGuard('jwt'))
   @Get('/current')
@@ -71,6 +93,28 @@ export class UserController {
         return error;
       });
     res.send(answer);
+  }
+
+  @Delete(':id')
+  async deleteUser(@Param() params): Promise<UserDto> {
+    const userDelete: User = await this.usersRepository.findOne(params.id);
+    if (!userDelete)
+      return {
+        user: {
+          id: userDelete.id,
+          username: userDelete.firstName,
+          phoneNumber: userDelete.phone
+        }
+      };
+    await this.usersRepository.delete(params.id);
+
+    return {
+      user: {
+        id: userDelete.id,
+        username: userDelete.firstName,
+        phoneNumber: userDelete.phone
+      }
+    };
   }
 
   private async isValidEmail(email): Promise<boolean> {

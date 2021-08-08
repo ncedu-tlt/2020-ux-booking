@@ -8,11 +8,16 @@ import { MainComponent } from './common/main/main.component';
 import { HotelPageComponent } from './common/admin-tool/hotel-page/hotel-page.component';
 import { MainInfoComponent } from './common/admin-tool/main-info/main-info/main-info.component';
 import { FormSavingPhotosComponent } from './common/form-saving-photos/form-saving-photos.component';
+import { ListOfUsersComponent } from './common/admin-tool/user-listing-page/user-listing-page.component';
 
 const routes: Routes = [
   {
     path: 'admin-tool/hotels',
     component: ListOfHotelsComponent
+  },
+  {
+    path: 'admin-tool/users',
+    component: ListOfUsersComponent
   },
   {
     path: 'admin-tool/hotel/:id',

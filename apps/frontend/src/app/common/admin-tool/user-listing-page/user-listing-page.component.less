@@ -1,0 +1,43 @@
+@import '../../../../assets/styles/common/shared';
+
+.list-of-users{
+    &__title{
+        position: relative;
+        z-index: -1;
+    }
+
+    &__body{
+        padding: 40px;
+    }
+    
+    &__filter-line{
+        display: grid;
+        margin: 16px 0 26px 0;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-column: auto;
+        width: 100%;
+
+        @media (max-width: 1200px) {
+            display: block;
+        }    
+    }
+     
+    &__input-field{
+        width: auto;
+        margin: 0 24px 0 0;
+
+        @media (max-width: 1200px) {
+            margin: 0 0 24px 0;
+        }   
+    }
+
+    &__search-button{
+        display: grid;
+        justify-self: right;
+        align-self: flex-end;
+
+        @media (max-width: 1200px) {
+            justify-content: center;
+        } 
+    }
+}
