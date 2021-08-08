@@ -32,7 +32,7 @@ export class User {
   nationality: string;
 
   @Column({ nullable: true })
-  sex: string;
+  gender: string;
 
   @Column({ nullable: true })
   phone: string;

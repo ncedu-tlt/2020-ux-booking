@@ -4,10 +4,12 @@ import {
   Get,
   HttpException,
   HttpStatus,
+  Param,
+  Patch,
   Post,
+  Request,
   Res,
-  UseGuards,
-  Request
+  UseGuards
 } from '@nestjs/common';
 import { RegisterUserDto } from '@booking/models/register.user.dto';
 import { Response } from 'express';
@@ -19,6 +21,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { AuthGuard } from '@nestjs/passport';
 import { UserDto } from '@booking/models/user.dto';
 import { UpdateUserInfoDto } from './dto/udate.user-info.dto';
+import { UserPersonalDataDto } from '@booking/models/user.personal-data.dto';
 
 @Controller('/users')
 export class UserController {
@@ -30,21 +33,8 @@ export class UserController {
   ) {}
 
   @Get(':id')
-  async getUser(@Param('id') id): Promise<User> {
-    console.log('Get user: ' + id);
+  async getUser(@Param('id') id): Promise<UserPersonalDataDto> {
     return this.usersRepository.findOne({ id: id });
-  }
-
-  @UseGuards(AuthGuard('jwt'))
-  @Get('/current')
-  getCurrentUser(@Request() req): UserDto {
-    const user = req.user;
-    if (!user) {
-      throw new HttpException('users/userDoesNotExist', HttpStatus.NOT_FOUND);
-    }
-    return {
-      user: user
-    };
   }
 
   @Post()

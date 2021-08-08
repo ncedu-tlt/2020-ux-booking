@@ -1,6 +1,7 @@
 import {
   Controller,
   Get,
+  HttpException,
   HttpStatus,
   Post,
   Request,
@@ -13,6 +14,8 @@ import { Response } from 'express';
 import { LocalAuthGuard } from './auth/local-auth.guard';
 import { AuthService } from './auth/auth.service';
 import { JwtAuthGuard } from './auth/jwt-auth.guard';
+import { AuthGuard } from '@nestjs/passport';
+import { UserDto } from '@booking/models/user.dto';
 
 @Controller()
 export class AppController {
@@ -38,6 +41,18 @@ export class AppController {
       });
     }
     return res.send(token);
+  }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Get('/auth/current')
+  getCurrentUser(@Request() req): UserDto {
+    const user = req.user;
+    if (!user) {
+      throw new HttpException('users/userDoesNotExist', HttpStatus.NOT_FOUND);
+    }
+    return {
+      user: user
+    };
   }
 
   @UseGuards(JwtAuthGuard)

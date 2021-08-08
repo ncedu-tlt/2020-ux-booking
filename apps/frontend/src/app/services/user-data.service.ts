@@ -12,4 +12,8 @@ export class UserDataService {
   getUser(id: string): Observable<UserModel> {
     return this.http.get<UserModel>('/api/users/' + id);
   }
+
+  updateUserInfo(user: UserModel): Observable<any> {
+    return this.http.patch('/api/users/' + user.id, user);
+  }
 }

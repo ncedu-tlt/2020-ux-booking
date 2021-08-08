@@ -161,5 +161,31 @@
     "minorPhoto": "Photo",
     "add": "Add",
     "save": "Save"
+  },
+  "user-info": {
+    "personal-data": "Personal data",
+    "individual-info": "Individual information",
+    "contact-info": "Contact information",
+    "lastName": "Last name",
+    "firstName": "First name",
+    "birthday": "Birthday",
+    "nationality": "Nationality",
+    "gender": "Gender",
+    "email" : "E-mail",
+    "phone-number": "Phone number",
+    "buttons": {
+      "cancel": "Cancel",
+      "save": "Save"
+    }
+  },
+  "user-profile": {
+    "profile-settings": "Profile settings",
+    "tabs": {
+      "booked-hotels": "Booked hotels",
+      "booking-history": "Booking history",
+      "bookmarks": "Bookmarks",
+      "personal-data": "Personal data",
+      "security-settings": "Security"
+    }
   }
 }

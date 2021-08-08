@@ -1,13 +1,20 @@
-.tabs-position {
-  width: 25%;
-  margin-left: 40px;
-}
+.user-profile {
+  &__tabs {
+    width: 25%;
+    margin-left: 40px;
 
-.position {
-  display: flex;
-  flex-direction: row;
-}
+    .tabs__item {
+      text-decoration: none;
+    }
+  }
 
-.info-position {
-  margin-left: 40px;
+  &__settings {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__info {
+    margin-top: 32px;
+    margin-left: 24px;
+  }
 }

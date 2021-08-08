@@ -162,5 +162,31 @@
     "minorPhoto": "Фотографии",
     "add": "Добавить",
     "save": "Сохранить"
+  },
+  "user-info": {
+    "personal-data": "Персональные данные",
+    "individual-info": "Личная информация",
+    "contact-info": "Контактная информация",
+    "lastName": "Фамилия",
+    "firstName": "Имя",
+    "birthday": "День рождения",
+    "nationality": "Граждантво",
+    "gender": "Пол",
+    "email" : "E-mail",
+    "phone-number": "Номер телефона",
+    "buttons": {
+      "cancel": "Отмена",
+      "save": "Сохранить"
+    }
+  },
+  "user-profile": {
+    "profile-settings": "Настройки профиля",
+    "tabs": {
+      "booked-hotels": "Забронирвоанные отели",
+      "booking-history": "История бронирования",
+      "bookmarks": "Закладки",
+      "personal-data": "Персональные данные",
+      "security-settings": "Безопасность"
+    }
   }
 }

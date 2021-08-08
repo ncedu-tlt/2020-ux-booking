@@ -1,32 +1,35 @@
-<div>
-  <div class="info-header">
-    <div class="title">Персональные данные</div>
-    <b-button-icon [type]=buttonIconTypesEnum.edit (click)="onEditClick()"></b-button-icon>
+<div class="user-info">
+  <div class="user-info__header">
+    <div class="user-info__header-title">{{"user-info.personal-data" | i18next }}</div>
+    <b-button-icon *ngIf="!editable" [type]=buttonIconTypesEnum.edit (click)="onEditClick()"></b-button-icon>
   </div>
-  <div class="avatar">
-    <img class="avatar" src="favicon.ico">
+  <div class="user-info__avatar">
+    <img src="favicon.ico">
   </div>
-  <div class="wrapper">
-    <div class="title">Личная информация</div>
-    <div class="personal-info">
-      <b-input-field title="Фамилия" [value]=user?.lastName [isDisabled]="!editable"></b-input-field>
-      <b-input-field title="Имя" [value]=user?.firstName [isDisabled]="!editable"></b-input-field>
-      <b-input-field title="Дата рождения" [value]=user?.dateOfBirth [isDisabled]="!editable"></b-input-field>
-      <b-input-field title="Гражданство" value="Россия" [isDisabled]="!editable"></b-input-field>
-      <b-input-field title="Пол" value="-" [isDisabled]="!editable"></b-input-field>
+  <form [formGroup]="userInfoForm">
+    <div class="user-info__part">
+      <div class="user-info__part-title">{{"user-info.individual-info" | i18next }}</div>
+      <div class="user-info__personal-data">
+        <b-input-field title='{{"user-info.lastName" | i18next }}' formControlName='lastName'  [isDisabled]="!editable" [placeholder]=""></b-input-field>
+        <b-input-field title='{{"user-info.firstName" | i18next }}' formControlName='firstName' [isDisabled]="!editable"></b-input-field>
+        <b-input-field title='{{"user-info.birthday" | i18next }}' formControlName='dateOfBirth' [isDisabled]="!editable"></b-input-field>
+        <b-input-field title='{{"user-info.nationality" | i18next }}' formControlName='nationality' [isDisabled]="!editable"></b-input-field>
+        <b-input-field title='{{"user-info.gender" | i18next }}' formControlName='gender' [isDisabled]="!editable"></b-input-field>
+      </div>
     </div>
-  </div>
-  <div class="wrapper">
-    <div class="title">Контактная информация</div>
-    <div class="contact-info">
-      <b-input-field title="E-mail" [value]=user?.email [isDisabled]="!editable"></b-input-field>
-      <b-input-field title="Номер телефона" [value]=user?.phone [isDisabled]="!editable"></b-input-field>
+    <div class="user-info__part">
+      <div class="user-info__part-title">{{"user-info.contact-info"  | i18next }}</div>
+      <div class="user-info__contact_data">
+        <b-input-field title='{{"user-info.email" | i18next }}' formControlName='email' [isDisabled]="!editable"></b-input-field>
+        <b-input-field title='{{"user-info.phone-number"  | i18next }}' formControlName='phone' [isDisabled]="!editable"></b-input-field>
+      </div>
     </div>
-  </div>
-  <div class="button-holder" *ngIf="editable">
+  </form>
+  <div class="user-info__buttons_block" *ngIf="editable">
     <div>
-      <b-button type="secondary" text="Отмена"></b-button>
-      <b-button type="primary" text="Cохранить" (click)="save()"></b-button>
+      <b-button type="secondary" text='{{"user-info.buttons.cancel" | i18next}}' (click)="cancel()"></b-button>
+      <b-button type="primary" text='{{"user-info.buttons.save" | i18next}}' (click)="save()"></b-button>
     </div>
   </div>
 </div>
+<b-notification *ngIf="isNotificationVisible" (closeEvent)="isNotificationVisible = false" class="notification__block" message="Персональные данные успешно изменены"></b-notification>
