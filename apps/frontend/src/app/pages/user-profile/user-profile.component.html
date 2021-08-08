@@ -1,0 +1,12 @@
+<div class="user-profile">
+  <b-page-title title='{{"user-profile.profile-settings" | i18next }}'></b-page-title>
+  <div class="user-profile__settings">
+    <div class="user-profile__tabs">
+      <b-tabs type="vertical" [items]="tabs"></b-tabs>
+    </div>
+    <div class="user-profile__info">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+

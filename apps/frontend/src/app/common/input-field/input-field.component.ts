@@ -3,7 +3,8 @@ import {
   Component,
   forwardRef,
   Input,
-  OnInit
+  OnInit,
+  SimpleChanges
 } from '@angular/core';
 import {
   ControlValueAccessor,
@@ -68,5 +69,11 @@ export class InputFieldComponent implements OnInit, ControlValueAccessor {
         this.onChange(value);
       }
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes?.isDisabled?.currentValue != undefined) {
+      this.isDisabled ? this.input?.disable() : this.input?.enable();
+    }
   }
 }

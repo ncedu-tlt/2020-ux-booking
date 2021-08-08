@@ -4,10 +4,12 @@ import {
   Get,
   HttpException,
   HttpStatus,
+  Param,
+  Patch,
   Post,
+  Request,
   Res,
-  UseGuards,
-  Request
+  UseGuards
 } from '@nestjs/common';
 import { RegisterUserDto } from '@booking/models/register.user.dto';
 import { Response } from 'express';
@@ -18,6 +20,8 @@ import { Role } from '../../db/domain/role.dao';
 import { InjectRepository } from '@nestjs/typeorm';
 import { AuthGuard } from '@nestjs/passport';
 import { UserDto } from '@booking/models/user.dto';
+import { UpdateUserInfoDto } from './dto/udate.user-info.dto';
+import { UserPersonalDataDto } from '@booking/models/user.personal-data.dto';
 
 @Controller('/users')
 export class UserController {
@@ -28,16 +32,9 @@ export class UserController {
     private rolesRepository: Repository<Role>
   ) {}
 
-  @UseGuards(AuthGuard('jwt'))
-  @Get('/current')
-  getCurrentUser(@Request() req): UserDto {
-    const user = req.user;
-    if (!user) {
-      throw new HttpException('users/userDoesNotExist', HttpStatus.NOT_FOUND);
-    }
-    return {
-      user: user
-    };
+  @Get(':id')
+  async getUser(@Param('id') id): Promise<UserPersonalDataDto> {
+    return this.usersRepository.findOne({ id: id });
   }
 
   @Post()
@@ -71,6 +68,11 @@ export class UserController {
         return error;
       });
     res.send(answer);
+  }
+
+  @Patch(':id')
+  async updateUser(@Param('id') id, @Body() updateUserInfo: UpdateUserInfoDto) {
+    await this.usersRepository.update({ id: id }, updateUserInfo);
   }
 
   private async isValidEmail(email): Promise<boolean> {

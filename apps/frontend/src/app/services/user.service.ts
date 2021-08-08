@@ -10,8 +10,12 @@ import { UserDto } from '@booking/models/user.dto';
 })
 export class UserService {
   currentUserSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  currentUserIdSubject: BehaviorSubject<string> = new BehaviorSubject<string>(
+    ''
+  );
 
   user: Observable<string> = this.currentUserSubject.asObservable();
+  userId: Observable<string> = this.currentUserIdSubject.asObservable();
 
   constructor(
     private httpClient: HttpClient,
@@ -28,11 +32,16 @@ export class UserService {
     return this.user;
   }
 
+  getUserId(): Observable<string> {
+    return this.userId;
+  }
+
   fetchCurrentUser(): void {
     this.httpClient
-      .get<UserDto>('/api/users/current')
+      .get<UserDto>('/api/auth/current')
       .subscribe((userInfo: UserDto) => {
         this.currentUserSubject.next(userInfo.user.username);
+        this.currentUserIdSubject.next(userInfo.user.userId);
       });
   }
 
