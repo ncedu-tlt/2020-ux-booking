@@ -1,21 +1,21 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   ElementRef,
   HostListener,
+  EventEmitter,
   Input,
+  Output,
   ViewChild
 } from '@angular/core';
 
 @Component({
   selector: 'b-selector',
   templateUrl: './selector.component.html',
-  styleUrls: ['./selector.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./selector.component.less']
 })
 export class SelectorComponent {
   @Input()
-  itemList: string[];
+  itemList: string[] = [];
 
   @Input()
   titleSelector: string;
@@ -25,6 +25,8 @@ export class SelectorComponent {
 
   @Input()
   isAddControlActive: boolean;
+
+  @Output() handleClick: EventEmitter<string[]> = new EventEmitter();
 
   value = '';
 
@@ -74,7 +76,9 @@ export class SelectorComponent {
   }
 
   filterItems(): string[] {
-    this.filteredSuggestions = this.itemList;
+    if (this.itemList) {
+      this.filteredSuggestions = this.itemList;
+    }
     if (this.value.length < this.MINIMUM_SEARCH_CHARS) {
       return this.filteredSuggestions;
     } else {
@@ -86,11 +90,14 @@ export class SelectorComponent {
 
   handleChange(event: Event): void {
     this.value = (event.target as HTMLInputElement).value;
-    if (this.value.length > this.MINIMUM_SEARCH_CHARS) {
+    if (
+      this.value.length > this.MINIMUM_SEARCH_CHARS &&
+      this.filteredSuggestions.length
+    ) {
       this.filteredSuggestions = this.itemList.filter(data =>
         data.toLowerCase().includes(this.value.toLowerCase())
       );
-    } else {
+    } else if (this.filteredSuggestions.length) {
       this.filteredSuggestions = this.itemList;
     }
     this.isNotFound = !!this.filteredSuggestions.length;
@@ -115,11 +122,17 @@ export class SelectorComponent {
       this.isOpened = false;
       this.selectedHint = item;
     }
+    this.handleClick.emit(this.selectedItems);
   }
 
   addItem(): void {
-    this.filteredSuggestions.push(this.value);
+    this.itemList.push(this.value);
     this.isNotFound = true;
+    if (!this.isMultiMode) {
+      this.selectedItems = [];
+    }
+    this.selectedItems.push(this.value);
+    this.handleClick.emit(this.selectedItems);
   }
 
   isItemSelected(item: string): boolean {
