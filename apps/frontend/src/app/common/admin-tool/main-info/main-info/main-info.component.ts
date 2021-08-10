@@ -100,7 +100,8 @@ export class MainInfoComponent implements OnInit {
   getStar(): number {
     return this.formG.get('starClassification').value;
   }
-  setDropdown(items: []): void {
+
+  setDropdown(items: string[]): void {
     this.formG.patchValue({
       serviceType: items
     });

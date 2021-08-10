@@ -29,6 +29,7 @@
     <div class='main-info__form-row'>
       <div class='main-info__form-col'>
       <b-selector
+
         [itemList]="[
     'Наличные',
     'Банковская карта'
@@ -38,14 +39,8 @@
       </div>
       <div class='main-info__form-col'>
       <b-selector
-        (infoChange)='setDropdown($event)'
-        [items]='getDropdown()'
-        [itemList]="[
-    'Сначала дешевые',
-    'Сначала дорогие',
-    'По рейтингу пользователей',
-    'По количеству звёзд'
-  ]"
+        (handleClick)='setDropdown($event)'
+        [itemList]='getDropdown()'
         [titleSelector]="'adminTool.hotelForm.mainInfo.serviceType' | i18next"
 
       ></b-selector>
