@@ -11,6 +11,7 @@ import { HotelDataService } from './services/hotel-data.service';
 import { RouterModule } from '@angular/router';
 import { AuthHttpInterceptor } from './interceptors/auth-http.interceptor';
 import { CookieService } from 'ngx-cookie-service';
+import { UserDataService } from './services/user-data.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,6 +27,7 @@ import { CookieService } from 'ngx-cookie-service';
   providers: [
     I18N_PROVIDERS,
     HotelDataService,
+    UserDataService,
     CookieService,
     {
       provide: HTTP_INTERCEPTORS,

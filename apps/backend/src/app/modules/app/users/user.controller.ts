@@ -7,7 +7,9 @@ import {
   Post,
   Res,
   UseGuards,
-  Request
+  Request,
+  Delete,
+  Param
 } from '@nestjs/common';
 import { RegisterUserDto } from '@booking/models/register.user.dto';
 import { Response } from 'express';
@@ -28,6 +30,24 @@ export class UserController {
     private rolesRepository: Repository<Role>
   ) {}
 
+  @Get()
+  async getUsers(@Res() res: Response<UserDto[]>): Promise<void> {
+    await this.usersRepository
+      .find({})
+      .then(usersList => {
+        res.status(HttpStatus.OK).send(
+          usersList.map(user => ({
+            id: user.id,
+            userName: user.firstName,
+            phoneNumber: user.phone
+          }))
+        );
+      })
+      .catch(error => {
+        res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(error);
+      });
+  }
+
   @UseGuards(AuthGuard('jwt'))
   @Get('/current')
   getCurrentUser(@Request() req): UserDto {
@@ -36,7 +56,9 @@ export class UserController {
       throw new HttpException('users/userDoesNotExist', HttpStatus.NOT_FOUND);
     }
     return {
-      user: user
+      id: user.id,
+      userName: user.firstName,
+      phoneNumber: user.phone
     };
   }
 
@@ -71,6 +93,24 @@ export class UserController {
         return error;
       });
     res.send(answer);
+  }
+
+  @Delete(':id')
+  async deleteUser(@Param() params): Promise<UserDto> {
+    const userDelete: User = await this.usersRepository.findOne(params.id);
+    if (!userDelete)
+      return {
+        id: userDelete.id,
+        userName: userDelete.firstName,
+        phoneNumber: userDelete.phone
+      };
+    await this.usersRepository.delete(params.id);
+
+    return {
+      id: userDelete.id,
+      userName: userDelete.firstName,
+      phoneNumber: userDelete.phone
+    };
   }
 
   private async isValidEmail(email): Promise<boolean> {
