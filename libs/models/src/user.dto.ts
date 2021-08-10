@@ -1,11 +1,13 @@
 import { IsNotEmpty, Length } from 'class-validator';
 
 export class UserDto {
+  id: string;
+
   @Length(2, 255)
   @IsNotEmpty()
-  user: {
-    id: string;
-    username: string;
-    phoneNumber: string;
-  };
+  userName: string;
+
+  @Length(2, 255)
+  @IsNotEmpty()
+  phoneNumber: string;
 }

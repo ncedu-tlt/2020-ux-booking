@@ -41,9 +41,9 @@ export class ListOfUsersComponent implements OnInit {
     this.userDataService.getUsers().subscribe(users => {
       const userItems: Item[] = users.map(user => {
         return {
-          id: user.user.id,
-          aname: user.user.username,
-          phoneNumber: user.user.phoneNumber
+          id: user.id,
+          aname: user.userName,
+          phoneNumber: user.phoneNumber
         } as Item;
       });
       this.config = {

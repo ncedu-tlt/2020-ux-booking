@@ -37,11 +37,9 @@ export class UserController {
       .then(usersList => {
         res.status(HttpStatus.OK).send(
           usersList.map(user => ({
-            user: {
-              id: user.id,
-              username: user.firstName,
-              phoneNumber: user.phone
-            }
+            id: user.id,
+            userName: user.firstName,
+            phoneNumber: user.phone
           }))
         );
       })
@@ -58,7 +56,9 @@ export class UserController {
       throw new HttpException('users/userDoesNotExist', HttpStatus.NOT_FOUND);
     }
     return {
-      user: user
+      id: user.id,
+      userName: user.firstName,
+      phoneNumber: user.phone
     };
   }
 
@@ -100,20 +100,16 @@ export class UserController {
     const userDelete: User = await this.usersRepository.findOne(params.id);
     if (!userDelete)
       return {
-        user: {
-          id: userDelete.id,
-          username: userDelete.firstName,
-          phoneNumber: userDelete.phone
-        }
+        id: userDelete.id,
+        userName: userDelete.firstName,
+        phoneNumber: userDelete.phone
       };
     await this.usersRepository.delete(params.id);
 
     return {
-      user: {
-        id: userDelete.id,
-        username: userDelete.firstName,
-        phoneNumber: userDelete.phone
-      }
+      id: userDelete.id,
+      userName: userDelete.firstName,
+      phoneNumber: userDelete.phone
     };
   }
 
