@@ -38,6 +38,8 @@
       </div>
       <div class='main-info__form-col'>
       <b-selector
+        (infoChange)='setDropdown($event)'
+        [items]='getDropdown()'
         [itemList]="[
     'Сначала дешевые',
     'Сначала дорогие',

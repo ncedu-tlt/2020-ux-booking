@@ -17,7 +17,8 @@
             *ngFor='let state of items'
             class='dropdown__list'
             [class._active]="activeItem === state"
-            (click)='changeState(state)'>
+            (click)='changeState(state)'
+            (click)='changeInfo(items)'>
             {{state}}
           </div>
         </div>

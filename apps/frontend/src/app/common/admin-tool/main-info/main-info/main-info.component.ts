@@ -1,8 +1,10 @@
 import {
   Component,
+  EventEmitter,
   HostBinding,
   Input,
   OnInit,
+  Output,
   ViewEncapsulation
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -20,6 +22,7 @@ export class MainInfoComponent implements OnInit {
   @HostBinding('class.main-info') mainInfo = true;
   @Input()
   value: string;
+
   public formG: FormGroup;
   public pageForm: HotelDto;
   public formId: string;
@@ -96,5 +99,13 @@ export class MainInfoComponent implements OnInit {
   }
   getStar(): number {
     return this.formG.get('starClassification').value;
+  }
+  setDropdown(items: []): void {
+    this.formG.patchValue({
+      serviceType: items
+    });
+  }
+  getDropdown(): [] {
+    return this.formG.get('serviceType').value;
   }
 }
