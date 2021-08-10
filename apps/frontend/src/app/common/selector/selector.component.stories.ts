@@ -3,7 +3,6 @@ import { Meta, Story } from '@storybook/angular/types-6-0';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { HttpClientModule } from '@angular/common/http';
 import { CheckboxComponent } from '../checkbox/checkbox.component';
-import { StoryFnAngularReturnType } from '@storybook/angular/dist/ts3.9/client/preview/types';
 import { ButtonComponent } from '../button/button.component';
 
 const meta: Meta = {
@@ -25,7 +24,7 @@ const meta: Meta = {
 };
 export default meta;
 
-const common: StoryFnAngularReturnType = {
+const common = {
   component: SelectorComponent,
   moduleMetadata: {
     declarations: [SelectorComponent, CheckboxComponent, ButtonComponent],
