@@ -30,17 +30,14 @@
       <div class='main-info__form-col'>
       <b-selector
 
-        [itemList]="[
-    'Наличные',
-    'Банковская карта'
-  ]"
+        [itemList]='listPaymentMethod'
         [titleSelector]="'adminTool.hotelForm.mainInfo.paymentMethod' | i18next"
       ></b-selector>
       </div>
       <div class='main-info__form-col'>
       <b-selector
-        (handleClick)='setDropdown($event)'
-        [itemList]='getDropdown()'
+
+        [itemList]='listService'
         [titleSelector]="'adminTool.hotelForm.mainInfo.serviceType' | i18next"
 
       ></b-selector>

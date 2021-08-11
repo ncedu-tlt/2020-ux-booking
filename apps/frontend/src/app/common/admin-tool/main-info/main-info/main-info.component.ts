@@ -27,6 +27,8 @@ export class MainInfoComponent implements OnInit {
   public pageForm: HotelDto;
   public formId: string;
   public id: string;
+  public listService = ['Длительного проживания', 'Бюджетный'];
+  public listPaymentMethod = ['Наличные', 'Банковская карта'];
   constructor(
     private fb: FormBuilder,
     private hotelDataService: HotelDataService,
@@ -65,7 +67,7 @@ export class MainInfoComponent implements OnInit {
             country: this.pageForm.address.country,
             street: this.pageForm.address.street,
             houseNumber: this.pageForm.address.number,
-            paymentMethod: this.pageForm,
+            paymentMethod: this.pageForm.bookingPolicy,
             city: this.pageForm.address.city,
             starClassification: this.pageForm.stars,
             currency: this.pageForm.currency,
@@ -85,6 +87,7 @@ export class MainInfoComponent implements OnInit {
     this.pageForm.stars = this.formG.get('starClassification').value;
     this.pageForm.currency = this.formG.get('currency').value;
     this.pageForm.freeCancellation = this.formG.get('checkbox').value;
+    this.pageForm.bookingPolicy = this.formG.get('paymentMethod').value;
     this.hotelDataService
       .patchChangeHotelMainInfo(this.formId, this.pageForm)
       .subscribe((pageForm: HotelDto) => {
@@ -101,12 +104,12 @@ export class MainInfoComponent implements OnInit {
     return this.formG.get('starClassification').value;
   }
 
-  setDropdown(items: string[]): void {
-    this.formG.patchValue({
-      serviceType: items
-    });
-  }
-  getDropdown(): [] {
-    return this.formG.get('serviceType').value;
-  }
+  // setDropdown(items: string[]): void {
+  //   this.formG.patchValue({
+  //     serviceType: items
+  //   });
+  // }
+  // getDropdown(): [] {
+  //   return this.formG.get('serviceType').value;
+  // }
 }
