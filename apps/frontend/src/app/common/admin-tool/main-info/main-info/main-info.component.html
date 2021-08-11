@@ -29,14 +29,14 @@
     <div class='main-info__form-row'>
       <div class='main-info__form-col'>
       <b-selector
-
+        (handleClick)='setDropdownPayment($event)'
         [itemList]='listPaymentMethod'
         [titleSelector]="'adminTool.hotelForm.mainInfo.paymentMethod' | i18next"
       ></b-selector>
       </div>
       <div class='main-info__form-col'>
       <b-selector
-
+        (handleClick)='setDropdownService($event)'
         [itemList]='listService'
         [titleSelector]="'adminTool.hotelForm.mainInfo.serviceType' | i18next"
 

@@ -104,12 +104,14 @@ export class MainInfoComponent implements OnInit {
     return this.formG.get('starClassification').value;
   }
 
-  // setDropdown(items: string[]): void {
-  //   this.formG.patchValue({
-  //     serviceType: items
-  //   });
-  // }
-  // getDropdown(): [] {
-  //   return this.formG.get('serviceType').value;
-  // }
+  setDropdownService(items: string[]): void {
+    this.formG.patchValue({
+      serviceType: items
+    });
+  }
+  setDropdownPayment(items: string[]): void {
+    this.formG.patchValue({
+      bookingPolicy: items
+    });
+  }
 }
