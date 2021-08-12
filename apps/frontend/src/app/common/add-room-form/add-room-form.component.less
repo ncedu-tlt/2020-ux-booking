@@ -1,0 +1,128 @@
+@import './../../../assets/styles/common/shared';
+
+.add-room-form {
+  margin: 24px;
+  width: 100vh;
+  &__add-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 195px;
+    width: 100%;
+    border: 1px solid @color-grey-light;
+    border-radius: 24px;
+  }
+
+  &__basic-information {
+    margin-top: 24px;
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &-error {
+      margin-left: 16px;
+      margin-top: 4px;
+      color: @color-red;
+    }
+
+    &-title {
+      margin-top: 24px;
+    }
+
+    &-column {
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 934px;
+      height: 100%;
+      margin-bottom: 24px;
+    }
+
+    &-form {
+      margin-right: 24px;
+      margin-bottom: 24px;
+      width: 288px;
+    }
+
+    &-description {
+      margin-bottom: 30px;
+    }
+  }
+
+  &__conveniences {
+    margin-bottom: 40px;
+
+    &-form {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    &-header {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      margin-right: 150px;
+
+      &-name {
+        margin-left: 16px;
+      }
+
+      &-icon {
+        margin-right: 250px;
+      }
+    }
+
+    &-name {
+      width: 100%;
+    }
+
+    &-price {
+      width: 100%;
+      margin-left: 24px;
+    }
+
+    &-file {
+      //min-width: 207px;
+      width: 100%;
+      margin-right: 24px;
+      margin-left: 24px;
+    }
+  }
+
+  &__photo {
+    margin-bottom: 80px;
+
+    &-form {
+      display: flex;
+      width: 559px;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    &-title {
+      margin-top: 40px;
+      margin-bottom: 24px;
+    }
+
+    &-file {
+      width: 100%;
+      margin-right: 24px;
+    }
+
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__horizontal-line {
+    border: 1px solid @color-background-contrast;
+    width: 100%;
+    margin-top: 24px;
+    margin-bottom: 24px;
+  }
+
+}

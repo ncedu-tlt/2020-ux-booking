@@ -135,34 +135,46 @@
       }
     },
     "hotelForm": {
-      "tabs": {
-        "nutrition": "Питание",
-        "distances": "Расстояния",
-        "optional": "Дополнительно",
-        "hotelRooms": "Номера",
-        "photo": "Фотографии",
-        "comments": "Комментарии",
-        "reviews": "Отзывы"
-      },
+      "addingNumber": "Добавление номера",
+      "roomAmenities": "Удобства в номере",
+      "photo": "Фотографии",
+      "listTitle": "Номера",
       "mainInfo": {
-        "title": "Main information",
-        "name": "Название",
-        "serviceType": "Вид сервиса",
-        "country": "Страна",
-        "address": "Адрес",
-        "description": "Описание",
-        "paymentMethod": "Способ оплаты",
-        "city": "Город",
-        "starClassification": "Звездная классификация",
-        "save": "Сохранить",
-        "publish": "Опубликовать",
-        "cancel": "Отмена",
-        "currency": "Валюта"
+        "generalInformation": "Общая информация",
+        "roomType": "Тип номера",
+        "bedType": "Тип кроватей",
+        "capacity": "Вмещаемость",
+        "countIdenticalRooms": "Кол-во номеров данного типа",
+        "price": "Стоимость, Р/сутки",
+        "specifyTheQuantity": "Укажите кол-во",
+        "description": "Описание"
+      },
+      "conveniencesInfo": {
+        "title": "Название",
+        "price": "Цена, Р/сутки",
+        "currencyTitle": "Стоимость",
+        "countTitle": "Кол-во мест",
+        "currency": "Р/сутки",
+        "icon": "Иконка",
+        "titlePlaceholder": "Укажите название",
+        "pricePlaceholder": "Укажите цену"
+      },
+      "errorMessage": {
+        "required": "Поле не заполнено",
+        "minLength": "Не достигнуто минимальное количество символов",
+        "maxLength": "Не достигнуто максимальное количество символов"
+      },
+      "placeholder": {
+        "list": "Выберите из списка",
+        "country": "Введите страну",
+        "description": "Введите описание",
+        "address": "Введите адрес"
       },
       "buttons": {
-        "cancel": "Отмена",
+        "add": "Добавить",
+        "addRooms": "Добавить номер",
         "save": "Сохранить",
-        "find": "Найти"
+        "cancel": "Отмена"
       }
     }
   },
@@ -178,5 +190,10 @@
     "minorPhoto": "Фотографии",
     "add": "Добавить",
     "save": "Сохранить"
+  },
+  "buttons": {
+    "cancel": "Отмена",
+    "save": "Сохранить",
+    "find": "Найти"
   }
 }

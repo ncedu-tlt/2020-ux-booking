@@ -120,7 +120,6 @@ export class HotelsController {
         where: {
           hotel: params.id
         },
-        skip: range,
         take: take
       })
       .then(value => {
@@ -129,6 +128,7 @@ export class HotelsController {
             id: room.id,
             name: room.name,
             capacity: room.capacity,
+            count: room.count,
             beds: room.beds,
             price: room.price
           }))
@@ -145,8 +145,9 @@ export class HotelsController {
     @Body() roomDto: RoomDto,
     @UploadedFiles() photos
   ): Promise<RoomDto> {
+    console.log(roomDto);
     const hotel: Hotel = await this.hotelsRepository.findOne(params.id);
-    return await this.hotelsService.createRoom(hotel, roomDto, photos);
+    return await this.hotelsService.createRoom(hotel, roomDto, roomDto.photos);
   }
 
   @Patch(':id/rooms/:roomId')
@@ -162,6 +163,7 @@ export class HotelsController {
       photos
     );
   }
+
   @Delete(':id/room/:roomId/:amenitiesId')
   async deleteAmenities(@Param() params): Promise<RoomDto> {
     const amenities: Amenities = await this.amenitiesRepository.findOne({
@@ -299,7 +301,6 @@ export class HotelsController {
     @Param() params,
     @UploadedFiles() photos
   ): Promise<HotelDto> {
-    console.log(photos);
     await this.hotelsService.changeHotelPhotos(photos, params.id);
 
     const hotel: Hotel = await this.hotelsRepository.findOne(params.hotelId, {

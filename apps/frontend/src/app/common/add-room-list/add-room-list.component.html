@@ -1,0 +1,38 @@
+<div class='add-room-list'>
+  <h3 class='add-room-list-title'>{{"adminTool.hotelForm.listTitle" | i18next}}</h3>
+  <div *ngFor='let room of roomData; let i = index'
+       class='add-room-list__list'
+        (click)='pathRoom(room.id)'>
+    <div class='add-room-list__list-upper'>
+      <h3>{{room.name}}</h3>
+      <h3>{{room.name}}</h3>
+      <b-button-icon type='delete'
+                     (click)='deleteRoom(room.id,i)'
+      ></b-button-icon>
+    </div>
+    <div class='add-room-list__horizontal-line'></div>
+    <div class='add-room-list__list-under'>
+      <div class='add-room-list__list-under-type'>
+        <span>{{"adminTool.hotelForm.mainInfo.bedType" | i18next}}</span>
+        <div class='add-room-list__list-beds'>
+          <h4 class='add-room-list__list-beds-list' *ngFor='let bed of room.beds'>{{bed.name}},</h4>
+        </div>
+      </div>
+      <div class='add-room-list__list-under-count'>
+        <span>{{"adminTool.hotelForm.conveniencesInfo.countTitle" | i18next}}</span>
+        <div class='add-room-list__list-under-icon'>
+                    <div class='icon'
+                      *ngFor='let id of getCount(i)'>
+                      <svg-icon
+                        src='assets/icons/user_icon.svg'
+                      ></svg-icon>
+                    </div>
+        </div>
+      </div>
+      <div class='add-room-list__list-under-price'>
+        <span>{{"adminTool.hotelForm.conveniencesInfo.currencyTitle" | i18next}}</span>
+        <h4>{{room.price}}{{"adminTool.hotelForm.conveniencesInfo.currency" | i18next}}</h4>
+      </div>
+    </div>
+  </div>
+</div>

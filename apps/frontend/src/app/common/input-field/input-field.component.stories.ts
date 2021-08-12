@@ -2,7 +2,6 @@ import { InputFieldComponent } from './input-field.component';
 import { Meta, Story } from '@storybook/angular/types-6-0';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { HttpClientModule } from '@angular/common/http';
-import { StoryFnAngularReturnType } from '@storybook/angular/dist/ts3.9/client/preview/types';
 
 const meta: Meta = {
   title: 'input-field',
@@ -17,7 +16,7 @@ const meta: Meta = {
 };
 export default meta;
 
-const common: StoryFnAngularReturnType = {
+const common = {
   component: InputFieldComponent,
   moduleMetadata: {
     declarations: [InputFieldComponent],

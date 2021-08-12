@@ -33,6 +33,8 @@ import { HotelPageComponent } from './admin-tool/hotel-page/hotel-page.component
 import { MainInfoComponent } from './admin-tool/main-info/main-info/main-info.component';
 import { MainComponent } from './main/main.component';
 import { FormSavingPhotosComponent } from './form-saving-photos/form-saving-photos.component';
+import { AddRoomFormComponent } from './add-room-form/add-room-form.component';
+import { AddRoomListComponent } from './add-room-list/add-room-list.component';
 
 @NgModule({
   imports: [
@@ -74,7 +76,12 @@ import { FormSavingPhotosComponent } from './form-saving-photos/form-saving-phot
     HotelPageComponent,
     MainInfoComponent,
     MainComponent,
-    FormSavingPhotosComponent
+    FormSavingPhotosComponent,
+    MainComponent,
+    TextAreaComponent,
+    FileSelectorComponent,
+    AddRoomFormComponent,
+    AddRoomListComponent
   ],
   exports: [
     ButtonComponent,
@@ -108,7 +115,12 @@ import { FormSavingPhotosComponent } from './form-saving-photos/form-saving-phot
     HotelPageComponent,
     MainInfoComponent,
     MainComponent,
-    FormSavingPhotosComponent
+    FormSavingPhotosComponent,
+    MainComponent,
+    TextAreaComponent,
+    FileSelectorComponent,
+    AddRoomFormComponent,
+    AddRoomListComponent
   ]
 })
 export class CommonModule {}

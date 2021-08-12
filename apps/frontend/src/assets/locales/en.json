@@ -92,6 +92,10 @@
       }
     },
     "hotelForm": {
+      "addingNumber": "Adding a number",
+      "roomAmenities": "Room amenities",
+      "photo": "Photos",
+      "listTitle": "Rooms",
       "tabs": {
         "nutrition": "Nutrition",
         "distances": "Distances",
@@ -102,6 +106,13 @@
         "reviews": "Reviews"
       },
       "mainInfo": {
+        "generalInformation": "General information",
+        "roomType": "Type of room",
+        "bedType": "Type of beds",
+        "capacity": "Capacity",
+        "countIdenticalRooms": "The number of rooms of this type",
+        "price": "Cost Р/day",
+        "specifyTheQuantity": "Specify the quantity",
         "title": "Main information",
         "name": "Name",
         "serviceType": "Service type",
@@ -116,58 +127,32 @@
         "cancel": "Cancel",
         "currency": "Currency"
       },
+      "conveniencesInfo": {
+        "title": "Title",
+        "price": "Cost Р/day",
+        "currencyTitle": "Cost",
+        "countTitle": "Seats",
+        "currency": "Р/day",
+        "icon": "Icon",
+        "titlePlaceholder": "Enter title",
+        "pricePlaceholder": "Enter price"
+      },
       "buttons": {
+        "add": "Add",
+        "addRooms": "Add a room",
         "cancel": "Cancel",
         "save": "Save"
+      },
+      "errorMessage": {
+        "required": "The field is empty",
+        "minLength": "The minimum number of characters has not been reached",
+        "maxLength": "The maximum number of characters has not been reached"
       },
       "placeholder": {
         "list": "Select from the list",
         "country": "Enter a country",
         "address": "Enter an address",
         "description": "Enter a description"
-      },
-      "authorization": {
-        "title": "Authorization",
-        "input": {
-          "email": "Email",
-          "emailPlaceholder": "Enter mail",
-          "password": "Password",
-          "passwordPlaceholder": "Enter password"
-        },
-        "errorMessage": {
-          "unauthorized": "Incorrect login or password",
-          "default": "Error"
-        },
-        "button": "Enter",
-        "forgotPassword": "Forgot your password?",
-        "forgotPasswordLink": "Recover password",
-        "registration": "First time here?",
-        "registrationLink": "Registration"
-      },
-      "registration": {
-        "title": "Registration",
-        "input": {
-          "name": "Name",
-          "namePlaceholder": "Enter name",
-          "email": "Email",
-          "emailPlaceholder": "Enter mail",
-          "password": "Password",
-          "passwordPlaceholder": "Enter password",
-          "repeatPassword": "Repeat your password",
-          "passwordInvalid": "Password mismatch"
-        },
-        "errorMessage": {
-          "required": "The field is empty",
-          "minLength": "The minimum number of characters has not been reached",
-          "maxLength": "The maximum number of characters has not been reached",
-          "badEmail": "This email is not correct",
-          "unauthorized": "Incorrect login or password",
-          "conflict": "A user with this email is already registered",
-          "default": "Error"
-        },
-        "button": "Sign up",
-        "registration": "Already have an account?",
-        "registrationLink": "authorization"
       }
     }
   },
@@ -177,5 +162,48 @@
     "minorPhoto": "Photo",
     "add": "Add",
     "save": "Save"
+  },
+  "authorization": {
+    "title": "Authorization",
+    "input": {
+      "email": "Email",
+      "emailPlaceholder": "Enter mail",
+      "password": "Password",
+      "passwordPlaceholder": "Enter password"
+    },
+    "errorMessage": {
+      "unauthorized": "Incorrect login or password",
+      "default": "Error"
+    },
+    "button": "Enter",
+    "forgotPassword": "Forgot your password?",
+    "forgotPasswordLink": "Recover password",
+    "registration": "First time here?",
+    "registrationLink": "Registration"
+  },
+  "registration": {
+    "title": "Registration",
+    "input": {
+      "name": "Name",
+      "namePlaceholder": "Enter name",
+      "email": "Email",
+      "emailPlaceholder": "Enter mail",
+      "password": "Password",
+      "passwordPlaceholder": "Enter password",
+      "repeatPassword": "Repeat your password",
+      "passwordInvalid": "Password mismatch"
+    },
+    "errorMessage": {
+      "required": "The field is empty",
+      "minLength": "The minimum number of characters has not been reached",
+      "maxLength": "The maximum number of characters has not been reached",
+      "badEmail": "This email is not correct",
+      "unauthorized": "Incorrect login or password",
+      "conflict": "A user with this email is already registered",
+      "default": "Error"
+    },
+    "button": "Sign up",
+    "registration": "Already have an account?",
+    "registrationLink": "authorization"
   }
 }

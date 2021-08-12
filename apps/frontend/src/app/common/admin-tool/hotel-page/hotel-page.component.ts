@@ -27,6 +27,10 @@ export class HotelPageComponent implements OnInit {
       {
         name: this.i18NextService.t('savePhotoComponent.title'),
         url: '/admin-tool/hotel/' + this.id + '/photos'
+      },
+      {
+        name: 'add-room',
+        url: '/admin-tool/hotel/' + this.id + '/add-room'
       }
     ];
   }

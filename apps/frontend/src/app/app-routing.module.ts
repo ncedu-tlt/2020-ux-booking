@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthorizationComponent } from './common/authorization/authorization.component';
 import { RegistrationComponent } from './common/registration/registration.component';
+import { AddRoomFormComponent } from './common/add-room-form/add-room-form.component';
 import { GuestGuard } from './guards/guest.guard';
 import { ListOfHotelsComponent } from './common/admin-tool/list-of-hotels/list-of-hotels.component';
 import { MainComponent } from './common/main/main.component';
@@ -31,6 +32,10 @@ const routes: Routes = [
       {
         path: 'main-info',
         component: MainInfoComponent
+      },
+      {
+        path: 'add-room',
+        component: AddRoomFormComponent
       },
       {
         path: 'photos',
