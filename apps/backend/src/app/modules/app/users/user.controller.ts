@@ -50,16 +50,27 @@ export class UserController {
 
   @UseGuards(AuthGuard('jwt'))
   @Get('/current')
-  getCurrentUser(@Request() req): UserDto {
+  async getCurrentUser(
+    @Request() req,
+    @Res() res: Response<UserDto>
+  ): Promise<void> {
     const user = req.user;
     if (!user) {
       throw new HttpException('users/userDoesNotExist', HttpStatus.NOT_FOUND);
     }
-    return {
-      id: user.id,
-      userName: user.firstName,
-      phoneNumber: user.phone
-    };
+    const id = user.sub;
+    await this.usersRepository
+      .findOne(id)
+      .then(foundUser => {
+        res.status(HttpStatus.OK).send({
+          id: foundUser.id,
+          userName: foundUser.firstName,
+          phoneNumber: foundUser.phone
+        });
+      })
+      .catch(error => {
+        res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(error);
+      });
   }
 
   @Post()
