@@ -32,7 +32,7 @@ export class UserService {
     this.httpClient
       .get<UserDto>('/api/users/current')
       .subscribe((userInfo: UserDto) => {
-        this.currentUserSubject.next(userInfo.user.username);
+        this.currentUserSubject.next(userInfo.userName);
       });
   }
 
