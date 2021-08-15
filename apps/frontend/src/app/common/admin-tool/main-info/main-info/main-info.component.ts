@@ -42,7 +42,7 @@ export class MainInfoComponent implements OnInit {
       street: ['', [Validators.required]],
       houseNumber: ['', [Validators.required]],
       description: '',
-      paymentMethod: '',
+      bookingPolicy: '',
       city: ['', [Validators.required]],
       starClassification: '',
       currency: '',
@@ -56,21 +56,21 @@ export class MainInfoComponent implements OnInit {
     });
     this.route.parent.params.subscribe(params => {
       this.formId = params?.id || '';
-      this.hotelDataService //ну вот мы идем на бэк
-        .getHotelsById(this.formId) //просим дать ид
+      this.hotelDataService
+        .getHotelsById(this.formId)
         .subscribe((formId: HotelDto) => {
           this.pageForm = formId;
           this.formG.patchValue({
             textarea: this.pageForm.description,
             name: this.pageForm.name,
             serviceType: this.pageForm.serviceType,
+            bookingPolicy: this.pageForm.bookingPolicy,
             country: this.pageForm.address.country,
             street: this.pageForm.address.street,
             houseNumber: this.pageForm.address.number,
-            paymentMethod: this.pageForm.bookingPolicy,
             city: this.pageForm.address.city,
             starClassification: this.pageForm.stars,
-            currency: this.pageForm.currency,
+            currency: this.pageForm.currency?.name,
             checkbox: this.pageForm.freeCancellation
           });
         });
@@ -85,9 +85,18 @@ export class MainInfoComponent implements OnInit {
     this.pageForm.address.number = this.formG.get('houseNumber').value;
     this.pageForm.address.city = this.formG.get('city').value;
     this.pageForm.stars = this.formG.get('starClassification').value;
-    this.pageForm.currency = this.formG.get('currency').value;
+    this.pageForm.currency = {
+      name: this.formG.get('currency').value
+    };
     this.pageForm.freeCancellation = this.formG.get('checkbox').value;
-    this.pageForm.bookingPolicy = this.formG.get('paymentMethod').value;
+    this.pageForm.bookingPolicy =
+      this.formG.get('bookingPolicy').value &&
+      this.formG.get('bookingPolicy').value[0];
+    this.pageForm.serviceType = {
+      name:
+        this.formG.get('serviceType').value &&
+        this.formG.get('serviceType').value[0]
+    };
     this.hotelDataService
       .patchChangeHotelMainInfo(this.formId, this.pageForm)
       .subscribe((pageForm: HotelDto) => {
@@ -111,7 +120,7 @@ export class MainInfoComponent implements OnInit {
   }
   setDropdownPayment(items: string[]): void {
     this.formG.patchValue({
-      bookingPolicy: items
+      paymentMethod: items
     });
   }
 }

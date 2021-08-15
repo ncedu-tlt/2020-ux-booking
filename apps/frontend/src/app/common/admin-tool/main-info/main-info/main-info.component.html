@@ -1,7 +1,7 @@
-<div class='main-info__container'>
-  <div class='main-info__form-title'>
-    <h1>{{'adminTool.hotelForm.mainInfo.title' | i18next}}</h1>
-  </div>
+  <div class='main-info__container' *ngIf="pageForm">
+    <div class='main-info__form-title'>
+      <h1>{{'adminTool.hotelForm.mainInfo.title' | i18next}}</h1>
+    </div>
   <form class='main-info__form' [formGroup]="formG">
 
     <div class='main-info__form-row'>
@@ -29,6 +29,7 @@
     <div class='main-info__form-row'>
       <div class='main-info__form-col'>
       <b-selector
+        [value]="pageForm.bookingPolicy"
         (handleClick)='setDropdownPayment($event)'
         [itemList]='listPaymentMethod'
         [titleSelector]="'adminTool.hotelForm.mainInfo.paymentMethod' | i18next"
@@ -39,7 +40,7 @@
         (handleClick)='setDropdownService($event)'
         [itemList]='listService'
         [titleSelector]="'adminTool.hotelForm.mainInfo.serviceType' | i18next"
-
+        [value]="pageForm.serviceType?.name"
       ></b-selector>
       </div>
     </div>
