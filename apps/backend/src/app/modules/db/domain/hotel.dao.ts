@@ -35,7 +35,7 @@ export class Hotel {
   @Column({ nullable: true })
   bookingPolicy: string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: false, default: 1 })
   stars: number;
 
   @Column({ type: 'decimal', nullable: true })

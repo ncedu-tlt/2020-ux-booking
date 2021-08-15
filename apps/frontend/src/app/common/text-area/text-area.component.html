@@ -5,6 +5,7 @@
   </span>
   <div class='text-area__input-form' >
       <textarea class='text-area__input'
+                [ngModel]="value"
                 (change)="changeValue($event)"
                 [placeholder]="'adminTool.hotelForm.placeholder.description' | i18next">
       </textarea>

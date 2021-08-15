@@ -1,5 +1,6 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   forwardRef,
   Input
@@ -30,12 +31,15 @@ export class TextAreaComponent implements ControlValueAccessor {
   isDisabled: boolean;
   @Input()
   value: string;
+
+  constructor(private cdr: ChangeDetectorRef) {}
   onChange(value: any) {
     //onChange
   }
 
   writeValue(value: any) {
     this.value = value;
+    this.cdr.markForCheck();
   }
 
   registerOnChange(fn) {

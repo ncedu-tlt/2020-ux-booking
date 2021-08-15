@@ -5,7 +5,8 @@ import {
   EventEmitter,
   Input,
   Output,
-  ViewChild
+  ViewChild,
+  OnInit
 } from '@angular/core';
 
 @Component({
@@ -13,7 +14,7 @@ import {
   templateUrl: './selector.component.html',
   styleUrls: ['./selector.component.less']
 })
-export class SelectorComponent {
+export class SelectorComponent implements OnInit {
   @Input()
   itemList: string[] = [];
 
@@ -28,6 +29,7 @@ export class SelectorComponent {
 
   @Output() handleClick: EventEmitter<string[]> = new EventEmitter();
 
+  @Input()
   value = '';
 
   isNotFound = true;
@@ -63,6 +65,12 @@ export class SelectorComponent {
       this.isOpened = !this.isOpened;
     }
   };
+
+  ngOnInit(): void {
+    if (this.value) {
+      this.setSelectedItem(this.value);
+    }
+  }
 
   searchSelectorElement(element: HTMLElement): HTMLElement {
     if (element.classList.contains('selector')) {
