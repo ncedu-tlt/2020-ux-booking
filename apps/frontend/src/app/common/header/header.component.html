@@ -8,8 +8,8 @@
     <div>Hotel Booking Service</div>
   </div>
   <div class='header__admin-panel' *ngIf='isAdmin'>
-    <a class='header__admin-panel-item'>{{"header.menu.hotels" | i18next | uppercase}}</a>
-    <a class='header__admin-panel-item'>{{"header.menu.users" | i18next | uppercase}}</a>
+    <a class='header__admin-panel-item' routerLink="/admin-tool/hotels">{{"header.menu.hotels" | i18next | uppercase}}</a>
+    <a class='header__admin-panel-item' routerLink="/admin-tool/users">{{"header.menu.users" | i18next | uppercase}}</a>
   </div>
   <div class='header__items'>
     <ng-container *ngTemplateOutlet='switchersTemplate'></ng-container>
@@ -96,7 +96,7 @@
 </div>
 
 <ng-template #switchersTemplate>
-  <ng-container>
+  <!--<ng-container>
     <div class='header__night-theme _rotate'
          [class._dark]='!isNightTheme'
          (click)='changeNight()'>
@@ -113,7 +113,7 @@
         </svg-icon>
       </div>
     </div>
-  </ng-container>
+  </ng-container>-->
 
   <ng-container>
     <div class='header__language _rotate'
