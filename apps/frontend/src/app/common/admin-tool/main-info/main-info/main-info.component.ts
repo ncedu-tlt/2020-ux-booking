@@ -120,7 +120,7 @@ export class MainInfoComponent implements OnInit {
   }
   setDropdownPayment(items: string[]): void {
     this.formG.patchValue({
-      paymentMethod: items
+      bookingPolicy: items
     });
   }
 }
