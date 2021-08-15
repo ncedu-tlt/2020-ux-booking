@@ -3,6 +3,7 @@ import { I18NEXT_SERVICE, ITranslationService } from 'angular-i18next';
 import { CookieService } from 'ngx-cookie-service';
 import { Location } from '@angular/common';
 import { UserService } from '../../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'b-header',
@@ -35,15 +36,16 @@ export class HeaderComponent implements OnInit {
     @Inject(I18NEXT_SERVICE) private i18NextService: ITranslationService,
     private cookieService: CookieService,
     private location: Location,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {
     this.language = i18NextService.language;
     if (this.language == 'en') {
       this.isLanguageRu = false;
     }
-    this.userService.getUser().subscribe((user: any) => {
-      this.userName = user;
-    });
+    this.userService
+      .getUser()
+      .subscribe((user: any) => this.onUserChanged(user));
   }
 
   get language(): string {
@@ -86,13 +88,23 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.getUser().subscribe(name => {
-      this.userName = name;
-    });
+    this.userService.getUser().subscribe(name => this.onUserChanged(name));
     this.currentUrl = this.location.path();
     this.isHiddenLoginButton = !(
       this.location.path() === '/registration' ||
       this.location.path() === '/authorization'
     );
+  }
+
+  private onUserChanged(userName: any): void {
+    this.userName = userName;
+    this.setupAdmin();
+  }
+
+  private setupAdmin() {
+    this.isAdmin = this.userName != undefined && this.userName != '';
+    if (this.isAdmin) {
+      this.router.navigate(['/admin-tool/hotels']);
+    }
   }
 }

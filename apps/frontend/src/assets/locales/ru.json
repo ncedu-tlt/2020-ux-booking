@@ -118,6 +118,22 @@
         }
       }
     },
+    "list-of-users": {
+      "title": "Пользователи",
+      "input": {
+        "name": "Имя/Фамилия",
+        "phoneNumber": "Номер телефона",
+        "namePlaceholder": "Введите имя или фамилию",
+        "countryPlaceholder": "Введите номер телефона"
+      },
+      "buttons": {
+        "find": "Найти"
+      },
+      "table": {
+        "name": "Имя, Фамилия",
+        "phoneNumber": "Номер телефона"
+      }
+    },
     "hotelForm": {
       "tabs": {
         "nutrition": "Питание",
