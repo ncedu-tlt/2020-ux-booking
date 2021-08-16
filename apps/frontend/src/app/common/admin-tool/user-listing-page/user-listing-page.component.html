@@ -3,19 +3,20 @@
     <b-page-title class='list-of-hotels__title' title='{{"adminTool.list-of-users.title" | i18next}}'></b-page-title>
   </div>
   <div class='list-of-users__body'>
-    <div class='list-of-users__filter-line'>
+    <div [formGroup]='userFilter' class='list-of-users__filter-line'>
       <div class='list-of-users__input-field'>
         <b-input-field title='{{"adminTool.list-of-users.input.name" | i18next}}' 
-          placeholder='{{"adminTool.list-of-users.input.namePlaceholder" | i18next}}'>
+          placeholder='{{"adminTool.list-of-users.input.namePlaceholder" | i18next}}'
+          formControlName='name'>
         </b-input-field>
       </div>
-      <div class='list-of-users__input-field'>
+      <!--<div class='list-of-users__input-field'>
         <b-input-field title='{{"adminTool.list-of-users.input.phoneNumber" | i18next}}' 
           placeholder='{{"adminTool.list-of-users.input.countryPlaceholder" | i18next}}'>
         </b-input-field>
-      </div>
+      </div>-->
       <div class='list-of-users__search-button'>
-        <b-button text='{{"adminTool.list-of-users.buttons.find" | i18next}}'>
+        <b-button text='{{"adminTool.list-of-users.buttons.find" | i18next}}' (click)="loadUsers()">
         </b-button>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserDto } from '@booking/models/user.dto';
 import { Observable } from 'rxjs';
@@ -7,8 +7,11 @@ import { Observable } from 'rxjs';
 export class UserDataService {
   constructor(private http: HttpClient) {}
 
-  getUsers(): Observable<UserDto[]> {
-    return this.http.get<UserDto[]>('/api/users');
+  getUsers(filter?: any): Observable<UserDto[]> {
+    const params = new HttpParams({
+      fromObject: filter
+    });
+    return this.http.get<UserDto[]>('/api/users', { params: params });
   }
 
   deleteUser(id: string): Observable<UserDto> {
