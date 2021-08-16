@@ -35,7 +35,7 @@ export class UserController {
     @Req() req: Request,
     @Res() res: Response<UserDto[]>
   ): Promise<void> {
-    let where: any = {};
+    const where: any = {};
     if (req.query['name']) where.firstName = Like(req.query['name'] + '%');
     await this.usersRepository
       .find({

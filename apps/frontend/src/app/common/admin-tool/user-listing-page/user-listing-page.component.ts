@@ -20,9 +20,9 @@ export class ListOfUsersComponent implements OnInit {
 
   configTemplate: TableConfig = {
     items: [],
-    columns: ['aname'/*, 'phoneNumber'*/],
+    columns: ['aname' /*, 'phoneNumber'*/],
     headers: {
-      aname: this.i18NextService.t('adminTool.list-of-users.table.name'),
+      aname: this.i18NextService.t('adminTool.list-of-users.table.name')
       /*phoneNumber: this.i18NextService.t(
         'adminTool.list-of-users.table.phoneNumber'
       )*/
