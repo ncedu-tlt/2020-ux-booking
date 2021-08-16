@@ -145,11 +145,11 @@
         "reviews": "Отзывы"
       },
       "mainInfo": {
-        "title": "Main information",
+        "title": "Основная информация",
         "name": "Название",
         "serviceType": "Вид сервиса",
         "country": "Страна",
-        "address": "Адрес",
+        "street": "Улица",
         "description": "Описание",
         "paymentMethod": "Способ оплаты",
         "city": "Город",
@@ -157,20 +157,21 @@
         "save": "Сохранить",
         "publish": "Опубликовать",
         "cancel": "Отмена",
-        "currency": "Валюта"
+        "currency": "Валюта",
+        "houseNumber": "Номер дома"
       },
       "buttons": {
         "cancel": "Отмена",
         "save": "Сохранить",
         "find": "Найти"
+      },
+      "placeholder": {
+        "list": "Выберите из списка",
+        "country": "Введите страну",
+        "address": "Введите адрес",
+        "description": "Введите описание"
       }
     }
-  },
-  "placeholder": {
-    "list": "Выберите из списка",
-    "country": "Введите страну",
-    "address": "Введите адрес",
-    "description": "Введите описание"
   },
   "savePhotoComponent": {
     "title": "Фотографии",

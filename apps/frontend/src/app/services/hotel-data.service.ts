@@ -28,4 +28,15 @@ export class HotelDataService {
   deleteHotel(id: string): Observable<HotelDto> {
     return this.http.delete<HotelDto>('/api/hotels/' + id);
   }
+  getHotelsById(id: string): Observable<HotelDto> {
+    return this.http.get<HotelDto>('/api/hotels/' + id);
+  }
+  patchChangeHotelMainInfo(id: string, body: HotelDto): Observable<HotelDto> {
+    return this.http.patch<HotelDto>('/api/hotels/' + id + '/mainInfo', body);
+  }
+  getNameById(id: string): Observable<string> {
+    return this.http.get('/api/hotels/' + id + '/name', {
+      responseType: 'text'
+    });
+  }
 }

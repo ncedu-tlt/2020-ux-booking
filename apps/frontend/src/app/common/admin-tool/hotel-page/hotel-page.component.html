@@ -1,11 +1,11 @@
-<div class='main-info'>
-  <div class='main-info__title'>
-    <b-page-title [title]="'Gold Star Super-Puper Hotel'"></b-page-title>
+<div class='hotel-page__container'>
+  <div class='hotel-page__title'>
+    <b-page-title [title]="name" ></b-page-title>
   </div>
-  <div class='main-info__content'>
-    <div class='main-info__tabs'>
+  <div class='hotel-page__content'>
+    <div class='hotel-page__tabs'>
       <b-tabs [items]= 'tabs'
-              [selectedItem]="'Основная информация'"
+              [selectedItem]="'adminTool.hotelForm.mainInfo.title' | i18next"
               [type]="'vertical'">
       </b-tabs>
     </div>

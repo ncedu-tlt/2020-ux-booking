@@ -106,7 +106,7 @@
         "name": "Name",
         "serviceType": "Service type",
         "country": "Country",
-        "address": "Address",
+        "street": "Street",
         "description": "Description",
         "paymentMethod": "Payment method",
         "city": "City",
@@ -114,17 +114,18 @@
         "save": "Save",
         "publish": "Publish",
         "cancel": "Cancel",
-        "currency": "Currency"
-      },
-      "buttons": {
-        "cancel": "Cancel",
-        "save": "Save"
+        "currency": "Currency",
+        "houseNumber": "House Number"
       },
       "placeholder": {
         "list": "Select from the list",
         "country": "Enter a country",
         "address": "Enter an address",
         "description": "Enter a description"
+      },
+      "buttons": {
+        "cancel": "Cancel",
+        "save": "Save"
       },
       "authorization": {
         "title": "Authorization",
