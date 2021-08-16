@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { HotelInfoModel } from '../models/hotel-Info.model';
 import { HotelDto } from '@booking/models/hotel.dto';
@@ -8,8 +8,11 @@ import { HotelDto } from '@booking/models/hotel.dto';
 export class HotelDataService {
   constructor(private http: HttpClient) {}
 
-  getHotels(): Observable<HotelInfoModel[]> {
-    return this.http.get<HotelInfoModel[]>('/api/hotels');
+  getHotels(filter?: any): Observable<HotelInfoModel[]> {
+    const params = new HttpParams({
+      fromObject: filter
+    });
+    return this.http.get<HotelInfoModel[]>('/api/hotels', { params: params });
   }
 
   getHotel(id): Observable<HotelDto> {

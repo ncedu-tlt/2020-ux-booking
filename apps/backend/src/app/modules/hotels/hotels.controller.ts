@@ -9,12 +9,13 @@ import {
   Param,
   Patch,
   Post,
+  Req,
   Res,
   UploadedFiles,
   UseInterceptors
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Like, Repository } from 'typeorm';
 import { Hotel } from '../db/domain/hotel.dao';
 import { Service } from '../db/domain/service.dao';
 import { Photo } from '../db/domain/photo.dao';
@@ -25,6 +26,7 @@ import { Amenities } from '../db/domain/ameniries.dao';
 import { AmenitiesRoom } from '../db/domain/amenities_room.dao';
 import { HotelDto } from '@booking/models/hotel.dto';
 import { Response } from 'express';
+import { Request } from 'express';
 import { HotelBoardBasisDto } from '@booking/models/hotelBoardBasis.dto';
 import { DistanceDto } from '@booking/models/distance.dto';
 import { ServicesDto } from '@booking/models/services.dto';
@@ -77,13 +79,19 @@ export class HotelsController {
   async getHotels(
     @Headers() range: number,
     take: number,
-    @Res() res: Response
+    @Res() res: Response,
+    @Req() req: Request
   ): Promise<void> {
+    const where: any = { address: { city: { country: {} } } };
+    if (req.query['name']) where.name = Like(req.query['name'] + '%');
+    if (req.query['city'])
+      where.address.city.name = Like(req.query['city'] + '%');
+    if (req.query['country'])
+      where.address.city.country.name = Like(req.query['country'] + '%');
     await this.hotelsRepository
       .find({
-        relations: RELATIONS_GET_HOTELS /*,
-        skip: range,
-        take: take*/
+        relations: RELATIONS_GET_HOTELS,
+        where: where
       })
       .then(hotelsList => {
         res.status(HttpStatus.OK).send(

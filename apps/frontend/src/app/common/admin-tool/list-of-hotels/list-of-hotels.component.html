@@ -8,20 +8,23 @@
         text='{{"adminTool.list-of-hotels.buttons.addHotel" | i18next}}'>
       </b-button>
     </div>
-    <div class='list-of-hotels__filter-line'>
+    <div [formGroup]='hotelFilter' class='list-of-hotels__filter-line'>
       <div class='list-of-hotels__input-field'>
         <b-input-field title='{{"adminTool.list-of-hotels.input.name" | i18next}}' 
-          placeholder='{{"adminTool.list-of-hotels.input.namePlaceholder" | i18next}}'>
+          placeholder='{{"adminTool.list-of-hotels.input.namePlaceholder" | i18next}}'
+          formControlName='name'>
         </b-input-field>
       </div>
       <div class='list-of-hotels__input-field'>
         <b-input-field title='{{"adminTool.list-of-hotels.input.country" | i18next}}' 
-          placeholder='{{"adminTool.list-of-hotels.input.countryPlaceholder" | i18next}}'>
+          placeholder='{{"adminTool.list-of-hotels.input.countryPlaceholder" | i18next}}'
+          formControlName='country'>
         </b-input-field>
       </div>
       <div class='list-of-hotels__input-field'>
         <b-input-field title='{{"adminTool.list-of-hotels.input.city" | i18next}}' 
-          placeholder='{{"adminTool.list-of-hotels.input.cityPlaceholder" | i18next}}'>
+          placeholder='{{"adminTool.list-of-hotels.input.cityPlaceholder" | i18next}}'
+          formControlName='city'>
         </b-input-field>
       </div>
       <div class='list-of-hotels__search-button'>
