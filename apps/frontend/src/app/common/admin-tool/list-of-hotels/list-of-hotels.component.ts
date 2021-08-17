@@ -18,6 +18,7 @@ import { HotelDataService } from '../../../services/hotel-data.service';
 import { HotelCreationPopupComponent } from '../hotel-creation-popup/hotel-creation-popup.component';
 import { Router } from '@angular/router';
 import { I18NEXT_SERVICE, ITranslationService } from 'angular-i18next';
+import { FormBuilder, FormGroup } from '@angular/forms';
 @Component({
   selector: 'b-list-of-hotels',
   templateUrl: './list-of-hotels.component.html',
@@ -41,19 +42,32 @@ export class ListOfHotelsComponent implements OnInit {
 
   @ViewChild(HotelCreationPopupComponent) popup: HotelCreationPopupComponent;
 
+  hotelFilter: FormGroup;
+
   constructor(
     @Inject(I18NEXT_SERVICE) private i18NextService: ITranslationService,
     private hotelDataService: HotelDataService,
+    private formBuilder: FormBuilder,
     private router: Router
   ) {}
 
   ngOnInit(): void {
     this.config = this.configTemplate;
+    this.hotelFilter = this.formBuilder.group({
+      name: ['', []],
+      country: ['', []],
+      city: ['', []]
+    });
     this.loadHotels();
   }
 
   loadHotels(): void {
-    this.hotelDataService.getHotels().subscribe(hotels => {
+    const filter = {
+      name: this.hotelFilter.value.name,
+      country: this.hotelFilter.value.country,
+      city: this.hotelFilter.value.city
+    };
+    this.hotelDataService.getHotels(filter).subscribe(hotels => {
       const hotelItems: Item[] = hotels.map(hotel => {
         return {
           id: hotel.id,

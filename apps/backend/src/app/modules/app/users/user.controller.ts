@@ -7,13 +7,13 @@ import {
   Post,
   Res,
   UseGuards,
-  Request,
   Delete,
-  Param
+  Param,
+  Req
 } from '@nestjs/common';
 import { RegisterUserDto } from '@booking/models/register.user.dto';
-import { Response } from 'express';
-import { Repository } from 'typeorm';
+import { Response, Request } from 'express';
+import { Like, Repository } from 'typeorm';
 import { User } from '../../db/domain/user.dao';
 import * as bcrypt from 'bcrypt';
 import { Role } from '../../db/domain/role.dao';
@@ -31,9 +31,16 @@ export class UserController {
   ) {}
 
   @Get()
-  async getUsers(@Res() res: Response<UserDto[]>): Promise<void> {
+  async getUsers(
+    @Req() req: Request,
+    @Res() res: Response<UserDto[]>
+  ): Promise<void> {
+    const where: any = {};
+    if (req.query['name']) where.firstName = Like(req.query['name'] + '%');
     await this.usersRepository
-      .find({})
+      .find({
+        where: where
+      })
       .then(usersList => {
         res.status(HttpStatus.OK).send(
           usersList.map(user => ({
@@ -51,14 +58,14 @@ export class UserController {
   @UseGuards(AuthGuard('jwt'))
   @Get('/current')
   async getCurrentUser(
-    @Request() req,
+    @Req() req,
     @Res() res: Response<UserDto>
   ): Promise<void> {
     const user = req.user;
     if (!user) {
       throw new HttpException('users/userDoesNotExist', HttpStatus.NOT_FOUND);
     }
-    const id = user.sub;
+    const id = user.userId; // see: JwtStrategy.validate(...) !!!
     await this.usersRepository
       .findOne(id)
       .then(foundUser => {

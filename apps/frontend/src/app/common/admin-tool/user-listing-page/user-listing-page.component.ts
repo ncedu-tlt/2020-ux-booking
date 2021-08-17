@@ -7,6 +7,7 @@ import {
 } from '../../../models/table.model';
 import { I18NEXT_SERVICE, ITranslationService } from 'angular-i18next';
 import { UserDataService } from '../../../services/user-data.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
 @Component({
   selector: 'b-list-of-users',
   templateUrl: './user-listing-page.component.html',
@@ -15,30 +16,39 @@ import { UserDataService } from '../../../services/user-data.service';
 export class ListOfUsersComponent implements OnInit {
   config: TableConfig;
 
+  userFilter: FormGroup;
+
   configTemplate: TableConfig = {
     items: [],
-    columns: ['aname', 'phoneNumber'],
+    columns: ['aname' /*, 'phoneNumber'*/],
     headers: {
-      aname: this.i18NextService.t('adminTool.list-of-users.table.name'),
-      phoneNumber: this.i18NextService.t(
+      aname: this.i18NextService.t('adminTool.list-of-users.table.name')
+      /*phoneNumber: this.i18NextService.t(
         'adminTool.list-of-users.table.phoneNumber'
-      )
+      )*/
     },
-    buttons: [ButtonIconTypesEnum.admin, ButtonIconTypesEnum.blockUser]
+    buttons: [/*ButtonIconTypesEnum.admin,*/ ButtonIconTypesEnum.blockUser]
   };
 
   constructor(
     @Inject(I18NEXT_SERVICE) private i18NextService: ITranslationService,
+    private formBuilder: FormBuilder,
     private userDataService: UserDataService
   ) {}
 
   ngOnInit(): void {
     this.config = this.configTemplate;
+    this.userFilter = this.formBuilder.group({
+      name: ['', []]
+    });
     this.loadUsers();
   }
 
   loadUsers(): void {
-    this.userDataService.getUsers().subscribe(users => {
+    const filter = {
+      name: this.userFilter.value.name
+    };
+    this.userDataService.getUsers(filter).subscribe(users => {
       const userItems: Item[] = users.map(user => {
         return {
           id: user.id,
